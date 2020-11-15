@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.nullables.api.playground</groupId>
+        <artifactId>objectmappers-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../../</relativePath>
+    </parent>
+
+    <name>io.nullables.api.playground.objectmappers.tests</name>
+    <description>ObjectMappers Tests</description>
+    <artifactId>objectmappers-tests</artifactId>
+    <packaging>jar</packaging>
+    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-tests</url>
+    <inceptionYear>2020</inceptionYear>
+
+    <properties>
+        <moditect.skip>true</moditect.skip>
+
+        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
+    </properties>
+
+    <dependencies>
+        <!-- ObjectMappers library dependencies -->
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-commons</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-modelmapper</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- ObjectMappers test library dependencies -->
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-commons</artifactId>
+            <version>${objectmappers.version}</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/test/resources</directory>
+            </testResource>
+        </testResources>
+    </build>
+</project>

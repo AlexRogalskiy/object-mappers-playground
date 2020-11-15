@@ -26,21 +26,34 @@ env:
     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
 
+matrix:
+  include:
+    - jdk: openjdk8
+      env: ARCH=x86_64
+    - jdk: openjdk8
+      env: ARCH=aarch64
+
 build:
-  advancedReporting: true
+  cache: false
+  advancedReportinsg: true
+
+  pre_ci_boot:
+    image_name: drydock/u16javall
+    image_tag: latest
+    pull: true
 
   pre_ci:
-    - *template-pre-ci-non_module
+    - *template-pre-ci
 
   # http://docs.shippable.com/ci/shippableyml/#ci
   ci:
     # npm mirrors can sometimes be flacky, better to use shippable_retry
     # http://docs.shippable.com/ci/advancedOptions/retry/
-    - *template-ci-non_module
+    - *template-ci
   #    - gradle check --no-daemon --stacktrace  --max-workers 2
 
   post_ci:
-    - *templates-post-ci-non-module
+    - *template-post-ci
 
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/
@@ -51,6 +64,8 @@ integrations:
     # http://docs.shippable.com/integrations/notifications/email/
     - integrationName: email
       type: email
+      recipients:
+        - alexander.rogalsky@yandex.ru
       branches:
         only:
           - master
@@ -60,11 +75,7 @@ integrations:
       on_start: always
       on_pull_request: never
       #### special tags for email type ####
-      sendConsoleLogs: <boolean>
-      sendCoverageReports: <boolean>
-      sendFailingSnippet: <boolean>
+      sendConsoleLogs: false
+      sendCoverageReports: false
+      sendFailingSnippet: true
       #### special tags for email type ####
-
-# TODO: Follow-up:
-# https://documentation.codeship.com/pro/languages-frameworks/java/#gradle
-# https://documentation.codeship.com/pro/builds-and-configuration/services/

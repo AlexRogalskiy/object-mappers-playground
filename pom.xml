@@ -80,6 +80,7 @@
         <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-commons</module>
         <module>modules/objectmappers-modelmapper</module>
+        <module>modules/objectmappers-tests</module>
     </modules>
 
     <properties>
@@ -125,10 +126,21 @@
         <assertj.version>3.18.0</assertj.version>
         <hamcrest.version>2.2</hamcrest.version>
 
+        <jacoco-check.skip>false</jacoco-check.skip>
+        <jacoco-rule.line.length>100</jacoco-rule.line.length>
+        <jacoco.branches.coverage.percentage.minimum>0.65</jacoco.branches.coverage.percentage.minimum>
+        <jacoco.classes.missed.minimum>15</jacoco.classes.missed.minimum>
+        <jacoco.complexities.coverage.percentage.minimum>0.57</jacoco.complexities.coverage.percentage.minimum>
+        <jacoco.coverage.exclusions>**/application/config/*</jacoco.coverage.exclusions>
+        <jacoco.instructions.coverage.percentage.minimum>0.61</jacoco.instructions.coverage.percentage.minimum>
+        <jacoco.lines.coverage.percentage.minimum>0.65</jacoco.lines.coverage.percentage.minimum>
+        <jacoco.methods.coverage.percentage.minimum>0.57</jacoco.methods.coverage.percentage.minimum>
+
         <maven-plugin-os.version>1.6.2</maven-plugin-os.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <maven-versions-plugin.version>2.8.1</maven-versions-plugin.version>
         <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -139,6 +151,8 @@
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
+        <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
     </properties>
 
     <scm>
@@ -336,6 +350,13 @@
                         <phase>clean</phase>
                         <configuration>
                             <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                            <filesets>
+                                <fileset>
+                                    <directory>${java.io.tmpdir}</directory>
+                                    <directory>${project.basedir}/src/main/generated-sources</directory>
+                                    <followSymlinks>false</followSymlinks>
+                                </fileset>
+                            </filesets>
                         </configuration>
                     </execution>
                 </executions>
@@ -446,6 +467,25 @@
                                 <dependencyConvergence/>
                             </rules>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${maven-versions-plugin.version}</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>show-plugin-versions</id>
+                        <goals>
+                            <goal>display-dependency-updates</goal>
+                            <goal>display-plugin-updates</goal>
+                        </goals>
+                        <phase>site</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -982,6 +1022,9 @@
                                         <value>org.junit.platform.launcher.listeners.SummaryGeneratingListener</value>
                                     </property>
                                     <systemPropertyVariables>
+                                        <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+                                        <allure.results.directory>${project.build.directory}/allure-results
+                                        </allure.results.directory>
                                         <java.awt.headless>true</java.awt.headless>
                                     </systemPropertyVariables>
                                 </properties>
@@ -996,11 +1039,110 @@
                                 <showSuccess>false</showSuccess>
                             </configuration>
                         </plugin>
+
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <version>${maven-jacoco-plugin.version}</version>
+                            <configuration>
+                                <append>true</append>
+                                <excludes>
+                                    <exclude>${jacoco.coverage.exclusions}</exclude>
+                                </excludes>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>before-tests</id>
+                                    <goals>
+                                        <goal>prepare-agent</goal>
+                                    </goals>
+                                    <phase>process-test-classes</phase>
+                                    <configuration>
+                                        <skip>${unit-tests.skip}</skip>
+                                        <!-- Sets the path to the file which contains the execution data. -->
+                                        <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                                        <!--
+                                            Sets the name of the property containing the settings
+                                            for JaCoCo runtime agent.
+                                        -->
+                                        <propertyName>surefireArgLine</propertyName>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>after-tests</id>
+                                    <goals>
+                                        <goal>report</goal>
+                                    </goals>
+                                    <phase>test</phase>
+                                    <configuration>
+                                        <skip>${unit-tests.skip}</skip>
+                                        <!-- Sets the path to the file which contains the execution data. -->
+                                        <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                                        <!-- Sets the output directory for the code coverage report. -->
+                                        <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut
+                                        </outputDirectory>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>default-jacoco-check</id>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                    <configuration>
+                                        <skip>${jacoco-check.skip}</skip>
+                                        <rules>
+                                            <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                                <element>BUNDLE</element>
+                                                <limits>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>INSTRUCTION</counter>
+                                                        <value>COVEREDRATIO</value>
+                                                        <minimum>${jacoco.instructions.coverage.percentage.minimum}
+                                                        </minimum>
+                                                    </limit>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>CLASS</counter>
+                                                        <value>MISSEDCOUNT</value>
+                                                        <maximum>${jacoco.classes.missed.minimum}</maximum>
+                                                    </limit>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>LINE</counter>
+                                                        <value>COVEREDRATIO</value>
+                                                        <minimum>${jacoco.lines.coverage.percentage.minimum}</minimum>
+                                                    </limit>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>BRANCH</counter>
+                                                        <value>COVEREDRATIO</value>
+                                                        <minimum>${jacoco.branches.coverage.percentage.minimum}
+                                                        </minimum>
+                                                    </limit>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>COMPLEXITY</counter>
+                                                        <value>COVEREDRATIO</value>
+                                                        <minimum>${jacoco.complexities.coverage.percentage.minimum}
+                                                        </minimum>
+                                                    </limit>
+                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                        <counter>METHOD</counter>
+                                                        <value>COVEREDRATIO</value>
+                                                        <minimum>${jacoco.methods.coverage.percentage.minimum}</minimum>
+                                                    </limit>
+                                                </limits>
+                                            </rule>
+                                        </rules>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
                     </plugins>
                 </pluginManagement>
 
                 <!-- Use in lifecycle -->
                 <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
