@@ -1,0 +1,26 @@
+externalReferences:
+  - https://github.com/AlexRogalskiy/openparser/raw/master/shippable.templates.yml
+
+templates-pre-ci-non-module: &template-pre-ci-non_module
+  - echo ">>> Running pre CI build phase"
+  - mvn clean install -Pdev,assembly,non_module_java -DskipTests
+
+templates-ci-non-module: &template-ci-non_module
+  - echo ">>> Running CI build phase"
+  - mvn clean install -Pdev,assembly,non_module_java -DskipTests
+
+templates-post-ci-non-module: &template-post-ci-non_module
+  - echo ">>> Running post CI build phase"
+  - mvn clean install -Pdev,assembly,non_module_java -DskipTests
+
+templates-pre-ci-module: &template-pre-ci-non_module
+  - echo ">>> Running pre CI build phase"
+  - mvn clean install -Pdev,assembly,module_java -DskipTests
+
+templates-ci-module: &template-ci-non_module
+  - echo ">>> Running CI build phase"
+  - mvn clean install -Pdev,assembly,module_java -DskipTests
+
+templates-post-ci-module: &template-post-ci-non_module
+  - echo ">>> Running post CI build phase"
+  - mvn clean install -Pdev,assembly,module_java -DskipTests

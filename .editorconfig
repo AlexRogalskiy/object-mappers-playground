@@ -1,0 +1,32 @@
+# http://editorconfig.org
+
+root = true
+
+[*]
+indent_size = 2
+indent_style = space
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+
+[*.java]
+indent_size = 4
+max_line_length = 79
+
+[*.story]
+indent_size = 4
+max_line_length = 79
+
+[*.{yml, yaml}]
+indent_size = 2
+
+[*.{html, xml, js}]
+indent_size = 4
+
+[*.{css, scss, json}]
+indent_size = 4
+
+[*.{md, markdown}]
+trim_trailing_whitespace = false
