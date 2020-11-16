@@ -1,22 +1,16 @@
 # ObjectMappers
 
-![Build](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/Build/badge.svg?branch=master&event=push)
-![Create Release](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/Release-draft/badge.svg?branch=master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/AlexRogalskiy/object-mappers-playground)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/AlexRogalskiy/object-mappers-playground)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
 ![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
 ![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/object-mappers-playground)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/object-mappers-playground)
 ![GitHub](https://img.shields.io/github/license/AlexRogalskiy/object-mappers-playground)
-![GitHub All Releases](https://img.shields.io/github/downloads/AlexRogalskiy/object-mappers-playground/total)
 ![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/object-mappers-playground)
 ![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/object-mappers-playground/goto)
 ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/object-mappers-playground)
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground)
-![Docker Automated build](https://img.shields.io/docker/automated/alexanderr/object-mappers-playground)
-![Docker Pulls](https://img.shields.io/docker/pulls/alexanderr/object-mappers-playground)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
 [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)]()
 
