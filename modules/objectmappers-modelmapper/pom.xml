@@ -50,6 +50,7 @@
             <artifactId>objectmappers-commons</artifactId>
             <version>${objectmappers.version}</version>
             <classifier>tests</classifier>
+            <optional>true</optional>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
