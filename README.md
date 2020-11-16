@@ -1,5 +1,25 @@
 # ObjectMappers
 
+![Build](https://github.com/AlexRogalskiy/objectmappers-playground/workflows/Build/badge.svg?branch=master&event=push)
+![Create Release](https://github.com/AlexRogalskiy/objectmappers-playground/workflows/Release-draft/badge.svg?branch=master)
+![Lines of code](https://img.shields.io/tokei/lines/github/AlexRogalskiy/objectmappers-playground)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/AlexRogalskiy/objectmappers-playground)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/objectmappers-playground)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/objectmappers-playground)
+![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/objectmappers-playground)
+![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/objectmappers-playground)
+![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/objectmappers-playground)
+![GitHub](https://img.shields.io/github/license/AlexRogalskiy/objectmappers-playground)
+![GitHub All Releases](https://img.shields.io/github/downloads/AlexRogalskiy/objectmappers-playground/total)
+![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/objectmappers-playground)
+![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/objectmappers-playground/goto)
+![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/objectmappers-playground)
+![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/objectmappers-playground)
+![Docker Automated build](https://img.shields.io/docker/automated/alexanderr/objectmappers-playground)
+![Docker Pulls](https://img.shields.io/docker/pulls/alexanderr/objectmappers-playground)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_objectmappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_objectmappers-playground)
+[![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)]()
+
 ## Summary
 
 ObjectMappers playground is intended to provide various mapping operations on DTO objects while converting from source to target objects.
