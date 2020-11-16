@@ -54,8 +54,8 @@ ObjectMappers module dependencies:
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
 
-- [**ObjectMappers Tests**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-tests)  
-  `objectmappers-tests` - Library with utilities for common test cases.
+- [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-testflow)  
+  `objectmappers-testflow` - Library to work with TestFlow API.
 
 ## Version Store
 

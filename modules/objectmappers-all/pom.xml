@@ -37,6 +37,12 @@
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-testflow</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

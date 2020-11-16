@@ -10,17 +10,35 @@
         <relativePath>../../</relativePath>
     </parent>
 
-    <name>io.nullables.api.playground.objectmappers.modelmapper</name>
-    <description>ObjectMappers Playground for ModelMapper API</description>
-    <artifactId>objectmappers-modelmapper</artifactId>
+    <name>io.nullables.api.playground.objectmappers.testflow</name>
+    <description>ObjectMappers TestFlow API</description>
+    <artifactId>objectmappers-testflow</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper</url>
+    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-testflow</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <modelmapper.version>2.3.8</modelmapper.version>
+        <mockneat.version>0.4.1</mockneat.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- ObjectMappers library dependencies -->
@@ -30,18 +48,41 @@
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- MockNeat library dependencies -->
         <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-testflow</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>test</scope>
+            <groupId>net.andreinc.mockneat</groupId>
+            <artifactId>mockneat</artifactId>
+            <version>${mockneat.version}</version>
         </dependency>
 
-        <!-- ModelMapper library dependencies -->
+        <!-- JUnit test library dependencies -->
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>${modelmapper.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>${junit-platform.version}</version>
+        </dependency>
+
+        <!-- Mockito test library dependencies -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
         </dependency>
 
         <!-- ObjectMappers test library dependencies -->
@@ -51,7 +92,6 @@
             <version>${objectmappers.version}</version>
             <classifier>tests</classifier>
             <type>test-jar</type>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
