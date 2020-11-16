@@ -104,6 +104,10 @@ ObjectMappers Team would like inform that JetBrains is helping by provided IDE t
 ObjectMappers project is using SonarCloud for code quality. 
 Thanks to SonarQube Team for free analysis solution for open source projects.
 
+[![alt tag](https://app.shippable.com/app/assets/images/shippable-logo.png)](https://www.shippable.com/)
+
+ObjectMappers project is using Shippable DevOps and CI automation tool.
+
 ## License
 
 ObjectMappers is distributed under LGPL version 3 or later, see COPYING.LESSER(LGPL) and COPYING(GPL).   
