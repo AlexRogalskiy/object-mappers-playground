@@ -1,4 +1,7 @@
 open module io.nullables.api.playground.objectmappers.testflow {
+    exports io.nullables.api.playground.objectmappers.testflow.annotation;
+    exports io.nullables.api.playground.objectmappers.testflow.utils;
+
     requires org.apache.commons.lang3;
     requires jsr305;
     requires lombok;

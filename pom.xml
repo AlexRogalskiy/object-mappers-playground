@@ -81,6 +81,7 @@
         <module>modules/objectmappers-commons</module>
         <module>modules/objectmappers-modelmapper</module>
         <module>modules/objectmappers-testflow</module>
+        <module>modules/objectmappers-it</module>
     </modules>
 
     <properties>
@@ -518,6 +519,34 @@
             </plugin>
 
             <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>${maven.moditect.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <skip>${moditect.skip}</skip>
+                    <artifactId>${project.groupId}-${project.artifactId}</artifactId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>add-module-infos</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <jvmVersion>11</jvmVersion>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <module>
+                                <moduleInfoFile>${project.build.sourceDirectory}/module-info.java
+                                </moduleInfoFile>
+                            </module>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-help-plugin</artifactId>
                 <version>${maven-help-plugin.version}</version>
@@ -547,33 +576,6 @@
                             <value>${project.groupId}.${project.artifactId}</value>
                             <regex>[^a-zA-Z0-9]+</regex>
                             <replacement>.</replacement>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.moditect</groupId>
-                <artifactId>moditect-maven-plugin</artifactId>
-                <version>${maven.moditect.plugin.version}</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <skip>${moditect.skip}</skip>
-                    <artifactId>${project.groupId}-${project.artifactId}</artifactId>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>add-module-infos</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-module-info</goal>
-                        </goals>
-                        <configuration>
-                            <jvmVersion>11</jvmVersion>
-                            <overwriteExistingFiles>true</overwriteExistingFiles>
-                            <module>
-                                <moduleInfoFile>${project.build.sourceDirectory}/module-info.java</moduleInfoFile>
-                            </module>
                         </configuration>
                     </execution>
                 </executions>
@@ -907,10 +909,6 @@
                                 -XDignore.symbol.file
                                 -Xlint:all
                             </compilerArgs>
-
-                            <excludes>
-                                <exclude>**/module-info.java</exclude>
-                            </excludes>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -920,6 +918,18 @@
                             </dependency>
                         </dependencies>
                         <executions>
+                            <execution>
+                                <id>default-compile</id>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>module-info.java</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>default-testCompile</id>
                                 <goals>
@@ -1028,18 +1038,24 @@
                 <surefire.commands>
                     -Duser.language=en
                     -Duser.country=GB
-                    --add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-                    --illegal-access=permit
                     --enable-preview
                 </surefire.commands>
-                <surefire.fileEncoding>-Dfile.encoding=${project.build.sourceEncoding}</surefire.fileEncoding>
-                <surefire.jmxEnabled>-Dcom.sun.management.jmxremote=false</surefire.jmxEnabled>
+                <surefire.fileEncoding>
+                    -Dfile.encoding=${project.build.sourceEncoding}
+                </surefire.fileEncoding>
+                <surefire.jmxEnabled>
+                    -Dcom.sun.management.jmxremote=false
+                </surefire.jmxEnabled>
                 <surefire.memory>
                     -Xmx1024m
                     -Dsun.zip.disableMemoryMapping=true
                 </surefire.memory>
-                <surefire.stackVersion>-Djava.net.preferIPv4Stack=true</surefire.stackVersion>
-                <surefire.timezone>-Duser.timezone=US/Eastern</surefire.timezone>
+                <surefire.stackVersion>
+                    -Djava.net.preferIPv4Stack=true
+                </surefire.stackVersion>
+                <surefire.timezone>
+                    -Duser.timezone=US/Eastern
+                </surefire.timezone>
 
                 <unit-tests.fail>${failIfNoTests}</unit-tests.fail>
                 <unit-tests.skip>${skipTests}</unit-tests.skip>

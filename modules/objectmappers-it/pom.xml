@@ -10,15 +10,14 @@
         <relativePath>../../</relativePath>
     </parent>
 
-    <name>io.nullables.api.playground.objectmappers.modelmapper</name>
-    <description>ObjectMappers Playground for ModelMapper API</description>
-    <artifactId>objectmappers-modelmapper</artifactId>
+    <name>io.nullables.api.playground.objectmappers.it</name>
+    <description>ObjectMappers Integration Tests</description>
+    <artifactId>objectmappers-it</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper</url>
+    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-it</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <modelmapper.version>2.3.8</modelmapper.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
@@ -34,14 +33,42 @@
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-testflow</artifactId>
             <version>${objectmappers.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-modelmapper</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
         </dependency>
 
-        <!-- ModelMapper library dependencies -->
+        <!-- JUnit test library dependencies -->
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>${modelmapper.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>${junit-platform.version}</version>
+        </dependency>
+
+        <!-- Mockito test library dependencies -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
         </dependency>
 
         <!-- ObjectMappers test library dependencies -->
@@ -51,23 +78,12 @@
             <version>${objectmappers.version}</version>
             <classifier>tests</classifier>
             <type>test-jar</type>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>9</source>
-                    <target>9</target>
-                </configuration>
-            </plugin>
-        </plugins>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
         <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
