@@ -14,7 +14,7 @@
     <description>ObjectMappers TestFlow API</description>
     <artifactId>objectmappers-testflow</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-testflow</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>

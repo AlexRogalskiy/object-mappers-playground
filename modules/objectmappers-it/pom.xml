@@ -14,7 +14,7 @@
     <description>ObjectMappers Integration Tests</description>
     <artifactId>objectmappers-it</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-it</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>

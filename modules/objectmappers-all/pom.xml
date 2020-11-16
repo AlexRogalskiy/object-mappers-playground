@@ -14,7 +14,7 @@
     <description>Object Mappers All Bundle</description>
     <artifactId>objectmappers-all</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-all</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>

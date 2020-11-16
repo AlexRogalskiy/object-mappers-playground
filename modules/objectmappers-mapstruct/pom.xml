@@ -14,7 +14,7 @@
     <description>ObjectMappers Playground for MapStruct API</description>
     <artifactId>objectmappers-mapstruct</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-mapstruct</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-mapstruct</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>

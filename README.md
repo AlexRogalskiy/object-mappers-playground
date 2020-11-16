@@ -1,23 +1,23 @@
 # ObjectMappers
 
-![Build](https://github.com/AlexRogalskiy/objectmappers-playground/workflows/Build/badge.svg?branch=master&event=push)
-![Create Release](https://github.com/AlexRogalskiy/objectmappers-playground/workflows/Release-draft/badge.svg?branch=master)
-![Lines of code](https://img.shields.io/tokei/lines/github/AlexRogalskiy/objectmappers-playground)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/AlexRogalskiy/objectmappers-playground)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/objectmappers-playground)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/objectmappers-playground)
-![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/objectmappers-playground)
-![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/objectmappers-playground)
-![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/objectmappers-playground)
-![GitHub](https://img.shields.io/github/license/AlexRogalskiy/objectmappers-playground)
-![GitHub All Releases](https://img.shields.io/github/downloads/AlexRogalskiy/objectmappers-playground/total)
-![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/objectmappers-playground)
-![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/objectmappers-playground/goto)
-![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/objectmappers-playground)
-![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/objectmappers-playground)
-![Docker Automated build](https://img.shields.io/docker/automated/alexanderr/objectmappers-playground)
-![Docker Pulls](https://img.shields.io/docker/pulls/alexanderr/objectmappers-playground)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_objectmappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_objectmappers-playground)
+![Build](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/Build/badge.svg?branch=master&event=push)
+![Create Release](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/Release-draft/badge.svg?branch=master)
+![Lines of code](https://img.shields.io/tokei/lines/github/AlexRogalskiy/object-mappers-playground)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/AlexRogalskiy/object-mappers-playground)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
+![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
+![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/object-mappers-playground)
+![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/object-mappers-playground)
+![GitHub](https://img.shields.io/github/license/AlexRogalskiy/object-mappers-playground)
+![GitHub All Releases](https://img.shields.io/github/downloads/AlexRogalskiy/object-mappers-playground/total)
+![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/object-mappers-playground)
+![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/object-mappers-playground/goto)
+![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/object-mappers-playground)
+![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground)
+![Docker Automated build](https://img.shields.io/docker/automated/alexanderr/object-mappers-playground)
+![Docker Pulls](https://img.shields.io/docker/pulls/alexanderr/object-mappers-playground)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
 [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)]()
 
 ## Summary
@@ -63,33 +63,33 @@ Choose one of the modules and add to your `pom.xml`
 
 Bundle with all ObjectMappers dependencies:
 
-- [**ObjectMappers All**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-all)  
+- [**ObjectMappers All**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all)  
   `objectmappers-all` - Library to work with ObjectMappers API.
 
 ObjectMappers module dependencies:
 
-- [**ObjectMappers MapStruct**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-mapstruct)  
+- [**ObjectMappers MapStruct**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-mapstruct)  
   `objectmappers-mapstruct` - Library to work with MapStruct API.
 
-- [**ObjectMappers ModelMapper**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper)  
+- [**ObjectMappers ModelMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-modelmapper)  
   `objectmappers-modelmapper` - Library to work with ModelMapper API.
 
-- [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-commons)  
+- [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
 
-- [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-testflow)  
+- [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow)  
   `objectmappers-testflow` - Library to work with TestFlow API.
 
-- [**ObjectMappers IntegrationTests**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-it)  
+- [**ObjectMappers IntegrationTests**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it)  
   `objectmappers-it` - Library with utilities for integration test use cases.
 
 ## Version Store
 
-[./pom.xml](https://github.com/AlexRogalskiy/objectmappers-playground/blob/master/pom.xml)
+[./pom.xml](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/pom.xml)
 
 ## Miscellaneous
 
-  You can find more useful libs and examples on [wiki](https://github.com/AlexRogalskiy/objectmappers-playground/wiki)
+  You can find more useful libs and examples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
 
 ## Authors
 

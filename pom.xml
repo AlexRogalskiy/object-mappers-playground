@@ -10,7 +10,7 @@
 
     <name>io.nullables.api.playground.objectmappers</name>
     <description>Parent POM for Object Mappers Playground</description>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground</url>
     <inceptionYear>2020</inceptionYear>
 
     <organization>
@@ -48,12 +48,12 @@
 
     <issueManagement>
         <system>GitHub Issue</system>
-        <url>https://github.com/AlexRogalskiy/objectmappers-playground/issues</url>
+        <url>https://github.com/AlexRogalskiy/object-mappers-playground/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>GitHub CI</system>
-        <url>https://github.com/AlexRogalskiy/objectmappers-playground/actions</url>
+        <url>https://github.com/AlexRogalskiy/object-mappers-playground/actions</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
@@ -72,7 +72,7 @@
         <site>
             <id>GitHub</id>
             <name>GitHub Distribution</name>
-            <url>scm:git:git@github.com/AlexRogalskiy/objectmappers-playground.git</url>
+            <url>scm:git:git@github.com/AlexRogalskiy/object-mappers-playground.git</url>
         </site>
     </distributionManagement>
 
@@ -161,13 +161,13 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com/AlexRogalskiy/objectmappers-playground.git
+        <connection>scm:git:git@github.com/AlexRogalskiy/object-mappers-playground.git
         </connection>
         <developerConnection>
-            scm:git:git@github.com:/AlexRogalskiy/objectmappers-playground.git
+            scm:git:git@github.com:/AlexRogalskiy/object-mappers-playground.git
         </developerConnection>
         <url>
-            git://github.com/AlexRogalskiy/objectmappers-playground
+            git://github.com/AlexRogalskiy/object-mappers-playground
         </url>
         <tag>HEAD</tag>
     </scm>

@@ -14,7 +14,7 @@
     <description>ObjectMappers Playground for ModelMapper API</description>
     <artifactId>objectmappers-modelmapper</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-modelmapper</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>
