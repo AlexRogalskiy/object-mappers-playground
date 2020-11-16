@@ -48,7 +48,10 @@ Bundle with all ObjectMappers dependencies:
 
 ObjectMappers module dependencies:
 
-- [**ObjectMappers Batch**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper)  
+- [**ObjectMappers MapStruct**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-mapstruct)  
+  `objectmappers-mapstruct` - Library to work with MapStruct API.
+
+- [**ObjectMappers ModelMapper**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-modelmapper)  
   `objectmappers-modelmapper` - Library to work with ModelMapper API.
 
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-commons)  
@@ -56,6 +59,9 @@ ObjectMappers module dependencies:
 
 - [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-testflow)  
   `objectmappers-testflow` - Library to work with TestFlow API.
+
+- [**ObjectMappers IntegrationTests**](https://github.com/AlexRogalskiy/objectmappers-playground/tree/master/modules/objectmappers-it)  
+  `objectmappers-it` - Library with utilities for integration test use cases.
 
 ## Version Store
 

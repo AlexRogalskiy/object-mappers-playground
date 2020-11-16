@@ -79,6 +79,7 @@
     <modules>
         <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-commons</module>
+        <module>modules/objectmappers-mapstruct</module>
         <module>modules/objectmappers-modelmapper</module>
         <module>modules/objectmappers-testflow</module>
         <module>modules/objectmappers-it</module>
@@ -151,6 +152,7 @@
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
@@ -753,6 +755,60 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Flatten pom profile -->
+        <profile>
+            <id>flatten-pom</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <version>${maven-flatten-plugin.version}</version>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>oss</flattenMode>
+                            <embedBuildProfileDependencies>true</embedBuildProfileDependencies>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <pomElements>
+                                <properties>remove</properties>
+                                <parent>expand</parent>
+                                <distributionManagement>remove</distributionManagement>
+                                <dependencyManagement>resolve</dependencyManagement>
+                                <repositories>remove</repositories>
+                                <pluginManagement>keep</pluginManagement>
+                                <dependencies>keep</dependencies>
+                                <build>keep</build>
+                            </pomElements>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>flatten</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>flatten</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>flatten-clean</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>flatten.clean</id>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <phase>clean</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Checkstyle profile -->
         <profile>
             <id>code-quality</id>

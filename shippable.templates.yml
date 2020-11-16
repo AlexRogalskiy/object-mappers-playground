@@ -4,7 +4,7 @@ template-pre-ci: &template-pre-ci
 template-ci: &template-ci
   - echo ">>> Running CI build phase"
   - chmod +x ./mvnw
-  - shippable_retry ./mvnw clean install -B -Pdev,test-jar -DskipTests
+  - shippable_retry ./mvnw clean install -B -Pdev,test,test-jar
 
 template-post-ci: &template-post-ci
   - echo ">>> Running post CI build phase"
