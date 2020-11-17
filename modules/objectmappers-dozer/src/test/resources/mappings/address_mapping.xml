@@ -5,7 +5,8 @@
     <mapping wildcard="false">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto</class-a>
         <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity</class-b>
-        <field>
+
+        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
             <a>id</a>
             <b>id</b>
         </field>

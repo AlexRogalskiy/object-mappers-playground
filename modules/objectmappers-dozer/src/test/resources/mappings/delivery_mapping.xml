@@ -5,7 +5,8 @@
     <mapping wildcard="false">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto</class-a>
         <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity</class-b>
-        <field>
+
+        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
             <a>id</a>
             <b>id</b>
         </field>
@@ -29,7 +30,7 @@
             <a>updatedAt</a>
             <b>updatedAt</b>
         </field>
-        <field>
+        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor">
             <a>shippableDue</a>
             <b>shippableDue</b>
         </field>
@@ -49,7 +50,7 @@
             <a>addresses</a>
             <b>addresses</b>
         </field>
-        <field>
+        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor">
             <a>codes</a>
             <b>codes</b>
         </field>
