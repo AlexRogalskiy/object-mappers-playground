@@ -119,7 +119,7 @@ A style guide establishes and enforces style to improve the intelligibility and 
 
 ### Java Code Style
 
-IceCore Hasids adheres to the [Arctic Ice Studio Java Style Guide][styleguide-java-github].
+IceCore Hasids adheres to the [Nullables Studio Java Style Guide][styleguide-java-github].
 
 [![][styleguide-java-badge]][styleguide-java-github]
 
@@ -127,7 +127,7 @@ IceCore Hasids adheres to the [Arctic Ice Studio Java Style Guide][styleguide-ja
 
 A well-crafted Git commit message is the best way to communicate *context* about a change to the maintainers. The code will tell what changed, but only the commit message can properly tell why. Re-establishing the context of a piece of code is wasteful. We can't avoid it completely, so our efforts should go to reducing it as much as possible.
 
-IceCore Hasids adheres to the [Arctic Ice Studio Git Style Guide][styleguide-git-github].
+IceCore Hasids adheres to the [Nullables Studio Git Style Guide][styleguide-git-github].
 
 [![][styleguide-git-badge]][styleguide-git-github]
 
@@ -180,17 +180,16 @@ Every significant change is documented in the [changelog][changelog].
 
 Thanks for the inspirations and attributions to GitHub's [Open Source Guides](https://opensource.guide) and various contribution guides of large open source projects like [Atom][ref-atom-contributing], [React][ref-react-contributing] and [Ruby on Rails][ref-rubyonrails-contributing].
 
-[arcver]: https://github.com/arcticicestudio/arcver
-[branch-develop]: https://github.com/arcticicestudio/icecore-hashids/tree/develop
-[changelog]: https://github.com/arcticicestudio/icecore-hashids/blob/develop/CHANGELOG.md
-[code-of-conduct]: https://github.com/arcticicestudio/icecore-hashids/blob/develop/CODE_OF_CONDUCT.md
-[email]: mailto:development@arcticicestudio.com
+[branch-develop]: https://github.com/AlexRogalskiy/object-mappers-playground/tree/develop
+[changelog]: https://github.com/AlexRogalskiy/object-mappers-playground/blob/develop/CHANGELOG.md
+[code-of-conduct]: https://github.com/AlexRogalskiy/object-mappers-playground/blob/develop/CODE_OF_CONDUCT.md
+[email]: mailto:development@nullables.io
 [gh-help-attach-files]: https://help.github.com/articles/file-attachments-on-issues-and-pull-requests
 [gh-help-issue-keywords]: https://help.github.com/articles/closing-issues-using-keywords
 [gh-help-markdown-code-blocks]: https://help.github.com/articles/basic-writing-and-formatting-syntax
-[gh-issues]: https://github.com/arcticicestudio/icecore-hashids/issues
-[gh-issues-label-question]: https://github.com/arcticicestudio/icecore-hashids/labels/question
-[gh-pr]: https://github.com/arcticicestudio/icecore-hashids/pulls
+[gh-issues]: https://github.com/AlexRogalskiy/object-mappers-playground/issues
+[gh-issues-label-question]: https://github.com/AlexRogalskiy/object-mappers-playground/labels/question
+[gh-pr]: https://github.com/AlexRogalskiy/object-mappers-playground/pulls
 [gh-osguide-contribute]: https://opensource.guide/how-to-contribute
 [git-docs-branching-workflows]: https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows
 [gitflow]: http://nvie.com/posts/a-successful-git-branching-model
@@ -199,11 +198,7 @@ Thanks for the inspirations and attributions to GitHub's [Open Source Guides](ht
 [ref-rubyonrails-contributing]: http://guides.rubyonrails.org/contributing_to_ruby_on_rails.html
 [semver]: http://semver.org
 [stackoverflow-mcve]: https://stackoverflow.com/help/mcve
-[styleguide-git-badge]: https://rawgit.com/arcticicestudio/styleguide-git/develop/src/assets/styleguide-git-banner-typography-badge.svg
-[styleguide-git-github]: https://github.com/arcticicestudio/styleguide-git
-[styleguide-java-badge]: https://rawgit.com/arcticicestudio/styleguide-java/develop/src/assets/styleguide-java-banner-typography-badge.svg
-[styleguide-java-github]: https://github.com/arcticicestudio/styleguide-java
 [sscce]: http://sscce.org
-[template-issue]: https://github.com/arcticicestudio/icecore-hashids/blob/develop/.github/ISSUE_TEMPLATE.md
-[template-pr]: https://github.com/arcticicestudio/icecore-hashids/blob/develop/.github/PULL_REQUEST_TEMPLATE.md
-[version-latest]: https://github.com/arcticicestudio/icecore-hashids/releases/latest
+[template-issue]: https://github.com/AlexRogalskiy/object-mappers-playground/blob/develop/.github/ISSUE_TEMPLATE.md
+[template-pr]: https://github.com/AlexRogalskiy/object-mappers-playground/blob/develop/.github/PULL_REQUEST_TEMPLATE.md
+[version-latest]: https://github.com/AlexRogalskiy/object-mappers-playground/releases/latest

@@ -15,7 +15,7 @@ pages:
       - Troubleshooting: user-guide/troubleshooting.md
       - Upgrade: user-guide/upgrade.md
   - Contributing:
-      - Information: contributing/contributing.md
+      - Information: contributing/info.md
   - Reporting:
       - Information: reporting/info.md
       - Bug Report: reporting/bug_report.md

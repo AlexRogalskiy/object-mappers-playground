@@ -1,6 +1,6 @@
 <!-- Click on the "Preview" tab to render the instructions in a more readable format -->
 
-> **Please read the [contribution guidelines](https://github.com/arcticicestudio/icecore-hashids/blob/develop/CONTRIBUTING.md) before filling out this pull request template**.
+> **Please read the [contribution guidelines](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/docs/contributing/info.md) before filling out this pull request template**.
 
 ## Prerequisites
 
@@ -8,12 +8,12 @@ This section and the instructions in the sections below are only part of this pu
 
 Please do your best to provide as much information as possible and use a clear and descriptive title for your enhancement suggestion or bug fix to help maintainers and the community understand and reproduce the behavior, find related pull requests and to merge it faster.
 
-* **Ensure the pull request has not already been reported by using the [GitHub Pull Request search](https://github.com/arcticicestudio/icecore-hashids/pulls)** — if it has **and the pull request is still open**, add a comment to the existing pull request instead of opening this new one. If you find a closed pull request that seems to be similar to this one, include a link to it in the [metadata head](#metadata-head) section of this pull request.
-* **Ensure to adhere to the [pull request contribution guidelines](https://github.com/arcticicestudio/icecore-hashids/blob/feature/gh-12-github-open-source-community-standards/CONTRIBUTING.md#pull-requests)**, especially the one for tests and documentations.
+* **Ensure the pull request has not already been reported by using the [GitHub Pull Request search](https://github.com/AlexRogalskiy/object-mappers-playground/pulls)** — if it has **and the pull request is still open**, add a comment to the existing pull request instead of opening this new one. If you find a closed pull request that seems to be similar to this one, include a link to it in the [metadata head](#metadata-head) section of this pull request.
+* **Ensure to adhere to the [pull request contribution guidelines](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/docs/reporting/pull_request_template.md)**, especially the one for tests and documentations.
 
 ## Metadata Head
 
-The metadata head should be added to the top of the pull request as [Markdown text quote](https://help.github.com/articles/basic-writing-and-formatting-syntax) containing the [GitHub issue keywords][gh-help-issue-keywords] to link to the related enhancements suggestions (`Closes`) or bug reports (`Fixes`). You can add additional details like dependencies to other pull requests and the order it needs to be merged.
+The metadata head should be added to the top of the pull request as [Markdown text quote](https://help.github.com/articles/basic-writing-and-formatting-syntax) containing the [GitHub issue keywords][gh-help-issue-keywords] to link to the related enhancements suggestions (`Closes`) or bug reports (`Fixes`). You can add additional details like dependencies to other pull requests, and the order it needs to be merged.
 
 > Closes ISSUE_ID
 Must be merged **after**/**before** ISSUE_ID
