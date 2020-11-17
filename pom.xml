@@ -154,6 +154,7 @@
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-dependency-check-plugin.version>5.3.2</maven-dependency-check-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -792,6 +793,43 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Security profile -->
+        <profile>
+            <id>security</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${maven-dependency-check-plugin.version}</version>
+                        <configuration>
+                            <format>ALL</format>
+                            <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                            <cveValidForHours>12</cveValidForHours>
+                            <failBuildOnCVSS>1</failBuildOnCVSS>
+                            <skipProvidedScope>true</skipProvidedScope>
+                            <skipRuntimeScope>true</skipRuntimeScope>
+                            <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>aggregate</id>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>check</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Flatten pom profile -->
         <profile>
             <id>flatten-pom</id>
@@ -1309,6 +1347,16 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <!-- Compile with debug profile -->
+        <profile>
+            <id>compile-with-debug</id>
+            <properties>
+                <maven.compiler.debug>true</maven.compiler.debug>
+                <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
+                <maven.compiler.verbose>true</maven.compiler.verbose>
+            </properties>
         </profile>
 
         <!-- Test-jar profile -->
