@@ -1,5 +1,5 @@
 open module io.nullables.api.playground.objectmappers.mapstruct {
-    exports io.nullables.api.playground.objectmappers.mapstruct.propertymap;
+    exports io.nullables.api.playground.objectmappers.mapstruct.mapper;
 
     requires static lombok;
     requires jsr305;

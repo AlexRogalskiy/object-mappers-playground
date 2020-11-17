@@ -1,9 +1,10 @@
-package io.nullables.api.playground.objectmappers.mapstruct.propertymap;
+package io.nullables.api.playground.objectmappers.mapstruct.mapper;
 
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import io.nullables.api.playground.objectmappers.mapstruct.mappings.Mappings;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

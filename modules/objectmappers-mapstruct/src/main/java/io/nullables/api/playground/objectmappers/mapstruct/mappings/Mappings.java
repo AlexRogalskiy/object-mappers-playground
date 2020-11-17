@@ -1,4 +1,4 @@
-package io.nullables.api.playground.objectmappers.mapstruct.propertymap;
+package io.nullables.api.playground.objectmappers.mapstruct.mappings;
 
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
