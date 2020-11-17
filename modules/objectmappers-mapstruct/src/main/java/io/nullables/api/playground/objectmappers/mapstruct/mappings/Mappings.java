@@ -1,7 +1,5 @@
 package io.nullables.api.playground.objectmappers.mapstruct.mappings;
 
-import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
-import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import org.mapstruct.Named;
 import org.mapstruct.Qualifier;
 
@@ -10,11 +8,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Mappings {
 
@@ -41,7 +36,7 @@ public class Mappings {
     @Qualifier
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Address {
+    public @interface Decode {
     }
 
     @Code
@@ -51,19 +46,10 @@ public class Mappings {
             .toArray(Integer[]::new);
     }
 
-    @Address
-    public List<AddressEntity> address(final List<AddressDto> value) {
-        return value.stream().map(this.mapAddressToEntity()).collect(Collectors.toList());
-    }
-
-    private Function<AddressDto, AddressEntity> mapAddressToEntity() {
-        return value -> AddressEntity.builder()
-            .id(UUID.fromString(value.getId()))
-            .city(value.getCity())
-            .country(value.getCountry())
-            .postalCode(value.getPostalCode())
-            .stateOrProvince(value.getStateOrProvince())
-            .street(value.getStreet())
-            .build();
+    @Decode
+    public String[] decode(final Integer[] value) {
+        return Arrays.stream(value)
+            .map(Object::toString)
+            .toArray(String[]::new);
     }
 }

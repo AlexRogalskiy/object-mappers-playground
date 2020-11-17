@@ -62,14 +62,23 @@ Bundle with all ObjectMappers dependencies:
 
 ObjectMappers module dependencies:
 
+- [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
+  `objectmappers-commons` - Library with utilities for common use cases.
+
+- [**ObjectMappers Dozer**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-dozer)  
+  `objectmappers-dozer` - Library to work with Dozer API.
+
+- [**ObjectMappers JMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-jmapper)  
+  `objectmappers-jmapper` - Library to work with JMapper API.
+
 - [**ObjectMappers MapStruct**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-mapstruct)  
   `objectmappers-mapstruct` - Library to work with MapStruct API.
 
 - [**ObjectMappers ModelMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-modelmapper)  
   `objectmappers-modelmapper` - Library to work with ModelMapper API.
 
-- [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
-  `objectmappers-commons` - Library with utilities for common use cases.
+- [**ObjectMappers Orika**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-orika)  
+  `objectmappers-orika` - Library to work with Orika API.
 
 - [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow)  
   `objectmappers-testflow` - Library to work with TestFlow API.

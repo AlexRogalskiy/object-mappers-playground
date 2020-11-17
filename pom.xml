@@ -79,8 +79,11 @@
     <modules>
         <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-commons</module>
+        <module>modules/objectmappers-dozer</module>
+        <module>modules/objectmappers-jmapper</module>
         <module>modules/objectmappers-mapstruct</module>
         <module>modules/objectmappers-modelmapper</module>
+        <module>modules/objectmappers-orika</module>
         <module>modules/objectmappers-testflow</module>
         <module>modules/objectmappers-it</module>
     </modules>

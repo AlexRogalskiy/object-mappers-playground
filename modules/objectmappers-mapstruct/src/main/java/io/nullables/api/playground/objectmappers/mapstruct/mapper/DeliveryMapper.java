@@ -10,21 +10,63 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(uses = {Mappings.class, Mappings.IdMappings.class})
+@Mapper(
+//    collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
+//    config = IgnoreUnmappedConfig.class,
+    uses = {Mappings.class, Mappings.IdMappings.class}
+)
 public interface DeliveryMapper {
 
     DeliveryMapper INSTANCE = Mappers.getMapper(DeliveryMapper.class);
 
     @Mapping(source = "id", target = "id", qualifiedByName = {"IdTranslator", "IdToUuid"})
-    @Mapping(source = "addresses", target = "addresses", qualifiedBy = Mappings.Address.class)
     @Mapping(source = "codes", target = "codes", qualifiedBy = Mappings.Code.class)
+    @Mapping(target = "createdAt", source = "createdAt", dateFormat = "dd-MM-yyyy HH:mm:ss")
+    @Mapping(target = "updatedAt", source = "updatedAt", dateFormat = "dd-MM-yyyy HH:mm:ss")
     @Named("toDeliveryEntity")
-    DeliveryEntity deliveryDtoToDeliveryEntity(final DeliveryDto addressDto);
+    DeliveryEntity deliveryDtoToDeliveryEntity(final DeliveryDto deliveryDto);
 
-    @Mapping(source = "id", target = "id", qualifiedByName = {"IdTranslator", "UuidToId"})
+    @Mapping(
+        source = "id",
+        target = "id",
+        qualifiedByName = {"IdTranslator", "IdToUuid"}
+    )
+    @Mapping(source = "postalCode", target = "postalCode", qualifiedByName = "postalCodeToSanitize")
+    @Named("toAddressEntity")
+    AddressEntity addressDtoToAddressEntity(final AddressDto addressDto);
+
+    @Mapping(
+        source = "id",
+        target = "id",
+        qualifiedByName = {"IdTranslator", "UuidToId"},
+        defaultExpression = "java(java.util.UUID.randomUUID().toString())"
+    )
     @InheritInverseConfiguration
-    AddressDto deliveryEntityToDeliveryDto(final AddressEntity addressEntity);
+    AddressDto addressEntityToAddressDto(final AddressEntity addressEntity);
+
+    @Mapping(
+        target = "id",
+        source = "id",
+        qualifiedByName = {"IdTranslator", "UuidToId"},
+        defaultExpression = "java(java.util.UUID.randomUUID().toString())"
+    )
+    @Mapping(source = "codes", target = "codes", qualifiedBy = Mappings.Decode.class)
+    @InheritInverseConfiguration
+    DeliveryDto deliveryEntityToDeliveryDto(final DeliveryEntity deliveryEntity);
 
     @IterableMapping(qualifiedByName = "toDeliveryEntity")
-    List<DeliveryEntity> map(final List<DeliveryDto> addressDtos);
+    List<DeliveryEntity> mapDeliveryDtoToEntityList(final List<DeliveryDto> deliveryDtos);
+
+    @IterableMapping(qualifiedByName = "toAddressEntity")
+    List<AddressEntity> mapAddressDtoToEntityList(final List<AddressDto> addressDtos);
+
+    @Named("postalCodeToUpperCase")
+    default String convertPostalCodeToUpperCase(final String postalCode) {
+        return String.valueOf(postalCode).toUpperCase();
+    }
+
+    @Named("postalCodeToSanitize")
+    default String convertPostalCodeToSanitize(final String postalCode) {
+        return String.valueOf(postalCode).replaceAll("[^A-Za-z0-9]", "");
+    }
 }
