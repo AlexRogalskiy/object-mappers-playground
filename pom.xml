@@ -146,6 +146,7 @@
         <maven-checksum-plugin.version>1.8</maven-checksum-plugin.version>
         <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
+        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
@@ -579,6 +580,20 @@
                             <regex>[^a-zA-Z0-9]+</regex>
                             <replacement>.</replacement>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                        <phase>install</phase>
                     </execution>
                 </executions>
             </plugin>
