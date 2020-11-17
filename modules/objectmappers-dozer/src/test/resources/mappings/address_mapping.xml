@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
+    <mapping wildcard="false">
+        <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto</class-a>
+        <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity</class-b>
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>city</a>
+            <b>city</b>
+        </field>
+        <field>
+            <a>country</a>
+            <b>country</b>
+        </field>
+        <field>
+            <a>stateOrProvince</a>
+            <b>stateOrProvince</b>
+        </field>
+        <field>
+            <a>postalCode</a>
+            <b>postalCode</b>
+        </field>
+        <field>
+            <a>street</a>
+            <b>street</b>
+        </field>
+    </mapping>
+</mappings>

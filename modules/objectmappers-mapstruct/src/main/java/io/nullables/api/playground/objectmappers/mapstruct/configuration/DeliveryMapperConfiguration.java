@@ -4,7 +4,7 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-import io.nullables.api.playground.objectmappers.mapstruct.mapping.Mappings;
+import io.nullables.api.playground.objectmappers.mapstruct.mapping.BaseMappings;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -14,7 +14,7 @@ import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.
 
 @Mapper(
     config = IgnoreUnmappedConfiguration.class,
-    uses = {Mappings.class, Mappings.IdMappings.class},
+    uses = {BaseMappings.class, BaseMappings.IdMappings.class},
     collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED
 )
 public interface DeliveryMapperConfiguration {
@@ -22,7 +22,7 @@ public interface DeliveryMapperConfiguration {
     DeliveryMapperConfiguration INSTANCE = Mappers.getMapper(DeliveryMapperConfiguration.class);
 
     @Mapping(source = "id", target = "id", qualifiedByName = {"IdTranslator", "IdToUuid"})
-    @Mapping(source = "codes", target = "codes", qualifiedBy = Mappings.Code.class)
+    @Mapping(source = "codes", target = "codes", qualifiedBy = BaseMappings.Code.class)
     @Mapping(target = "shippableDue", source = "shippableDue", dateFormat = DATETIME_PATTERN)
     @Named("toDeliveryEntity")
     DeliveryEntity deliveryDtoToDeliveryEntity(final DeliveryDto deliveryDto);
@@ -51,7 +51,7 @@ public interface DeliveryMapperConfiguration {
         qualifiedByName = {"IdTranslator", "UuidToId"},
         defaultExpression = "java(java.util.UUID.randomUUID().toString())"
     )
-    @Mapping(source = "codes", target = "codes", qualifiedBy = Mappings.Decode.class)
+    @Mapping(source = "codes", target = "codes", qualifiedBy = BaseMappings.Decode.class)
     @InheritInverseConfiguration
     DeliveryDto deliveryEntityToDeliveryDto(final DeliveryEntity deliveryEntity);
 

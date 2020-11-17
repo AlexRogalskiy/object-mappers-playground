@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
+    <configuration>
+        <stop-on-errors>true</stop-on-errors>
+        <date-format>yyyy-MM-dd'T'HH:mm:ss</date-format>
+        <wildcard>false</wildcard>
+
+        <custom-converters>
+            <converter type="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
+                <class-a>java.lang.String</class-a>
+                <class-b>java.util.UUID</class-b>
+            </converter>
+            <converter type="io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor">
+                <class-a>java.lang.String</class-a>
+                <class-b>java.time.LocalDateTime</class-b>
+            </converter>
+            <converter type="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor">
+                <class-a>java.lang.String[]</class-a>
+                <class-b>java.lang.Integer[]</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
+</mappings>

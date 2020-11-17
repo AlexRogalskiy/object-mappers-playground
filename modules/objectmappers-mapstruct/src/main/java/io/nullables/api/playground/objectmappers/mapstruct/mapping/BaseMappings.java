@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.*;
 
-public class Mappings {
+public class BaseMappings {
 
     @Named("IdTranslator")
     public static class IdMappings {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
+    <mapping wildcard="false">
+        <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto</class-a>
+        <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity</class-b>
+        <field>
+            <a>id</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>type</a>
+            <b>type</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>description</b>
+        </field>
+        <field>
+            <a>gid</a>
+            <b>gid</b>
+        </field>
+        <field>
+            <a>createdAt</a>
+            <b>createdAt</b>
+        </field>
+        <field>
+            <a>updatedAt</a>
+            <b>updatedAt</b>
+        </field>
+        <field>
+            <a>shippableDue</a>
+            <b>shippableDue</b>
+        </field>
+        <field>
+            <a>balance</a>
+            <b>balance</b>
+        </field>
+        <field>
+            <a>discount</a>
+            <b>discount</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+        <field>
+            <a>addresses</a>
+            <b>addresses</b>
+        </field>
+        <field>
+            <a>codes</a>
+            <b>codes</b>
+        </field>
+    </mapping>
+</mappings>
