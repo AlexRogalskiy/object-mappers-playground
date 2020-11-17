@@ -28,6 +28,7 @@ public class DozerConfiguration {
 
     public Mapper configureMapper(final String... mappingFileUrls) {
         return DozerBeanMapperBuilder.create()
+            .withEventListener(new CustomEventListener())
             .withMappingFiles(mappingFileUrls)
             .build();
     }
@@ -71,6 +72,7 @@ public class DozerConfiguration {
             }
         };
         return DozerBeanMapperBuilder.create()
+            .withEventListener(new CustomEventListener())
             .withMappingBuilder(addressBuilder)
             .withMappingBuilder(deliveryBuilder)
             .build();
