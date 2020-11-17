@@ -3,7 +3,7 @@ package io.nullables.api.playground.objectmappers.mapstruct;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-import io.nullables.api.playground.objectmappers.mapstruct.mapper.DeliveryMapper;
+import io.nullables.api.playground.objectmappers.mapstruct.configuration.DeliveryMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.tuple;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @SimpleTest
-public class MapStructTest {
+class MapStructMapperTest {
 
     public static final Stream<Arguments> deliveryDtoValues = IntStream.iterate(0, n -> n + 1)
         .limit(ThreadLocalRandom.current().nextInt(1, 10))
@@ -34,7 +34,7 @@ public class MapStructTest {
     @VariableSource("deliveryDtoValues")
     void testCheckDeliveryDtoConversion(@Nonnull final DeliveryDto source) {
         // when
-        final DeliveryEntity target = DeliveryMapper.INSTANCE.deliveryDtoToDeliveryEntity(source);
+        final DeliveryEntity target = DeliveryMapperConfiguration.INSTANCE.deliveryDtoToDeliveryEntity(source);
 
         // then
         assertAll(

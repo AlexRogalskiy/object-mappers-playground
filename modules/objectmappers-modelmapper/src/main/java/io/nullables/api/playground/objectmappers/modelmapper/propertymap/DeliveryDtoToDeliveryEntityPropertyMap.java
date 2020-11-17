@@ -3,6 +3,7 @@ package io.nullables.api.playground.objectmappers.modelmapper.propertymap;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToIntegerArrayConverter;
+import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToLocalDateTimeConverter;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToUuidConverter;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.PropertyMap;
@@ -14,6 +15,7 @@ import org.modelmapper.PropertyMap;
 public class DeliveryDtoToDeliveryEntityPropertyMap extends PropertyMap<DeliveryDto, DeliveryEntity> {
 
     private final StringToUuidConverter stringToUuidConverter = new StringToUuidConverter();
+    private final StringToLocalDateTimeConverter stringToLocalDateTimeConverter = new StringToLocalDateTimeConverter();
     private final StringToIntegerArrayConverter stringToIntegerArrayConverter = new StringToIntegerArrayConverter();
 
     /**
@@ -35,6 +37,7 @@ public class DeliveryDtoToDeliveryEntityPropertyMap extends PropertyMap<Delivery
 
         // mapping destination properties
         this.using(this.stringToUuidConverter).map(this.source.getId()).setId(null);
+        this.using(this.stringToLocalDateTimeConverter).map(this.source.getShippableDue()).setShippableDue(null);
         this.using(this.stringToIntegerArrayConverter).map(this.source.getCodes()).setCodes(null);
     }
 }

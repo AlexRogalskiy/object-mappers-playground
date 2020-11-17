@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import static io.nullables.api.playground.objectmappers.testflow.utils.LocalDateTimes.localDateTimes;
 import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_A;
 import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_C;
 import static net.andreinc.mockneat.types.enums.StringFormatType.LOWER_CASE;
@@ -51,6 +52,7 @@ public class MockTestUtils {
      * Default {@link MockUnitLocalDate}
      */
     public static final MockUnitLocalDate localDateMock = localDates();
+    public static final MockUnitLocalDateTime localDateTimeMock = localDateTimes();
     public static final MockUnitLocalDate yearLocalDateMock = localDates().thisYear();
     public static final MockUnitLocalDate pastLocalDateMock = localDates().past(LocalDate.now().minusYears(3));
     public static final MockUnitLocalDate futureLocalDateMock = localDates().future(LocalDate.now().plusYears(3));

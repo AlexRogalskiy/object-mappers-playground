@@ -19,27 +19,27 @@ public class AddressEntity implements Serializable {
     private static final long serialVersionUID = -1880066107464593905L;
 
     /**
-     * Default address info ID
+     * Address info ID
      */
     private UUID id;
     /**
-     * Default city name
+     * City name
      */
     private String city;
     /**
-     * Default country name
+     * Country name
      */
     private String country;
     /**
-     * Default state/province name
+     * state/province name
      */
     private String stateOrProvince;
     /**
-     * Default postal code
+     * postal code
      */
     private String postalCode;
     /**
-     * Default street name
+     * street name
      */
     private String street;
 }

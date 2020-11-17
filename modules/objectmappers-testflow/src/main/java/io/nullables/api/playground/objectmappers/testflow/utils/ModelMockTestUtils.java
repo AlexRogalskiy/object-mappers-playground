@@ -11,7 +11,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.*;
 import static net.andreinc.mockneat.unit.id.UUIDs.uuids;
 import static net.andreinc.mockneat.unit.objects.Filler.filler;
@@ -51,6 +53,7 @@ public class ModelMockTestUtils {
             .setter(DeliveryDto::setDescription, lettersStringMock)
             .setter(DeliveryDto::setCreatedAt, localDateMock.mapToDate())
             .setter(DeliveryDto::setUpdatedAt, localDateMock.mapToDate())
+            .setter(DeliveryDto::setShippableDue, localDateTimeMock.display(DATETIME_PATTERN, Locale.ROOT))
             .setter(DeliveryDto::setBalance, doubleMock)
             .setter(DeliveryDto::setStatus, generateStatus())
             .setter(DeliveryDto::setDiscount, generateDiscount(1.5, 20.5).mapToString())

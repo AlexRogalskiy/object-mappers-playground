@@ -18,27 +18,27 @@ public class AddressDto implements Serializable {
     private static final long serialVersionUID = -6518611464972728811L;
 
     /**
-     * Default address info ID
+     * Address identifier
      */
     private String id;
     /**
-     * Default city name
+     * City name
      */
     private String city;
     /**
-     * Default country name
+     * Country name
      */
     private String country;
     /**
-     * Default state/province name
+     * State/province name
      */
     private String stateOrProvince;
     /**
-     * Default postal code
+     * Postal code
      */
     private String postalCode;
     /**
-     * Default street name
+     * Street name
      */
     private String street;
 }

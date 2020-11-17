@@ -1,11 +1,11 @@
 package io.nullables.api.playground.objectmappers.commons.model.entity;
 
 import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,48 +21,52 @@ public class DeliveryEntity implements Serializable {
     private static final long serialVersionUID = 6995213010065919507L;
 
     /**
-     * Default delivery info ID
+     * Delivery identifier
      */
     private UUID id;
     /**
-     * Default type
+     * Delivery type
      */
     private Integer type;
     /**
-     * Default description/comments
+     * Description/comments
      */
     private String description;
     /**
-     * Default global ID
+     * Delivery Global ID
      */
     private String gid;
     /**
-     * Default created timestamp
+     * Created timestamp
      */
     private Date createdAt;
     /**
-     * Default updated timestamp
+     * Updated timestamp
      */
     private Date updatedAt;
     /**
-     * Default balance
+     * Delivery shippable due timestamp
+     */
+    private LocalDateTime shippableDue;
+    /**
+     * Balance
      */
     private double balance;
     /**
-     * Default discount
+     * Discount
      */
     private BigDecimal discount;
     /**
-     * Default delivery status
+     * Delivery status
      */
     private DeliveryStatus status;
     /**
-     * Default address info {@link AddressDto} collection {@link List}
+     * {@link List} collection of {@link AddressEntity}s
      */
     @Singular("address")
     private List<AddressEntity> addresses;
     /**
-     * Default types
+     * Delivery types
      */
     private Integer[] codes;
 }

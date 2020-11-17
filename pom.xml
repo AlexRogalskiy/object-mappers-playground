@@ -500,9 +500,18 @@
                         <configuration>
                             <skip>${enforce.plugin.skip}</skip>
                             <rules>
+                                <requireReleaseDeps>
+                                    <message>You are using snapshot dependency versions</message>
+                                    <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+                                </requireReleaseDeps>
+                                <requireReleaseVersion>
+                                    <message>You are using snapshot release versions</message>
+                                </requireReleaseVersion>
                                 <requireModuleConvergence/>
                                 <requireUpperBoundDeps/>
-                                <dependencyConvergence/>
+                                <dependencyConvergence>
+                                    <uniqueVersions>true</uniqueVersions>
+                                </dependencyConvergence>
                             </rules>
                         </configuration>
                     </execution>
@@ -1237,7 +1246,8 @@
                             <artifactId>maven-surefire-report-plugin</artifactId>
                             <version>${maven-surefire-report-plugin.version}</version>
                             <configuration>
-                                <showSuccess>false</showSuccess>
+                                <showSuccess>true</showSuccess>
+                                <outputDirectory>${basedir}/target/surefire-reports</outputDirectory>
                             </configuration>
                         </plugin>
 

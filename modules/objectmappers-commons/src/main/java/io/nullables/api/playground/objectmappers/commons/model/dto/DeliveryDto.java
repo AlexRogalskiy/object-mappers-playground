@@ -18,48 +18,52 @@ public class DeliveryDto implements Serializable {
     private static final long serialVersionUID = 8170421693292671905L;
 
     /**
-     * Default delivery info ID
+     * Delivery identifier
      */
     private String id;
     /**
-     * Default type
+     * Delivery type
      */
     private Integer type;
     /**
-     * Default description/comments
+     * Description/comments
      */
     private String description;
     /**
-     * Default global ID
+     * Delivery Global ID
      */
     private String gid;
     /**
-     * Default created timestamp
+     * Created timestamp
      */
     private Date createdAt;
     /**
-     * Default updated timestamp
+     * Updated timestamp
      */
     private Date updatedAt;
     /**
-     * Default balance
+     * Delivery shippable due timestamp
+     */
+    private String shippableDue;
+    /**
+     * Balance
      */
     private double balance;
     /**
-     * Default discount
+     * Discount
      */
     private String discount;
     /**
-     * Default delivery status
+     * Delivery status
      */
     private DeliveryStatus status;
     /**
-     * Default address info {@link AddressDto} collection {@link List}
+     * {@link List} collection of {@link AddressDto}s
      */
     @Singular("address")
     private List<AddressDto> addresses;
     /**
-     * Default types
+     * Delivery types
      */
     private String[] codes;
 }

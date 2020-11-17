@@ -3,7 +3,7 @@ package io.nullables.api.playground.objectmappers.modelmapper.converter;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
-import java.util.Arrays;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
 
 /**
  * {@link String} to {@link Integer} array {@link Converter} implementation
@@ -17,8 +17,6 @@ public class StringToIntegerArrayConverter implements Converter<String[], Intege
      */
     @Override
     public Integer[] convert(final MappingContext<String[], Integer[]> context) {
-        return Arrays.stream(context.getSource())
-            .map(Integer::valueOf)
-            .toArray(Integer[]::new);
+        return convertToIntegerArray(context.getSource());
     }
 }
