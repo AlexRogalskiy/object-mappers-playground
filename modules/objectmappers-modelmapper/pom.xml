@@ -43,6 +43,17 @@
             <artifactId>modelmapper</artifactId>
             <version>${modelmapper.version}</version>
         </dependency>
+
+        <!-- ObjectMappers test library dependencies -->
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-commons</artifactId>
+            <version>${objectmappers.version}</version>
+            <classifier>tests</classifier>
+            <optional>true</optional>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

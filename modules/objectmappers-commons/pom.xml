@@ -35,5 +35,29 @@
                 <directory>${project.basedir}/src/test/resources</directory>
             </testResource>
         </testResources>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${package-tests.skip}</skip>
+                                <skipIfEmpty>true</skipIfEmpty>
+                                <includes>
+                                    <include>**/internal/</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
