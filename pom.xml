@@ -139,6 +139,7 @@
         <jacoco.methods.coverage.percentage.minimum>0.57</jacoco.methods.coverage.percentage.minimum>
 
         <maven-plugin-os.version>1.6.2</maven-plugin-os.version>
+        <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
@@ -349,6 +350,27 @@
         </extensions>
 
         <plugins>
+            <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>fizzed-watcher-maven-plugin</artifactId>
+                <version>${maven-fizzed-plugin.version}</version>
+                <configuration>
+                    <touchFile>${project.build.directory}/classes/watcher.txt</touchFile>
+                    <watches>
+                        <watch>
+                            <directory>${maven.multiModuleProjectDirectory}/modules/</directory>
+                        </watch>
+                    </watches>
+                    <goals>
+                        <goal>compile</goal>
+                        <goal>process-classes</goal>
+                    </goals>
+                    <profiles>
+                        <profile>optional-profile-to-activate</profile>
+                    </profiles>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
