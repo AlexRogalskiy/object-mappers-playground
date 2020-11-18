@@ -1,0 +1,26 @@
+<jmapper>
+    <class name="io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto">
+        <conversion name="conversion" from="id" to="id" avoidSet="false" type="DYNAMIC">
+            return java.util.Optional.ofNullable(${source}).map(java.util.UUID::fromString).orElse(null);
+        </conversion>
+
+        <attribute name="id">
+            <value name="id"/>
+        </attribute>
+        <attribute name="city">
+            <value name="city"/>
+        </attribute>
+        <attribute name="country">
+            <value name="country"/>
+        </attribute>
+        <attribute name="stateOrProvince">
+            <value name="stateOrProvince"/>
+        </attribute>
+        <attribute name="postalCode">
+            <value name="postalCode"/>
+        </attribute>
+        <attribute name="street">
+            <value name="street"/>
+        </attribute>
+    </class>
+</jmapper>

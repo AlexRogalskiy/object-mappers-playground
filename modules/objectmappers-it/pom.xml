@@ -35,12 +35,6 @@
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-modelmapper</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!-- JUnit test library dependencies -->
         <dependency>

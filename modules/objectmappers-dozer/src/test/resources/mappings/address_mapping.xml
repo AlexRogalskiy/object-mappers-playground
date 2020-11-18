@@ -4,7 +4,7 @@
           xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
     <mapping wildcard="false" type="one-way">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto</class-a>
-        <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity</class-b>
+        <class-b map-null="false" map-empty-string="false">io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity</class-b>
 
         <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
             <a>id</a>

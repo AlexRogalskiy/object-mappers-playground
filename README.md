@@ -62,6 +62,9 @@ Bundle with all ObjectMappers dependencies:
 
 ObjectMappers module dependencies:
 
+- [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks)  
+  `objectmappers-benchmarks` - Library with utilities for benchmarks use cases.
+
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
 
@@ -79,6 +82,9 @@ ObjectMappers module dependencies:
 
 - [**ObjectMappers Orika**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-orika)  
   `objectmappers-orika` - Library to work with Orika API.
+
+- [**ObjectMappers Selma**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-selma)  
+  `objectmappers-selma` - Library to work with Selma API.
 
 - [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow)  
   `objectmappers-testflow` - Library to work with TestFlow API.
