@@ -17,9 +17,13 @@
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
             <converter type="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor">
-                <class-a>java.lang.String[]</class-a>
-                <class-b>java.lang.Integer[]</class-b>
+                <class-a>[Ljava.lang.String;</class-a>
+                <class-b>[Ljava.lang.Integer;</class-b>
             </converter>
         </custom-converters>
+
+        <variables>
+            <variable name="string_type">java.lang.String</variable>
+        </variables>
     </configuration>
 </mappings>
