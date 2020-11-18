@@ -1,4 +1,4 @@
-open module io.nullables.api.playground.objectmappers.orika {
+open module io.nullables.api.playground.objectmappers.jmapper {
     requires static lombok;
     requires jsr305;
     requires slf4j.api;

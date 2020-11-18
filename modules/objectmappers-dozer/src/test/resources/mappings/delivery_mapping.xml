@@ -2,7 +2,7 @@
 <mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://dozermapper.github.io/schema/bean-mapping"
           xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
-    <mapping wildcard="false">
+    <mapping wildcard="false" type="one-way">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto</class-a>
         <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity</class-b>
 
@@ -50,7 +50,8 @@
             <a>addresses</a>
             <b>addresses</b>
         </field>
-        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor">
+        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor"
+               custom-converter-param="NULL_IF_EMPTY">
             <a>codes</a>
             <b>codes</b>
         </field>

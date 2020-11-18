@@ -1,4 +1,4 @@
 @ParametersAreNullableByDefault
-package io.nullables.api.playground.objectmappers.orika;
+package io.nullables.api.playground.objectmappers.jmapper;
 
 import javax.annotation.ParametersAreNullableByDefault;

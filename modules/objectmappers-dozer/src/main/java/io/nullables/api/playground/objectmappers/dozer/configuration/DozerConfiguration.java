@@ -38,7 +38,7 @@ public class DozerConfiguration {
             @Override
             protected void configure() {
                 this.mapping(AddressDto.class, AddressEntity.class, TYPE_MAPPING_OPTIONS)
-                    .fields("id", "id", FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
+                    .fields(field("id").accessible(), field("id").accessible(), FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
                     .fields("city", "city")
                     .fields("country", "country")
                     .fields("stateOrProvince", "stateOrProvince")
@@ -51,7 +51,7 @@ public class DozerConfiguration {
             @Override
             protected void configure() {
                 this.mapping(DeliveryDto.class, DeliveryEntity.class, TYPE_MAPPING_OPTIONS)
-                    .fields("id", "id", FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
+                    .fields(field("id").accessible(), field("id").accessible(), FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
                     .fields("shippableDue", "shippableDue", FieldsMappingOptions.customConverter(StringToLocaleDateTimeConvertor.class))
                     .fields("codes", "codes",
                         FieldsMappingOptions.oneWay(),

@@ -2,7 +2,7 @@
 <mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://dozermapper.github.io/schema/bean-mapping"
           xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
-    <mapping wildcard="false">
+    <mapping wildcard="false" type="one-way">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto</class-a>
         <class-b>io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity</class-b>
 
