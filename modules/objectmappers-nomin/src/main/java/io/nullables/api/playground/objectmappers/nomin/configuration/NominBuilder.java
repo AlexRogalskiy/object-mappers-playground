@@ -10,6 +10,7 @@ public final class NominBuilder {
 
     private NominBuilder() {
         this.nominMapper = new Nomin()
+            .defaultIntrospector(Mapping.exploding)
             .disableCache()
             .enableAutomapping();
     }
