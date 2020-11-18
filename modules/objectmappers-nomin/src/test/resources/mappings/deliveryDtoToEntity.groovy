@@ -10,7 +10,6 @@ import java.time.LocalDateTime
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER
 
 mappingFor a: DeliveryDto, b: DeliveryEntity
-//automap()
 
 a.id = b.id
 convert to_a: { it -> StringUtils.convertToString(it) }, to_b: { it -> StringUtils.convertToUuid(it) }

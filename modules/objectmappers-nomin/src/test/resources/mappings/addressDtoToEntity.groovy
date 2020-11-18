@@ -5,7 +5,6 @@ import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEnt
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils
 
 mappingFor a: AddressDto, b: AddressEntity
-//automap()
 
 a.id = b.id
 convert to_a: { it -> StringUtils.convertToString(it) }, to_b: { it -> StringUtils.convertToUuid(it) }

@@ -37,7 +37,7 @@ class NominMapperTest {
     @BeforeEach
     void before() {
         this.mapper = NominBuilder.newBuilder()
-            .withDirectory("src/test/resources/mappings")
+            .withDirectory("modules/objectmappers-nomin/src/test/resources/mappings")
             .build();
     }
 
