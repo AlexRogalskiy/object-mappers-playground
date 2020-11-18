@@ -10,16 +10,15 @@
         <relativePath>../../</relativePath>
     </parent>
 
-    <name>io.nullables.api.playground.objectmappers.all</name>
-    <description>Object Mappers All Bundle</description>
-    <artifactId>objectmappers-all</artifactId>
+    <name>io.nullables.api.playground.objectmappers.remap</name>
+    <description>ObjectMappers Playground for ReMap API</description>
+    <artifactId>objectmappers-remap</artifactId>
     <packaging>jar</packaging>
-    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all</url>
+    <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-remap</url>
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <moditect.skip>true</moditect.skip>
-
+        <remap.version>4.2.5</remap.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
@@ -33,57 +32,35 @@
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-dozer</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-jmapper</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-mapstruct</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-modelmapper</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-orika</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-selma</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-remap</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-testflow</artifactId>
             <version>${objectmappers.version}</version>
-            <scope>compile</scope>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ReMap library dependencies -->
+        <dependency>
+            <groupId>com.remondis</groupId>
+            <artifactId>remap</artifactId>
+            <version>${remap.version}</version>
+        </dependency>
+
+        <!-- ObjectMappers test library dependencies -->
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-commons</artifactId>
+            <version>${objectmappers.version}</version>
+            <classifier>tests</classifier>
+            <optional>true</optional>
+            <type>test-jar</type>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
         <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
         <resources>
             <resource>

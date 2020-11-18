@@ -83,6 +83,9 @@ ObjectMappers module dependencies:
 - [**ObjectMappers Orika**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-orika)  
   `objectmappers-orika` - Library to work with Orika API.
 
+- [**ObjectMappers ReMap**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-remap)  
+  `objectmappers-remap` - Library to work with ReMap API.
+
 - [**ObjectMappers Selma**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-selma)  
   `objectmappers-selma` - Library to work with Selma API.
 

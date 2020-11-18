@@ -5,5 +5,4 @@ open module io.nullables.api.playground.objectmappers.jmapper {
     requires jsr305;
     requires slf4j.api;
     requires jmapper.core;
-    requires jmapper.api;
 }

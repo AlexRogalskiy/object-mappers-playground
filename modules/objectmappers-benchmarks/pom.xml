@@ -20,6 +20,7 @@
     <properties>
         <uberjar.name>benchmarks</uberjar.name>
 
+        <lombok-mapstruct.version>0.1.0</lombok-mapstruct.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
         <selma.version>1.0</selma.version>
 
@@ -106,7 +107,7 @@
                             <finalName>${uberjar.name}</finalName>
                             <transformers>
                                 <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.openjdk.jmh.Main</mainClass>
                                 </transformer>
                             </transformers>
@@ -139,7 +140,12 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.1.0</version>
+                            <version>${lombok-mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.openjdk.jmh</groupId>
+                            <artifactId>jmh-generator-annprocess</artifactId>
+                            <version>${jmh.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

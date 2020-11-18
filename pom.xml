@@ -85,6 +85,7 @@
         <module>modules/objectmappers-mapstruct</module>
         <module>modules/objectmappers-modelmapper</module>
         <module>modules/objectmappers-orika</module>
+        <module>modules/objectmappers-remap</module>
         <module>modules/objectmappers-selma</module>
         <module>modules/objectmappers-testflow</module>
         <module>modules/objectmappers-it</module>

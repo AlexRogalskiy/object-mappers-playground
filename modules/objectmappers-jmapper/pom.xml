@@ -18,7 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <jmapper.version>1.5.0</jmapper.version>
+        <jmapper.version>1.6.1.CR2</jmapper.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
