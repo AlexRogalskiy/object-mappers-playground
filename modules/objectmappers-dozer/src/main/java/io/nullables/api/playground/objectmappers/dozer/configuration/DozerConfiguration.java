@@ -23,6 +23,7 @@ public class DozerConfiguration {
         TypeMappingOptions.oneWay(),
         TypeMappingOptions.mapNull(),
         TypeMappingOptions.trimStrings(),
+        TypeMappingOptions.wildcardCaseInsensitive(true),
         TypeMappingOptions.dateFormat(DATETIME_PATTERN)
     };
 

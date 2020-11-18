@@ -3,6 +3,7 @@ package io.nullables.api.playground.objectmappers.modelmapper;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
 import io.nullables.api.playground.objectmappers.modelmapper.configuration.ModelMapperBuilder;
 import io.nullables.api.playground.objectmappers.modelmapper.propertymap.AddressDtoToAddressEntityPropertyMap;
 import io.nullables.api.playground.objectmappers.modelmapper.propertymap.DeliveryDtoToDeliveryEntityPropertyMap;
@@ -17,7 +18,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.modelmapper.ModelMapper;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -71,7 +71,7 @@ class ModelMapperTest {
                 ),
             () -> Assertions.assertThat(target)
                 .isNotNull()
-                .<String[]>usingComparatorForFields(Arrays::compare, "codes")
+                .<String[]>usingComparatorForFields(ArrayUtils::compare, "codes")
                 .<String>usingComparatorForFields(StringUtils::compare, "id")
                 .<String>usingComparatorForFields(StringUtils::compare, "discount")
                 .hasFieldOrPropertyWithValue("type", source.getType())

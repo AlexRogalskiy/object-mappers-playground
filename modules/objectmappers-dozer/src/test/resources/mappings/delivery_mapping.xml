@@ -22,15 +22,16 @@
             <a>gid</a>
             <b>gid</b>
         </field>
-        <field>
+        <field copy-by-reference="true">
             <a>createdAt</a>
             <b>createdAt</b>
         </field>
-        <field>
+        <field copy-by-reference="true">
             <a>updatedAt</a>
             <b>updatedAt</b>
         </field>
-        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor">
+        <field
+            custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor">
             <a>shippableDue</a>
             <b>shippableDue</b>
         </field>
@@ -46,12 +47,13 @@
             <a>status</a>
             <b>status</b>
         </field>
-        <field>
+        <field remove-orphans="false">
             <a>addresses</a>
             <b>addresses</b>
         </field>
-        <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor"
-               custom-converter-param="NULL_IF_EMPTY">
+        <field
+            custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor"
+            custom-converter-param="NULL_IF_EMPTY">
             <a>codes</a>
             <b>codes</b>
         </field>
