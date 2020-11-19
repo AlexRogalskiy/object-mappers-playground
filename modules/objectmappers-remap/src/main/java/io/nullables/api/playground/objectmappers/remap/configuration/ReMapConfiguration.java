@@ -6,12 +6,10 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER;
 
 public class ReMapConfiguration {
 
@@ -20,6 +18,10 @@ public class ReMapConfiguration {
             .to(AddressEntity.class)
             .replace(AddressDto::getId, AddressEntity::getId)
             .with(StringUtils::convertToUuid)
+            .replace(AddressDto::getCity, AddressEntity::getCity)
+            .with(StringUtils::notEmptyOrNull)
+            .replace(AddressDto::getCountry, AddressEntity::getCountry)
+            .with(StringUtils::notEmptyOrNull)
             .mapper();
     }
 
@@ -32,7 +34,7 @@ public class ReMapConfiguration {
             .replace(DeliveryDto::getId, DeliveryEntity::getId)
             .with(StringUtils::convertToUuid)
             .replace(DeliveryDto::getShippableDue, DeliveryEntity::getShippableDue)
-            .with(value -> LocalDateTime.parse(value, DATETIME_FORMATTER))
+            .with(DateUtils::convertToLocalDateTime)
             .replace(DeliveryDto::getDiscount, DeliveryEntity::getDiscount)
             .withSkipWhenNull(BigDecimal::new)
             .mapper();

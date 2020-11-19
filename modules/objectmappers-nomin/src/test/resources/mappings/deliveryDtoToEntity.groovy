@@ -2,12 +2,10 @@ package mappings
 
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity
+import io.nullables.api.playground.objectmappers.commons.utils.DateUtils
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils
 
-import java.time.LocalDateTime
 import java.util.logging.Logger
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER
 
 mappingFor a: DeliveryDto, b: DeliveryEntity
 introspector exploding
@@ -22,7 +20,7 @@ a.createdAt = b.createdAt
 a.updatedAt = b.updatedAt
 
 a.shippableDue = b.shippableDue
-convert to_a: { it -> DATETIME_FORMATTER.format(it) }, to_b: { it -> LocalDateTime.parse(it, DATETIME_FORMATTER) }
+convert to_a: { it -> DateUtils.convertToString(it) }, to_b: { it -> DateUtils.convertToLocalDateTime(it) }
 
 a.balance = b.balance
 a.discount = b.discount

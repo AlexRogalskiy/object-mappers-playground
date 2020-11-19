@@ -6,7 +6,8 @@ import ma.glasnost.orika.metadata.Type;
 
 import java.time.LocalDateTime;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
 
 public class StringToLocalDateTimeConverter extends BidirectionalConverter<String, LocalDateTime> {
 
@@ -14,13 +15,13 @@ public class StringToLocalDateTimeConverter extends BidirectionalConverter<Strin
     public LocalDateTime convertTo(final String source,
                                    final Type<LocalDateTime> destinationType,
                                    final MappingContext mappingContext) {
-        return LocalDateTime.parse(source, DATETIME_FORMATTER);
+        return convertToLocalDateTime(source);
     }
 
     @Override
     public String convertFrom(final LocalDateTime source,
                               final Type<String> destinationType,
                               final MappingContext mappingContext) {
-        return DATETIME_FORMATTER.format(source);
+        return convertToString(source);
     }
 }

@@ -11,13 +11,17 @@ import java.util.UUID;
 public class StringUtils {
 
     public Integer[] convertToIntegerArray(final String... value) {
-        return Arrays.stream(value)
+        return Optional.ofNullable(value)
+            .stream()
+            .flatMap(Arrays::stream)
             .map(Integer::valueOf)
             .toArray(Integer[]::new);
     }
 
     public String[] convertToStringArray(final Integer... value) {
-        return Arrays.stream(value)
+        return Optional.ofNullable(value)
+            .stream()
+            .flatMap(Arrays::stream)
             .map(Object::toString)
             .toArray(String[]::new);
     }
@@ -33,6 +37,13 @@ public class StringUtils {
     public String convertToString(final UUID value) {
         return Optional.ofNullable(value)
             .map(UUID::toString)
+            .orElse(null);
+    }
+
+    @Nullable
+    public String notEmptyOrNull(final String value) {
+        return Optional.ofNullable(value)
+            .filter(org.apache.commons.lang3.StringUtils::isNotEmpty)
             .orElse(null);
     }
 }

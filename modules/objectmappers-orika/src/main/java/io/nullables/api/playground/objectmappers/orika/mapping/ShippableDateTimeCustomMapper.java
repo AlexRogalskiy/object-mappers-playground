@@ -5,9 +5,8 @@ import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEn
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
 
-import java.time.LocalDateTime;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
 
 public class ShippableDateTimeCustomMapper extends CustomMapper<DeliveryDto, DeliveryEntity> {
 
@@ -15,13 +14,13 @@ public class ShippableDateTimeCustomMapper extends CustomMapper<DeliveryDto, Del
     public void mapAtoB(final DeliveryDto a,
                         final DeliveryEntity b,
                         final MappingContext context) {
-        b.setShippableDue(LocalDateTime.parse(a.getShippableDue(), DATETIME_FORMATTER));
+        b.setShippableDue(convertToLocalDateTime(a.getShippableDue()));
     }
 
     @Override
     public void mapBtoA(final DeliveryEntity b,
                         final DeliveryDto a,
                         final MappingContext context) {
-        a.setShippableDue(b.getShippableDue().format(DATETIME_FORMATTER));
+        a.setShippableDue(convertToString(b.getShippableDue()));
     }
 }

@@ -38,7 +38,7 @@ public class JMapperConfiguration {
                 .add(conversion("shippableDue")
                     .from("shippableDue").to("shippableDue").avoidSet(false)
                     .type(JMapConversion.Type.DYNAMIC)
-                    .body("return java.time.LocalDateTime.parse(${source}, io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER);"))
+                    .body("return io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime(${source});"))
                 .add(attribute("balance").value("balance"))
                 .add(attribute("discount").value("discount"))
                 .add(attribute("status").value("status"))

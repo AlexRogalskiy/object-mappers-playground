@@ -2,9 +2,12 @@ package io.nullables.api.playground.objectmappers.commons.utils;
 
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nullable;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import static java.time.temporal.ChronoField.*;
@@ -40,4 +43,18 @@ public class DateUtils {
         .append(TIME_FORMATTER)
         .appendLiteral('Z')
         .toFormatter(Locale.ROOT);
+
+    @Nullable
+    public LocalDateTime convertToLocalDateTime(final String value) {
+        return Optional.ofNullable(value)
+            .map(v -> LocalDateTime.parse(v, DATETIME_FORMATTER))
+            .orElse(null);
+    }
+
+    @Nullable
+    public String convertToString(final LocalDateTime value) {
+        return Optional.ofNullable(value)
+            .map(DATETIME_FORMATTER::format)
+            .orElse(null);
+    }
 }

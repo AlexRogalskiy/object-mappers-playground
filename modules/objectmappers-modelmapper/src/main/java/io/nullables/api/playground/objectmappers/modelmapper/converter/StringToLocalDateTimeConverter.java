@@ -5,7 +5,7 @@ import org.modelmapper.spi.MappingContext;
 
 import java.time.LocalDateTime;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
 
 /**
  * {@link String} to {@link LocalDateTime} array {@link Converter} implementation
@@ -19,6 +19,6 @@ public class StringToLocalDateTimeConverter implements Converter<String, LocalDa
      */
     @Override
     public LocalDateTime convert(final MappingContext<String, LocalDateTime> context) {
-        return LocalDateTime.parse(context.getSource(), DATETIME_FORMATTER);
+        return convertToLocalDateTime(context.getSource());
     }
 }

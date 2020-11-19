@@ -7,8 +7,7 @@
             return io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid(${source});
         </conversion>
         <conversion name="shippableDue_conversion" from="shippableDue" to="shippableDue" avoidSet="false" type="STATIC">
-            return java.time.LocalDateTime.parse(${source},
-            io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_FORMATTER);
+            return io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime(${source});
         </conversion>
         <conversion name="int_conversion" from="int" to="str">
             return ${source}.toString();
