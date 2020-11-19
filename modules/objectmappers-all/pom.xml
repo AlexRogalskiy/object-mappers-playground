@@ -63,6 +63,12 @@
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-moo</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-nomin</artifactId>
             <version>${objectmappers.version}</version>
             <scope>compile</scope>

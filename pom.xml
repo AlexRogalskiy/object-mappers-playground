@@ -85,6 +85,7 @@
         <module>modules/objectmappers-jmapper</module>
         <module>modules/objectmappers-mapstruct</module>
         <module>modules/objectmappers-modelmapper</module>
+        <module>modules/objectmappers-moo</module>
         <module>modules/objectmappers-nomin</module>
         <module>modules/objectmappers-orika</module>
         <module>modules/objectmappers-remap</module>

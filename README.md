@@ -83,6 +83,9 @@ ObjectMappers module dependencies:
 - [**ObjectMappers ModelMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-modelmapper)  
   `objectmappers-modelmapper` - Library to work with ModelMapper API.
 
+- [**ObjectMappers Moo**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-moo)  
+  `objectmappers-moo` - Library to work with Moo API.
+
 - [**ObjectMappers Nomin**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-nomin)  
   `objectmappers-nomin` - Library to work with Nomin API.
 
