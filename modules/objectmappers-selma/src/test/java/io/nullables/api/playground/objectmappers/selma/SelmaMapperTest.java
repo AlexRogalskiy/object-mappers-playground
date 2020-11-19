@@ -36,7 +36,7 @@ class SelmaMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = Selma.builder(DeliveryMapper.class).build();
+        this.mapper = Selma.builder(DeliveryMapper.class).disableCache().build();
     }
 
     @ParameterizedTest
