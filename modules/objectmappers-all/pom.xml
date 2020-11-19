@@ -33,6 +33,12 @@
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-beancp</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-dozer</artifactId>
             <version>${objectmappers.version}</version>
             <scope>compile</scope>

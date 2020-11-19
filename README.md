@@ -65,6 +65,9 @@ ObjectMappers module dependencies:
 - [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks)  
   `objectmappers-benchmarks` - Library with utilities for benchmarks use cases.
 
+- [**ObjectMappers BeanCP**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp)  
+  `objectmappers-beancp` - Library to work with BeanCP API.
+
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
 

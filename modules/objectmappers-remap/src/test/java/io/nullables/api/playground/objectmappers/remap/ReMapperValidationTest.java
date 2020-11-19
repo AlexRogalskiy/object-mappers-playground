@@ -28,8 +28,6 @@ class ReMapperValidationTest {
             .andTest(StringUtils::convertToUuid)
             .expectReplace(DeliveryDto::getShippableDue, DeliveryEntity::getShippableDue)
             .andTest(DateUtils::convertToLocalDateTime)
-//            .expectReplace(DeliveryDto::getDiscount, DeliveryEntity::getDiscount)
-//            .andTest(BigDecimal::new)
             .expectReplace(DeliveryDto::getDiscount, DeliveryEntity::getDiscount)
             .andSkipWhenNull()
             .ensure();
