@@ -1,0 +1,21 @@
+# https://github.com/behaviorbot/request-info?installation_id=189571
+requestInfoLabelToAdd: needs-more-info
+
+requestInfoReplyComment: >
+  We would appreciate it if you could provide us with more info about this issue/pr!
+
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+newIssueWelcomeComment: >
+  Thanks for opening your first issue here! 🎉<br>
+  👉 Be sure to:<br>
+  1. 📖 Have a look at the [Wiki](https://github.com/AlexRogalskiy/web2docs/wiki) and [README](https://github.com/AlexRogalskiy/web2docs/blob/master/README.md) for information<br>
+  2. 🔍 Search for similar [issues (open and closed)](https://github.com/AlexRogalskiy/web2docs/issues?q=is%3Aissue+)<br>
+  3. ✍️ Provide enough information to understand, recreate and help out with your problem<br>
+  4. ℹ️ Let us know if you find a solution and please share it with us<br>
+  5. 📕 Close the issue when your problem has been solved
+
+newPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines.
+
+firstPRMergeComment: >
+  Congrats on merging your first pull request! We here at behaviorbot are proud of you!

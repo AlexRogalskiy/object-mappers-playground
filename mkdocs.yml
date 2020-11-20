@@ -14,6 +14,19 @@ pages:
       - Code Owners: user-guide/code_owners.md
       - Troubleshooting: user-guide/troubleshooting.md
       - Upgrade: user-guide/upgrade.md
+  - Modules:
+      - BeanCp: modules/beancp/readme.md
+      - Bull: modules/bull/readme.md
+      - Datus: modules/datus/readme.md
+      - Dozer: modules/dozer/readme.md
+      - JMapper: modules/jmapper/readme.md
+      - MapStruct: modules/mapstruct/readme.md
+      - ModelMapper: modules/modelmapper/readme.md
+      - Moo: modules/moo/readme.md
+      - Nomin: modules/nomin/readme.md
+      - Orika: modules/orika/readme.md
+      - ReMap: modules/remap/readme.md
+      - Selma: modules/selma/readme.md
   - Contributing:
       - Information: contributing/info.md
   - Reporting:

@@ -1,0 +1,88 @@
+# Number of days of inactivity before an issue becomes stale
+daysUntilStale: 180
+# Number of days of inactivity before a stale issue is closed
+daysUntilClose: 90
+# Only issues or pull requests with all of these labels are check if stale. Defaults to `[]` (disabled)
+onlyLabels: []
+# Issues with these labels will never be considered stale
+exemptLabels:
+  - "blocker"
+  - "regression"
+  - "high priority"
+  - "good first issue"
+  - "pinned"
+  - "security"
+# Set to true to ignore issues in a project (defaults to false)
+exemptProjects: false
+# Set to true to ignore issues in a milestone (defaults to false)
+exemptMilestones: true
+# Set to true to ignore issues with an assignee (defaults to false)
+exemptAssignees: true
+# Label to use when marking an issue as stale
+staleLabel: stale
+# Comment to post when marking an issue as stale. Set to `false` to disable
+markComment: >
+  [Web2Docs] This issue has been automatically marked as stale because it has not had
+  recent activity. It will be closed if no further activity occurs. Thank you
+  for your contribution and understanding!
+# Comment to post when closing a stale issue. Set to `false` to disable
+unmarkComment: >
+  [Web2Docs] This issue has been removed from the stale queue. Please ensure activity to keep it opening in the future.
+closeComment: >
+  [Web2Docs] This issues been automatically closed due to lack of activity. Feel free to re-open it
+  if you ever come back to it.
+# Limit the number of actions per hour, from 1-30. Default is 30
+limitPerRun: 30
+# Limit to only `issues` or `pulls`
+only: issues
+
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: |
+  👋 Thanks for opening your first issue! If you're reporting a 🐞 bug, please make sure
+  you include steps to reproduce it. If you're requesting a feature 🎁, please provide real
+  use cases that would benefit. 👪
+
+  To help make this a smooth process, please be sure you have first read the
+  [contributing guidelines](https://github.com/AlexRogalskiy/web2docs/blob/master/CONTRIBUTING.md).
+
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: |
+  💖 Thanks for opening this pull request! 💖
+
+  To help make this a smooth process, please be sure you have first read the
+  [contributing guidelines](https://github.com/AleRogalskiy/web2docs/blob/master/CONTRIBUTING.md).
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Congrats on merging your first pull request! 🎉🎉🎉 You're helping make Insomnia awesome! 🙌
+
+# Comment to post when marking as stale. Set to `false` to disable.
+issues:
+  daysUntilStale: 90
+  daysUntilClose: 7
+  exemptLabels:
+    - confirmed
+  markComment: >
+    Thank you for taking the time to raise this issue. However, it has
+    not had any activity on it in the past 180 days and will be closed in
+    90 days if no updates occur.
+    Please check if the master branch has already resolved the issue
+    since it was raised. If you believe the issue is still valid and you
+    would like input from the maintainers then please comment to ask for
+    it to be reviewed.
+  closeComment: >
+    This issue has been automatically closed due to inactivity. Please re-open
+    if this still requires investigation.
+pulls:
+  daysUntilStale: 90
+  daysUntilClose: 30
+  markComment: >
+    Thank you for your contribution! However, this pull request has not
+    had any activity in the past 180 days and will be closed in 90 days if
+    no updates occur.
+    If you believe the changes are still valid then please verify your
+    branch has no conflicts with master and rebase if needed. If you
+    are awaiting a (re-)review then please let us know.
+  closeComment: >
+    This pull request has been automatically closed due to inactivity. Please re-open
+    if these changes are still required.
