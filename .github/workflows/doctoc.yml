@@ -1,0 +1,36 @@
+name: Check generated TOCs
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+
+jobs:
+  doctoc:
+    name: Doc TOC Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare git
+        run: git config --global core.autocrlf false
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install doctoc
+        run: npm i -g doctoc
+
+      - name: Create README copy and diff with doctoc
+        run: |
+          cp README.md README.md.tmp &&
+          doctoc --title='## Table of Contents' --github README.md &&
+          diff -q README.md README.md.tmp
+
+      - name: Create "docs/BestPractices.md" copy and diff with doctoc
+        run: |
+          cp docs/BestPractices.md docs/BestPractices.md.tmp &&
+          doctoc --title='## Table of Contents' --github docs/BestPractices.md &&
+          diff -q docs/BestPractices.md docs/BestPractices.md.tmp
