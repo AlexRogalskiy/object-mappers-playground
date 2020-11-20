@@ -40,7 +40,7 @@ jobs:
 
       - name: Build project
         run: |
-          zip --junk-paths document-generator-ws README.md
+          zip --junk-paths object-mappers-playground README.md
 
       - name: Create checksum
         run: echo ${{ github.sha }} > checksum.txt
@@ -96,15 +96,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./document-generator-ws.zip
-          asset_name: document-generator-ws.zip
+          asset_path: ./object-mappers-playground.zip
+          asset_name: object-mappers-playground.zip
           asset_content_type: application/zip
 
-#      - name: Delete previous release
-#        run: |
-#          curl -s -H "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-#                -X DELETE ${{ steps.version_number.outputs.prev_release }}
-#        if: steps.version_number.outputs.prev_release != ''
+      - name: Delete previous release
+        run: |
+          curl -s -H "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                -X DELETE ${{ steps.version_number.outputs.prev_release }}
+        if: steps.version_number.outputs.prev_release != ''
 
   module_java:
     runs-on: ${{ matrix.os }}
@@ -136,7 +136,7 @@ jobs:
 
       - name: Build project
         run: |
-          zip --junk-paths document-generator-ws README.md
+          zip --junk-paths object-mappers-playground README.md
 
       - name: Create checksum
         run: echo ${{ github.sha }} > checksum.txt
@@ -167,6 +167,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./document-generator-ws.zip
-          asset_name: document-generator-ws.zip
+          asset_path: ./object-mappers-playground.zip
+          asset_name: object-mappers-playground.zip
           asset_content_type: application/zip

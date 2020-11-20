@@ -34,7 +34,7 @@ jobs:
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 20
         run: |
-          ./mvnw clean package --errors --batch-mode --lax-checksums -P"non_module_java","test",test-jar","dev"
+          ./mvnw clean package --errors --batch-mode --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev"
 
   windows-build:
     runs-on: windows-latest
@@ -65,4 +65,4 @@ jobs:
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 20
         run: |
-          ./mvnw clean package --errors --batch-mode --lax-checksums -P"non_module_java","test","test-jar","dev"
+          ./mvnw clean package --errors --batch-mode --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev"
