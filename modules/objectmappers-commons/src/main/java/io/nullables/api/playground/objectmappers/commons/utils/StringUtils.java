@@ -2,27 +2,31 @@ package io.nullables.api.playground.objectmappers.commons.utils;
 
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @UtilityClass
 public class StringUtils {
 
+    @Nonnull
     public Integer[] convertToIntegerArray(final String... value) {
         return Optional.ofNullable(value)
-            .stream()
-            .flatMap(Arrays::stream)
+            .map(Arrays::stream)
+            .orElse(Stream.empty())
             .map(Integer::valueOf)
             .toArray(Integer[]::new);
     }
 
+    @Nonnull
     public String[] convertToStringArray(final Integer... value) {
         return Optional.ofNullable(value)
-            .stream()
-            .flatMap(Arrays::stream)
-            .map(Object::toString)
+            .map(Arrays::stream)
+            .orElse(Stream.empty())
+            .map(String::valueOf)
             .toArray(String[]::new);
     }
 
