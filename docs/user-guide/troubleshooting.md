@@ -4,7 +4,7 @@ These are required prerequisites before filing an issue on GitHub
 
 ## Step 1: Attempt To Upgrade fastpages
 
-See the [Upgrading guide](https://github.com/AlexRogalsky/web2docs/blob/master/UPGRADE.md).
+See the [Upgrading guide](https://github.com/AlexRogalsky/object-mappers-playground/blob/master/UPGRADE.md).
 
 **In addition to upgrading**, if developing locally, refresh your Docker containers with the following commands from the root of your repo:
 
@@ -12,8 +12,8 @@ See the [Upgrading guide](https://github.com/AlexRogalsky/web2docs/blob/master/U
 
 ## Step 2: Search Relevant Places For Similar Issues
 
-- [ ] Search issues on the [repo](https://github.com/AlexRogalsky/web2docs/) for a similar problems?
-- [ ] Read the [README](https://github.com/AlexRogalsky/web2docs/blob/master/README.md) carefully
+- [ ] Search issues on the [repo](https://github.com/AlexRogalsky/object-mappers-playground/) for a similar problems?
+- [ ] Read the [README](https://github.com/AlexRogalsky/object-mappers-playground/blob/master/README.md) carefully
 
 
 ## Step 3: Observe Build Logs When Developing Locally
@@ -59,6 +59,6 @@ See the [Upgrading guide](https://github.com/AlexRogalsky/web2docs/blob/master/U
     Error: YAML Exception reading ... (<unknown>): mapping values are not allowed
     ```
 
-2. Can you customize the styling or theme?  **A**: See [Customizing](https://github.com/AlexRogalskiy/web2docs#customizing-fastpages)
+2. Can you customize the styling or theme?  **A**: See [Customizing](https://github.com/AlexRogalskiy/object-mappers-playground#customizing-fastpages)
 
-See the [FAQ](https://github.com/AlexRogalskiy/web2docs#faq) for frequently asked questions.
+See the [FAQ](https://github.com/AlexRogalskiy/object-mappers-playground#faq) for frequently asked questions.

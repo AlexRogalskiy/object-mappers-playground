@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to SensibleMetrics Web2Docs!
+Thanks for contributing to ObjectMappers!
 
 This is a set of guidelines for contributing to IceCore Hashids. Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.
 
@@ -10,7 +10,7 @@ As for everything else in the project, the contributions to IceCore Hashids are 
 
 ## Getting Started
 
-Web2Docs is an open source project and we love to receive contributions from the community! There are many ways to contribute, from [writing- and improving documentation and tutorials](), [reporting bugs](#bug-reports), [submitting enhancement suggestions](#enhancement-suggestions) which can be incorporated into IceCore Hashids itself by [submitting a pull request](#pull-requests).
+ObjectMappers is an open source project and we love to receive contributions from the community! There are many ways to contribute, from [writing- and improving documentation and tutorials](), [reporting bugs](#bug-reports), [submitting enhancement suggestions](#enhancement-suggestions) which can be incorporated into IceCore Hashids itself by [submitting a pull request](#pull-requests).
 
 The project development workflow and process uses [GitHub Issues][gh-issues]- and [Pull Requests][gh-pr] management to track issues and pull requests.
 

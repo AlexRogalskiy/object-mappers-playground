@@ -22,14 +22,14 @@ exemptAssignees: true
 staleLabel: stale
 # Comment to post when marking an issue as stale. Set to `false` to disable
 markComment: >
-  [Web2Docs] This issue has been automatically marked as stale because it has not had
+  [ObjectMappers] This issue has been automatically marked as stale because it has not had
   recent activity. It will be closed if no further activity occurs. Thank you
   for your contribution and understanding!
 # Comment to post when closing a stale issue. Set to `false` to disable
 unmarkComment: >
-  [Web2Docs] This issue has been removed from the stale queue. Please ensure activity to keep it opening in the future.
+  [ObjectMappers] This issue has been removed from the stale queue. Please ensure activity to keep it opening in the future.
 closeComment: >
-  [Web2Docs] This issues been automatically closed due to lack of activity. Feel free to re-open it
+  [ObjectMappers] This issues been automatically closed due to lack of activity. Feel free to re-open it
   if you ever come back to it.
 # Limit the number of actions per hour, from 1-30. Default is 30
 limitPerRun: 30
@@ -43,14 +43,14 @@ newIssueWelcomeComment: |
   use cases that would benefit. 👪
 
   To help make this a smooth process, please be sure you have first read the
-  [contributing guidelines](https://github.com/AlexRogalskiy/web2docs/blob/master/CONTRIBUTING.md).
+  [contributing guidelines](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/CONTRIBUTING.md).
 
 # Comment to be posted to on PRs from first time contributors in your repository
 newPRWelcomeComment: |
   💖 Thanks for opening this pull request! 💖
 
   To help make this a smooth process, please be sure you have first read the
-  [contributing guidelines](https://github.com/AleRogalskiy/web2docs/blob/master/CONTRIBUTING.md).
+  [contributing guidelines](https://github.com/AleRogalskiy/object-mappers-playground/blob/master/CONTRIBUTING.md).
 
 # Comment to be posted to on pull requests merged by a first time user
 firstPRMergeComment: >

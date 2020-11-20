@@ -22,7 +22,7 @@ There are two ways to upgrade. One is an automated way that assumes you have mad
 
 ### Step 1: Open An Issue With The Upgrade Template.
 
-- Open a new issue in your repository, and push the "Get Started" button for the `[web2docs] Automated Upgrade` Issue template, which looks like this:
+- Open a new issue in your repository, and push the "Get Started" button for the `[ObjectMappers] Automated Upgrade` Issue template, which looks like this:
     - **IF YOU DON'T SEE THIS**: you have an older version of fastpages and you **must [manually upgrade](#manual-upgrade) once** to get this new functionality.
 
 ### Step 2: Click `Submit new issue`
@@ -47,7 +47,7 @@ There are two ways to upgrade. One is an automated way that assumes you have mad
 
 ### Easy Way (Recommended)
 
-Create a new repo with the current project by following the [setup instructions](https://github.com/AlexRogalskiy/web2docs#setup-instructions) in the README.
+Create a new repo with the current project by following the [setup instructions](https://github.com/AlexRogalskiy/object-mappers-playground#setup-instructions) in the README.
 
 ### Advanced
 

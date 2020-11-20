@@ -1,8 +1,8 @@
 # Repository settings set via https://github.com/probot/settings
 ---
 repository:
-  description: "Web2Docs"
-  homepage: https://sensiblemetrics/web2docs
+  description: "Object-Mappers-Playground"
+  homepage: https://github.com/AlexRogalskiy/object-mappers-playground
   topics: web, documents, visualization
   private: false
   has_issues: true

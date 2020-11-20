@@ -5,4 +5,4 @@
 * https://help.github.com/articles/about-codeowners
 
 # [ Ownership ]
-* @sensiblemetrics.com
+* @https://github.com/AlexRogalskiy/
