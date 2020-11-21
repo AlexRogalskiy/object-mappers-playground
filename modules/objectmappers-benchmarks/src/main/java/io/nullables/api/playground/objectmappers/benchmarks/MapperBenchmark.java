@@ -33,7 +33,7 @@ public class MapperBenchmark {
     private final OrderMapper modelMapper = new ModelMapper();
     private final OrderMapper mapStructMapper = new MapStructMapper();
     private final OrderMapper selmaMapper = new SelmaMapper();
-    //    private final OrderMapper jMapper = new JMapperMapper();
+    // private final OrderMapper jMapper = new JMapperMapper();
     private final OrderMapper manualMapper = new ConverterMapper();
 
     @Benchmark
@@ -66,11 +66,11 @@ public class MapperBenchmark {
         this.selmaMapper.map(OrderFactory.buildOrder());
     }
 
-//    @Benchmark
-//    @Group("simpleTest")
-//    public void jmapper() {
-//        this.jMapper.map(OrderFactory.buildOrder());
-//    }
+    // @Benchmark
+    // @Group("simpleTest")
+    // public void jmapper() {
+    // this.jMapper.map(OrderFactory.buildOrder());
+    // }
 
     @Benchmark
     @Group("simpleTest")
@@ -79,22 +79,14 @@ public class MapperBenchmark {
     }
 
     public static void main(final String... args) throws Exception {
-        final Options opts = new OptionsBuilder()
-            .include(".*")
-            .warmupIterations(2)
-            .measurementIterations(2)
-            .jvmArgs("-server")
-            .forks(1)
-            .resultFormat(ResultFormatType.TEXT)
-            .build();
+        final Options opts = new OptionsBuilder().include(".*").warmupIterations(2).measurementIterations(2)
+                        .jvmArgs("-server").forks(1).resultFormat(ResultFormatType.TEXT).build();
 
         final Collection<RunResult> results = new Runner(opts).run();
         for (final RunResult result : results) {
             final Result<?> r = result.getPrimaryResult();
-            log.info("API replied benchmark score: "
-                + r.getScore() + " "
-                + r.getScoreUnit() + " over "
-                + r.getStatistics().getN() + " iterations");
+            log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over "
+                            + r.getStatistics().getN() + " iterations");
         }
     }
 }

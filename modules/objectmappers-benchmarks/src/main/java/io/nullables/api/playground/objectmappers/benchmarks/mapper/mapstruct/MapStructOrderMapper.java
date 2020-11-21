@@ -10,11 +10,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(
-    unmappedSourcePolicy = ReportingPolicy.IGNORE,
-    unmappedTargetPolicy = ReportingPolicy.IGNORE,
-    injectionStrategy = InjectionStrategy.FIELD
-)
+@Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE,
+                injectionStrategy = InjectionStrategy.FIELD)
 public interface MapStructOrderMapper extends OrderMapper {
 
     @Mapping(source = "customer.name", target = "customerName")

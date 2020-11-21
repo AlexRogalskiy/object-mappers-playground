@@ -29,12 +29,17 @@ public final class BeanMapperBuilder {
 
     private BeanMapperBuilder() {
         this.mapperBuilder = new MapperBuilder()
-            .addMapAnyByConvention(NameBasedMapConvention.get().failIfNotAllDestinationMembersMapped())
-            .addConverter(CollectionConverters.getArrayToCollection(AddressDto.class))
-            .addConverter(NumberConverters.get())
-            .addConverter(String.class, LocalDateTime.class, DateUtils::convertToLocalDateTime)
-            .addConverter(String.class, BigDecimal.class, (Function<String, BigDecimal>) BigDecimal::new)
-            .addConverter(String[].class, Integer[].class, (Function<String[], Integer[]>) StringUtils::convertToIntegerArray);
+                        .addMapAnyByConvention(NameBasedMapConvention.get().failIfNotAllDestinationMembersMapped())
+                        .addConverter(CollectionConverters.getArrayToCollection(AddressDto.class))
+                        .addConverter(NumberConverters.get())
+                        .addConverter(String.class, LocalDateTime.class, DateUtils::convertToLocalDateTime)
+                        .addConverter(String.class, BigDecimal.class, (Function<String, BigDecimal>) BigDecimal::new)
+                        .addConverter(String[].class, Integer[].class,
+                                        (Function<String[], Integer[]>) StringUtils::convertToIntegerArray);
+    }
+
+    public static BeanMapperBuilder newBuilder() {
+        return new BeanMapperBuilder();
     }
 
     public BeanMapperBuilder withDefaultMappings() {
@@ -43,28 +48,23 @@ public final class BeanMapperBuilder {
     }
 
     public BeanMapperBuilder withAddressMapper(final Mapper addressMapper) {
-        this.mapperBuilder.addMap(DeliveryDto.class, DeliveryEntity.class,
-            (conf, source, destination) -> conf
-                .beforeMap(mapperRef -> log.info(">>> Starting mapping of DeliveryDto (id: " + source.getId() + ") to DeliveryEntity by mapper " + mapperRef))
-                .bind(() -> StringUtils.convertToUuid(source.getId()), destination::setId)
-                .bind(source::getBalance, destination::setBalance, BindingOption.mapWhen(() -> Double.compare(source.getBalance(), 0) >= 0))
-                .bind(source::getCreatedAt, destination::setCreatedAt)
-                .bind(source::getUpdatedAt, destination::setUpdatedAt)
-                .bind(source::getDescription, destination::setDescription)
-                .bind(source::getGid, destination::setGid)
-                .bind(source::getStatus, destination::setStatus)
-                .bind(source::getType, destination::setType)
-                .bind(
-                    () -> (source.getAddresses().stream().map(value -> addressMapper.map(value, AddressEntity.class)).collect(Collectors.toList())),
-                    destination::setAddresses
-                )
-                .afterMap(() -> log.info(">>> Finished mapping of DeliveryDto (id: " + source.getId() + ") to DeliveryEntity"))
-        );
+        this.mapperBuilder.addMap(DeliveryDto.class, DeliveryEntity.class, (conf, source, destination) -> conf
+                        .beforeMap(mapperRef -> log.info(">>> Starting mapping of DeliveryDto (id: " + source.getId()
+                                        + ") to DeliveryEntity by mapper " + mapperRef))
+                        .bind(() -> StringUtils.convertToUuid(source.getId()), destination::setId)
+                        .bind(source::getBalance, destination::setBalance,
+                                        BindingOption.mapWhen(() -> Double.compare(source.getBalance(), 0) >= 0))
+                        .bind(source::getCreatedAt, destination::setCreatedAt)
+                        .bind(source::getUpdatedAt, destination::setUpdatedAt)
+                        .bind(source::getDescription, destination::setDescription)
+                        .bind(source::getGid, destination::setGid).bind(source::getStatus, destination::setStatus)
+                        .bind(source::getType, destination::setType)
+                        .bind(() -> (source.getAddresses().stream()
+                                        .map(value -> addressMapper.map(value, AddressEntity.class))
+                                        .collect(Collectors.toList())), destination::setAddresses)
+                        .afterMap(() -> log.info(">>> Finished mapping of DeliveryDto (id: " + source.getId()
+                                        + ") to DeliveryEntity")));
         return this;
-    }
-
-    public static BeanMapperBuilder newBuilder() {
-        return new BeanMapperBuilder();
     }
 
     public Mapper build() {
@@ -72,18 +72,22 @@ public final class BeanMapperBuilder {
     }
 
     private Mapper addressMapper() {
-        return new MapperBuilder()
-            .addMap(AddressDto.class, AddressEntity.class,
-                (conf, source, destination) -> conf
-                    .beforeMap(mapperRef -> log.info(">>> Starting mapping of AddressDto (id: " + source.getId() + ") to AddressEntity by mapper " + mapperRef))
-                    .bind(() -> StringUtils.convertToUuid(source.getId()), destination::setId)
-                    .bind(source::getCity, destination::setCity, BindingOption.mapWhen(() -> isNotEmpty(source.getCity())))
-                    .bind(source::getCountry, destination::setCountry, BindingOption.mapWhen(() -> isNotEmpty(source.getCountry())))
-                    .bind(source::getPostalCode, destination::setPostalCode, BindingOption.withNullSubstitution("unknown"))
-                    .bind(source::getStateOrProvince, destination::setStateOrProvince, BindingOption.withNullSubstitution("unknown"))
-                    .bind(source::getStreet, destination::setStreet)
-                    .afterMap(() -> log.info(">>> Finished mapping of AddressDto (id: " + source.getId() + ") to AddressEntity"))
-            )
-            .buildMapper();
+        return new MapperBuilder().addMap(AddressDto.class, AddressEntity.class,
+                        (conf, source, destination) -> conf
+                                        .beforeMap(mapperRef -> log.info(">>> Starting mapping of AddressDto (id: "
+                                                        + source.getId() + ") to AddressEntity by mapper " + mapperRef))
+                                        .bind(() -> StringUtils.convertToUuid(source.getId()), destination::setId)
+                                        .bind(source::getCity, destination::setCity,
+                                                        BindingOption.mapWhen(() -> isNotEmpty(source.getCity())))
+                                        .bind(source::getCountry, destination::setCountry,
+                                                        BindingOption.mapWhen(() -> isNotEmpty(source.getCountry())))
+                                        .bind(source::getPostalCode, destination::setPostalCode,
+                                                        BindingOption.withNullSubstitution("unknown"))
+                                        .bind(source::getStateOrProvince, destination::setStateOrProvince,
+                                                        BindingOption.withNullSubstitution("unknown"))
+                                        .bind(source::getStreet, destination::setStreet)
+                                        .afterMap(() -> log.info(">>> Finished mapping of AddressDto (id: "
+                                                        + source.getId() + ") to AddressEntity")))
+                        .buildMapper();
     }
 }

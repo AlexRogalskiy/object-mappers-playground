@@ -87,7 +87,8 @@ public @interface AutoconfigureBootstrapTest {
          */
         @Override
         public String generateDisplayNameForMethod(final Class<?> testClass, final Method testMethod) {
-            return this.replaceCamelCase(testMethod.getName()) + DisplayNameGenerator.parameterTypesAsString(testMethod);
+            return this.replaceCamelCase(testMethod.getName())
+                            + DisplayNameGenerator.parameterTypesAsString(testMethod);
         }
 
         /**

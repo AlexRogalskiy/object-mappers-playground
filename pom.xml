@@ -116,6 +116,7 @@
         <enforce.java.skip>false</enforce.java.skip>
         <enforce.maven.skip>false</enforce.maven.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
+        <enforce.test.skip>false</enforce.test.skip>
         <package-tests.skip>true</package-tests.skip>
         <copy-dependencies.skip>false</copy-dependencies.skip>
         <moditect.skip>false</moditect.skip>
@@ -156,13 +157,13 @@
         <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
         <maven-sonar-plugin.version>3.7.0.1746</maven-sonar-plugin.version>
-        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-formatter-plugin.version>2.13.0</maven-formatter-plugin.version>
         <maven-dependency-check-plugin.version>5.3.2</maven-dependency-check-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
@@ -523,6 +524,22 @@
                             </rules>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>enforce-test-resources</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.test.skip}</skip>
+                            <rules>
+                                <requireActiveProfile>
+                                    <profiles>test</profiles>
+                                </requireActiveProfile>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -624,6 +641,16 @@
                             <replacement>.</replacement>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>remove-old-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>remove-project-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <removeAll>true</removeAll>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -634,20 +661,6 @@
                 <configuration>
                     <detail>true</detail>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>${maven-install-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>install</goal>
-                        </goals>
-                        <phase>install</phase>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -822,6 +835,24 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Format profile -->
+        <profile>
+            <id>format</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>net.revelc.code.formatter</groupId>
+                        <artifactId>formatter-maven-plugin</artifactId>
+                        <version>${maven-formatter-plugin.version}</version>
+                        <configuration>
+                            <configFile>${session.executionRootDirectory}/codestyle/formatter.xml</configFile>
+                            <basedir>modules</basedir>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Security profile -->
         <profile>
             <id>security</id>
@@ -1411,6 +1442,7 @@
                 <enforce.java.skip>true</enforce.java.skip>
                 <enforce.maven.skip>true</enforce.maven.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
+                <enforce.test.skip>true</enforce.test.skip>
                 <copy-dependencies.skip>true</copy-dependencies.skip>
                 <logback.loglevel>DEBUG</logback.loglevel>
             </properties>

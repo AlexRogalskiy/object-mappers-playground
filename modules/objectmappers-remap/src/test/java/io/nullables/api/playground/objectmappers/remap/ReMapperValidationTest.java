@@ -21,16 +21,13 @@ class ReMapperValidationTest {
         final Mapper<DeliveryDto, DeliveryEntity> mapper = new ReMapConfiguration().deliveryMapper();
 
         // then
-        AssertMapping.of(mapper)
-            .expectReplace(DeliveryDto::getCodes, DeliveryEntity::getCodes)
-            .andTest(StringUtils::convertToIntegerArray)
-            .expectReplace(DeliveryDto::getId, DeliveryEntity::getId)
-            .andTest(StringUtils::convertToUuid)
-            .expectReplace(DeliveryDto::getShippableDue, DeliveryEntity::getShippableDue)
-            .andTest(DateUtils::convertToLocalDateTime)
-            .expectReplace(DeliveryDto::getDiscount, DeliveryEntity::getDiscount)
-            .andSkipWhenNull()
-            .ensure();
+        AssertMapping.of(mapper).expectReplace(DeliveryDto::getCodes, DeliveryEntity::getCodes)
+                        .andTest(StringUtils::convertToIntegerArray)
+                        .expectReplace(DeliveryDto::getId, DeliveryEntity::getId).andTest(StringUtils::convertToUuid)
+                        .expectReplace(DeliveryDto::getShippableDue, DeliveryEntity::getShippableDue)
+                        .andTest(DateUtils::convertToLocalDateTime)
+                        .expectReplace(DeliveryDto::getDiscount, DeliveryEntity::getDiscount).andSkipWhenNull()
+                        .ensure();
     }
 
     @Test
@@ -39,13 +36,10 @@ class ReMapperValidationTest {
         final Mapper<AddressDto, AddressEntity> mapper = new ReMapConfiguration().addressMapper();
 
         // then
-        AssertMapping.of(mapper)
-            .expectReplace(AddressDto::getId, AddressEntity::getId)
-            .andTest(StringUtils::convertToUuid)
-            .expectReplace(AddressDto::getCity, AddressEntity::getCity)
-            .andTest(StringUtils::notEmptyOrNull)
-            .expectReplace(AddressDto::getCountry, AddressEntity::getCountry)
-            .andTest(StringUtils::notEmptyOrNull)
-            .ensure();
+        AssertMapping.of(mapper).expectReplace(AddressDto::getId, AddressEntity::getId)
+                        .andTest(StringUtils::convertToUuid).expectReplace(AddressDto::getCity, AddressEntity::getCity)
+                        .andTest(StringUtils::notEmptyOrNull)
+                        .expectReplace(AddressDto::getCountry, AddressEntity::getCountry)
+                        .andTest(StringUtils::notEmptyOrNull).ensure();
     }
 }

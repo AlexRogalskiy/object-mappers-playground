@@ -13,18 +13,13 @@ public class CustomEventListener implements EventListener {
     }
 
     @Override
-    public void onPreWritingDestinationValue(final Event event) {
-    }
+    public void onPreWritingDestinationValue(final Event event) {}
 
     @Override
     public void onPostWritingDestinationValue(final Event event) {
-        log.info(
-            ">>> Copying to target object by event: [{}], source field: [{}], target field: [{}], value: [{}]",
-            event.getType(),
-            event.getFieldMap().getSrcFieldName(),
-            event.getFieldMap().getDestFieldName(),
-            event.getDestinationValue()
-        );
+        log.info(">>> Copying to target object by event: [{}], source field: [{}], target field: [{}], value: [{}]",
+                        event.getType(), event.getFieldMap().getSrcFieldName(), event.getFieldMap().getDestFieldName(),
+                        event.getDestinationValue());
     }
 
     @Override

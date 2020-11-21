@@ -12,10 +12,8 @@ public class MathOperationConverter implements ConfigurableCustomConverter {
     }
 
     @Override
-    public Object convert(final Object destinationFieldValue,
-                          final Object sourceFieldValue,
-                          final Class<?> destinationClass,
-                          final Class<?> sourceClass) {
+    public Object convert(final Object destinationFieldValue, final Object sourceFieldValue,
+                    final Class<?> destinationClass, final Class<?> sourceClass) {
         final Integer source = (Integer) sourceFieldValue;
         final Integer destination = (Integer) destinationFieldValue;
         if ("+".equals(this.param)) {

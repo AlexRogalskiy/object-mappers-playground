@@ -17,7 +17,9 @@ public interface MockUnitLocalDateTime extends MockUnit<LocalDateTime> {
 
 
     /**
-     * <p>Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnit<java.util.Date>}.</p>
+     * <p>
+     * Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnit<java.util.Date>}.
+     * </p>
      * <p>
      * Use {@code mapToDate()} method instead.
      *
@@ -26,13 +28,13 @@ public interface MockUnitLocalDateTime extends MockUnit<LocalDateTime> {
     @Deprecated
     default MockUnit<Date> toUtilDate() {
         return () -> ifSupplierNotNullDo(supplier(),
-            localDateTime -> from(
-                localDateTime.atZone(ZoneId.systemDefault())
-                    .toInstant()));
+                        localDateTime -> from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
     }
 
     /**
-     * <p>Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnit<java.util.Date>}.</p>
+     * <p>
+     * Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnit<java.util.Date>}.
+     * </p>
      *
      * @return A new {@code MockUnit<java.util.Date>}.
      */
@@ -41,7 +43,10 @@ public interface MockUnitLocalDateTime extends MockUnit<LocalDateTime> {
     }
 
     /**
-     * <p>Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnitString} - the textual representation of the date object.</p>
+     * <p>
+     * Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnitString} - the textual representation
+     * of the date object.
+     * </p>
      *
      * @param format The format of the date. (Eg.: "yyyy:MM:dd")
      * @return A new {@code MockUnitString}
@@ -51,7 +56,10 @@ public interface MockUnitLocalDateTime extends MockUnit<LocalDateTime> {
     }
 
     /**
-     * <p>Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnitString} - the textual representation of the date object.</p>
+     * <p>
+     * Transforms an existing {@code MockUnitLocalDateTime} into a {@code MockUnitString} - the textual representation
+     * of the date object.
+     * </p>
      *
      * @param locale the locale. (Eg.: Locale.FRANCE)
      * @param format The format of the date. (Eg.: "yyyy:MM:dd")

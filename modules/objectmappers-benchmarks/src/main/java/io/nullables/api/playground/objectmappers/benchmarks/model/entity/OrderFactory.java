@@ -44,9 +44,6 @@ public class OrderFactory {
 
     @Nonnull
     public static List<ProductEntity> buildProducts() {
-        return Arrays.asList(
-            new ProductEntity("socks"),
-            new ProductEntity("shoes")
-        );
+        return Arrays.asList(new ProductEntity("socks"), new ProductEntity("shoes"));
     }
 }

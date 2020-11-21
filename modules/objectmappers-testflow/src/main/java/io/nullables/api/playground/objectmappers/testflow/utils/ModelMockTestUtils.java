@@ -29,7 +29,8 @@ public class ModelMockTestUtils {
     /**
      * Default {@link DeliveryStatus} collection {@link List}
      */
-    public static final List<DeliveryStatus> DELIVERY_STATUS_LIST = Collections.unmodifiableList(Arrays.asList(DeliveryStatus.values()));
+    public static final List<DeliveryStatus> DELIVERY_STATUS_LIST =
+                    Collections.unmodifiableList(Arrays.asList(DeliveryStatus.values()));
 
     /**
      * Default {@link DeliveryDto} {@link MockUnit}
@@ -46,19 +47,16 @@ public class ModelMockTestUtils {
      * @return delivery info mock unit instance {@link MockUnit}
      */
     public static MockUnit<DeliveryDto> deliveryDtoMock(int addressCount) {
-        return filler(DeliveryDto::new)
-            .setter(DeliveryDto::setId, uuids().mapToString())
-            .setter(DeliveryDto::setType, intMock)
-            .setter(DeliveryDto::setGid, alphaNumericStringMock)
-            .setter(DeliveryDto::setDescription, lettersStringMock)
-            .setter(DeliveryDto::setCreatedAt, localDateMock.mapToDate())
-            .setter(DeliveryDto::setUpdatedAt, localDateMock.mapToDate())
-            .setter(DeliveryDto::setShippableDue, localDateTimeMock.display(DATETIME_PATTERN, Locale.ROOT))
-            .setter(DeliveryDto::setBalance, doubleMock)
-            .setter(DeliveryDto::setStatus, generateStatus())
-            .setter(DeliveryDto::setDiscount, generateDiscount(1.5, 20.5).mapToString())
-            .setter(DeliveryDto::setCodes, generateCodes(10, 100, 200))
-            .setter(DeliveryDto::setAddresses, addressDtoMock().list(addressCount));
+        return filler(DeliveryDto::new).setter(DeliveryDto::setId, uuids().mapToString())
+                        .setter(DeliveryDto::setType, intMock).setter(DeliveryDto::setGid, alphaNumericStringMock)
+                        .setter(DeliveryDto::setDescription, lettersStringMock)
+                        .setter(DeliveryDto::setCreatedAt, localDateMock.mapToDate())
+                        .setter(DeliveryDto::setUpdatedAt, localDateMock.mapToDate())
+                        .setter(DeliveryDto::setShippableDue, localDateTimeMock.display(DATETIME_PATTERN, Locale.ROOT))
+                        .setter(DeliveryDto::setBalance, doubleMock).setter(DeliveryDto::setStatus, generateStatus())
+                        .setter(DeliveryDto::setDiscount, generateDiscount(1.5, 20.5).mapToString())
+                        .setter(DeliveryDto::setCodes, generateCodes(10, 100, 200))
+                        .setter(DeliveryDto::setAddresses, addressDtoMock().list(addressCount));
     }
 
     /**
@@ -67,13 +65,12 @@ public class ModelMockTestUtils {
      * @return {@link AddressDto} {@link MockUnit}
      */
     public static MockUnit<AddressDto> addressDtoMock() {
-        return filler(AddressDto::new)
-            .setter(AddressDto::setId, uuids().mapToString())
-            .setter(AddressDto::setCity, lettersStringMock)
-            .setter(AddressDto::setCountry, lettersStringMock)
-            .setter(AddressDto::setPostalCode, alphaNumericStringMock)
-            .setter(AddressDto::setStateOrProvince, lettersStringMock)
-            .setter(AddressDto::setStreet, lettersStringMock);
+        return filler(AddressDto::new).setter(AddressDto::setId, uuids().mapToString())
+                        .setter(AddressDto::setCity, lettersStringMock)
+                        .setter(AddressDto::setCountry, lettersStringMock)
+                        .setter(AddressDto::setPostalCode, alphaNumericStringMock)
+                        .setter(AddressDto::setStateOrProvince, lettersStringMock)
+                        .setter(AddressDto::setStreet, lettersStringMock);
     }
 
     /**

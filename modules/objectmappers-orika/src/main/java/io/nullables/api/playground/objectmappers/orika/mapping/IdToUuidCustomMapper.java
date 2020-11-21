@@ -11,16 +11,12 @@ import static io.nullables.api.playground.objectmappers.commons.utils.StringUtil
 public class IdToUuidCustomMapper extends CustomMapper<AddressDto, AddressEntity> {
 
     @Override
-    public void mapAtoB(final AddressDto a,
-                        final AddressEntity b,
-                        final MappingContext context) {
+    public void mapAtoB(final AddressDto a, final AddressEntity b, final MappingContext context) {
         b.setId(convertToUuid(a.getId()));
     }
 
     @Override
-    public void mapBtoA(final AddressEntity b,
-                        final AddressDto a,
-                        final MappingContext context) {
+    public void mapBtoA(final AddressEntity b, final AddressDto a, final MappingContext context) {
         a.setId(convertToString(b.getId()));
     }
 }
