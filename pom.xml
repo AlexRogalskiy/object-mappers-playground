@@ -86,7 +86,6 @@
         <module>modules/objectmappers-mapstruct</module>
         <module>modules/objectmappers-modelmapper</module>
         <module>modules/objectmappers-moo</module>
-        <module>modules/objectmappers-nomin</module>
         <module>modules/objectmappers-orika</module>
         <module>modules/objectmappers-remap</module>
         <module>modules/objectmappers-selma</module>
@@ -632,6 +631,9 @@
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>${maven-sonar-plugin.version}</version>
+                <configuration>
+                    <detail>true</detail>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -1051,6 +1053,7 @@
                                     <version>${lombok.version}</version>
                                 </path>
                             </annotationProcessorPaths>
+
                             <executable>true</executable>
                             <showDeprecation>true</showDeprecation>
                             <debug>true</debug>
@@ -1115,6 +1118,10 @@
                 <asm.version>9.0</asm.version>
             </properties>
 
+            <modules>
+                <module>modules/objectmappers-nomin</module>
+            </modules>
+
             <build>
                 <plugins>
                     <plugin>
@@ -1143,7 +1150,6 @@
                             <source>${maven.compiler.source}</source>
                             <target>${maven.compiler.target}</target>
                             <encoding>${project.build.outputEncoding}</encoding>
-
                             <meminitial>128m</meminitial>
                             <maxmem>512m</maxmem>
 

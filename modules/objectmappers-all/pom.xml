@@ -23,6 +23,20 @@
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>module_java</id>
+            <dependencies>
+                <dependency>
+                    <groupId>io.nullables.api.playground</groupId>
+                    <artifactId>objectmappers-nomin</artifactId>
+                    <version>${objectmappers.version}</version>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <dependencies>
         <!-- ObjectMappers library dependencies -->
         <dependency>
@@ -64,12 +78,6 @@
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-moo</artifactId>
-            <version>${objectmappers.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.nullables.api.playground</groupId>
-            <artifactId>objectmappers-nomin</artifactId>
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>

@@ -1,6 +1,27 @@
 site_name: ObjectMappers Documentation
+site_description: Object mappers - how to eat it and how to make it
+site_author: Alexander Rogalskiy
+
+repo_name: "AlexRogalskiy/object-mappers-playground"
 repo_url: https://gitlab.com/AlexRogalskiy/object-mappers-playground
-theme: material
+
+theme:
+  name: material
+  palette:
+    primary: red
+    accent: red
+  #logo: assets/logo.png
+  feature:
+    tabs: true
+
+edit_uri: edit/develop/docs
+
+markdown_extensions:
+  - meta
+  - footnotes
+  - codehilite
+  - admonition
+
 pages:
   - Welcome: index.md
   - Information: info.md
