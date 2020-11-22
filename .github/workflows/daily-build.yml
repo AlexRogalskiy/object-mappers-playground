@@ -6,7 +6,7 @@ on:
 
 env:
   MAVEN_ARGS: >-
-    --file pom.xml --verbose --batch-mode --errors --lax-checksums -DskipTests=true
+    --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   macos-build:

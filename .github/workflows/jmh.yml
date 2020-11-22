@@ -11,7 +11,7 @@ on:
 
 env:
   MAVEN_ARGS: >-
-    --file pom.xml --verbose --batch-mode --errors --lax-checksums -DskipTests=true
+    --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   linux:
@@ -42,12 +42,12 @@ jobs:
           ./mvnw clean install $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
   benchmark:
-    name: ${{ matrix.mapper }} Benchmark
     needs: linux
     runs-on: ubuntu-latest
     strategy:
       matrix:
         mapper: [ Manual, MapStruct, Selma, JMapper, Orika, ModelMapper, Dozer, ReMap ]
+    name: ${{ matrix.mapper }} Benchmark
     steps:
       - name: 'Prepare git'
         run: git config --global core.autocrlf fals
