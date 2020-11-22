@@ -6,4 +6,5 @@ open module io.nullables.api.playground.objectmappers.dozer {
     requires slf4j.api;
     requires dozer.core;
     requires org.apache.commons.lang3;
+    requires io.nullables.api.playground.objectmappers.commons;
 }

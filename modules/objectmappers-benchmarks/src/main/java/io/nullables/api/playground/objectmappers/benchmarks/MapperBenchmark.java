@@ -5,7 +5,6 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.bull.BullMapp
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.converter.ConverterMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.datus.DatusMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.dozer.DozerMapper;
-import io.nullables.api.playground.objectmappers.benchmarks.mapper.jmapper.JMapperMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.mapstruct.MapStructMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.modelmapper.ModelMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.orika.OrikaMapper;
@@ -34,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5)
 public class MapperBenchmark {
 
-    @Param({"Bull", "Converter", "Datus", "Dozer", "JMapper", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
+    @Param({"Bull", "Converter", "Datus", "Dozer", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
     private String type;
 
     private OrderMapper mapper;
@@ -67,9 +66,9 @@ public class MapperBenchmark {
             case "Dozer":
                 this.mapper = new DozerMapper();
                 break;
-            case "JMapper":
-                this.mapper = new JMapperMapper();
-                break;
+//            case "JMapper":
+//                this.mapper = new JMapperMapper();
+//                break;
             case "MapStruct":
                 this.mapper = new MapStructMapper();
                 break;
