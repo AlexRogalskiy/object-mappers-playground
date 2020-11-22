@@ -17,13 +17,17 @@ public final class ConverterMapper implements OrderMapper {
     public OrderDto map(final OrderEntity source) {
         final OrderDto target = new OrderDto();
         final CustomerEntity customer = source.getCustomer();
+        this.mapCustomer(target, customer);
+        this.mapProducts(target, source);
+        return target;
+    }
+
+    private void mapCustomer(final OrderDto target, final CustomerEntity customer) {
         if (customer != null) {
             target.setCustomerName(customer.getName());
             this.mapBillingAddress(target, customer.getBillingAddress());
             this.mapShippingAddress(target, customer.getShippingAddress());
         }
-        this.mapProducts(source, target);
-        return target;
     }
 
     private void mapShippingAddress(final OrderDto target, final AddressEntity shippingAddress) {
@@ -40,11 +44,11 @@ public final class ConverterMapper implements OrderMapper {
         }
     }
 
-    private void mapProducts(final OrderEntity source, final OrderDto target) {
+    private void mapProducts(final OrderDto target, final OrderEntity source) {
         if (source.getProducts() == null) {
             return;
         }
-        final List<ProductDto> targetProducts = new ArrayList<ProductDto>(source.getProducts().size());
+        final List<ProductDto> targetProducts = new ArrayList<>(source.getProducts().size());
         for (final ProductEntity product : source.getProducts()) {
             targetProducts.add(new ProductDto(product.getName()));
         }

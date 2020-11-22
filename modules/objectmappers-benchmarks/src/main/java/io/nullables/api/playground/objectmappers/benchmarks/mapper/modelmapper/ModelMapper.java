@@ -14,10 +14,10 @@ public class ModelMapper implements OrderMapper {
         this.modelMapper.addMappings(new PropertyMap<OrderEntity, OrderDto>() {
             @Override
             protected void configure() {
-                map().setBillingStreetAddress(source.getCustomer().getBillingAddress().getStreet());
-                map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
-                map().setShippingStreetAddress(source.getCustomer().getShippingAddress().getStreet());
-                map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
+                this.map().setBillingStreetAddress(source.getCustomer().getBillingAddress().getStreet());
+                this.map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
+                this.map().setShippingStreetAddress(source.getCustomer().getShippingAddress().getStreet());
+                this.map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
             }
         });
     }

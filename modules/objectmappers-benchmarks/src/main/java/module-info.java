@@ -17,4 +17,8 @@ open module io.nullables.api.playground.objectmappers.benchmarks {
     requires java.sql;
     requires jsr305;
     requires java.compiler;
+    requires com.remondis.remap;
+    requires datus;
+    requires bull.common;
+    requires bull.bean.transformer;
 }

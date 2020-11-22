@@ -8,12 +8,11 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.ProductEntity;
 
 @Mapper(withCustomFields = {@Field({"customer.name", "customerName"}),
-                @Field({"customer.billingAddress.street", "billingStreetAddress"}),
-                @Field({"customer.billingAddress.city", "billingCity"}),
-                @Field({"customer.shippingAddress.street", "shippingStreetAddress"}),
-                @Field({"customer.shippingAddress.city", "shippingCity"}),
-                @Field({"customer.billingAddress.street", "billingStreetAddress"}),
-                @Field({"customer.billingAddress.street", "billingStreetAddress"})})
+    @Field({"customer.billingAddress.street", "billingStreetAddress"}),
+    @Field({"customer.billingAddress.city", "billingCity"}),
+    @Field({"customer.shippingAddress.street", "shippingStreetAddress"}),
+    @Field({"customer.shippingAddress.city", "shippingCity"})
+})
 public interface SelmaOrderMapper {
 
     OrderDto map(final OrderEntity source);

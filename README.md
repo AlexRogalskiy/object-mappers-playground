@@ -1,6 +1,6 @@
 # ObjectMappers
 
-![Lines of code](https://img.shields.io/tokei/lines/github/AlexRogalskiy/object-mappers-playground)
+![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
 ![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
@@ -65,11 +65,17 @@ ObjectMappers module dependencies:
 - [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks)  
   `objectmappers-benchmarks` - Library with utilities for benchmarks use cases.
 
+- [**ObjectMappers Bull**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-bull)  
+  `objectmappers-bull` - Library to work with Bull API.
+
 - [**ObjectMappers BeanCP**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp)  
   `objectmappers-beancp` - Library to work with BeanCP API.
 
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
+
+- [**ObjectMappers Datus**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-datus)  
+  `objectmappers-datus` - Library to work with Datus API.
 
 - [**ObjectMappers Dozer**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-dozer)  
   `objectmappers-dozer` - Library to work with Dozer API.
@@ -135,9 +141,19 @@ Thanks to SonarQube Team for free analysis solution for open source projects.
 
 ObjectMappers project is using Shippable DevOps and CI automation tool.
 
+[![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/AlexRogalskiy/object-mappers-playground)
+
+ObjectMappers has experimental support for Gitpod, a pre-configured development environment that runs in your browser. To use Gitpod, click the button below and sign in with GitHub. Gitpod also offers a browser add-on, though it is not required.
+
 ## License
 
 ObjectMappers is distributed under LGPL version 3 or later, see COPYING.LESSER(LGPL) and COPYING(GPL).   
 LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
+
+## Development support
+
+Like *ObjectMappers* ? Consider buying me a coffee :)
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/AlexRogalskiy)

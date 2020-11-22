@@ -80,7 +80,9 @@
         <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-benchmarks</module>
         <module>modules/objectmappers-beancp</module>
+        <module>modules/objectmappers-bull</module>
         <module>modules/objectmappers-commons</module>
+        <module>modules/objectmappers-datus</module>
         <module>modules/objectmappers-dozer</module>
         <module>modules/objectmappers-jmapper</module>
         <module>modules/objectmappers-mapstruct</module>
@@ -168,11 +170,18 @@
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-pitest-plugin.version>1.5.2</maven-pitest-plugin.version>
+        <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
+        <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
+        <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
     </properties>
 
     <scm>
@@ -860,6 +869,109 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- GPG profile -->
+        <profile>
+            <id>sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <gpg.keyname>key</gpg.keyname>
+                <gpg.passphrase>password</gpg.passphrase>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <ascDirectory>.</ascDirectory>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphrase>${gpg.passphrase}</passphrase>
+                                    <gpgArguments>
+                                        <arg>--allow-weak-digest-algos</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Deploy profile -->
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>${maven-deploy-plugin.version}</version>
+                        <configuration>
+                            <retryFailedDeploymentCount>10</retryFailedDeploymentCount>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>${maven-release-plugin.version}</version>
+                        <configuration>
+                            <tagNameFormat>v@{project.version}</tagNameFormat>
+                            <mavenExecutorId>forked-path</mavenExecutorId>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <releaseProfiles>release</releaseProfiles>
+                            <localCheckout>true</localCheckout>
+                            <pushChanges>false</pushChanges>
+                            <preparationGoals>clean install</preparationGoals>
+                            <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.scm</groupId>
+                                <artifactId>maven-scm-provider-gitexe</artifactId>
+                                <version>${maven-scm-provider-gitexe.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${maven-nexus-staging-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Format profile -->
         <profile>
             <id>format</id>
@@ -1326,6 +1438,28 @@
                                 <showSuccess>true</showSuccess>
                                 <outputDirectory>${basedir}/target/surefire-reports</outputDirectory>
                             </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.pitest</groupId>
+                            <artifactId>pitest-maven</artifactId>
+                            <version>${maven-pitest-plugin.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>org.pitest</groupId>
+                                    <artifactId>pitest-junit5-plugin</artifactId>
+                                    <version>${maven-pitest-junit5-plugin.version}</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>pit-report</id>
+                                    <phase>test</phase>
+                                    <goals>
+                                        <goal>mutationCoverage</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
                         </plugin>
 
                         <plugin>

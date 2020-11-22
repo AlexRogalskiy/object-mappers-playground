@@ -20,3 +20,4 @@ You can use composition to build a chain of mappers and inside a single mapper y
 
 - [**Official Site**](http://www.selma-java.org/)
 - [**Official Repository**](https://github.com/xebia-france/selma)
+- [**Java Selma Alternatives**](https://java.libhunt.com/selma-alternatives)

@@ -1,0 +1,53 @@
+name: Ddd deployment status
+
+on:
+  pull_request_target:
+    types: [ closed ]
+
+jobs:
+  add_deployment_status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }} #e.g. 1
+          comment-author: 'github-actions[bot]'
+          body-includes: This comment was written by a bot!
+
+      - name: Create comment
+        if: ${{ steps.fc.outputs.comment-id == 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            This comment was written by a bot!
+          reaction-type: "rocket"
+
+      - name: Update comment
+        if: ${{ steps.fc.outputs.comment-id != 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          body: |
+            Update!
+            Comments can also be updated by us. :)
+          reaction-type: "rocket"
+
+      - name: Create or update comment
+        if: ${{ github.event_name == 'pull_request_target'
+          && github.event.action == 'closed'
+          && github.event.pull_request.merged
+          && !startsWith(github.event.pull_request.head.ref, 'dependabot/')
+          && github.event.pull_request.base.ref == 'master' }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          reactions: heart, hooray, laugh
+          body: |
+            This pull request was merged to [${{ github.event.pull_request.base.ref }}](${{ github.event.repository.html_url }}/tree/${{ github.event.pull_request.base.ref }}) branch. This change is now waiting for deployment, which will usually happen within a few days. Stay tuned by joining our `#ops` channel on [Discord](https://discordapp.com/invite/HjJCwm5)!
+            After deployment, changes are copied to [gh-pages](${{ github.event.repository.html_url }}/tree/gh-pages) branch: ![](https://img.shields.io/github/commit-status/${{ github.event.repository.full_name }}/gh-pages/${{ github.event.pull_request.merge_commit_sha }}.svg?label=deploy%20status)

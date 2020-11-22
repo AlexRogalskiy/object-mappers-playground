@@ -1,12 +1,18 @@
 package io.nullables.api.playground.objectmappers.benchmarks;
 
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.bull.BullMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.converter.ConverterMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.datus.DatusMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.dozer.DozerMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.jmapper.JMapperMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.mapstruct.MapStructMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.modelmapper.ModelMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.orika.OrikaMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.remap.ReMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.selma.SelmaMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
+import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.openjdk.jmh.annotations.*;
@@ -28,65 +34,70 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5)
 public class MapperBenchmark {
 
-    private final OrderMapper dozerMapper = new DozerMapper();
-    private final OrderMapper orikaMapper = new OrikaMapper();
-    private final OrderMapper modelMapper = new ModelMapper();
-    private final OrderMapper mapStructMapper = new MapStructMapper();
-    private final OrderMapper selmaMapper = new SelmaMapper();
-    // private final OrderMapper jMapper = new JMapperMapper();
-    private final OrderMapper manualMapper = new ConverterMapper();
+    @Param({"Bull", "Converter", "Datus", "Dozer", "JMapper", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
+    private String type;
 
-    @Benchmark
-    @Group("simpleTest")
-    public void dozer() {
-        this.dozerMapper.map(OrderFactory.buildOrder());
-    }
-
-    @Benchmark
-    @Group("simpleTest")
-    public void orika() {
-        this.orikaMapper.map(OrderFactory.buildOrder());
-    }
-
-    @Benchmark
-    @Group("simpleTest")
-    public void modelMapper() {
-        this.modelMapper.map(OrderFactory.buildOrder());
-    }
-
-    @Benchmark
-    @Group("simpleTest")
-    public void mapStruct() {
-        this.mapStructMapper.map(OrderFactory.buildOrder());
-    }
-
-    @Benchmark
-    @Group("simpleTest")
-    public void selma() {
-        this.selmaMapper.map(OrderFactory.buildOrder());
-    }
-
-    // @Benchmark
-    // @Group("simpleTest")
-    // public void jmapper() {
-    // this.jMapper.map(OrderFactory.buildOrder());
-    // }
-
-    @Benchmark
-    @Group("simpleTest")
-    public void manual() {
-        this.manualMapper.map(OrderFactory.buildOrder());
-    }
+    private OrderMapper mapper;
+    private OrderEntity order;
 
     public static void main(final String... args) throws Exception {
         final Options opts = new OptionsBuilder().include(".*").warmupIterations(2).measurementIterations(2)
-                        .jvmArgs("-server").forks(1).resultFormat(ResultFormatType.TEXT).build();
+            .jvmArgs("-server").forks(1).resultFormat(ResultFormatType.TEXT).build();
 
         final Collection<RunResult> results = new Runner(opts).run();
         for (final RunResult result : results) {
             final Result<?> r = result.getPrimaryResult();
             log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over "
-                            + r.getStatistics().getN() + " iterations");
+                + r.getStatistics().getN() + " iterations");
         }
+    }
+
+    @Setup(Level.Trial)
+    public void setup() {
+        switch (this.type) {
+            case "Bull":
+                this.mapper = new BullMapper();
+                break;
+            case "Converter":
+                this.mapper = new ConverterMapper();
+                break;
+            case "Datus":
+                this.mapper = new DatusMapper();
+                break;
+            case "Dozer":
+                this.mapper = new DozerMapper();
+                break;
+            case "JMapper":
+                this.mapper = new JMapperMapper();
+                break;
+            case "MapStruct":
+                this.mapper = new MapStructMapper();
+                break;
+            case "ModelMapper":
+                this.mapper = new ModelMapper();
+                break;
+            case "Orika":
+                this.mapper = new OrikaMapper();
+                break;
+            case "ReMap":
+                this.mapper = new ReMapper();
+                break;
+            case "Selma":
+                this.mapper = new SelmaMapper();
+                break;
+            default:
+                throw new IllegalStateException("Unknown type: " + this.type);
+        }
+    }
+
+    @Setup(Level.Iteration)
+    public void preInit() {
+        this.order = OrderFactory.buildOrder();
+    }
+
+    @Benchmark
+    @Group("simpleTest")
+    public OrderDto mapper() {
+        return this.mapper.map(this.order);
     }
 }

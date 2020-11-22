@@ -15,6 +15,7 @@ env:
 
 jobs:
   linux:
+    if: false
     name: 'Linux (JDK 8)'
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -42,12 +43,13 @@ jobs:
           ./mvnw clean install $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
   benchmark:
+    if: false
     needs: linux
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     strategy:
       matrix:
-        mapper: [ Manual, MapStruct, Selma, JMapper, Orika, ModelMapper, Dozer, ReMap ]
+        mapper: [ Bull, Converter, Datus, Dozer, JMapper, MapStruct, ModelMapper, Orika, ReMap, Selma ]
     name: ${{ matrix.mapper }} Benchmark
     steps:
       - name: 'Prepare git'
@@ -83,10 +85,11 @@ jobs:
           path: results_${{ matrix.mapper }}.csv
 
   collect_benchmark:
+    if: false
     name: 'Collect benchmarks'
     needs: benchmark
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: 'Prepare git'
         run: git config --global core.autocrlf false
@@ -103,7 +106,7 @@ jobs:
         shell: bash
         run: |
           head -1 results_Manual.csv > results.csv
-          for mapper in Manual, MapStruct, Selma, JMapper, Orika, ModelMapper, Dozer, ReMap; do sed 1d results_${mapper}.csv >> results.csv; done
+          for mapper in Bull, Converter, Datus, Dozer, JMapper, MapStruct, ModelMapper, Orika, ReMap, Selma; do sed 1d results_${mapper}.csv >> results.csv; done
           less results.csv
 
       - name: 'Upload CSV Results'

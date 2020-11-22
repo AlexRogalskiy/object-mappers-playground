@@ -11,6 +11,6 @@ public class MapStructMapper implements OrderMapper {
 
     @Override
     public OrderDto map(final OrderEntity source) {
-        return mapper.map(source);
+        return this.mapper.map(source);
     }
 }
