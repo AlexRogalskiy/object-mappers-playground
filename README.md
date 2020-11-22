@@ -69,6 +69,9 @@ ObjectMappers module dependencies:
 - [**ObjectMappers Bull**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-bull)  
   `objectmappers-bull` - Library to work with Bull API.
 
+- [**ObjectMappers BeanMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanmapper)  
+  `objectmappers-beanmapper` - Library to work with BeanCP API.
+
 - [**ObjectMappers BeanCP**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp)  
   `objectmappers-beancp` - Library to work with BeanCP API.
 
