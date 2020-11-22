@@ -13,6 +13,7 @@
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
 [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)]()
+[![BCH compliance](https://bettercodehub.com/edge/badge/AlexRogalskiy/object-mappers-playground?branch=master)](https://bettercodehub.com/)
 
 ## Summary
 

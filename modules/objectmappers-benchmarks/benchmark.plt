@@ -4,7 +4,6 @@ set ylabel 'Object graph mapped per second'
 set xlabel 'Mapping Framework'
 set xtics nomirror rotate by -45
 
-
 # Ranges
 set autoscale
 
@@ -17,7 +16,6 @@ set output 'results.png'
 set grid
 set key off
 set boxwidth 0.8 relative
-
 
 # box style
 set style line 1 lc rgb '#5C91CD' lt 1

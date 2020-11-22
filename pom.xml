@@ -78,7 +78,6 @@
 
     <modules>
         <module>modules/objectmappers-all</module>
-        <module>modules/objectmappers-benchmarks</module>
         <module>modules/objectmappers-beancp</module>
         <module>modules/objectmappers-bull</module>
         <module>modules/objectmappers-commons</module>
@@ -1287,6 +1286,7 @@
             </properties>
 
             <modules>
+                <module>modules/objectmappers-benchmarks</module>
                 <module>modules/objectmappers-nomin</module>
             </modules>
 
