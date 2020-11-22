@@ -10,8 +10,7 @@ on:
 
 env:
   MAVEN_ARGS: >-
-    -V -B
-    --file pom.xml --errors --lax-checksums -DskipTests=true
+    --file pom.xml --verbose --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   commit-check:
@@ -94,7 +93,7 @@ jobs:
       - name: Build with Maven
         timeout-minutes: 20
         run: |
-          ./mvnw clean package ${MAVEN_ARGS} -P"non_module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"
   module_java:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
@@ -138,4 +137,4 @@ jobs:
       - name: Build with Maven
         timeout-minutes: 20
         run: |
-          ./mvnw clean package ${MAVEN_ARGS} -P"module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"module_java","test-jar","dev"

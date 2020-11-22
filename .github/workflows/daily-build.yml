@@ -6,8 +6,7 @@ on:
 
 env:
   MAVEN_ARGS: >-
-    -V -B
-    --file pom.xml --errors --lax-checksums -DskipTests=true
+    --file pom.xml --verbose --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   macos-build:
@@ -39,7 +38,7 @@ jobs:
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 20
         run: |
-          ./mvnw clean package ${MAVEN_ARGS} -P"non_module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
   windows-build:
     runs-on: windows-latest
@@ -70,4 +69,4 @@ jobs:
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 20
         run: |
-          ./mvnw clean package ${MAVEN_ARGS} -P"non_module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"

@@ -11,8 +11,7 @@ on:
 
 env:
   MAVEN_ARGS: >-
-    -V -B
-    --file pom.xml --errors --lax-checksums -DskipTests=true
+    --file pom.xml --verbose --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   linux:
@@ -39,7 +38,8 @@ jobs:
       - name: 'Build with Maven'
         timeout-minutes: 20
         shell: bash
-        run: ./mvnw clean install ${MAVEN_ARGS} -P"non_module_java","test-jar","dev"
+        run: |
+          ./mvnw clean install $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
   benchmark:
     name: ${{ matrix.mapper }} Benchmark
@@ -68,7 +68,8 @@ jobs:
       - name: 'Build with Maven'
         timeout-minutes: 20
         shell: bash
-        run: ./mvnw clean install ${MAVEN_ARGS} -P"non_module_java","test-jar","dev"
+        run: |
+          ./mvnw clean install $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
       - name: 'Benchmark'
         shell: bash
