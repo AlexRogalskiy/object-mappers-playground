@@ -57,3 +57,5 @@ pages:
       - Custom Report: reporting/custom_report.md
       - Feature Requst: reporting/feature_request_template.md
       - Pull Requst Template: reporting/pull_request_template.md
+  - Links:
+      - Information: links/info.md
