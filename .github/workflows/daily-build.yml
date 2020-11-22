@@ -58,15 +58,10 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Make Maven Wrapper executable
-        if: contains(matrix.os, 'win') == false
-        run: |
-          chmod +x ./mvnw
-
       - name: Build with Maven
         env:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 20
         run: |
-          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"
+          ./mvnw clean package %MAVEN_ARGS% -P"non_module_java","test-jar","dev"

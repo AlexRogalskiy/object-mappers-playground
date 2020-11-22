@@ -85,15 +85,19 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.java }}-maven-${{ hashFiles('**/*pom*.xml') }}
           restore-keys: ${{ runner.os }}-${{ matrix.java }}-maven-
 
-      - name: Make Maven Wrapper executable
+      - name: Build with Maven
+        timeout-minutes: 20
         if: contains(matrix.os, 'win') == false
         run: |
           chmod +x ./mvnw
+          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"
 
       - name: Build with Maven
         timeout-minutes: 20
+        if: contains(matrix.os, 'win') == true
         run: |
-          ./mvnw clean package $MAVEN_ARGS -P"non_module_java","test-jar","dev"
+          ./mvnw clean package %MAVEN_ARGS% -P"non_module_java","test-jar","dev"
+
   module_java:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
@@ -129,12 +133,15 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.java }}-maven-${{ hashFiles('**/*pom*.xml') }}
           restore-keys: ${{ runner.os }}-${{ matrix.java }}-maven-
 
-      - name: Make Maven Wrapper executable
+      - name: Build with Maven
+        timeout-minutes: 20
         if: contains(matrix.os, 'win') == false
         run: |
           chmod +x ./mvnw
+          ./mvnw clean package $MAVEN_ARGS -P"module_java","test-jar","dev"
 
       - name: Build with Maven
         timeout-minutes: 20
+        if: contains(matrix.os, 'win') == true
         run: |
-          ./mvnw clean package $MAVEN_ARGS -P"module_java","test-jar","dev"
+          ./mvnw clean package %MAVEN_ARGS% -P"module_java","test-jar","dev"
