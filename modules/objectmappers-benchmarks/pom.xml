@@ -28,6 +28,38 @@
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>module_java</id>
+            <dependencies>
+                <dependency>
+                    <groupId>io.nullables.api.playground</groupId>
+                    <artifactId>objectmappers-all</artifactId>
+                    <version>${objectmappers.version}</version>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>non_module_java</id>
+            <dependencies>
+                <dependency>
+                    <groupId>io.nullables.api.playground</groupId>
+                    <artifactId>objectmappers-all</artifactId>
+                    <version>${objectmappers.version}</version>
+                    <scope>compile</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>io.nullables.api.playground</groupId>
+                            <artifactId>objectmappers-nomin</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <dependencies>
         <!-- ObjectMappers library dependencies -->
         <dependency>
@@ -138,11 +170,11 @@
                             </filters>
                             <transformers>
                                 <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.openjdk.jmh.Main</mainClass>
                                 </transformer>
                                 <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
                         </configuration>
                     </execution>

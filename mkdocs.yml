@@ -37,6 +37,7 @@ pages:
       - Upgrade: user-guide/upgrade.md
   - Modules:
       - BeanCp: modules/beancp/readme.md
+      - BeanMapper: modules/beanmapper/readme.md
       - Bull: modules/bull/readme.md
       - Datus: modules/datus/readme.md
       - Dozer: modules/dozer/readme.md
