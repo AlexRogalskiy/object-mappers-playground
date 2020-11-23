@@ -23,4 +23,5 @@ Simple and easy-to-use framework for various data mappings (XML, Java etc.) with
 - [**Official Site**](https://www.smooks.org/)
 - [**Official Repository**](https://github.com/smooks/smooks)
 - [**Introduction to Smooks**](https://www.baeldung.com/smooks)
+- [**XML mappings with Smooks**](https://dzone.com/articles/mapping-xml-to-java-using-smooks-mediator)
 - [**Java Selma Alternatives**](https://java.libhunt.com/smooks-alternatives)
