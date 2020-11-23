@@ -1,6 +1,8 @@
 package io.nullables.api.playground.objectmappers.benchmarks;
 
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.beanmapper.GeneralBeanMapper;
+import io.nullables.api.playground.objectmappers.benchmarks.mapper.beanutils.BeanUtilsMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.bull.BullMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.converter.ConverterMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.datus.DatusMapper;
@@ -33,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5)
 public class MapperBenchmark {
 
-    @Param({"Bull", "Converter", "Datus", "Dozer", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
+    @Param({"BeanMapper", "BeanUtilsMapper", "Bull", "Converter", "Datus", "Dozer", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
     private String type;
 
     private OrderMapper mapper;
@@ -54,6 +56,12 @@ public class MapperBenchmark {
     @Setup(Level.Trial)
     public void setup() {
         switch (this.type) {
+            case "BeanMapper":
+                this.mapper = new GeneralBeanMapper();
+                break;
+            case "BeanUtilsMapper":
+                this.mapper = new BeanUtilsMapper();
+                break;
             case "Bull":
                 this.mapper = new BullMapper();
                 break;

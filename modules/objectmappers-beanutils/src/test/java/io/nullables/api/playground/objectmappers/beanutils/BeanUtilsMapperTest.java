@@ -1,11 +1,7 @@
-package io.nullables.api.playground.objectmappers.beanmapper;
+package io.nullables.api.playground.objectmappers.beanutils;
 
-import io.beanmapper.BeanMapper;
-import io.beanmapper.core.converter.impl.StringToBigDecimalConverter;
-import io.nullables.api.playground.objectmappers.beanmapper.configuration.BeanMapperConfigBuilder;
-import io.nullables.api.playground.objectmappers.beanmapper.converter.StringToIntegerArrayConverter;
-import io.nullables.api.playground.objectmappers.beanmapper.converter.StringToLocalDateTimeConverter;
-import io.nullables.api.playground.objectmappers.beanmapper.converter.StringToUuidConverter;
+import io.nullables.api.playground.objectmappers.beanutils.configuration.BeanUtilsMapper;
+import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
@@ -20,34 +16,53 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 
 import javax.annotation.Nonnull;
+import java.math.BigDecimal;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
 import static io.nullables.api.playground.objectmappers.testflow.utils.ModelMockTestUtils.deliveryDtoMock;
 import static org.assertj.core.api.Assertions.tuple;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @SimpleTest
-class BeanMapperTest {
+class BeanUtilsMapperTest {
 
     public static final Stream<Arguments> deliveryDtoValues =
         IntStream.iterate(0, n -> n + 1).limit(ThreadLocalRandom.current().nextInt(1, 10))
             .mapToObj(v -> deliveryDtoMock().val()).map(Arguments::of);
 
-    private BeanMapper deliveryMapper;
-    private BeanMapper addressMapper;
+    private BeanUtilsMapper<AddressDto, AddressEntity> addressMapper;
+    private BeanUtilsMapper<DeliveryDto, DeliveryEntity> deliveryMapper;
 
     @BeforeEach
     void before() {
-        this.deliveryMapper = BeanMapperConfigBuilder.newBuilder()
-            .withConverter(new StringToUuidConverter())
-            .withConverter(new StringToBigDecimalConverter())
-            .withConverter(new StringToIntegerArrayConverter())
-            .withConverter(new StringToLocalDateTimeConverter())
+        this.addressMapper = BeanUtilsMapper.<AddressDto, AddressEntity>newBuilder(AddressEntity.class)
+            .map("id", source -> convertToUuid(source.getId()))
+            .map("city", AddressDto::getCity)
+            .map("country", AddressDto::getCountry)
+            .map("stateOrProvince", AddressDto::getStateOrProvince)
+            .map("postalCode", AddressDto::getPostalCode)
+            .map("street", AddressDto::getStreet)
             .build();
-        this.addressMapper = BeanMapperConfigBuilder.newBuilder()
-            .withConverter(new StringToUuidConverter())
+
+        this.deliveryMapper = BeanUtilsMapper.<DeliveryDto, DeliveryEntity>newBuilder(DeliveryEntity.class)
+            .map("id", source -> convertToUuid(source.getId()))
+            .map("type", DeliveryDto::getType)
+            .map("description", DeliveryDto::getDescription)
+            .map("gid", DeliveryDto::getGid)
+            .map("createdAt", DeliveryDto::getCreatedAt)
+            .map("updatedAt", DeliveryDto::getUpdatedAt)
+            .map("shippableDue", source -> convertToLocalDateTime(source.getShippableDue()))
+            .map("balance", DeliveryDto::getBalance)
+            .map("discount", source -> new BigDecimal(source.getDiscount()))
+            .map("status", DeliveryDto::getStatus)
+            .map("addresses", source -> source.getAddresses().stream().map(this.addressMapper::map).collect(Collectors.toList()))
+            .map("codes", source -> convertToIntegerArray(source.getCodes()))
             .build();
     }
 
@@ -55,8 +70,7 @@ class BeanMapperTest {
     @VariableSource("deliveryDtoValues")
     void testCheckDeliveryDtoConversion(@Nonnull final DeliveryDto source) {
         // when
-        final DeliveryEntity target = this.deliveryMapper.map(source, DeliveryEntity.class);
-        target.setAddresses(this.addressMapper.map(source.getAddresses(), AddressEntity.class));
+        final DeliveryEntity target = this.deliveryMapper.map(source);
 
         // then
         assertAll("Should DeliveryDto field values match target DeliveryEntity values", () -> Assertions

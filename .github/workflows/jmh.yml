@@ -49,7 +49,7 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        mapper: [ Bull, Converter, Datus, Dozer, MapStruct, ModelMapper, Orika, ReMap, Selma ]
+        mapper: [ BeanMapper, BeanUtilsMapper, Bull, Converter, Datus, Dozer, MapStruct, ModelMapper, Orika, ReMap, Selma ]
     name: ${{ matrix.mapper }} Benchmark
     steps:
       - name: 'Prepare git'
@@ -106,7 +106,7 @@ jobs:
         shell: bash
         run: |
           head -1 results_Manual.csv > results.csv
-          for mapper in Bull, Converter, Datus, Dozer, MapStruct, ModelMapper, Orika, ReMap, Selma; do sed 1d results_${mapper}.csv >> results.csv; done
+          for mapper in BeanMapper, BeanUtilsMapper, Bull, Converter, Datus, Dozer, MapStruct, ModelMapper, Orika, ReMap, Selma; do sed 1d results_${mapper}.csv >> results.csv; done
           less results.csv
 
       - name: 'Upload CSV Results'

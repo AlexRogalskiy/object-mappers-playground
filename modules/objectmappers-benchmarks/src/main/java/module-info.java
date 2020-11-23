@@ -21,4 +21,6 @@ open module io.nullables.api.playground.objectmappers.benchmarks {
     requires datus;
     requires bull.common;
     requires bull.bean.transformer;
+    requires beanmapper;
+    requires commons.beanutils;
 }
