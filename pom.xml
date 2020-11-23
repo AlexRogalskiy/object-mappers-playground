@@ -182,6 +182,7 @@
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-forbiddenapis-plugin.version>3.1</maven-forbiddenapis-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
@@ -1051,6 +1052,60 @@
                                     <gpgArguments>
                                         <arg>--allow-weak-digest-algos</arg>
                                     </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Forbidden API check profile -->
+        <profile>
+            <id>forbidden-api-check</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>de.thetaphi</groupId>
+                        <artifactId>forbiddenapis</artifactId>
+                        <version>${maven-forbiddenapis-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>check-forbidden-apis</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <targetVersion>${java.version}</targetVersion>
+                                    <failOnUnsupportedJava>false</failOnUnsupportedJava>
+                                    <failOnMissingClasses>false</failOnMissingClasses>
+                                    <bundledSignatures>
+                                        <bundledSignature>jdk-unsafe</bundledSignature>
+                                        <bundledSignature>jdk-deprecated</bundledSignature>
+                                        <bundledSignature>jdk-internal</bundledSignature>
+                                        <bundledSignature>jdk-non-portable</bundledSignature>
+                                        <bundledSignature>jdk-reflection</bundledSignature>
+                                        <bundledSignature>jdk-system-out</bundledSignature>
+                                    </bundledSignatures>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>check-forbidden-apis-tests</id>
+                                <goals>
+                                    <goal>testCheck</goal>
+                                </goals>
+                                <configuration>
+                                    <targetVersion>${java.version}</targetVersion>
+                                    <failOnUnsupportedJava>false</failOnUnsupportedJava>
+                                    <failOnMissingClasses>false</failOnMissingClasses>
+                                    <bundledSignatures>
+                                        <bundledSignature>jdk-unsafe</bundledSignature>
+                                        <bundledSignature>jdk-deprecated</bundledSignature>
+                                        <bundledSignature>jdk-internal</bundledSignature>
+                                        <bundledSignature>jdk-system-out</bundledSignature>
+                                        <bundledSignature>jdk-non-portable</bundledSignature>
+                                        <bundledSignature>jdk-reflection</bundledSignature>
+                                    </bundledSignatures>
                                 </configuration>
                             </execution>
                         </executions>

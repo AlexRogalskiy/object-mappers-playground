@@ -23,9 +23,10 @@
     <suppress files="[\\/]spring-boot-integration-tests[\\/]" checks="JavadocType"/>
 
     <!-- configurations -->
+    <suppress files=".+Application\.java" checks="FinalClass"/>
+    <suppress files="SpringApplicationTests\.java" checks="FinalClass"/>
     <suppress files=".+Application\.java" checks="HideUtilityClassConstructor"/>
     <suppress files=".+Configuration\.java" checks="HideUtilityClassConstructor"/>
-    <suppress files="SpringApplicationTests\.java" checks="FinalClass"/>
 
     <!-- resources -->
     <suppress checks="[a-zA-Z0-9]*" files=".*/resources/.*"/>

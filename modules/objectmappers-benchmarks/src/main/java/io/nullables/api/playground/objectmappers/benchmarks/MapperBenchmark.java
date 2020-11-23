@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @State(Scope.Benchmark)
+@Warmup(iterations = 4)
 @Fork(value = 1, warmups = 2)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @BenchmarkMode(Mode.All)
