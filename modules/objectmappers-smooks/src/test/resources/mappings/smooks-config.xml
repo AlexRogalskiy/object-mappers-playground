@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.5.xsd"
+                      xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd">
+    <reader>
+        <features>
+            <setOff feature="http://www.smooks.org/sax/features/generate-java-event-stream"/>
+        </features>
+    </reader>
+
+    <jb:bean beanId="deliveryEntity"
+             class="io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity"
+             createOnElement="io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto">
+        <jb:value property="id" data="id"/>
+        <jb:value property="type" data="type"/>
+        <jb:value property="description" data="description"/>
+        <jb:value property="gid" data="gid"/>
+        <jb:value property="createdAt" data="createdAt"/>
+        <jb:value property="updatedAt" data="updatedAt"/>
+        <jb:value property="shippableDue" decoder="Date" data="shippableDue">
+            <jb:decodeParam name="format">yyyy-MM-dd'T'HH:mm:ssZ</jb:decodeParam>
+        </jb:value>
+        <jb:value property="balance" data="balance"/>
+        <jb:value property="discount" decoder="BigDecimal" data="discount">
+            <jb:decodeParam name="valuePreprocess">value.replace("_", "").replace("!", ".")</jb:decodeParam>
+        </jb:value>
+        <jb:value property="status" data="status"/>
+        <jb:wiring property="addresses" beanIdRef="addresses"/>
+        <jb:value property="codes" decoder="Integer" data="codes">
+            <jb:decodeParam name="valuePreprocess">value.replace("_", "").replace("!", ".")</jb:decodeParam>
+        </jb:value>
+    </jb:bean>
+
+    <jb:bean beanId="addresses" class="java.util.ArrayList" createOnElement="addresses">
+        <jb:wiring beanIdRef="address"/>
+    </jb:bean>
+
+    <jb:bean beanId="address" class="io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity"
+             createOnElement="io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto">
+        <jb:value property="id" data="id"/>
+        <jb:value property="city" data="city"/>
+        <jb:value property="country" data="country"/>
+        <jb:value property="stateOrProvince" data="stateOrProvince"/>
+        <jb:value property="postalCode" data="postalCode"/>
+        <jb:value property="street" data="street"/>
+    </jb:bean>
+
+</smooks-resource-list>

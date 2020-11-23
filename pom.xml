@@ -434,6 +434,8 @@
                     <overWriteReleases>false</overWriteReleases>
                     <overWriteSnapshots>false</overWriteSnapshots>
                     <overWriteIfNewer>true</overWriteIfNewer>
+                    <excludeTransitive>true</excludeTransitive>
+                    <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                 </configuration>
                 <executions>
                     <execution>

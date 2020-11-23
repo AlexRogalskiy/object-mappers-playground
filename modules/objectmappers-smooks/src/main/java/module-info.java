@@ -4,4 +4,6 @@ open module io.nullables.api.playground.objectmappers.smooks {
     requires static lombok;
     requires jsr305;
     requires slf4j.api;
+    requires milyn.smooks.all;
+    requires java.xml;
 }
