@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+    <!-- global -->
+    <suppress files="[\\/]src[\\/]integration-test[\\/]java[\\/]" checks="Javadoc*"/>
+    <suppress files="[\\/]src[\\/]test[\\/]java[\\/]" checks="Javadoc*"/>
+
+    <!-- docs -->
+    <suppress files="[\\/]docs[\\/]" checks="Javadoc*"/>
+    <suppress files="[\\/]docs[\\/]" checks="InnerTypeLast"/>
+    <suppress files="[\\/]docs[\\/]" checks="CommentsIndentation"/>
+
+    <!-- samples -->
+    <suppress files="[\\/]samples[\\/]" checks="Javadoc*"/>
+    <suppress files="[\\/]samples[\\/].+Application\.java" checks="HideUtilityClassConstructor"/>
+
+    <suppress files="[\\/]autoconfigure[\\/]" checks="JavadocType"/>
+    <suppress files="[\\/]autoconfigure[\\/]" checks="JavadocVariable"/>
+
+    <suppress files="[\\/]spring-boot-samples[\\/]" checks="JavadocType"/>
+    <suppress files="[\\/]spring-boot-deployment-tests[\\/]" checks="JavadocType"/>
+    <suppress files="[\\/]spring-boot-integration-tests[\\/]" checks="JavadocType"/>
+
+    <!-- configurations -->
+    <suppress files=".+Application\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files=".+Configuration\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files="SpringApplicationTests\.java" checks="FinalClass"/>
+
+    <!-- resources -->
+    <suppress checks="[a-zA-Z0-9]*" files=".*/resources/.*"/>
+
+    <!-- 'internal' packages -->
+    <suppress files=".*[\\/]internal[\\/].*"
+              checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|JavadocFilterCheck"/>
+    <suppress files=".*[\\/]test[\\/].*"
+              checks="RequireBundleCheck|OutsideOfLibExternalLibrariesCheck|ManifestExternalLibrariesCheck|BuildPropertiesExternalLibrariesCheck|JavadocMethod|JavadocType|JavadocPackage|JavadocVariable"/>
+    <suppress files=".+DTO\.java" checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
+    <suppress files=".+Impl\.java"
+              checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
+
+    <suppress files=".+[\\/]pom\.xml" checks="OnlyTabIndentationCheck"/>
+    <suppress files=".+[\\/]gen[\\/].+\.java" checks="AuthorTagCheck"/>
+    <suppress files="**/*_jmh*.java" checks="AuthorTagCheck"/>
+
+    <!-- tests and benchmarks -->
+    <suppress checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|IllegalThrows|VisibilityModifier"
+              files=".*[\\/](test|microbench)[\\/].*"/>
+</suppressions>

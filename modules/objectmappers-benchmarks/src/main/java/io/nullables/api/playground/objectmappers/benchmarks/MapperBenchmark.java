@@ -29,21 +29,39 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @State(Scope.Benchmark)
-@Fork(value = 1, warmups = 5)
+@Fork(value = 1, warmups = 2)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @BenchmarkMode(Mode.All)
-@Measurement(iterations = 5)
+@Measurement(iterations = 2)
 public class MapperBenchmark {
 
-    @Param({"BeanMapper", "BeanUtilsMapper", "Bull", "Converter", "Datus", "Dozer", "MapStruct", "ModelMapper", "Orika", "ReMap", "Selma"})
+    @Param({
+        "BeanMapper",
+        "BeanUtilsMapper",
+        "Bull",
+        "Converter",
+        "Datus",
+        "Dozer",
+        "MapStruct",
+        "ModelMapper",
+        "Orika",
+        "ReMap",
+        "Selma"
+    })
     private String type;
 
     private OrderMapper mapper;
     private OrderEntity order;
 
     public static void main(final String... args) throws Exception {
-        final Options opts = new OptionsBuilder().include(".*").warmupIterations(2).measurementIterations(2)
-            .jvmArgs("-server").forks(1).resultFormat(ResultFormatType.TEXT).build();
+        final Options opts = new OptionsBuilder()
+            .include(".*")
+            .warmupIterations(2)
+            .measurementIterations(2)
+            .jvmArgs("-server")
+            .forks(1)
+            .resultFormat(ResultFormatType.TEXT)
+            .build();
 
         final Collection<RunResult> results = new Runner(opts).run();
         for (final RunResult result : results) {

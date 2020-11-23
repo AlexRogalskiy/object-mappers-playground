@@ -170,6 +170,7 @@
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <maven-formatter-plugin.version>2.13.0</maven-formatter-plugin.version>
         <maven-dependency-check-plugin.version>5.3.2</maven-dependency-check-plugin.version>
+        <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -1130,7 +1131,7 @@
                         <artifactId>formatter-maven-plugin</artifactId>
                         <version>${maven-formatter-plugin.version}</version>
                         <configuration>
-                            <configFile>${session.executionRootDirectory}/codestyle/formatter.xml</configFile>
+                            <configFile>${session.executionRootDirectory}/codestyle/codestyle.xml</configFile>
                             <basedir>modules</basedir>
                         </configuration>
                     </plugin>
@@ -1138,9 +1139,9 @@
             </build>
         </profile>
 
-        <!-- Security profile -->
+        <!-- Security check profile -->
         <profile>
-            <id>security</id>
+            <id>security-check</id>
             <build>
                 <plugins>
                     <plugin>
@@ -1229,9 +1230,50 @@
             </build>
         </profile>
 
-        <!-- Checkstyle profile -->
+        <!-- Code Quality check profile -->
         <profile>
-            <id>code-quality</id>
+            <id>code-quality-check</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <version>${maven-findbugs-plugin.version}</version>
+                        <configuration>
+                            <findbugsXmlOutput>true</findbugsXmlOutput>
+                            <failOnError>false</failOnError>
+                            <effort>Max</effort>
+                            <threshold>Low</threshold>
+                            <xmlOutput>true</xmlOutput>
+                            <excludeBugsFile>${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
+                            </excludeBugsFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>analyze-compile</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Check Style check profile -->
+        <profile>
+            <id>code-style-check</id>
+            <properties>
+                <checkstyle.version>8.29</checkstyle.version>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1243,7 +1285,12 @@
                                 <id>validate</id>
                                 <phase>validate</phase>
                                 <configuration>
-                                    <configLocation>checkstyle/checkstyle.xml</configLocation>
+                                    <configLocation>
+                                        ${session.executionRootDirectory}/checkstyle/checkstyle.xml
+                                    </configLocation>
+                                    <suppressionsLocation>
+                                        ${session.executionRootDirectory}/checkstyle/checkstyle-exclude.xml
+                                    </suppressionsLocation>
                                     <encoding>${project.build.outputEncoding}</encoding>
                                     <consoleOutput>true</consoleOutput>
                                     <failsOnError>true</failsOnError>
@@ -1257,7 +1304,7 @@
                             <dependency>
                                 <groupId>com.puppycrawl.tools</groupId>
                                 <artifactId>checkstyle</artifactId>
-                                <version>8.14</version>
+                                <version>${checkstyle.version}</version>
                             </dependency>
                         </dependencies>
                     </plugin>
