@@ -12,8 +12,11 @@ import java.util.List;
 
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
-@Mapper(config = IgnoreUnmappedConfiguration.class, uses = {BaseMappings.class, BaseMappings.IdMappings.class},
-                collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED)
+@Mapper(
+    config = IgnoreUnmappedConfiguration.class,
+    uses = {BaseMappings.class, BaseMappings.IdMappings.class},
+    collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED
+)
 public interface DeliveryMapperConfiguration {
 
     DeliveryMapperConfiguration INSTANCE = Mappers.getMapper(DeliveryMapperConfiguration.class);
@@ -30,12 +33,12 @@ public interface DeliveryMapperConfiguration {
     AddressEntity addressDtoToAddressEntity(final AddressDto addressDto);
 
     @Mapping(source = "id", target = "id", qualifiedByName = {"IdTranslator", "UuidToId"},
-                    defaultExpression = "java(java.util.UUID.randomUUID().toString())")
+        defaultExpression = "java(java.util.UUID.randomUUID().toString())")
     @InheritInverseConfiguration
     AddressDto addressEntityToAddressDto(final AddressEntity addressEntity);
 
     @Mapping(target = "id", source = "id", qualifiedByName = {"IdTranslator", "UuidToId"},
-                    defaultExpression = "java(java.util.UUID.randomUUID().toString())")
+        defaultExpression = "java(java.util.UUID.randomUUID().toString())")
     @Mapping(source = "codes", target = "codes", qualifiedBy = BaseMappings.Decode.class)
     @InheritInverseConfiguration
     DeliveryDto deliveryEntityToDeliveryDto(final DeliveryEntity deliveryEntity);

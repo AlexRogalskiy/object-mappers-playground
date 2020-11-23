@@ -16,25 +16,31 @@ import java.util.stream.Collectors;
 public class MooMapper {
 
     public DeliveryEntity translate(final DeliveryDto value) {
-        return Translate.to(DeliveryEntity.class).withVariable("id", StringUtils.convertToUuid(value.getId()))
-                        .withVariable("type", value.getType()).withVariable("description", value.getDescription())
-                        .withVariable("gid", value.getGid()).withVariable("createdAt", value.getCreatedAt())
-                        .withVariable("updatedAt", value.getUpdatedAt())
-                        .withVariable("shippableDue", DateUtils.convertToLocalDateTime(value.getShippableDue()))
-                        .withVariable("balance", value.getBalance())
-                        .withVariable("discount", new BigDecimal(value.getDiscount()))
-                        .withVariable("status", value.getStatus())
-                        .withVariable("addresses",
-                                        Optional.ofNullable(value.getAddresses()).orElseGet(Collections::emptyList)
-                                                        .stream().map(this::translate).collect(Collectors.toList()))
-                        .withVariable("codes", StringUtils.convertToIntegerArray(value.getCodes())).from(value);
+        return Translate.to(DeliveryEntity.class)
+            .withVariable("id", StringUtils.convertToUuid(value.getId()))
+            .withVariable("type", value.getType())
+            .withVariable("description", value.getDescription())
+            .withVariable("gid", value.getGid()).withVariable("createdAt", value.getCreatedAt())
+            .withVariable("updatedAt", value.getUpdatedAt())
+            .withVariable("shippableDue", DateUtils.convertToLocalDateTime(value.getShippableDue()))
+            .withVariable("balance", value.getBalance())
+            .withVariable("discount", new BigDecimal(value.getDiscount()))
+            .withVariable("status", value.getStatus())
+            .withVariable("addresses",
+                Optional.ofNullable(value.getAddresses()).orElseGet(Collections::emptyList)
+                    .stream().map(this::translate).collect(Collectors.toList())
+            )
+            .withVariable("codes", StringUtils.convertToIntegerArray(value.getCodes())).from(value);
     }
 
     public AddressEntity translate(final AddressDto value) {
-        return Translate.to(AddressEntity.class).withVariable("id", StringUtils.convertToUuid(value.getId()))
-                        .withVariable("city", value.getCity()).withVariable("country", value.getCountry())
-                        .withVariable("stateOrProvince", value.getStateOrProvince())
-                        .withVariable("postalCode", value.getPostalCode()).withVariable("street", value.getStreet())
-                        .from(value);
+        return Translate.to(AddressEntity.class)
+            .withVariable("id", StringUtils.convertToUuid(value.getId()))
+            .withVariable("city", value.getCity())
+            .withVariable("country", value.getCountry())
+            .withVariable("stateOrProvince", value.getStateOrProvince())
+            .withVariable("postalCode", value.getPostalCode())
+            .withVariable("street", value.getStreet())
+            .from(value);
     }
 }

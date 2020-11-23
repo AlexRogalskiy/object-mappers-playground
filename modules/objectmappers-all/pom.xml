@@ -59,6 +59,12 @@
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-beanutils</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-bull</artifactId>
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
@@ -108,6 +114,12 @@
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-selma</artifactId>
+            <version>${objectmappers.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.nullables.api.playground</groupId>
+            <artifactId>objectmappers-smooks</artifactId>
             <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>

@@ -75,6 +75,9 @@ ObjectMappers module dependencies:
 - [**ObjectMappers BeanCP**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp)  
   `objectmappers-beancp` - Library to work with BeanCP API.
 
+- [**ObjectMappers BeanUtils**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanutils)  
+  `objectmappers-beanutils` - Library to work with BeanUtils API.
+
 - [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons)  
   `objectmappers-commons` - Library with utilities for common use cases.
 
@@ -107,6 +110,9 @@ ObjectMappers module dependencies:
 
 - [**ObjectMappers Selma**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-selma)  
   `objectmappers-selma` - Library to work with Selma API.
+
+- [**ObjectMappers Smooks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-smooks)  
+  `objectmappers-smook` - Library to work with Smooks API.
 
 - [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow)  
   `objectmappers-testflow` - Library to work with TestFlow API.

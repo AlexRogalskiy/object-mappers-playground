@@ -38,8 +38,10 @@ pages:
   - Modules:
       - BeanCp: modules/beancp/readme.md
       - BeanMapper: modules/beanmapper/readme.md
+      - BeanUtils: modules/beanutils/readme.md
       - Bull: modules/bull/readme.md
       - Datus: modules/datus/readme.md
+      - Converter: modules/converter/readme.md
       - Dozer: modules/dozer/readme.md
       - JMapper: modules/jmapper/readme.md
       - MapStruct: modules/mapstruct/readme.md
@@ -49,6 +51,7 @@ pages:
       - Orika: modules/orika/readme.md
       - ReMap: modules/remap/readme.md
       - Selma: modules/selma/readme.md
+      - Smooks: modules/smooks/readme.md
   - Contributing:
       - Information: contributing/info.md
   - Reporting:

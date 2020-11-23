@@ -10,14 +10,16 @@ import static io.nullables.api.playground.objectmappers.commons.utils.StringUtil
 public class StringToIntegerArrayConverter extends BidirectionalConverter<String[], Integer[]> {
 
     @Override
-    public Integer[] convertTo(final String[] source, final Type<Integer[]> destinationType,
-                    final MappingContext mappingContext) {
+    public Integer[] convertTo(final String[] source,
+                               final Type<Integer[]> destinationType,
+                               final MappingContext mappingContext) {
         return convertToIntegerArray(source);
     }
 
     @Override
-    public String[] convertFrom(final Integer[] source, final Type<String[]> destinationType,
-                    final MappingContext mappingContext) {
+    public String[] convertFrom(final Integer[] source,
+                                final Type<String[]> destinationType,
+                                final MappingContext mappingContext) {
         return convertToStringArray(source);
     }
 }

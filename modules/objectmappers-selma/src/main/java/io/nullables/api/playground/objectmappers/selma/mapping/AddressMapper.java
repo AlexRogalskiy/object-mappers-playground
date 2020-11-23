@@ -7,10 +7,16 @@ import fr.xebia.extras.selma.Maps;
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 
-@Mapper(withIgnoreMissing = IgnoreMissing.ALL,
-                withCustomFields = {@Field(value = {"id", "id"}, withCustom = StringToUuidMapper.class),
-                                @Field({"city", "city"}), @Field({"country", "country"}),
-                                @Field({"stateOrProvince", "stateOrProvince"}), @Field({"street", "street"})})
+@Mapper(
+    withIgnoreMissing = IgnoreMissing.ALL,
+    withCustomFields = {
+        @Field(value = {"id", "id"}, withCustom = StringToUuidMapper.class),
+        @Field({"city", "city"}),
+        @Field({"country", "country"}),
+        @Field({"stateOrProvince", "stateOrProvince"}),
+        @Field({"street", "street"})
+    }
+)
 public interface AddressMapper {
     /**
      * Returns converted {@link AddressEntity} by input {@link AddressDto}

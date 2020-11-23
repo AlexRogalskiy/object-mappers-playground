@@ -11,12 +11,16 @@ import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.
 public class ShippableDateTimeCustomMapper extends CustomMapper<DeliveryDto, DeliveryEntity> {
 
     @Override
-    public void mapAtoB(final DeliveryDto a, final DeliveryEntity b, final MappingContext context) {
+    public void mapAtoB(final DeliveryDto a,
+                        final DeliveryEntity b,
+                        final MappingContext context) {
         b.setShippableDue(convertToLocalDateTime(a.getShippableDue()));
     }
 
     @Override
-    public void mapBtoA(final DeliveryEntity b, final DeliveryDto a, final MappingContext context) {
+    public void mapBtoA(final DeliveryEntity b,
+                        final DeliveryDto a,
+                        final MappingContext context) {
         a.setShippableDue(convertToString(b.getShippableDue()));
     }
 }

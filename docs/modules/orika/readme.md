@@ -2,9 +2,22 @@
 
 ## Description
 
+Orika mapping framework is similar to Dozer and can be considered as a replacement with the same range of functions and
+significantly better performance.
+Uses the bytecode generation based on Javassist library to generate the target mappings.
+
 ## Features
 
 ## Pros & Cons
+
+### Pros
+
+- wide range of object-to-object property mappings (using CustomMappers, CustomConverters etc.)
+- usage of Javassist library to generate mappings
+
+### Cons
+
+- generated mappers cannot be debugged
 
 ## Use cases
 

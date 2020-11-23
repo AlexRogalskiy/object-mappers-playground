@@ -2,9 +2,21 @@
 
 ## Description
 
+Works in the same way as Orika/Dozer bean mapping frameworks does.
+This mapper uses the bytecode generation strategy based on Cglib library.
+
 ## Features
 
 ## Pros & Cons
+
+### Pros
+
+- bytecode generation using Cglib library
+- offers an API for specific use cases, so various mapping techniques can be implemented (via PropertyMappings with full conversion support)
+
+### Cons
+
+- hard to debug end-to-end object mappings
 
 ## Use cases
 

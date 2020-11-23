@@ -80,6 +80,7 @@
         <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-beancp</module>
         <module>modules/objectmappers-beanmapper</module>
+        <module>modules/objectmappers-beanutils</module>
         <module>modules/objectmappers-bull</module>
         <module>modules/objectmappers-commons</module>
         <module>modules/objectmappers-datus</module>
@@ -91,6 +92,7 @@
         <module>modules/objectmappers-orika</module>
         <module>modules/objectmappers-remap</module>
         <module>modules/objectmappers-selma</module>
+        <module>modules/objectmappers-smooks</module>
         <module>modules/objectmappers-testflow</module>
         <module>modules/objectmappers-it</module>
     </modules>
@@ -162,6 +164,7 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-appassembler-plugin.version>2.1.0</maven-appassembler-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -180,6 +183,7 @@
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
+        <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
     </properties>
@@ -553,25 +557,6 @@
             </plugin>
 
             <plugin>
-                <groupId>net.nicoulaj.maven.plugins</groupId>
-                <artifactId>checksum-maven-plugin</artifactId>
-                <version>${maven-checksum-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>artifacts</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <algorithms>
-                        <algorithm>MD5</algorithm>
-                        <algorithm>SHA-1</algorithm>
-                    </algorithms>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>${maven-versions-plugin.version}</version>
@@ -869,6 +854,169 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- License profile -->
+        <profile>
+            <id>license</id>
+            <properties>
+                <license.licenseName>gpl-3.0</license.licenseName>
+                <license.licenseResolver>${project.baseUri}/license</license.licenseResolver>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>${maven-license-plugin.version}</version>
+                        <configuration>
+                            <verbose>false</verbose>
+                            <failOnNotUptodateHeader>false</failOnNotUptodateHeader>
+                            <failOnMissingHeader>false</failOnMissingHeader>
+                            <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                            <excludes>
+                                <exclude>src/main/resources/META-INF/**</exclude>
+                                <exclude>src/**/resources/vendor/**/*</exclude>
+                                <exclude>src/**/resources/application*</exclude>
+                                <exclude>src/test/resources/mockito-extensions/**</exclude>
+                                <exclude>**/*.json</exclude>
+                            </excludes>
+                            <excludedScopes>provided,system,test</excludedScopes>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <canUpdateDescription>false</canUpdateDescription>
+                            <licenseName>${license.licenseName}</licenseName>
+                            <licenseResolver>${license.licenseResolver}</licenseResolver>
+                            <inceptionYear>${project.inceptionYear}</inceptionYear>
+                            <organizationName>${project.organization.name}</organizationName>
+                            <processStartTag>========================LICENSE_START=================================
+                            </processStartTag>
+                            <processEndTag>=========================LICENSE_END==================================
+                            </processEndTag>
+                            <includedLicenses>
+                                <includedLicense>Apache License, Version 2.0</includedLicense>
+                                <includedLicense>BSD License</includedLicense>
+                                <includedLicense>Common Development and Distribution License Version 1.1
+                                </includedLicense>
+                                <includedLicense>Creative Commons CC0 1.0 Universal</includedLicense>
+                                <includedLicense>Day Specification License</includedLicense>
+                                <includedLicense>Eclipse Public License - v 1.0</includedLicense>
+                                <includedLicense>GNU Lesser General Public License, Version 2.1</includedLicense>
+                                <includedLicense>MIT License</includedLicense>
+                                <includedLicense>Mozilla Public License Version 1.1</includedLicense>
+                                <includedLicense>Public Domain</includedLicense>
+                                <includedLicense>WTFPL</includedLicense>
+                            </includedLicenses>
+                            <licenseMerges>
+                                <licenseMerge>Apache License, Version 2.0|Apache 2|Apache 2.0|Apache 2.0 License|Apache
+                                    v2|Apache License|Apache License 2.0|Apache License, version 2.0|Apache Software
+                                    License 2.0|Apache Software License - Version 2.0|Apache Software License - Version
+                                    2.0, Eclipse Public License - Version 1.0|Apache Software Licenses|The Apache
+                                    License, Version 2.0|The Apache Software License, Version 2.0
+                                </licenseMerge>
+                                <licenseMerge>BSD License|BSD|BSD licence|Eclipse Distribution License (New BSD
+                                    License)|New BSD license|The BSD 3-Clause License|The BSD License|The New BSD
+                                    License
+                                </licenseMerge>
+                                <licenseMerge>Common Development and Distribution License Version 1.1|CDDL + GPLv2 with
+                                    classpath exception|CDDL 1.1|CDDL+GPL License|CDDL/GPLv2+CE|Common Development and
+                                    Distribution License|Common Development and Distribution License (CDDL) v1.0|COMMON
+                                    DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0|Dual license consisting of
+                                    the CDDL v1.1 and GPL v2|GNU General Public License, Version 2 with the Classpath
+                                    Exception|GPL2 w/ CPE
+                                </licenseMerge>
+                                <licenseMerge>Creative Commons CC0 1.0 Universal|CC0|CC0 1.0 Universal|Public Domain,
+                                    per Creative Commons CC0
+                                </licenseMerge>
+                                <licenseMerge>Eclipse Public License - v 1.0|Eclipse Public License v1.0|Eclipse Public
+                                    License (EPL), Version 1.0|Eclipse Public License - Version 1.0
+                                </licenseMerge>
+                                <licenseMerge>GNU Lesser General Public License, Version 2.1|GNU LESSER GENERAL PUBLIC
+                                    LICENSE|GNU Lesser General Public License|GNU General Lesser Public License (LGPL)
+                                    version 2.1|lgpl|LGPL 2.1|LGPL-2.1|LGPL, version 2.1
+                                </licenseMerge>
+                                <licenseMerge>MIT License|Bouncy Castle Licence|MIT license</licenseMerge>
+                                <licenseMerge>Mozilla Public License Version 1.1|MPL 1.1</licenseMerge>
+                            </licenseMerges>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-license-resources</id>
+                                <goals>
+                                    <goal>add-third-party</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <includedScopes>runtime,compile</includedScopes>
+                                    <includeTransitiveDependencies>true</includeTransitiveDependencies>
+                                    <fileTemplate>${project.baseUri}/license/third-party.ftl</fileTemplate>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>update-file-header</id>
+                                <goals>
+                                    <goal>update-file-header</goal>
+                                </goals>
+                                <phase>process-sources</phase>
+                                <configuration>
+                                    <roots>
+                                        <root>src/main/java</root>
+                                        <root>src/test/java</root>
+                                    </roots>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>check-file-header</id>
+                                <goals>
+                                    <goal>check-file-header</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Checksum profile -->
+        <profile>
+            <id>checksum</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>net.ju-n.maven.plugins</groupId>
+                        <artifactId>checksum-maven-plugin</artifactId>
+                        <version>${maven-checksum-plugin.version}</version>
+                        <configuration>
+                            <algorithms>
+                                <algorithm>MD5</algorithm>
+                                <algorithm>SHA-256</algorithm>
+                            </algorithms>
+                            <csvSummary>false</csvSummary>
+                            <fileSets>
+                                <fileSet>
+                                    <directory>${project.build.directory}</directory>
+                                </fileSet>
+                            </fileSets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>checksum-artifacts</id>
+                                <goals>
+                                    <goal>artifacts</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+                            <execution>
+                                <id>generate-artifact-checksum</id>
+                                <goals>
+                                    <goal>files</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- GPG profile -->
         <profile>
             <id>sign-artifacts</id>
@@ -1131,6 +1279,9 @@
                             <appendAssemblyId>true</appendAssemblyId>
                             <tarLongFileMode>posix</tarLongFileMode>
                             <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>${session.executionRootDirectory}/assembly/package.xml</descriptor>
+                            </descriptors>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>

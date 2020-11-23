@@ -1,0 +1,44 @@
+version: 2
+
+update_configs:
+  - package_manager: "java:maven"
+    directory: "/"
+    update_schedule: "daily"
+    ignored_updates:
+      - match:
+          dependency_name: "com.fasterxml.jackson.core:jackson-databind"
+
+updates:
+  - package-ecosystem: "maven"
+    open-pull-requests-limit: 2
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "13:00"
+    allow:
+      - dependency-type: production
+    commit-message:
+      prefix: "Dependency update"
+    labels:
+      - ":game_die: dependencies"
+      - ":robot: bot"
+    assignees:
+      - "AlexRogalskiy"
+    reviewers:
+      - "AlexRogalskiy"
+
+  - package-ecosystem: "github-actions"
+    open-pull-requests-limit: 2
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "13:00"
+    labels:
+      - "dependencies"
+      - ":robot: bot"
+    assignees:
+      - "AlexRogalskiy"
+    reviewers:
+      - "AlexRogalskiy"
+    allow:
+      - dependency-type: direct

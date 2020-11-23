@@ -2,9 +2,19 @@
 
 ## Description
 
+The mapping mechanism can be implemented in Groovy DSL that provides various predefined functional operators to support end-to-end conversion operations.
+
 ## Features
 
 ## Pros & Cons
+
+### Pros
+
+- object mappings can be programmatically defined using Groovy DSL with its particular language operations
+
+### Cons
+
+- poor performance due to DSL preprocessing mechanism (time-consuming) and error-prone
 
 ## Use cases
 

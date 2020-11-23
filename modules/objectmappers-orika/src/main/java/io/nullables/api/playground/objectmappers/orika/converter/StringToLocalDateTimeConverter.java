@@ -12,14 +12,16 @@ import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.
 public class StringToLocalDateTimeConverter extends BidirectionalConverter<String, LocalDateTime> {
 
     @Override
-    public LocalDateTime convertTo(final String source, final Type<LocalDateTime> destinationType,
-                    final MappingContext mappingContext) {
+    public LocalDateTime convertTo(final String source,
+                                   final Type<LocalDateTime> destinationType,
+                                   final MappingContext mappingContext) {
         return convertToLocalDateTime(source);
     }
 
     @Override
-    public String convertFrom(final LocalDateTime source, final Type<String> destinationType,
-                    final MappingContext mappingContext) {
+    public String convertFrom(final LocalDateTime source,
+                              final Type<String> destinationType,
+                              final MappingContext mappingContext) {
         return convertToString(source);
     }
 }
