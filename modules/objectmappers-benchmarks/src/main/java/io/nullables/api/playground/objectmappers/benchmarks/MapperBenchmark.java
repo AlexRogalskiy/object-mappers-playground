@@ -29,11 +29,11 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @State(Scope.Benchmark)
-@Warmup(iterations = 4)
-@Fork(value = 1, warmups = 2)
+@Warmup(iterations = 1)
+@Measurement(iterations = 1)
+@Fork(value = 1, warmups = 1, jvmArgs = "-XX:-StackTraceInThrowable")
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @BenchmarkMode(Mode.All)
-@Measurement(iterations = 2)
 public class MapperBenchmark {
 
     @Param({
@@ -67,8 +67,7 @@ public class MapperBenchmark {
         final Collection<RunResult> results = new Runner(opts).run();
         for (final RunResult result : results) {
             final Result<?> r = result.getPrimaryResult();
-            log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over "
-                + r.getStatistics().getN() + " iterations");
+            log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over " + r.getStatistics().getN() + " iterations");
         }
     }
 

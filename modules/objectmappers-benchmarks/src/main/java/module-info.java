@@ -1,7 +1,6 @@
 open module io.nullables.api.playground.objectmappers.benchmarks {
     requires io.nullables.api.playground.objectmappers.testflow;
     requires io.nullables.api.playground.objectmappers.commons;
-    requires io.nullables.api.playground.objectmappers.modelmapper;
     requires io.nullables.api.playground.objectmappers.dozer;
 
     requires org.apache.commons.lang3;
