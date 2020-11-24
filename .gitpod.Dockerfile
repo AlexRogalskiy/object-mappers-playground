@@ -51,4 +51,4 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 USER gitpod
 
 #RUN mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
-RUN chmod +x /usr/bin/mvn
+RUN sudo chmod +x /usr/bin/mvn
