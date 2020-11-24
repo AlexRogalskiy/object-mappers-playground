@@ -121,7 +121,7 @@ jobs:
       - name: 'Plot Results'
         shell: bash
         run: |
-          gnuplot -c benchmark.plt
+          gnuplot -c ./.github/graph/benchmark.plt
 
       - name: 'Upload Plot'
         uses: actions/upload-artifact@master
