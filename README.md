@@ -14,6 +14,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
 [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)]()
 [![BCH compliance](https://bettercodehub.com/edge/badge/AlexRogalskiy/object-mappers-playground?branch=master)](https://bettercodehub.com/)
+[![Build status](https://ci.appveyor.com/api/projects/status/lqu3a77c8g81808r?svg=true)](https://ci.appveyor.com/project/AlexanderRogalskiy/object-mappers-playground)
 
 ## Summary
 
