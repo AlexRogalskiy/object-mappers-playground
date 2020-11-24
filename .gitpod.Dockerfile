@@ -27,7 +27,7 @@ ARG SHA=c35a1803a6e70a126e80b2b3ae33eed961f83ed74d18fcd16909b2d44d7dada3203f1ffe
 ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
 # Disable coredump
-RUN sudo echo "Set disable_coredump false" >> /etc/sudo.conf
+RUN sudo /bin/su -c "echo 'Set disable_coredump false' >> /etc/sudo.conf"
 
 # Create the directories, download maven, validate the download, install it, remove downloaded file and set links
 RUN sudo mkdir -p /usr/share/maven /usr/share/maven/ref \
