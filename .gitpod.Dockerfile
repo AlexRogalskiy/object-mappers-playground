@@ -42,7 +42,7 @@ RUN sudo mkdir -p /usr/share/maven /usr/share/maven/ref \
   \
   && echo "Cleaning and setting links" \
   && sudo rm -f /tmp/apache-maven.tar.gz \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+  && sudo ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 # Define environmental variables required by Maven, like Maven_Home directory and where the maven repo is located
 ENV MAVEN_HOME /usr/share/maven
