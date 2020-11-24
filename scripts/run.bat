@@ -15,5 +15,5 @@ rem java application command
 set JAVA_COMMAND=-jar ../modules/objectmappers-benchmarks/.build/bin/io.nullables.api.playground.objectmappers.benchmarks/benchmarks.jar
 
 rem java application startup
-%JAVA% %JAVA_OPTS% %JAVA_COMMAND% %* 1>log.txt 2>err.txt
+%JAVA% %JAVA_OPTS% %JAVA_COMMAND% %* 1> .build.stdout 2> .build.stderr
 EndLocal

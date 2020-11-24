@@ -22,28 +22,92 @@ jdk:
   - oraclejdk8
   - openjdk8
 
-before_script:
-  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+jobs:
+  include:
+    - state: build
+      if: repo = AlexRogalskiy/object-mappers-playground AND branch = master AND type = push
+      name: "Build: mvn clean package"
+      script:
+        - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
-script:
-  - |
-    set -o pipefail
-    if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
-      ./mvnw clean install sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev" \
-        -Dsonar.projectKey=object-mappers-playground \
-        -Dsonar.organization=alexrogalskiy-github \
-        -Dsonar.analysis.mode=preview \
-        -Dsonar.github.pullRequest=${TRAVIS_PULL_REQUEST} \
-        -Dsonar.github.repository=${TRAVIS_REPO_SLUG} \
-        -Dsonar.github.oauth=${GITHUB_TOKEN} \
-        -Dsonar.login=${SONAR_TOKEN} \
-        -Dsonar.host.url=https://sonarcloud.io/ \
-        -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml \
-        2>&1 \
-      | grep ^\\[
-    else
-      ./mvnw clean package install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev" 2>&1 | grep ^\\[
-    fi
+    - stage: sonar
+      if: repo = AlexRogalskiy/object-mappers-playground AND branch = release AND type = push
+      name: "PR: mvn clean verify sonar:sonar"
+      script:
+        - mvn clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
+
+    - stage: release
+      if: repo = AlexRogalskiy/object-mappers-playground AND branch = release AND type = push
+      name: "Release: Tag on GitHub and deploy to OSSRH"
+      jdk: oraclejdk8
+      script:
+        - head_ref=$(git rev-parse HEAD) || travis_terminate 1
+        - branch_ref=$(git rev-parse "$TRAVIS_BRANCH") || travis_terminate 1
+        - |
+          if [[ $head_ref != $branch_ref ]]; then
+            echo "HEAD ref ($head_ref) does not match $TRAVIS_BRANCH ref ($branch_ref).  New commits may have been pushed before the build cloned the repo"
+          return 0
+          fi
+        - git checkout $TRAVIS_BRANCH || travis_terminate 1
+        - release_version=`mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec`
+        - branch_name="release-${release_version}"
+
+        # prepare current branch for release, create release branch, increment development version on current branch
+        - mvn --settings ./mvn/settings.xml -B -DbranchName=${branch_name} release:branch || travis_terminate 1
+        - git checkout $branch_name || travis_terminate 1
+
+        # remove SNAPSHOT version suffix, create a tag in GitHub, increment development version on release branch
+        - mvn --settings ./mvn/settings.xml -B -DpushChanges=true release:prepare || travis_terminate 1
+
+        # check out tag from GitHub, build then deploy to OSSRH
+        - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
+        - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
+        - mvn --settings ./mvn/settings.xml -B release:perform || travis_terminate 1
+
+    - stage: snapshot release
+      if: repo = AlexRogalskiy/object-mappers-playground AND branch = develop AND type = push
+      name: "SNAPSHOT release"
+      before_install:
+        - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+        - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+      before_deploy:
+        - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+        - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+      script:
+        - mvn clean deploy -DskipTests=true --settings ./mvn/settings.xml -B -U -Prelease
+      deploy:
+        provider: releases
+        api_key:
+          secure: "$GITHUB_TOKEN"
+        file:
+          - target/sandboni-*.jar
+        skip_cleanup: true
+        on:
+          repo: AlexRogalskiy/object-mappers-playground
+          tags: true
+
+#before_script:
+#  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+
+#script:
+#  - |
+#    set -o pipefail
+#    if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
+#      ./mvnw clean install sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev" \
+#        -Dsonar.projectKey=object-mappers-playground \
+#        -Dsonar.organization=alexrogalskiy-github \
+#        -Dsonar.analysis.mode=preview \
+#        -Dsonar.github.pullRequest=${TRAVIS_PULL_REQUEST} \
+#        -Dsonar.github.repository=${TRAVIS_REPO_SLUG} \
+#        -Dsonar.github.oauth=${GITHUB_TOKEN} \
+#        -Dsonar.login=${SONAR_TOKEN} \
+#        -Dsonar.host.url=https://sonarcloud.io/ \
+#        -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml \
+#        2>&1 \
+#      | grep ^\\[
+#    else
+#      ./mvnw clean package install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev" 2>&1 | grep ^\\[
+#    fi
 
 notifications:
   email:
