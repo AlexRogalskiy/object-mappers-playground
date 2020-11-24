@@ -1,7 +1,6 @@
 FROM gitpod/workspace-full
 
 LABEL Alexander Rogalskiy <alexander.rogalsky@yandex.ru>
-RUN apk add --no-cache curl tar bash procps
 
 # Downloading and installing Maven
 # 1- Define a constant with the version of maven you want to install
