@@ -29,22 +29,24 @@
     <suppress files=".+Configuration\.java" checks="HideUtilityClassConstructor"/>
 
     <!-- resources -->
-    <suppress checks="[a-zA-Z0-9]*" files=".*/resources/.*"/>
+    <suppress files=".*/resources/.*" checks="[a-zA-Z0-9]*"/>
+    <suppress files=".+[\\/]pom\.xml" checks="OnlyTabIndentationCheck"/>
 
-    <!-- 'internal' packages -->
+    <!-- generated sources -->
+    <suppress files=".+[\\/]gen[\\/].+\.java" checks="AuthorTagCheck"/>
+    <suppress files="**/*_jmh*.java" checks="AuthorTagCheck"/>
+
+    <!-- internal packages -->
     <suppress files=".*[\\/]internal[\\/].*"
               checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|JavadocFilterCheck"/>
     <suppress files=".*[\\/]test[\\/].*"
               checks="RequireBundleCheck|OutsideOfLibExternalLibrariesCheck|ManifestExternalLibrariesCheck|BuildPropertiesExternalLibrariesCheck|JavadocMethod|JavadocType|JavadocPackage|JavadocVariable"/>
-    <suppress files=".+DTO\.java" checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
+    <suppress files=".+Dto\.java"
+              checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
     <suppress files=".+Impl\.java"
               checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
 
-    <suppress files=".+[\\/]pom\.xml" checks="OnlyTabIndentationCheck"/>
-    <suppress files=".+[\\/]gen[\\/].+\.java" checks="AuthorTagCheck"/>
-    <suppress files="**/*_jmh*.java" checks="AuthorTagCheck"/>
-
     <!-- tests and benchmarks -->
-    <suppress checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|IllegalThrows|VisibilityModifier"
-              files=".*[\\/](test|microbench)[\\/].*"/>
+    <suppress files=".*[\\/](test|microbench)[\\/].*"
+              checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|IllegalThrows|VisibilityModifier"/>
 </suppressions>
