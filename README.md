@@ -120,6 +120,51 @@ ObjectMappers module dependencies:
 - [**ObjectMappers IntegrationTests**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it)  
   `objectmappers-it` - Library with utilities for integration test use cases.
 
+## Documentation
+
+The Website with documentation content is operated by [mkdocs](https://www.mkdocs.org/).
+
+To enable documentation view serving at *localhost* the following steps should be considered:
+
+1) To install/upgrade pip command-line utility:
+ 
+```shell script
+pip install --upgrade pip
+```
+
+or if you need to install pip for the first time:
+
+```shell script
+python get-pip.py
+```
+
+2) To install the mkdocs package using pip:
+
+```shell script
+pip install mkdocs
+```
+
+or more conveniently for Windows subsystem:
+
+```shell script
+python -m pip install mkdocs
+python -m mkdocs
+```
+
+3) To install the material theme for the website:
+
+```shell script
+pip install mkdocs-material
+```
+
+4) To start the server at localhost by running the following command:
+
+```shell script
+mkdocs serve
+```
+
+5) Open up [localhost](http://127.0.0.1:8000/) in browser to get the default documentation homepage.
+
 ## Version Store
 
 [./pom.xml](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/pom.xml)
