@@ -102,7 +102,7 @@ jobs:
       - name: 'Prepare CSV Results'
         shell: bash
         run: |
-          head -1 results_Manual.csv > results.csv
+          head -1 results_Converter.csv > results.csv
           for mapper in BeanMapper, BeanUtilsMapper, Bull, Converter, Datus, Dozer, MapStruct, ModelMapper, Orika, ReMap, Selma; do sed 1d results_${mapper}.csv >> results.csv; done
           less results.csv
 
