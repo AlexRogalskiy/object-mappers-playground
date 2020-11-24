@@ -1,6 +1,17 @@
+#!/bin/echo docker build . -f
+# -*- coding: utf-8 -*-
+
 FROM gitpod/workspace-full
 
-LABEL Alexander Rogalskiy <alexander.rogalsky@yandex.ru>
+LABEL maintainer="Alexander Rogalskiy <alexander.rogalsky@yandex.ru>"
+LABEL organization="nullables.io"
+LABEL io.nullables.api.playground.image.title="Nullables.io"
+LABEL io.nullables.api.playground.image.description="Object Mappers Playground"
+LABEL io.nullables.api.playground.image.vendor="Nullables.io"
+LABEL io.nullables.api.playground.image.version="1.0.0"
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG ${LC_ALL}
 
 # Downloading and installing Maven
 # 1- Define a constant with the version of maven you want to install
