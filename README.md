@@ -81,7 +81,11 @@ Object Mappers module dependencies:
 
 ## _Documentation_
 
-The Website documentation is provided by [mkdocs](https://www.mkdocs.org/).
+The Website documentation is provided by [mkdocs](https://www.mkdocs.org/) and can be discovered at url:
+
+```text
+https://alexander-rogalsky.gitbook.io/object-mappers-docs/
+```
 
 To enable documentation view serving at _**localhost**_ ****the following steps should be considered:
 
