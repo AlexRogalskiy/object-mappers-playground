@@ -10,7 +10,6 @@ theme:
   palette:
     primary: red
     accent: red
-  #logo: assets/logo.png
   feature:
     tabs: true
 
@@ -24,34 +23,32 @@ markdown_extensions:
 
 pages:
   - Welcome: index.md
-  - Information: info.md
   - User Guide:
       - Changelog: user-guide/changelog.md
       - Dependency: user-guide/dependency.md
       - FAQ: user-guide/faq.md
       - Getting Started: user-guide/getting-started.md
-      - Description: user-guide/description.md
       - Code of Conduct: user-guide/code_of_conduct.md
       - Code Owners: user-guide/code_owners.md
       - Troubleshooting: user-guide/troubleshooting.md
       - Upgrade: user-guide/upgrade.md
   - Modules:
-      - BeanCp: modules/beancp/readme.md
-      - BeanMapper: modules/beanmapper/readme.md
-      - BeanUtils: modules/beanutils/readme.md
-      - Bull: modules/bull/readme.md
-      - Datus: modules/datus/readme.md
-      - Converter: modules/converter/readme.md
-      - Dozer: modules/dozer/readme.md
-      - JMapper: modules/jmapper/readme.md
-      - MapStruct: modules/mapstruct/readme.md
-      - ModelMapper: modules/modelmapper/readme.md
-      - Moo: modules/moo/readme.md
-      - Nomin: modules/nomin/readme.md
-      - Orika: modules/orika/readme.md
-      - ReMap: modules/remap/readme.md
-      - Selma: modules/selma/readme.md
-      - Smooks: modules/smooks/readme.md
+      - BeanCp: modules/beancp/info.md
+      - BeanMapper: modules/beanmapper/info.md
+      - BeanUtils: modules/beanutils/info.md
+      - Bull: modules/bull/info.md
+      - Converter: modules/converter/info.md
+      - Datus: modules/datus/info.md
+      - Dozer: modules/dozer/info.md
+      - JMapper: modules/jmapper/info.md
+      - MapStruct: modules/mapstruct/info.md
+      - ModelMapper: modules/modelmapper/info.md
+      - Moo: modules/moo/info.md
+      - Nomin: modules/nomin/info.md
+      - Orika: modules/orika/info.md
+      - ReMap: modules/remap/info.md
+      - Selma: modules/selma/info.md
+      - Smooks: modules/smooks/info.md
   - Contributing:
       - Information: contributing/info.md
   - Reporting:
