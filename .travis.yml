@@ -23,19 +23,25 @@ jdk:
   - oraclejdk8
   - openjdk8
 
+before_script:
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+  - sudo chmod +x ./mvnw
+
+script:
+  - ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+
+stages:
+  - sonar
+  - release
+  - snapshot release
+
 jobs:
   include:
-    - stage: build
-      if: branch = master AND type = push
-      name: "Build: mvn clean package"
-      script:
-        - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
-
     - stage: sonar
       if: branch = master AND type = pull_request
-      name: "PR: mvn clean verify sonar:sonar"
+      name: "Sonar: mvn clean verify sonar:sonar"
       script:
-        - mvn clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
+        - ./mvnw clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
 
     - stage: release
       if: branch = release AND type = push
@@ -50,32 +56,32 @@ jobs:
           return 0
           fi
         - git checkout $TRAVIS_BRANCH || travis_terminate 1
-        - release_version=`mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec`
+        - release_version=`./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec`
         - branch_name="release-${release_version}"
 
         # prepare current branch for release, create release branch, increment development version on current branch
-        - mvn --settings ./mvn/settings.xml -B -DbranchName=${branch_name} release:branch || travis_terminate 1
+        - ./mvnw --settings ./.mvn/settings.xml -B -DbranchName=${branch_name} release:branch || travis_terminate 1
         - git checkout $branch_name || travis_terminate 1
 
         # remove SNAPSHOT version suffix, create a tag in GitHub, increment development version on release branch
-        - mvn --settings ./mvn/settings.xml -B -DpushChanges=true release:prepare || travis_terminate 1
+        - ./mvnw --settings ./.mvn/settings.xml -B -DpushChanges=true release:prepare || travis_terminate 1
 
         # check out tag from GitHub, build then deploy to OSSRH
         - echo $GPG_SECRET_KEYS | base64 --decode | gpg --import
         - echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust
-        - mvn --settings ./mvn/settings.xml -B release:perform || travis_terminate 1
+        - ./mvnw --settings ./.mvn/settings.xml -B release:perform || travis_terminate 1
 
     - stage: snapshot release
       if: branch = develop AND type = push
-      name: "SNAPSHOT release"
+      name: "Snapshot release"
       before_install:
         - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
         - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
       before_deploy:
-        - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+        - ./mvnw help:evaluate -N -Dexpression=project.version|grep -v '\['
         - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
       script:
-        - mvn clean deploy -DskipTests=true --settings ./mvn/settings.xml -B -U -Prelease
+        - ./mvnw clean deploy -DskipTests=true --settings ./.mvn/settings.xml -B -U -Prelease
       deploy:
         provider: releases
         api_key:
