@@ -10,24 +10,33 @@ Object Mappers playground is intended to provide various mapping operations on D
 
 Playground can be used for processing and testing mapping operations in order to evaluate major available options on objects conversion.
 
-## _Compile_
+## _How-to-compile_
 
-### For JDK 8
-
-\`\`\`shell script mvn clean install -Pdev,assembly,non\_module\_java -DskipTests
+### JDK 8
 
 ```text
-### For JDK 11
+### For JDK 8
 
-```shell script
+mvn clean install -Pdev,assembly,non_module_java -DskipTests
+```
+
+### JDK 11+
+
+```text
+### For JDK 11+
+
 mvn clean install -Pdev,assembly,module_java -DskipTests
 ```
 
-## _Up and Running_
+## _How-to-run_
 
 Execute the following command to start Object Mappers application:
 
-\`\`\`shell script run.bat 
+```text
+run.bat
+```
+
+## _How-to-use_
 
 ```text
 ## Usage
@@ -72,23 +81,23 @@ Object Mappers module dependencies:
 
 ## _Documentation_
 
-The Website with documentation content is operated by [mkdocs](https://www.mkdocs.org/).
+The Website documentation is provided by [mkdocs](https://www.mkdocs.org/).
 
-To enable documentation view serving at _localhost_ the following steps should be considered:
+To enable documentation view serving at _**localhost**_ ****the following steps should be considered:
 
-1\) To install/upgrade pip command-line utility:
+1\) Install/upgrade _**pip**_ command-line utility:
 
 ```text
 pip install --upgrade pip
 ```
 
-or if you need to install pip for the first time:
+or if you need to install _**pip**_ for the first time:
 
 ```text
 python get-pip.py
 ```
 
-2\) To install the mkdocs package using pip:
+2\) Install the _**mkdocs**_ package using pip:
 
 ```text
 pip install mkdocs
@@ -101,13 +110,13 @@ python -m pip install mkdocs
 python -m mkdocs
 ```
 
-3\) To install the material theme for the website:
+3\) Install the material theme for the website:
 
 ```text
 pip install mkdocs-material
 ```
 
-4\) To start the server at localhost by running the following command:
+4\) Start the server at _**localhost**_ by running the following command:
 
 ```text
 mkdocs serve
