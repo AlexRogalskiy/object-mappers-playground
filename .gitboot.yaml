@@ -1,0 +1,44 @@
+root: ./docs/
+
+structure:
+  welcome: index.md
+  user-guide:
+    changelog: ./user-guide/changelog.md
+    dependency: ./user-guide/dependency.md
+    faq: ./user-guide/faq.md
+    getting-started: ./user-guide/getting-started.md
+    code-of-conduct: ./user-guide/code_of_conduct.md
+    code-owners: ./user-guide/code_owners.md
+    troubleshooting: ./user-guide/troubleshooting.md
+    upgrade: ./user-guide/upgrade.md
+  modules:
+    beancp: ./modules/beancp/info.md
+    beanmapper: ./modules/beanmapper/info.md
+    beanutils: ./modules/beanutils/info.md
+    bull: ./modules/bull/info.md
+    converter: ./modules/converter/info.md
+    datus: ./modules/datus/info.md
+    dozer: ./modules/dozer/info.md
+    jmapper: ./modules/jmapper/info.md
+    mapstruct: ./modules/mapstruct/info.md
+    modelmapper: ./modules/modelmapper/info.md
+    moo: ./modules/moo/info.md
+    nomin: ./modules/nomin/info.md
+    orika: ./modules/orika/info.md
+    remap: ./modules/remap/info.md
+    selma: ./modules/selma/info.md
+    smooks: ./modules/smooks/info.md
+  contributing:
+    info: ./contributing/info.md
+  reporting:
+    info: ./reporting/info.md
+    bug-report: ./reporting/bug_report.md
+    custom-report: ./reporting/custom_report.md
+    feature-requst: ./reporting/feature_request_template.md
+    pull-requst-template: ./reporting/pull_request_template.md
+  links:
+    info: ./links/info.md
+
+redirects:
+  help: ./user-guide/support.md
+  start: ./user-guide/getting-started.md

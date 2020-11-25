@@ -2,13 +2,14 @@ language: java
 
 dist: trusty
 
+os:
+  - linux
+
 git:
   depth: false
   quiet: true
   submodules: false
   lfs_skip_smudge: true
-
-sudo: false
 
 install: true
 
@@ -31,7 +32,7 @@ jobs:
         - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
     - stage: sonar
-      if: repo = AlexRogalskiy/object-mappers-playground AND branch = release AND type = push
+      if: repo = AlexRogalskiy/object-mappers-playground AND branch = master AND type = pull_request
       name: "PR: mvn clean verify sonar:sonar"
       script:
         - mvn clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
@@ -77,40 +78,16 @@ jobs:
         - mvn clean deploy -DskipTests=true --settings ./mvn/settings.xml -B -U -Prelease
       deploy:
         provider: releases
-        api_key:
+        token:
           secure: "$GITHUB_TOKEN"
         file:
           - target/sandboni-*.jar
-        skip_cleanup: true
         on:
           repo: AlexRogalskiy/object-mappers-playground
           tags: true
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-
-#before_script:
-#  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
-
-#script:
-#  - |
-#    set -o pipefail
-#    if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
-#      ./mvnw clean install sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"non_module_java","test-jar","dev" \
-#        -Dsonar.projectKey=object-mappers-playground \
-#        -Dsonar.organization=alexrogalskiy-github \
-#        -Dsonar.analysis.mode=preview \
-#        -Dsonar.github.pullRequest=${TRAVIS_PULL_REQUEST} \
-#        -Dsonar.github.repository=${TRAVIS_REPO_SLUG} \
-#        -Dsonar.github.oauth=${GITHUB_TOKEN} \
-#        -Dsonar.login=${SONAR_TOKEN} \
-#        -Dsonar.host.url=https://sonarcloud.io/ \
-#        -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml \
-#        2>&1 \
-#      | grep ^\\[
-#    else
-#      ./mvnw clean package install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev" 2>&1 | grep ^\\[
-#    fi
 
 notifications:
   email:
