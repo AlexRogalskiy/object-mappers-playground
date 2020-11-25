@@ -7,6 +7,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+env:
+  MAVEN_ARGS: >-
+    --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
+
 jobs:
   sonarcloud:
     runs-on: ubuntu-16.04
@@ -23,15 +27,12 @@ jobs:
           java-version: 1.11
 
       - name: Make Maven Wrapper executable
-        if: contains(matrix.os, 'win') == false
         run: |
           chmod +x ./mvnw
 
       - name: Analyze with SonarCloud
-        #       set environment variables:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        #       run sonar maven plugin:
         run: |
-          ./mvnw verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"module_java","test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
+          ./mvnw verify sonar:sonar $MAVEN_ARGS -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml

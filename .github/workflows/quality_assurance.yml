@@ -1,0 +1,100 @@
+name: Quality Assurance
+
+on:
+  pull_request:
+  push:
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+    branches:
+      - master
+      - development
+
+env:
+  MAVEN_ARGS: >-
+    --file pom.xml --show-version --batch-mode --errors --lax-checksums
+
+jobs:
+  style_check:
+    runs-on: ubuntu-latest
+    container: openjdk:11
+    steps:
+      - name: Prepare git
+        run: git config --global core.autocrlf false
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
+      - name: Cache google-java-format jar
+        id: cache-formatter
+        uses: actions/cache@v2
+        env:
+          cache-name: formatter
+        with:
+          path: ./formatter
+          key: formatter-jar
+
+      - name: Download google-java-format Release 1.8
+        if: ${{ steps.cache-formatter.outputs.cache-hit == false }}
+        run: wget https://github.com/google/google-java-format/releases/download/google-java-format-1.8/google-java-format-1.8-all-deps.jar -P ./formatter
+
+      - name: Check style with google-java-format
+        run: java -jar ./formatter/google-java-format-1.8-all-deps.jar --dry-run --set-exit-if-changed $(find src -path "*/java/**" -path "*.java")
+
+  functional_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare git
+        run: git config --global core.autocrlf false
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Cache mvn dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: mvn-deps
+        with:
+          path: ~/.m2
+          key: ${{ env.cache-name }}-${{ hashFiles('pom.xml') }}
+          restore-keys: ${{ env.cache-name }}-
+
+      - name: Make Maven Wrapper executable
+        run: |
+          chmod +x ./mvnw
+
+      - name: Test with Maven
+        run: |
+          ./mvnw clean test $MAVEN_ARGS -P"test","test-jar","dev"
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v1.0.15
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: modules/objectmappers-beancp/.build/bin/io.nullables.api.playground.objectmappers.beancp/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-beanmapper/.build/bin/io.nullables.api.playground.objectmappers.beanmapper/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-beanutils/.build/bin/io.nullables.api.playground.objectmappers.beanutils/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-dozer/.build/bin/io.nullables.api.playground.objectmappers.dozer/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-mapstruct/.build/bin/io.nullables.api.playground.objectmappers.mapstruct/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-modelmapper/.build/bin/io.nullables.api.playground.objectmappers.modelmapper/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-moo/.build/bin/io.nullables.api.playground.objectmappers.moo/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-nomin/.build/bin/io.nullables.api.playground.objectmappers.nomin/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-orika/.build/bin/io.nullables.api.playground.objectmappers.orika/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-remap/.build/bin/io.nullables.api.playground.objectmappers.remap/reporting/jacoco-ut/jacoco.xml,
+          modules/objectmappers-smooks/.build/bin/io.nullables.api.playground.objectmappers.smooks/reporting/jacoco-ut/jacoco.xml
+          name: codecov-umbrella
+          path_to_write_report: .build/bin/io.nullables.api.playground.objectmappers/reporting/codecov_report.txt
+          verbose: true
+          flags: unittests
+          fail_ci_if_error: true

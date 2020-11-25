@@ -53,7 +53,7 @@ install:
 
 build_script:
   # Build NIX Java bindings
-  - ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dmaven.test.failure.ignore=true -Dplatform.dependency=false -P"non_module_java","test-jar","dev"
+  - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
 
 on_failure:
   # Display error log file if generated
@@ -75,8 +75,6 @@ notifications:
   - provider: Email
     to:
       - alexander.rogalsky@yandex.ru
-    subject: 'Build {{status}}'
-    message: "{{message}}, {{commitId}}, ..."
     on_build_success: false
     on_build_failure: true
     on_build_status_changed: true

@@ -15,6 +15,7 @@ public final class BeanMapperConfigBuilder {
     private BeanMapperConfigBuilder() {
         this.mapperBuilder = new BeanMapperBuilder()
             .withoutDefaultConverters()
+            .setApplyStrictMappingConvention(false)
             .setUseNullValue();
     }
 

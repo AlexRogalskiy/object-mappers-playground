@@ -12,7 +12,7 @@ public class GeneralBeanMapper implements OrderMapper {
 
     public GeneralBeanMapper() {
         this.beanMapper = new BeanMapperBuilder()
-            .withoutDefaultConverters()
+            .setApplyStrictMappingConvention(false)
             .setUseNullValue()
             .build();
     }

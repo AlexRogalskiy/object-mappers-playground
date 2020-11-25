@@ -151,6 +151,10 @@
         <jacoco.lines.coverage.percentage.minimum>0.65</jacoco.lines.coverage.percentage.minimum>
         <jacoco.methods.coverage.percentage.minimum>0.57</jacoco.methods.coverage.percentage.minimum>
 
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.language>java</sonar.language>
+
         <maven-plugin-os.version>1.6.2</maven-plugin-os.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -179,8 +183,8 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-pitest-plugin.version>1.5.2</maven-pitest-plugin.version>
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
@@ -764,7 +768,7 @@
     </build>
 
     <reporting>
-        <outputDirectory>${project.build.directory}/release</outputDirectory>
+        <outputDirectory>${project.build.directory}/reporting</outputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -1755,7 +1759,6 @@
                             <artifactId>maven-surefire-plugin</artifactId>
                             <version>${maven-surefire-plugin.version}</version>
                             <configuration>
-                                <forkCount>0</forkCount>
                                 <skipTests>${unit-tests.skip}</skipTests>
                                 <failIfNoTests>${unit-tests.fail}</failIfNoTests>
                                 <disableXmlReport>true</disableXmlReport>
@@ -1770,6 +1773,7 @@
                                     <include/>
                                 </includes>
                                 <argLine>
+                                    @{surefireArgLine}
                                     ${surefire.memory}
                                     ${surefire.fileEncoding}
                                     ${surefire.jmxEnabled}
@@ -1792,7 +1796,7 @@
                             <version>${maven-surefire-report-plugin.version}</version>
                             <configuration>
                                 <showSuccess>true</showSuccess>
-                                <outputDirectory>${basedir}/target/surefire-reports</outputDirectory>
+                                <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
                             </configuration>
                         </plugin>
 
@@ -1838,7 +1842,9 @@
                                     <configuration>
                                         <skip>${unit-tests.skip}</skip>
                                         <!-- Sets the path to the file which contains the execution data. -->
-                                        <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                                        <destFile>
+                                            ${project.build.directory}/coverage-reports/jacoco-ut.exec
+                                        </destFile>
                                         <!--
                                             Sets the name of the property containing the settings
                                             for JaCoCo runtime agent.
@@ -1855,9 +1861,12 @@
                                     <configuration>
                                         <skip>${unit-tests.skip}</skip>
                                         <!-- Sets the path to the file which contains the execution data. -->
-                                        <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                                        <dataFile>
+                                            ${project.build.directory}/coverage-reports/jacoco-ut.exec
+                                        </dataFile>
                                         <!-- Sets the output directory for the code coverage report. -->
-                                        <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut
+                                        <outputDirectory>
+                                            ${project.reporting.outputDirectory}/jacoco-ut
                                         </outputDirectory>
                                     </configuration>
                                 </execution>
@@ -1869,41 +1878,57 @@
                                     <configuration>
                                         <skip>${jacoco-check.skip}</skip>
                                         <rules>
-                                            <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                            <rule
+                                                implementation="org.jacoco.maven.RuleConfiguration">
                                                 <element>BUNDLE</element>
                                                 <limits>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>INSTRUCTION</counter>
                                                         <value>COVEREDRATIO</value>
-                                                        <minimum>${jacoco.instructions.coverage.percentage.minimum}
+                                                        <minimum>
+                                                            ${jacoco.instructions.coverage.percentage.minimum}
                                                         </minimum>
                                                     </limit>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>CLASS</counter>
                                                         <value>MISSEDCOUNT</value>
-                                                        <maximum>${jacoco.classes.missed.minimum}</maximum>
+                                                        <maximum>
+                                                            ${jacoco.classes.missed.minimum}
+                                                        </maximum>
                                                     </limit>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>LINE</counter>
                                                         <value>COVEREDRATIO</value>
-                                                        <minimum>${jacoco.lines.coverage.percentage.minimum}</minimum>
+                                                        <minimum>
+                                                            ${jacoco.lines.coverage.percentage.minimum}
+                                                        </minimum>
                                                     </limit>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>BRANCH</counter>
                                                         <value>COVEREDRATIO</value>
-                                                        <minimum>${jacoco.branches.coverage.percentage.minimum}
+                                                        <minimum>
+                                                            ${jacoco.branches.coverage.percentage.minimum}
                                                         </minimum>
                                                     </limit>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>COMPLEXITY</counter>
                                                         <value>COVEREDRATIO</value>
-                                                        <minimum>${jacoco.complexities.coverage.percentage.minimum}
+                                                        <minimum>
+                                                            ${jacoco.complexities.coverage.percentage.minimum}
                                                         </minimum>
                                                     </limit>
-                                                    <limit implementation="org.jacoco.report.check.Limit">
+                                                    <limit
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>METHOD</counter>
                                                         <value>COVEREDRATIO</value>
-                                                        <minimum>${jacoco.methods.coverage.percentage.minimum}</minimum>
+                                                        <minimum>
+                                                            ${jacoco.methods.coverage.percentage.minimum}
+                                                        </minimum>
                                                     </limit>
                                                 </limits>
                                             </rule>
@@ -1924,6 +1949,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-maven</artifactId>
                     </plugin>
                 </plugins>
             </build>

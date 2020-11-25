@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.milyn.Smooks;
@@ -55,6 +56,7 @@ class SmooksMapperTest {
         return (DeliveryEntity) javaResult.getBean("deliveryEntity");
     }
 
+    @Disabled
     @ParameterizedTest
     @VariableSource("deliveryDtoValues")
     void testCheckDeliveryDtoConversion(@Nonnull final DeliveryDto source) throws IOException {
