@@ -26,4 +26,6 @@ Dozer is a complete mapping framework with various type conversions and customiz
 * [**Java Performance Mappings**](https://www.baeldung.com/java-performance-mapping-frameworks)
 * [**Java Dozer Guide**](https://www.baeldung.com/dozer)
 * [**Java Dozer Alternatives**](https://java.libhunt.com/dozer-alternatives)
+* [**Java Dozer Architecture**](https://terasolunaorg.github.io/guideline/5.0.x/en/ArchitectureInDetail/Utilities/Dozer.html)
+* [**Java Spring Dozer Mappings**](https://terasolunaorg.github.io/guideline/5.0.x/en/ArchitectureInDetail/Utilities/Dozer.html)
 
