@@ -25,7 +25,7 @@ jdk:
 
 jobs:
   include:
-    - state: build
+    - stage: build
       if: repo = AlexRogalskiy/object-mappers-playground AND branch = master AND type = push
       name: "Build: mvn clean package"
       script:
@@ -78,7 +78,7 @@ jobs:
         - mvn clean deploy -DskipTests=true --settings ./mvn/settings.xml -B -U -Prelease
       deploy:
         provider: releases
-        token:
+        api_token:
           secure: "$GITHUB_TOKEN"
         file:
           - target/sandboni-*.jar
