@@ -26,19 +26,19 @@ jdk:
 jobs:
   include:
     - stage: build
-      if: repo = AlexRogalskiy/object-mappers-playground AND branch = master AND type = push
+      if: branch = master AND type = push
       name: "Build: mvn clean package"
       script:
         - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
     - stage: sonar
-      if: repo = AlexRogalskiy/object-mappers-playground AND branch = master AND type = pull_request
+      if: branch = master AND type = pull_request
       name: "PR: mvn clean verify sonar:sonar"
       script:
         - mvn clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
 
     - stage: release
-      if: repo = AlexRogalskiy/object-mappers-playground AND branch = release AND type = push
+      if: branch = release AND type = push
       name: "Release: Tag on GitHub and deploy to OSSRH"
       jdk: oraclejdk8
       script:
@@ -66,7 +66,7 @@ jobs:
         - mvn --settings ./mvn/settings.xml -B release:perform || travis_terminate 1
 
     - stage: snapshot release
-      if: repo = AlexRogalskiy/object-mappers-playground AND branch = develop AND type = push
+      if: branch = develop AND type = push
       name: "SNAPSHOT release"
       before_install:
         - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
@@ -78,7 +78,7 @@ jobs:
         - mvn clean deploy -DskipTests=true --settings ./mvn/settings.xml -B -U -Prelease
       deploy:
         provider: releases
-        api_token:
+        api_key:
           secure: "$GITHUB_TOKEN"
         file:
           - target/sandboni-*.jar
