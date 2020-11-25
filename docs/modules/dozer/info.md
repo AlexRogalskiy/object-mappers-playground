@@ -8,12 +8,12 @@ Dozer is a complete mapping framework with various type conversions and customiz
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * can handle object mappings recursively
 * support Java API/XML-based mappings
 
-### Cons
+### _Cons_
 
 * delivers the worst performance
 

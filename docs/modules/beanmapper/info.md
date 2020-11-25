@@ -8,9 +8,9 @@ Java Bean Mapper supports limited mapping operations that, include mostly conver
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
-### Cons
+### _Cons_
 
 * limited and not user-friendly API for object conversions
 

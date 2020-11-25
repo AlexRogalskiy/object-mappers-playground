@@ -8,12 +8,12 @@ Java Bean Mapper is part of the Apache Commons BeanUtils library from the Apache
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * good performance
 * easy-to-use and easy-to-follow object mapping approach
 
-### Cons
+### _Cons_
 
 * cannot process recursive object mappings
 * fully depends on setter method availability

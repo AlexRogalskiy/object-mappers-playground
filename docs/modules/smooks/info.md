@@ -11,9 +11,9 @@ Simple and easy-to-use framework for various data mappings \(XML, Java etc.\) wi
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
-### Cons
+### _Cons_
 
 ## _Use cases_
 

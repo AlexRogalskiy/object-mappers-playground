@@ -8,13 +8,13 @@ The main idea is to prohibit magic conversion and just automate all mappings wit
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * object mappings generated at compile time
 * user-friendly approach backed by annotations simplifies the notation of object property mappings
 * mappers compositions with configurations provide possibility to reuse already defined object matchings \(new method does not have to be provided for each mapping\)
 
-### Cons
+### _Cons_
 
 ## _Use cases_
 

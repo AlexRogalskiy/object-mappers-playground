@@ -8,12 +8,12 @@ Works in the same way as Orika/Dozer bean mapping frameworks does. This mapper u
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * bytecode generation using Cglib library
 * offers an API for specific use cases, so various mapping techniques can be implemented \(via PropertyMappings with full conversion support\)
 
-### Cons
+### _Cons_
 
 * hard to debug end-to-end object mappings
 

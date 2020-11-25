@@ -8,13 +8,13 @@ MapStruct is a complete Java Bean Mapper framework. Based on Annotation Processo
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * annotation-based mappings processing mechanism
 * wide range of available mapping operations \(with more complexity apart from Orika/Dozer\)
 * can be debugged in runtime in order to validate the end-to-end object mappings
 
-### Cons
+### _Cons_
 
 * additional interfaces/abstract classes needed to handle the mapping mechanism
 * high performance and universal applicability

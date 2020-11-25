@@ -17,12 +17,12 @@ Uses the bytecode generation mechanism based on Javassist library to provide end
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * high performance due to bytecode generation mechanism \(Javassist library\)
 * easy-to-use feature mappings
 
-### Cons
+### _Cons_
 
 * hard to debug and validate object mappings correctness
 

@@ -8,12 +8,12 @@ The Java Bean manual mapper is not an automatically generated convesion mechanis
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * all technical aspects can be considered on individual basis
 * delivers the best performance
 
-### Cons
+### _Cons_
 
 * hand-coded implementation
 * time-consuming and error-prone creation

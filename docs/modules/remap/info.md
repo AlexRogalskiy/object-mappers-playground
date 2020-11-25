@@ -8,12 +8,12 @@ Uses bytecode generation strategy based on Cglib library to provide end-to-end o
 
 ## _Pros & Cons_
 
-### Pros
+### _Pros_
 
 * robustness and minimal administrative overhead for tests \(self-diagnostic approach\)
 * high performance with small footprint
 
-### Cons
+### _Cons_
 
 * hard to debug object mappings due to bytecode generated nature
 
