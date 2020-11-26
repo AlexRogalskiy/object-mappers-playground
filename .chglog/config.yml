@@ -1,3 +1,5 @@
+# https://github.com/git-chglog/git-chglog
+
 style: github
 template: CHANGELOG.tpl.md
 

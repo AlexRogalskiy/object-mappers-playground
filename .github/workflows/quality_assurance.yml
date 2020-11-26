@@ -82,17 +82,7 @@ jobs:
         uses: codecov/codecov-action@v1.0.15
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: modules/objectmappers-beancp/.build/bin/io.nullables.api.playground.objectmappers.beancp/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-beanmapper/.build/bin/io.nullables.api.playground.objectmappers.beanmapper/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-beanutils/.build/bin/io.nullables.api.playground.objectmappers.beanutils/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-dozer/.build/bin/io.nullables.api.playground.objectmappers.dozer/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-mapstruct/.build/bin/io.nullables.api.playground.objectmappers.mapstruct/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-modelmapper/.build/bin/io.nullables.api.playground.objectmappers.modelmapper/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-moo/.build/bin/io.nullables.api.playground.objectmappers.moo/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-nomin/.build/bin/io.nullables.api.playground.objectmappers.nomin/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-orika/.build/bin/io.nullables.api.playground.objectmappers.orika/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-remap/.build/bin/io.nullables.api.playground.objectmappers.remap/reporting/jacoco-ut/jacoco.xml,
-          modules/objectmappers-smooks/.build/bin/io.nullables.api.playground.objectmappers.smooks/reporting/jacoco-ut/jacoco.xml
+          files: modules/objectmappers-beancp/.build/bin/io.nullables.api.playground.objectmappers.beancp/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-beanmapper/.build/bin/io.nullables.api.playground.objectmappers.beanmapper/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-beanutils/.build/bin/io.nullables.api.playground.objectmappers.beanutils/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-dozer/.build/bin/io.nullables.api.playground.objectmappers.dozer/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-mapstruct/.build/bin/io.nullables.api.playground.objectmappers.mapstruct/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-modelmapper/.build/bin/io.nullables.api.playground.objectmappers.modelmapper/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-moo/.build/bin/io.nullables.api.playground.objectmappers.moo/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-nomin/.build/bin/io.nullables.api.playground.objectmappers.nomin/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-orika/.build/bin/io.nullables.api.playground.objectmappers.orika/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-remap/.build/bin/io.nullables.api.playground.objectmappers.remap/reporting/jacoco-ut/jacoco.xml, modules/objectmappers-smooks/.build/bin/io.nullables.api.playground.objectmappers.smooks/reporting/jacoco-ut/jacoco.xml
           name: codecov-umbrella
           path_to_write_report: .build/bin/io.nullables.api.playground.objectmappers/reporting/codecov_report.txt
           verbose: true

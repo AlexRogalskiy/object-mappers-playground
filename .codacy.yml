@@ -1,0 +1,16 @@
+engines:
+  coverage:
+    enabled: true
+  metrics:
+    enabled: true
+  prospector:
+    enabled: true
+  duplication:
+    enabled: true
+    exclude_paths:
+      - 'test/**'
+
+exclude_paths:
+  - 'docs/**'
+  - 'mappings/**'
+
