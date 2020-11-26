@@ -96,7 +96,7 @@ jobs:
         timeout-minutes: 20
         if: contains(matrix.os, 'win') == true
         run: |
-          ./mvnw clean package %MAVEN_ARGS% -P"non_module_java","test-jar","dev"
+          ./mvnw clean package %MAVEN_ARGS% -P"test-jar","dev"
 
   module_java:
     runs-on: ${{ matrix.os }}
@@ -138,10 +138,10 @@ jobs:
         if: contains(matrix.os, 'win') == false
         run: |
           chmod +x ./mvnw
-          ./mvnw clean package $MAVEN_ARGS -P"module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"test-jar","dev"
 
       - name: Build with Maven
         timeout-minutes: 20
         if: contains(matrix.os, 'win') == true
         run: |
-          ./mvnw clean package %MAVEN_ARGS% -P"module_java","test-jar","dev"
+          ./mvnw clean package %MAVEN_ARGS% -P"test-jar","dev"

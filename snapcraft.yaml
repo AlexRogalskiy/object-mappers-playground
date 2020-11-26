@@ -1,5 +1,7 @@
 name: object-mappers
 version: '1.0.0'
+version-script: |
+  echo $(cat VERSION)-$(date +%Y%m%d)+$(git rev-parse --short HEAD)
 summary: |
   Object mappers playground
 description: |
@@ -12,7 +14,8 @@ architectures:
   - build-on: amd64
   - build-on: i386
 
-confinement: devmode
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
 base: core18
 
 parts:
@@ -22,7 +25,9 @@ parts:
     maven-openjdk-version: "11"
     source-type: git
     source-branch: master
+    source-depth: 1
     maven-options:
+      - clean install
       - --batch-mode
       - --show-version
       - --errors
@@ -31,9 +36,12 @@ parts:
       - -Ptest-jar,dev
     override-build: |
       snapcraftctl build
-      unzip -o DIST/object-mappers-*.zip -d $SNAPCRAFT_PART_INSTALL/
     build-packages:
+      - openjdk-11-jdk
       - unzip
+      - maven
+    stage-packages:
+      - openjdk-11-jre
 
 apps:
   object-mappers:
@@ -43,6 +51,7 @@ apps:
     environment:
       JAVA_OPTS: -Xms1024m -Xmx1024m
       JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
+      JAVA_TOOL_OPTIONS: "-Duser.home=$SNAP_USER_COMMON"
       PATH: $JAVA_HOME/jre/bin:$PATH
     plugs:
       - home
