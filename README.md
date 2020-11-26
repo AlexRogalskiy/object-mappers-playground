@@ -55,11 +55,9 @@ run.bat
 
 ## _How-to-use_
 
+Choose one of the modules and add to your `pom.xml`:
+
 ```text
-## Usage
-
-Choose one of the modules and add to your `pom.xml`
-
 <dependency>
     <groupId>io.nullables.api.playground</groupId>
     <artifactId>objectmappers-parent</artifactId>
