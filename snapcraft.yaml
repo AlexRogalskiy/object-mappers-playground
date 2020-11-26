@@ -19,7 +19,6 @@ parts:
   object-mappers:
     plugin: maven
     source: https://github.com/AlexRogalskiy/object-mappers-playground.git
-    source-tag: release-$SNAPCRAFT_PROJECT_VERSION
     maven-openjdk-version: "11"
     source-type: git
     source-branch: master
