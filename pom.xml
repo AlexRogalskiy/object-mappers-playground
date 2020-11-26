@@ -674,6 +674,42 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>set-product-filename-version</id>
+                        <goals>
+                            <goal>regex-property</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <name>product.filename.version</name>
+                            <value>${project.groupId}-${project.artifactId}</value>
+                            <regex>^(\d+(\.\d+)?).*?$</regex>
+                            <replacement>$1</replacement>
+                            <failIfNoMatch>false</failIfNoMatch>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>module-timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <name>module.build.timestamp</name>
+                            <pattern>${maven.build.timestamp.format}</pattern>
+                            <timeZone>Europe/Moscow</timeZone>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-cpu-count</id>
+                        <goals>
+                            <goal>cpu-count</goal>
+                        </goals>
+                        <configuration>
+                            <!-- if not given, 'cpu.count' name is used -->
+                            <cpuCount>my.cpu.count</cpuCount>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>remove-old-artifacts</id>
                         <phase>package</phase>
                         <goals>
@@ -1966,6 +2002,7 @@
                             <artifactId>coveralls-maven-plugin</artifactId>
                             <version>${maven-coveralls-plugin.version}</version>
                             <configuration>
+                                <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
                                 <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                                 <timestampFormat>${maven.build.timestamp.format}</timestampFormat>
                             </configuration>

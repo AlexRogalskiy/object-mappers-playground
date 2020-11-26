@@ -27,7 +27,6 @@ parts:
     source-branch: master
     source-depth: 1
     maven-options:
-      - clean install
       - --batch-mode
       - --show-version
       - --errors

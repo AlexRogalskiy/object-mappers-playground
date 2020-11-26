@@ -28,6 +28,10 @@ jdk:
 before_script:
   - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
   - sudo chmod +x ./mvnw
+  # enable IPv6, see: https://github.com/travis-ci/travis-ci/issues/8361
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+    sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6';
+    fi
 
 script:
   - ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
