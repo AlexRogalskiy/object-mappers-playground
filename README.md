@@ -1,6 +1,21 @@
 # ObjectMappers
 
-![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines) ![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground) ![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground) ![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/object-mappers-playground) ![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/object-mappers-playground) ![GitHub](https://img.shields.io/github/license/AlexRogalskiy/object-mappers-playground) ![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/object-mappers-playground) ![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/object-mappers-playground/goto) ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/object-mappers-playground) ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground) [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)](./) [![BCH compliance](https://bettercodehub.com/edge/badge/AlexRogalskiy/object-mappers-playground?branch=master)](https://bettercodehub.com/) [![Build status](https://ci.appveyor.com/api/projects/status/lqu3a77c8g81808r?svg=true)](https://ci.appveyor.com/project/AlexanderRogalskiy/object-mappers-playground)
+![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
+![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
+![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/object-mappers-playground)
+![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/object-mappers-playground)
+![GitHub](https://img.shields.io/github/license/AlexRogalskiy/object-mappers-playground)
+![GitHub language count](https://img.shields.io/github/languages/count/AlexRogalskiy/object-mappers-playground)
+![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/object-mappers-playground/goto)
+![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/object-mappers-playground)
+![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
+[![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)](./)
+[![BCH compliance](https://bettercodehub.com/edge/badge/AlexRogalskiy/object-mappers-playground?branch=master)](https://bettercodehub.com/)
+[![Build status](https://ci.appveyor.com/api/projects/status/lqu3a77c8g81808r?svg=true)](https://ci.appveyor.com/project/AlexanderRogalskiy/object-mappers-playground)
+[![Build Status](https://travis-ci.com/AlexRogalskiy/object-mappers-playground.svg?branch=master)](https://travis-ci.com/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 
