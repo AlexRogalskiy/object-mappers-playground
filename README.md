@@ -11,6 +11,7 @@
 ![GitHub search hit counter](https://img.shields.io/github/search/AlexRogalskiy/object-mappers-playground/goto)
 ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/object-mappers-playground)
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/object-mappers-playground)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e588f2fc726f41458885550c2d80610c)](https://app.codacy.com/gh/AlexRogalskiy/object-mappers-playground?utm_source=github.com&utm_medium=referral&utm_content=AlexRogalskiy/object-mappers-playground&utm_campaign=Badge_Grade_Settings)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AlexRogalskiy_object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=AlexRogalskiy_object-mappers-playground)
 [![Run Status](https://api.shippable.com/projects/5fb2d6f4a4e0a80007cb1606/badge?branch=master)](./)
 [![BCH compliance](https://bettercodehub.com/edge/badge/AlexRogalskiy/object-mappers-playground?branch=master)](https://bettercodehub.com/)
