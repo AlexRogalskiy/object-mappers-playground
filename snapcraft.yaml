@@ -32,9 +32,8 @@ parts:
       - --errors
       - --lax-checksums
       - -DskipTests=true
-      - -Ptest-jar,dev
     override-build: |
-      snapcraftctl build
+      mvn clean install -Ptest-jar,dev
     build-packages:
       - openjdk-11-jdk
       - unzip
