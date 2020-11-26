@@ -39,7 +39,7 @@ jobs:
         timeout-minutes: 20
         shell: bash
         run: |
-          ./mvnw clean install $MAVEN_ARGS -P"non_module_java","test-jar","dev"
+          ./mvnw clean install $MAVEN_ARGS -P"test-jar","dev"
 
   benchmark:
     needs: linux
@@ -69,7 +69,7 @@ jobs:
         timeout-minutes: 20
         shell: bash
         run: |
-          ./mvnw clean install $MAVEN_ARGS -P"module_java","test-jar","dev"
+          ./mvnw clean install $MAVEN_ARGS -P"test-jar","dev"
 
       - name: 'Benchmark'
         timeout-minutes: 60

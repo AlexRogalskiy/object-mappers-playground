@@ -23,11 +23,13 @@ parts:
     source-type: git
     source-branch: master
     maven-options:
+      - --file pom.xml
+      - --batch-mode
+      - --show-version
+      - --errors
+      - --lax-checksums
       - -DskipTests=true
-      - -Dmaven.javadoc.skip=false
-      - -B
-      - -V
-      - -P"test-jar","dev"
+      - -P test-jar,dev
     override-build: |
       snapcraftctl build
       unzip -o DIST/object-mappers-*.zip -d $SNAPCRAFT_PART_INSTALL/
