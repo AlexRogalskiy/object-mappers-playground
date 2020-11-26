@@ -185,6 +185,7 @@
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
+        <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
@@ -1806,6 +1807,7 @@
                             <artifactId>pitest-maven</artifactId>
                             <version>${maven-pitest-plugin.version}</version>
                             <configuration>
+                                <skip>${unit-tests.skip}</skip>
                                 <targetClasses>
                                     <param>io.nullables.api.playground.objectmappers.*</param>
                                 </targetClasses>
@@ -1950,7 +1952,7 @@
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
                             <artifactId>cobertura-maven-plugin</artifactId>
-                            <version>2.7</version>
+                            <version>${maven-cobertura-plugin.version}</version>
                             <configuration>
                                 <check>true</check>
                                 <format>xml</format>
