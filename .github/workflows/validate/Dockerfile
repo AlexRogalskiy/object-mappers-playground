@@ -7,7 +7,7 @@ RUN apk add --no-cache imagemagick bash
 
 ENV STARTER_HOME=/opt/app
 
-ADD ./validate.sh ${STARTER_HOME}/validate.sh
+ADD ./.github/workflows/validate/validate.sh ${STARTER_HOME}/validate.sh
 
 RUN chmod 755 ${STARTER_HOME}/validate.sh
 

@@ -25,7 +25,7 @@ jobs:
         language: [ 'java' ]
 
     steps:
-      - name: Prepare git
+      - name: 'Prepare git'
         run: git config --global core.autocrlf false
 
       - name: 'Checkout repository'
@@ -57,8 +57,14 @@ jobs:
           chmod +x ./mvnw
 
       - name: 'Maven Package'
+        if: contains(matrix.os, 'win') == false
         run: |
-          ./mvnw clean compile package $MAVEN_ARGS -P"module_java","test-jar","dev"
+          ./mvnw clean package $MAVEN_ARGS -P"test-jar","dev"
+
+      - name: 'Maven Package'
+        if: contains(matrix.os, 'win') == true
+        run: |
+          mvnw clean package %MAVEN_ARGS% -P"test-jar","dev"
 
       - name: 'Perform CodeQL Analysis'
         uses: github/codeql-action/analyze@v1

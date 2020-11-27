@@ -25,7 +25,8 @@ parts:
     maven-openjdk-version: "11"
     source-type: git
     source-branch: master
-    source-depth:
+    source-depth: 1
+    maven-options:
       - --batch-mode
       - --show-version
       - --errors
