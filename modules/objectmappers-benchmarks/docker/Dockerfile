@@ -1,5 +1,7 @@
-# Base OS layer
+#!/bin/echo docker build . -f
+# -*- coding: utf-8 -*-
 # docker build -t container_tag --build-arg IMAGE_SOURCE=openjdk IMAGE_TAG=latest .
+
 ARG IMAGE_SOURCE=openjdk
 ARG IMAGE_TAG=latest
 

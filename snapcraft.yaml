@@ -25,15 +25,14 @@ parts:
     maven-openjdk-version: "11"
     source-type: git
     source-branch: master
-    source-depth: 1
-    maven-options:
+    source-depth:
       - --batch-mode
       - --show-version
       - --errors
       - --lax-checksums
-      - -DskipTests=true
     override-build: |
-      mvn clean install -Ptest-jar,dev
+      mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+      mvnw clean package --file pom.xml -DskipTests=true -P"test-jar","dev"
     build-packages:
       - openjdk-11-jdk
       - unzip
