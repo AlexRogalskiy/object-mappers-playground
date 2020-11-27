@@ -59,10 +59,10 @@ while read image; do
 
   elif [[ "${filename}" =~ .*\-(32|64|128|256)\.(png) ]]; then
     # Minimal shortest side
-    if [[ "${width}" -le "${height}" && "${width}" -lt 128 ]]; then
-      error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must be at least 128px"
-    elif [[ "${width}" -ge "${height}" && "${height}" -lt 128 ]]; then
-      error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must be at least 128px"
+    if [[ "${width}" -le "${height}" && "${width}" -lt 32 ]]; then
+      error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must be at least 32px"
+    elif [[ "${width}" -ge "${height}" && "${height}" -lt 32 ]]; then
+      error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must be at least 32px"
     fi
 
     # Maximal shortest size
@@ -93,7 +93,7 @@ while read image; do
   fi
 
   ((IMAGES++))
-done <<<$(find docs/images -type f)
+done <<<$(find /c/Users/Alex/Documents/object-mappers/docs/images -type f)
 
 echo "\nTotal of ${IMAGES} images checked, found ${ERRORS} issues.\n"
 
