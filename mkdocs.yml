@@ -22,7 +22,7 @@ markdown_extensions:
   - admonition
 
 pages:
-  - Welcome: index.md
+  - Introduction: index.md
   - User Guide:
       - Changelog: user-guide/changelog.md
       - Dependency: user-guide/dependency.md
@@ -33,22 +33,22 @@ pages:
       - Troubleshooting: user-guide/troubleshooting.md
       - Upgrade: user-guide/upgrade.md
   - Modules:
-      - BeanCp: modules/beancp/info.md
-      - BeanMapper: modules/beanmapper/info.md
-      - BeanUtils: modules/beanutils/info.md
-      - Bull: modules/bull/info.md
-      - Converter: modules/converter/info.md
-      - Datus: modules/datus/info.md
-      - Dozer: modules/dozer/info.md
-      - JMapper: modules/jmapper/info.md
-      - MapStruct: modules/mapstruct/info.md
-      - ModelMapper: modules/modelmapper/info.md
-      - Moo: modules/moo/info.md
-      - Nomin: modules/nomin/info.md
-      - Orika: modules/orika/info.md
-      - ReMap: modules/remap/info.md
-      - Selma: modules/selma/info.md
-      - Smooks: modules/smooks/info.md
+      - BeanCp Tutorial: modules/beancp/info.md
+      - BeanMapper Tutorial: modules/beanmapper/info.md
+      - BeanUtils Tutorial: modules/beanutils/info.md
+      - Bull Tutorial: modules/bull/info.md
+      - Converter Tutorial: modules/converter/info.md
+      - Datus Tutorial: modules/datus/info.md
+      - Dozer Tutorial: modules/dozer/info.md
+      - JMapper Tutorial: modules/jmapper/info.md
+      - MapStruct Tutorial: modules/mapstruct/info.md
+      - ModelMapper Tutorial: modules/modelmapper/info.md
+      - Moo Tutorial: modules/moo/info.md
+      - Nomin Tutorial: modules/nomin/info.md
+      - Orika Tutorial: modules/orika/info.md
+      - ReMap Tutorial: modules/remap/info.md
+      - Selma Tutorial: modules/selma/info.md
+      - Smooks Tutorial: modules/smooks/info.md
   - Contributing:
       - Information: contributing/info.md
   - Reporting:

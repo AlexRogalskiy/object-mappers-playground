@@ -102,7 +102,7 @@ while read image; do
   fi
 
   ((IMAGES++))
-done <<<$(find images -type f)
+done <<<$(find docs/images -type f)
 
 echo "\nTotal of ${IMAGES} images checked, found ${ERRORS} issues.\n"
 
