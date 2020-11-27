@@ -38,12 +38,8 @@ while read image; do
   [[ "${foldername}" == _* && "${foldername}" != "_default" ]] &&
     error "${folderpath}" "Directories should not start with an underscore (_), please use the integration domain instead"
 
-  # Ensure the docs and custom integrations don't collide
-  [[ -d "docs/${foldername}" ]] &&
-    error "${folderpath}" "The ${foldername} exists in docs directory"
-
   # Ensure file is actually a PNG/ICON file
-  [[ "${type}" != "png" || "${type}" != "icon" ]] &&
+  [[ "${type}" != "PNG" || "${type}" != "ICON" ]] &&
     error "${image}" "Invalid file type '${type}' for file"
 
   # Validate image dimensions
