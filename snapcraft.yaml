@@ -31,9 +31,10 @@ parts:
       - --show-version
       - --errors
       - --lax-checksums
-    override-build: |
-      mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
-      mvnw clean package --file pom.xml -DskipTests=true -P"test-jar","dev"
+      - -DskipTests=true
+      - -P test-jar, dev
+#    override-build: |
+#      snapcraftctl build
     build-packages:
       - openjdk-11-jdk
       - unzip
