@@ -93,7 +93,7 @@ while read image; do
   fi
 
   ((IMAGES++))
-done <<<$(find /c/Users/Alex/Documents/object-mappers/docs/images -type f)
+done <<<$(find docs/images -type f)
 
 echo "\nTotal of ${IMAGES} images checked, found ${ERRORS} issues.\n"
 
