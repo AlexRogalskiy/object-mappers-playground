@@ -1,4 +1,4 @@
-# Pull Request Template
+# ![image info](../images/icons8-template-64.png) Pull Request Template
 
 > **Please read the** [**contribution guidelines**](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/docs/contributing/info.md) **before filling out this pull request template**.
 

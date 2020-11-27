@@ -1,6 +1,6 @@
-# JMapper Tutorial
+# ![image info](../images/icons8-inspect-code-64.png) JMapper Tutorial
 
-## _Description_
+## ![image info](../../images/icons8-code-64.png) _Description_
 
 JMapper object-mapping framework is similar to MapStruct configuration mechanism that should be provided beforehand. Several configuration variants cab be supported:
 
@@ -10,25 +10,25 @@ JMapper object-mapping framework is similar to MapStruct configuration mechanism
 
 Uses the bytecode generation mechanism based on Javassist library to provide end-to-end mappings.
 
-## _Features_
+## ![image info](../../images/icons8-attach-64.png) _Features_
 
 * relational mapping of several classes to one class \(many to one\) and vice versa \(one to many\)
 * configurations inheritance
 
-## _Pros & Cons_
+## ![image info](../../images/icons8-edit-property-64.png) _Pros & Cons_
 
-### _Pros_
+### ![image info](../../images/icons8-add-property-64.png)_Pros_
 
 * high performance due to bytecode generation mechanism \(Javassist library\)
 * easy-to-use feature mappings
 
-### _Cons_
+### ![image info](../../images/icons8-remove-property-64.png) _Cons_
 
 * hard to debug and validate object mappings correctness
 
-## _Use cases_
+## ![image info](../../images/icons8-source-64.png) _Use cases_
 
-## _Links_
+## ![image info](../../images/icons8-inspect-code-64.png) _Links_
 
 * [**Official Site**](https://jmapper-framework.github.io/jmapper-core/)
 * [**Official Repository**](https://github.com/jmapper-framework/jmapper-core)

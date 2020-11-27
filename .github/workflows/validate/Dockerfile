@@ -13,5 +13,5 @@ RUN chmod 755 ${STARTER_HOME}/validate.sh
 
 WORKDIR ${STARTER_HOME}
 
-ENTRYPOINT [ "./validate.sh" ]
+ENTRYPOINT [ "/validate.sh" ]
 CMD ["Github [ Validate ] action started"]

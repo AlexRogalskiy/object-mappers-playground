@@ -6,7 +6,7 @@ labels: ''
 assignees: ''
 ---
 
-# Bug Report
+# ![image info](../images/icons8-template-64.png) Bug Report
 
 **Describe the bug** A clear and concise description of what the bug is.
 

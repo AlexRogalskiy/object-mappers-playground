@@ -6,7 +6,7 @@ labels: ''
 assignees: ''
 ---
 
-# Custom Report
+# ![image info](../images/icons8-template-64.png) Custom Report
 
 **Is your feature request related to a problem? Please describe.** A clear and concise name of issue.
 

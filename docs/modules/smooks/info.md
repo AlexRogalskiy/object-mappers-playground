@@ -1,23 +1,23 @@
-# Smooks Tutorial
+# ![image info](../images/icons8-inspect-code-64.png) Smooks Tutorial
 
-## _Description_
+## ![image info](../../images/icons8-code-64.png)_Description_
 
 Simple and easy-to-use framework for various data mappings \(XML, Java etc.\) with predefined set of features and object transformations:
 
 * Java Data bindings from different datasources
 * Java Object transformations
 
-## _Features_
+## ![image info](../../images/icons8-attach-64.png) _Features_
 
-## _Pros & Cons_
+## ![image info](../../images/icons8-edit-property-64.png) _Pros & Cons_
 
-### _Pros_
+### ![image info](../../images/icons8-add-property-64.png) _Pros__
 
-### _Cons_
+### ![image info](../../images/icons8-remove-property-64.png) _Cons
 
-## _Use cases_
+## ![image info](../../images/icons8-source-64.png) _Use cases_
 
-## _Links_
+## ![image info](../../images/icons8-inspect-code-64.png) _Links_
 
 * [**Official Site**](https://www.smooks.org/)
 * [**Official Repository**](https://github.com/smooks/smooks)
