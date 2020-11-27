@@ -5,13 +5,9 @@ FROM alpine
 
 RUN apk add --no-cache imagemagick bash
 
-ENV STARTER_HOME=/opt/app
+COPY validate.sh /validate.sh
 
-COPY validate.sh ${STARTER_HOME}/validate.sh
-
-RUN chmod 755 ${STARTER_HOME}/validate.sh
-
-WORKDIR ${STARTER_HOME}
+RUN chmod 755 /validate.sh
 
 ENTRYPOINT [ "/validate.sh" ]
 CMD ["Github [ Validate ] action started"]
