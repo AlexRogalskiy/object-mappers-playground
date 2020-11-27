@@ -39,7 +39,7 @@ while read image; do
     error "${folderpath}" "Directories should not start with an underscore (_), please use the integration domain instead"
 
   # Ensure file is actually a PNG/ICON file
-  [[ "${type}" != "PNG" || "${type}" != "ICON" ]] &&
+  [[ "${type}" != "PNG" && "${type}" != "ICON" ]] &&
     error "${image}" "Invalid file type '${type}' for file"
 
   # Validate image dimensions
