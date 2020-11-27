@@ -42,31 +42,22 @@ while read image; do
   [[ -d "docs/${foldername}" ]] &&
     error "${folderpath}" "The ${foldername} exists in docs directory"
 
-  # Ensure file is actually a PNG file
-  [[ "${type}" != "PNG" ]] &&
+  # Ensure file is actually a PNG/ICON file
+  [[ "${type}" != "png" || "${type}" != "icon" ]] &&
     error "${image}" "Invalid file type '${type}' for file"
 
-  # Ensure normal version exists when hDPI image is provided
-  [[ "${filename}" == "icon@2x.png" ]] &&
-    [[ ! -f "${folderpath}/icon.png" ]] &&
-    error "${image}" "hDPI icon was provided, but the normal version is missing"
-
-  [[ "${filename}" == "logo@2x.png" ]] &&
-    [[ ! -f "${folderpath}/logo.png" ]] &&
-    error "${image}" "hDPI logo was provided, but the normal version is missing"
-
   # Validate image dimensions
-  if [[ "${filename}" == "icon.png" ]]; then
+  if [[ "${filename}" =~ .*\-(32|64)\.(icon) ]]; then
     # icon dimension
-    [[ "${width}" -ne 256 || "${height}" -ne 256 ]] &&
+    [[ "${width}" -ne 64 || "${height}" -ne 64 ]] &&
       error "${image}" "Invalid icon size! Size is ${width}x${height}px, must be 256x256px"
 
-  elif [[ "${filename}" == "icon@2x.png" ]]; then
+  elif [[ "${filename}" =~ .*\-(128|256|512)\.(icon) ]]; then
     # hDPI icon dimension
     [[ "${width}" -ne 512 || "${height}" -ne 512 ]] &&
       error "${image}" "Invalid hDPI icon size! Size is ${width}x${height}px, must be 512x512px"
 
-  elif [[ "${filename}" == "logo.png" ]]; then
+  elif [[ "${filename}" =~ .*\-(32|64|128|256)\.(png) ]]; then
     # Minimal shortest side
     if [[ "${width}" -le "${height}" && "${width}" -lt 128 ]]; then
       error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must be at least 128px"
@@ -81,7 +72,7 @@ while read image; do
       error "${image}" "Invalid logo size! Size is ${width}x${height}px, shortest side must not exceed 256px"
     fi
 
-  elif [[ "${filename}" == "logo@2x.png" ]]; then
+  elif [[ "${filename}" =~ .*\-(256|512)\.(png) ]]; then
     # Minimal shortest side
     if [[ "${width}" -le "${height}" && "${width}" -lt 256 ]]; then
       error "${image}" "Invalid hDPI logo size! Size is ${width}x${height}px, shortest side must be at least 256px"

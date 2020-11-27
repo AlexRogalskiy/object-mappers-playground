@@ -548,6 +548,22 @@
                                 <dependencyConvergence>
                                     <uniqueVersions>true</uniqueVersions>
                                 </dependencyConvergence>
+                                <evaluateBeanshell>
+                                    <message>Maven module has to be in a "groupId" beginning with "org.neo4j"</message>
+                                    <condition>{String s = "${project.groupId}"; s.startsWith("org.neo4j");}</condition>
+                                </evaluateBeanshell>
+                                <requireFilesDontExist>
+                                    <message>You are not allowed to have classes in "com" package</message>
+                                    <files>
+                                        <file>${project.build.sourceDirectory}/com</file>
+                                        <file>${project.build.testSourceDirectory}/com</file>
+                                    </files>
+                                </requireFilesDontExist>
+                                <requireFilesDontExist>
+                                    <files>
+                                        <file>enterprise</file>
+                                    </files>
+                                </requireFilesDontExist>
                             </rules>
                         </configuration>
                     </execution>
@@ -1563,6 +1579,14 @@
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
                             <version>${maven-javadoc-plugin.version}</version>
+                            <configuration>
+                                <additionalJOptions>
+                                    <additionalJOption>
+                                        -J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED
+                                    </additionalJOption>
+                                    <additionalJOption>--allow-script-in-comments</additionalJOption>
+                                </additionalJOptions>
+                            </configuration>
                             <executions>
                                 <execution>
                                     <id>attach-javadoc</id>
@@ -1719,6 +1743,7 @@
                             <maxmem>512m</maxmem>
 
                             <compilerArgs>
+                                <arg>-Xpkginfo:always</arg>
                                 <arg>
                                     --add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow
                                 </arg>
