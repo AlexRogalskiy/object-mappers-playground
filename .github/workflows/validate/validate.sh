@@ -35,13 +35,12 @@ while read image; do
   type="${properties[2]}"
 
   # Underscore folders are special cases. Instead one should symlink between integration domains
-  [[ "${foldername}" == _* && "${foldername}" != "_placeholder" && "${foldername}" != "_default" ]] &&
+  [[ "${foldername}" == _* && "${foldername}" != "_default" ]] &&
     error "${folderpath}" "Directories should not start with an underscore (_), please use the integration domain instead"
 
-  # Ensure the core and custom integrations don't collide
-  [[ -d "core/${foldername}" ]] &&
-    [[ -d "custom/${foldername}" ]] &&
-    error "${folderpath}" "The integration ${foldername} exists in both core and custom integrations. Core wins."
+  # Ensure the docs and custom integrations don't collide
+  [[ -d "docs/${foldername}" ]] &&
+    error "${folderpath}" "The ${foldername} exists in docs directory"
 
   # Ensure file is actually a PNG file
   [[ "${type}" != "PNG" ]] &&
@@ -103,9 +102,8 @@ while read image; do
   fi
 
   ((IMAGES++))
-done <<<$(find core custom -type f)
+done <<<$(find images -type f)
 
-echo ""
-echo "Total of ${IMAGES} images checked, found ${ERRORS} issues."
+echo "\nTotal of ${IMAGES} images checked, found ${ERRORS} issues.\n"
 
 [[ "${ERRORS}" -ne 0 ]] && exit 1 || exit 0

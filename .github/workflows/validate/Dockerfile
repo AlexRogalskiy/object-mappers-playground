@@ -7,7 +7,8 @@ RUN apk add --no-cache imagemagick bash
 
 ENV STARTER_HOME=/opt/app
 
-COPY ./validate.sh ${STARTER_HOME}/validate.sh
+ADD ./validate.sh ${STARTER_HOME}/validate.sh
+
 RUN chmod 755 ${STARTER_HOME}/validate.sh
 
 WORKDIR ${STARTER_HOME}
