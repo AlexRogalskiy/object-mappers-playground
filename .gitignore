@@ -13,6 +13,7 @@ packages/
 target/
 allure-results/
 .idea/
+.reporting/
 *.iml
 *.iws
 *.bak
