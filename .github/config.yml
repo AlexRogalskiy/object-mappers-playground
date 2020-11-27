@@ -1,4 +1,5 @@
 # https://github.com/behaviorbot/request-info?installation_id=189571
+blank_issues_enabled: false
 requestInfoLabelToAdd: needs-more-info
 
 requestInfoReplyComment: >
