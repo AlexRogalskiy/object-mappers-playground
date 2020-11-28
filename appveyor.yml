@@ -1,5 +1,8 @@
 version: 0.1.{build}
 
+skip_tags: true
+clone_depth: 1
+
 os: Visual Studio 2014 CTP4
 
 environment:
@@ -52,6 +55,7 @@ install:
   - cd ..
 
 build_script:
+  - SET MAVEN_OPTS="-Xms1024m"
   # Build NIX Java bindings
   - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
 

@@ -15,6 +15,11 @@ theme:
 
 edit_uri: edit/develop/docs
 
+extra:
+  social:
+    - type: github
+      link: https://github.com/AlexRogalskiy/object-mappers-playground
+
 markdown_extensions:
   - meta
   - footnotes
@@ -55,7 +60,8 @@ pages:
       - Information: reporting/info.md
       - Bug Report: reporting/bug_report.md
       - Custom Report: reporting/custom_report.md
+      - Issue Report: reporting/issue_template.md
       - Feature Requst: reporting/feature_request_template.md
-      - Pull Requst Template: reporting/pull_request_template.md
+      - Pull Requst: reporting/pull_request_template.md
   - Links:
       - Information: links/info.md

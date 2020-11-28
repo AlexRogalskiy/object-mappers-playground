@@ -1440,6 +1440,9 @@
         <!-- Deploy profile -->
         <profile>
             <id>deploy</id>
+            <properties>
+                <wagon-ssh.version>2.10</wagon-ssh.version>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1495,6 +1498,13 @@
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.wagon</groupId>
+                                <artifactId>wagon-ssh</artifactId>
+                                <version>${wagon-ssh.version}</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
                 </plugins>
             </build>

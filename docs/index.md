@@ -66,6 +66,7 @@ docs/
         upgrade.md # Upgrade page
     reporting/
         info.md # Informational page
+        issue_template.md # Issue template page
         bug_report.md # Bug report template
         custom_report.md # Custom report template
         feature_request_template.md # Feature request template
