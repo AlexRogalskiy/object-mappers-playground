@@ -195,6 +195,9 @@
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
+        <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
+        <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
+        <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-editorconfig-plugin.version>0.1.0</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
@@ -944,6 +947,104 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Duplicate profile -->
+        <profile>
+            <id>duplicate</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.ning.maven.plugins</groupId>
+                        <artifactId>maven-duplicate-finder-plugin</artifactId>
+                        <version>${maven-duplicate-finder-plugin.version}</version>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <useDefaultResourceIgnoreList>true</useDefaultResourceIgnoreList>
+                            <printEqualFiles>false</printEqualFiles>
+                            <failBuildInCaseOfDifferentContentConflict>false
+                            </failBuildInCaseOfDifferentContentConflict>
+                            <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
+                            <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
+                            <checkCompileClasspath>true</checkCompileClasspath>
+                            <checkRuntimeClasspath>false</checkRuntimeClasspath>
+                            <checkTestClasspath>false</checkTestClasspath>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Audit profile -->
+        <profile>
+            <id>audit</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>us.vchain</groupId>
+                        <artifactId>jvcn-maven-plugin</artifactId>
+                        <version>${maven-jvcn-plugin.version}</version>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>audit</id>
+                                <goals>
+                                    <goal>audit</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.rat</groupId>
+                        <artifactId>apache-rat-plugin</artifactId>
+                        <version>${maven-rat-plugin.version}</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*.md</exclude>
+                                <exclude>**/*.csv</exclude>
+                                <exclude>**/*.lst</exclude>
+                                <exclude>**/*.args</exclude>
+                                <exclude>**/*.yaml</exclude>
+                                <exclude>**/*.yml</exclude>
+                                <exclude>**/*.properties</exclude>
+                                <exclude>**/*.groovy</exclude>
+                                <exclude>**/*.log</exclude>
+                                <exclude>**/*.uml</exclude>
+                                <exclude>**/*.xml</exclude>
+                                <exclude>**/*.plt</exclude>
+                                <exclude>**/*.ftl</exclude>
+                                <exclude>**/*.json</exclude>
+                                <exclude>**/*.bat</exclude>
+                                <exclude>**/*.sh</exclude>
+                                <exclude>**/*.txt</exclude>
+                                <exclude>**/*.config</exclude>
+                                <exclude>**/.*</exclude>
+                                <exclude>**/Dockerfile</exclude>
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Linter profile -->
         <profile>
             <id>lint</id>

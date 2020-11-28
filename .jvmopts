@@ -1,0 +1,13 @@
+-Dfile.encoding=UTF8
+-Xms1G-Dfile.encoding=UTF8
+      -Xms1G
+      -Xmx3G
+      -XX:MaxMetaspaceSize=512M
+      -XX:ReservedCodeCacheSize=250M
+      -XX:+TieredCompilation
+      -XX:-UseGCOverheadLimit
+-Xmx3G
+-XX:MaxMetaspaceSize=512M
+-XX:ReservedCodeCacheSize=250M
+-XX:+TieredCompilation
+-XX:-UseGCOverheadLimit

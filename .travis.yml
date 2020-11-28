@@ -44,13 +44,13 @@ stages:
 jobs:
   include:
     - stage: sonar
-      if: branch = master AND type = pull_request
+      if: (branch = master OR branch =~ /^r[0-9]+\.[0-9]+/) AND type = pull_request
       name: "Sonar: mvn clean verify sonar:sonar"
       script:
         - ./mvnw clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
 
     - stage: release
-      if: branch = release AND type = push
+      if: branch = release AND type IN (push, pull_request)
       name: "Release: Tag on GitHub and deploy to OSSRH"
       jdk: oraclejdk8
       script:
@@ -78,7 +78,7 @@ jobs:
         - ./mvnw --settings ./.mvn/settings.xml -B release:perform || travis_terminate 1
 
     - stage: snapshot release
-      if: branch = develop AND type = push
+      if: branch = develop AND type IN (push, pull_request)
       name: "Snapshot release"
       before_install:
         - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
