@@ -16,7 +16,6 @@ build:
     # https://github.com/wercker/step-maven
     - wercker/maven:
       goals: clean install
-      maven_opts: --show-version --batch-mode --errors --lax-checksums
       profiles: test-jar,dev,test
       cache_repo: true
       version: 3.6.3
