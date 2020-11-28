@@ -13,6 +13,17 @@ env:
     --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
+  cli-args:
+    name: Cmd arguments
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Validate arguments
+        uses: ./.github/workflows/args
+        env:
+          TEST_NAME: "Mona"
+
   commit-check:
     runs-on: ${{ matrix.os }}
     strategy:
