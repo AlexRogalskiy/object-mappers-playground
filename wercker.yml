@@ -3,19 +3,47 @@
 # Read more about containers on our dev center
 # https://devcenter.wercker.com/overview-and-core-concepts/containers/
 # https://devcenter.wercker.com/quickstarts/languages/quickstarts-java/
-box: openjdk:8-jdk
+box: openjdk:11-oracle
+
+# defining the dev pipeline
+dev:
+  steps:
+    # A step that executes `gradle bootRun` command
+    - script:
+      name: prepare maven
+      code: |
+        chmod +x ./mvnw
+    # A step that executes `gradle bootRun` command
+    - script:
+      name: run maven
+      code: |
+        ./mvnw clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    - script:
+      name: prepare maven
+      code: |
+        chmod +x ./mvnw
+    # A step that executes `gradle build` command
+    - script:
+        name: run maven with tests
+        code: |
+          ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
 # https://devcenter.wercker.com/development/pipelines/
-build:
-  # Steps make up the actions in your pipeline
-  # Read more about steps on our dev center:
-  # https://devcenter.wercker.com/development/steps/
-  steps:
-    # https://github.com/wercker/step-maven
-    - wercker/maven:
-      goals: clean install
-      profiles: test-jar,dev,test
-      cache_repo: true
-      version: 3.6.3
+#build:
+#  # Steps make up the actions in your pipeline
+#  # Read more about steps on our dev center:
+#  # https://devcenter.wercker.com/development/steps/
+#  steps:
+#    # https://github.com/wercker/step-maven
+#    - wercker/maven:
+#      goals: clean install
+#      profiles: test-jar,dev,test
+#      cache_repo: true
+#      version: 3.6.3
