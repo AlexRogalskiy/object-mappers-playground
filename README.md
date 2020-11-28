@@ -18,6 +18,7 @@
 [![Build Status](https://travis-ci.com/AlexRogalskiy/object-mappers-playground.svg?branch=master)](https://travis-ci.com/AlexRogalskiy/object-mappers-playground)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6c9495aaf327415aa7b96ad0fc88f65a)](https://www.codacy.com/gh/AlexRogalskiy/object-mappers-playground/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlexRogalskiy/object-mappers-playground&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/AlexRogalskiy/object-mappers-playground/badge.svg?branch=master)](https://coveralls.io/github/AlexRogalskiy/object-mappers-playground?branch=master)
+[![wercker status](https://app.wercker.com/status/6fa8dbb1f621c654bd7038e29ccb3949/s/master "wercker status")](https://app.wercker.com/project/byKey/6fa8dbb1f621c654bd7038e29ccb3949)
 
 ## _Summary_
 
