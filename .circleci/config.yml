@@ -20,6 +20,8 @@ version: 2
 jobs:
   build:
     parallelism: 2
+    machine:
+      image: ubuntu-1604:202007-01
     environment:
       _JAVA_OPTIONS: "-Xmx3g"
       MAVEN_OPTS: -Xmx3200m
