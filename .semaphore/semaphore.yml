@@ -16,4 +16,4 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'mvn clean package %MAVEN_ARGS% --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
+            - 'mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
