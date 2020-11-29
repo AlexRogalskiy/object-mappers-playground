@@ -37,7 +37,7 @@ blocks:
             - checkout
             - sudo chmod +x ./mvnw
             - cache store
-            - './mvnw clean compile -DskipTests=true -P test-jar,dev'
+            - './mvnw clean compile -DskipTests=true -P"test-jar","dev"'
             - cache restore
   - name: Run tests
     task:
@@ -57,4 +57,4 @@ blocks:
           commands:
             - sem-version java $JAVA_VERSION
             - sudo chmod +x ./mvnw
-            - './mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P test,test-jar,dev'
+            - './mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"'
