@@ -131,12 +131,13 @@ python -m mkdocs
 
 ```text
 pip install mkdocs-material
+pip install markdown-include
 ```
 
 4\) Start the server at _**localhost**_ by running the following command:
 
 ```text
-mkdocs serve
+mkdocs serve --dirtyreload
 ```
 
 5\) Open up [localhost](http://127.0.0.1:8000/) in browser to get the default documentation homepage.

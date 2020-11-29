@@ -1758,6 +1758,7 @@
                             <effort>Max</effort>
                             <threshold>Low</threshold>
                             <xmlOutput>true</xmlOutput>
+                            <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
                             <excludeBugsFile>${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
                             </excludeBugsFile>
                         </configuration>
@@ -2151,6 +2152,9 @@
                                     ${surefire.timezone}
                                     ${surefire.commands}
                                 </argLine>
+                                <environmentVariables>
+                                    <testEnvironmentVariable>EnvironmentVariable</testEnvironmentVariable>
+                                </environmentVariables>
                                 <properties>
                                     <systemPropertyVariables>
                                         <java.awt.headless>true</java.awt.headless>
