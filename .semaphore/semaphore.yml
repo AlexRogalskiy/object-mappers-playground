@@ -10,10 +10,17 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout
+            - git config --global core.autocrlf false
   - name: 'Block #2'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'mvn clean package --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
+            - 'git clone https://github.com/AlexRogalskiy/object-mappers-playground'
+            - cd object-mappers-playground
+  - name: 'Block #3'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
