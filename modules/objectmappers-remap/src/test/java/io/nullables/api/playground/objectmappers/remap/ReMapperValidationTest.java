@@ -26,7 +26,7 @@ import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEnt
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
-import io.nullables.api.playground.objectmappers.remap.configuration.ReMapConfiguration;
+import io.nullables.api.playground.objectmappers.remap.configuration.ReMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ class ReMapperValidationTest {
     @Test
     void checkDeliveryDtoToDeliveryEntityMappingProperties_shouldBeValid() {
         // given
-        final Mapper<DeliveryDto, DeliveryEntity> mapper = new ReMapConfiguration().deliveryMapper();
+        final Mapper<DeliveryDto, DeliveryEntity> mapper = new ReMapperConfiguration().deliveryMapper();
 
         // then
         AssertMapping.of(mapper).expectReplace(DeliveryDto::getCodes, DeliveryEntity::getCodes)
@@ -51,7 +51,7 @@ class ReMapperValidationTest {
     @Test
     void checkAddressDtoToAddressEntityMappingProperties_shouldBeValid() {
         // given
-        final Mapper<AddressDto, AddressEntity> mapper = new ReMapConfiguration().addressMapper();
+        final Mapper<AddressDto, AddressEntity> mapper = new ReMapperConfiguration().addressMapper();
 
         // then
         AssertMapping.of(mapper).expectReplace(AddressDto::getId, AddressEntity::getId)

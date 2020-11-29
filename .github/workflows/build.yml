@@ -19,6 +19,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone for improving relevancy of SonarQube reporting
+          fetch-depth: 0
+
       - name: Validate arguments
         uses: ./.github/workflows/args
         env:

@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class MooMapper {
+public class MooMapperConfiguration {
 
     public DeliveryEntity translate(final DeliveryDto value) {
         return Translate.to(DeliveryEntity.class)

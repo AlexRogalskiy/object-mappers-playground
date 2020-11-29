@@ -29,7 +29,7 @@ import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
 
 import java.math.BigDecimal;
 
-public class ReMapConfiguration {
+public class ReMapperConfiguration {
 
     public Mapper<AddressDto, AddressEntity> addressMapper() {
         return Mapping.from(AddressDto.class).to(AddressEntity.class).replace(AddressDto::getId, AddressEntity::getId)

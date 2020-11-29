@@ -23,7 +23,7 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
-import io.nullables.api.playground.objectmappers.dozer.configuration.DozerConfiguration;
+import io.nullables.api.playground.objectmappers.dozer.configuration.DozerMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +53,7 @@ class DozerMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = new DozerConfiguration().configureMapper("mappings/config_mapping.xml",
+        this.mapper = new DozerMapperConfiguration().configureMapper("mappings/config_mapping.xml",
                         "mappings/address_mapping.xml", "mappings/delivery_mapping.xml");
     }
 

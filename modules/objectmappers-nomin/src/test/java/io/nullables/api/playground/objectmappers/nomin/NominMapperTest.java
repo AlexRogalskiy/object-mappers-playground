@@ -22,7 +22,7 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
-import io.nullables.api.playground.objectmappers.nomin.configuration.NominBuilder;
+import io.nullables.api.playground.objectmappers.nomin.configuration.NominMapperBuilder;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +53,7 @@ class NominMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = NominBuilder.newBuilder()
+        this.mapper = NominMapperBuilder.newBuilder()
                         .withDirectory("modules\\objectmappers-nomin\\src\\test\\resources\\mappings").build();
     }
 

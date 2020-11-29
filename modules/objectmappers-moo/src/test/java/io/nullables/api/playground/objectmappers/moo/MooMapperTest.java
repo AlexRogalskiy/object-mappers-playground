@@ -22,7 +22,7 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
-import io.nullables.api.playground.objectmappers.moo.configuration.MooMapper;
+import io.nullables.api.playground.objectmappers.moo.configuration.MooMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 import org.apache.commons.lang3.StringUtils;
@@ -49,11 +49,11 @@ class MooMapperTest {
                     IntStream.iterate(0, n -> n + 1).limit(ThreadLocalRandom.current().nextInt(1, 10))
                                     .mapToObj(v -> deliveryDtoMock().val()).map(Arguments::of);
 
-    private MooMapper mapper;
+    private MooMapperConfiguration mapper;
 
     @BeforeEach
     void before() {
-        this.mapper = new MooMapper();
+        this.mapper = new MooMapperConfiguration();
     }
 
     @Disabled

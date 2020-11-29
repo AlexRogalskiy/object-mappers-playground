@@ -9,5 +9,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Validate images
         uses: ./.github/workflows/validate

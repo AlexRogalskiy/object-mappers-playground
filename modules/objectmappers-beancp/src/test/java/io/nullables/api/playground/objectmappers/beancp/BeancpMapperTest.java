@@ -19,7 +19,7 @@
 package io.nullables.api.playground.objectmappers.beancp;
 
 import com.github.erchu.beancp.Mapper;
-import io.nullables.api.playground.objectmappers.beancp.configuration.BeanMapperBuilder;
+import io.nullables.api.playground.objectmappers.beancp.configuration.BeancpMapperBuilder;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
@@ -43,7 +43,7 @@ import static org.assertj.core.api.Assertions.tuple;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @SimpleTest
-class BeanMapperTest {
+class BeancpMapperTest {
 
     public static final Stream<Arguments> deliveryDtoValues =
                     IntStream.iterate(0, n -> n + 1).limit(ThreadLocalRandom.current().nextInt(1, 10))
@@ -53,7 +53,7 @@ class BeanMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = BeanMapperBuilder.newBuilder().withDefaultMappings().build();
+        this.mapper = BeancpMapperBuilder.newBuilder().withDefaultMappings().build();
     }
 
     @ParameterizedTest

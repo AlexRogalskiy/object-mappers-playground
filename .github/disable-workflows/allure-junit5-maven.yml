@@ -14,7 +14,11 @@ jobs:
     name: Run tests and generate Allure Report
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: 'Checkout repository'
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone for improving relevancy of SonarQube reporting
+          fetch-depth: 0
 
       - uses: actions/cache@v1
         with:

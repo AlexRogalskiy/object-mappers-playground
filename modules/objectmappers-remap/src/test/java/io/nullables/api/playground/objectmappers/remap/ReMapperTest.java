@@ -23,7 +23,7 @@ import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
-import io.nullables.api.playground.objectmappers.remap.configuration.ReMapConfiguration;
+import io.nullables.api.playground.objectmappers.remap.configuration.ReMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
 import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +53,7 @@ class ReMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = new ReMapConfiguration().deliveryMapper();
+        this.mapper = new ReMapperConfiguration().deliveryMapper();
     }
 
     @ParameterizedTest

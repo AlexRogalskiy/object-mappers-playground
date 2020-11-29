@@ -35,7 +35,7 @@ import io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidCon
 
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
-public class DozerConfiguration {
+public class DozerMapperConfiguration {
 
     private final TypeMappingOption[] TYPE_MAPPING_OPTIONS = {TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
         TypeMappingOptions.trimStrings(), TypeMappingOptions.wildcardCaseInsensitive(true),

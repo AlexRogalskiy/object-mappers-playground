@@ -12,6 +12,9 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v1
+        with:
+          # Disabling shallow clone for improving relevancy of SonarQube reporting
+          fetch-depth: 0
 
       - uses: actions/setup-node@v1
         with:

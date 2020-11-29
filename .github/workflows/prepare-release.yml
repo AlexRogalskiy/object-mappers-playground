@@ -6,7 +6,7 @@ on:
       branch:
         description: 'the branch to prepare the release against'
         required: true
-        deault: 'main'
+        default: 'develop'
       tag:
         description: 'the tag to be released'
         required: true
@@ -21,6 +21,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.inputs.branch }}
+
       - name: Changelog
         shell: bash
         run: |
@@ -28,6 +29,7 @@ jobs:
           chmod u+x /tmp/git-chglog
           echo "creating change log for tag: ${{ github.event.inputs.tag }}"
           /tmp/git-chglog --tag-filter-pattern "v4" --next-tag "${{ github.event.inputs.tag }}" -o CHANGELOG.md v4.0.0-alpha.2..
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.1.2
         with:
