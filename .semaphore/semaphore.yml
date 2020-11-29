@@ -30,7 +30,6 @@ blocks:
           matrix:
             - env_var: JAVA_VERSION
               values:
-                - '8'
                 - '11'
           commands:
             - sem-version java $JAVA_VERSION
