@@ -36,7 +36,7 @@ blocks:
             - checkout
             - sudo chmod +x ./mvnw
             - cache store
-            - './mvnw clean compile -DskipTests=true -P"!test","test-jar","dev"'
+            - './mvnw clean install -DskipTests=true -P"!test","test-jar","dev"'
             - cache restore
   - name: Run tests
     task:
