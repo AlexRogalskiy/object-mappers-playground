@@ -16,10 +16,12 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'git clone https://github.com/AlexRogalskiy/object-mappers-playground'
-        - name: 'Job #2'
+            - cd
+            - 'git clone https://github.com/AlexRogalskiy/object-mappers-playground mappers'
+  - name: 'Block #3'
+    task:
+      jobs:
+        - name: 'Job #1'
           commands:
-            - cd object-mappers-playground
-        - name: 'Job #3'
-          commands:
+            - cd mappers
             - 'mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
