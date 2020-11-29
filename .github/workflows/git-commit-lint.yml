@@ -20,4 +20,6 @@ jobs:
       - name: Event Sender
         run: echo ${{ github.event.sender.login }}
       - name: Lint commit message
-        run: npx commitlint --from origin/${{ github.base_ref }} --to HEAD
+        run: |
+          echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+          npx commitlint --from origin/${{ github.base_ref }} --to HEAD

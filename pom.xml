@@ -1880,6 +1880,10 @@
                             <artifactId>maven-javadoc-plugin</artifactId>
                             <version>${maven-javadoc-plugin.version}</version>
                             <configuration>
+                                <show>public</show>
+                                <nohelp>true</nohelp>
+                                <header>${project.name}, ${project.version}</header>
+                                <footer>${project.description}, ${project.version}</footer>
                                 <encoding>${project.build.sourceEncoding}</encoding>
                                 <charset>${project.build.outputEncoding}</charset>
                                 <windowtitle>${project.name} v${project.version} API Documentation</windowtitle>
@@ -1963,6 +1967,10 @@
                                 -XDignore.symbol.file
                                 -Xlint:all
                             </compilerArgs>
+
+                            <excludes>
+                                <exclude>module-info.java</exclude>
+                            </excludes>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -1978,11 +1986,6 @@
                                     <goal>compile</goal>
                                 </goals>
                                 <phase>compile</phase>
-                                <configuration>
-                                    <excludes>
-                                        <exclude>module-info.java</exclude>
-                                    </excludes>
-                                </configuration>
                             </execution>
                             <execution>
                                 <id>default-testCompile</id>
@@ -2088,11 +2091,6 @@
         <!-- Tests with code coverage profile -->
         <profile>
             <id>test</id>
-            <activation>
-                <file>
-                    <exists>${basedir}/src/test</exists>
-                </file>
-            </activation>
             <properties>
                 <surefire.commands>
                     -Duser.language=en

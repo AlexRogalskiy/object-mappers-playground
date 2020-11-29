@@ -3,7 +3,7 @@
 # Read more about containers on our dev center
 # https://devcenter.wercker.com/overview-and-core-concepts/containers/
 # https://devcenter.wercker.com/quickstarts/languages/quickstarts-java/
-box: openjdk:11-oracle
+box: openjdk:11-jdk-slim
 
 # defining the dev pipeline
 dev:

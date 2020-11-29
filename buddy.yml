@@ -1,0 +1,23 @@
+- pipeline: "Build"
+  trigger_mode: "MANUAL"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  priority: "NORMAL"
+  target_site_url: "https://github.com/AlexRogalskiy/object-mappers-playground"
+  trigger_condition: "ALWAYS"
+  actions:
+    - action: "Execute: mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
+      type: "BUILD"
+      working_directory: "/buddy/object-mappers-playground"
+      docker_image_name: "library/maven"
+      docker_image_tag: "latest"
+      execute_commands:
+        - "mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
+      cached_dirs:
+        - "/root/.m2/repository"
+      volume_mappings:
+        - "/:/buddy/object-mappers-playground"
+      trigger_condition: "ON_CHANGE"
+      retry_delay: 60
+      retry_count: 3
+      shell: "BASH"
