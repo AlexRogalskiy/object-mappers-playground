@@ -5,23 +5,57 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Block #1'
+  - name: Setup
+    task:
+      env_vars:
+        - name: MAVEN_OPTS
+          value: '-Dmaven.repo.local=.m2'
+      jobs: []
+  - name: Check java/maven version
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Check java version
+          commands:
+            - java --version
+        - name: Check maven version
+          commands:
+            - mvn -v
+  - name: Configure git
+    task:
+      jobs:
+        - name: Global git config
           commands:
             - git config --global core.autocrlf false
-  - name: 'Block #2'
+  - name: Compile repository
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Dependencies
+          matrix:
+            - env_var: JAVA_VERSION
+              values:
+                - '8'
+                - '11'
           commands:
-            - cd
-            - 'git clone https://github.com/AlexRogalskiy/object-mappers-playground mappers'
-  - name: 'Block #3'
+            - sem-version java $JAVA_VERSION
+            - checkout
+            - cache restore
+            - 'mvn -q dependency:go-offline test-compile -Dmaven.test.skip=true -P test-jar,dev'
+            - cache store
+  - name: Run tests
     task:
+      env_vars:
+        - name: MAVEN_OPTS
+          value: '-Dmaven.repo.local=.m2'
+      prologue:
+        commands:
+          - checkout
+          - cache restore
       jobs:
-        - name: 'Job #1'
+        - name: Tests
+          matrix:
+            - env_var: JAVA_VERSION
+              values:
+                - '11'
           commands:
-            - cd mappers
-            - 'mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"'
+            - sem-version java $JAVA_VERSION
+            - 'mvn clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"'
