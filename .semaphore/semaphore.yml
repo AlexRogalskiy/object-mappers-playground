@@ -35,7 +35,7 @@ blocks:
           commands:
             - sem-version java $JAVA_VERSION
             - checkout
-            - 'mvn clean compile -DskipTests=true -P test-jar,dev'
+            - './mvnw clean compile -DskipTests=true -P test-jar,dev'
   - name: Run tests
     task:
       env_vars:
@@ -53,4 +53,4 @@ blocks:
                 - '11'
           commands:
             - sem-version java $JAVA_VERSION
-            - 'mvn clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P test,test-jar,dev'
+            - './mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P test,test-jar,dev'
