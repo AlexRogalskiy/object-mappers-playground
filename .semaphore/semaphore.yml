@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: Check java version
           commands:
-            - java --version
+            - java -version
         - name: Check maven version
           commands:
             - mvn -v
