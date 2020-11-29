@@ -5,12 +5,6 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Setup
-    task:
-      env_vars:
-        - name: MAVEN_OPTS
-          value: '-Dmaven.repo.local=.m2'
-      jobs: []
   - name: Check java/maven version
     task:
       jobs:
@@ -28,6 +22,9 @@ blocks:
             - git config --global core.autocrlf false
   - name: Compile repository
     task:
+      env_vars:
+        - name: MAVEN_OPTS
+          value: '-Dmaven.repo.local=.m2'
       jobs:
         - name: Dependencies
           matrix:
