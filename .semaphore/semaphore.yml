@@ -35,7 +35,10 @@ blocks:
           commands:
             - sem-version java $JAVA_VERSION
             - checkout
+            - sudo chmod +x ./mvnw
+            - cache store
             - './mvnw clean compile -DskipTests=true -P test-jar,dev'
+            - cache restore
   - name: Run tests
     task:
       env_vars:
@@ -53,4 +56,5 @@ blocks:
                 - '11'
           commands:
             - sem-version java $JAVA_VERSION
+            - sudo chmod +x ./mvnw
             - './mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P test,test-jar,dev'
