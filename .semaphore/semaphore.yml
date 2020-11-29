@@ -36,7 +36,7 @@ blocks:
             - sem-version java $JAVA_VERSION
             - checkout
             - cache restore
-            - 'mvn -q clean compile -Dmaven.test.skip=true -P test-jar,dev'
+            - 'mvn clean compile -Dmaven.test.skip=true -P test-jar,dev'
             - cache store
   - name: Run tests
     task:
