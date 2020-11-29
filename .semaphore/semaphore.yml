@@ -30,13 +30,14 @@ blocks:
           matrix:
             - env_var: JAVA_VERSION
               values:
+                - '8'
                 - '11'
           commands:
             - sem-version java $JAVA_VERSION
             - checkout
             - sudo chmod +x ./mvnw
             - cache store
-            - './mvnw clean install -DskipTests=true -P"!test","test-jar","dev"'
+            - './mvnw clean install -DskipTests=true -P"test-jar","dev"'
             - cache restore
   - name: Run tests
     task:
