@@ -1,0 +1,59 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Check java/maven version
+    task:
+      jobs:
+        - name: Check java version
+          commands:
+            - java -version
+        - name: Check maven version
+          commands:
+            - mvn -v
+  - name: Configure git
+    task:
+      jobs:
+        - name: Global git config
+          commands:
+            - git config --global core.autocrlf false
+  - name: Compile repository
+    task:
+      env_vars:
+        - name: MAVEN_OPTS
+          value: '-Dmaven.repo.local=.m2'
+      jobs:
+        - name: Dependencies
+          matrix:
+            - env_var: JAVA_VERSION
+              values:
+                - '11'
+          commands:
+            - sem-version java $JAVA_VERSION
+            - checkout
+            - sudo chmod +x ./mvnw
+            - cache store
+            - './mvnw clean install -DskipTests=true -P"!test","test-jar","dev"'
+            - cache restore
+  - name: Run tests
+    task:
+      env_vars:
+        - name: MAVEN_OPTS
+          value: '-Dmaven.repo.local=.m2'
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+      jobs:
+        - name: Tests
+          matrix:
+            - env_var: JAVA_VERSION
+              values:
+                - '11'
+          commands:
+            - sem-version java $JAVA_VERSION
+            - sudo chmod +x ./mvnw
+            - './mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"'
