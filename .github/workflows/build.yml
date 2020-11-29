@@ -89,6 +89,10 @@ jobs:
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
 
+      - name: Confirm Java Version
+        shell: bash
+        run: javac -version
+
       - name: Cache Maven repository
         uses: actions/cache@v2.1.3
         with:
@@ -136,6 +140,10 @@ jobs:
           java-package: jdk
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
+
+      - name: Confirm Java Version
+        shell: bash
+        run: javac -version
 
       - name: Cache Maven repository
         uses: actions/cache@v2.1.3

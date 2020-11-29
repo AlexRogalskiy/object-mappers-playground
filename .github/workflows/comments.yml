@@ -1,0 +1,17 @@
+name: comment-commands
+
+on:
+  issue_comment:
+    types:
+      - created
+      - edited
+
+jobs:
+  process-comment:
+    name: check-comment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./.github/scripts/process-comment.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

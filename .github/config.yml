@@ -18,5 +18,11 @@ newIssueWelcomeComment: >
 newPRWelcomeComment: >
   Thanks for opening this pull request! Please check out our contributing guidelines.
 
+firstPRWelcomeComment: >
+  **Thanks for opening this pull request!**<br/><br/>Please check check if *Travis* or *Codacy* found any issues with your PR. Also make sure your commits are signed, and that you applied [Code style](https://github.com/AlexRogalskiy/object-mappers-playground/issues) and [formatting](.editorconfig).<br/><br/>A maintainer will add an `is:priority` label to your PR if it is up for compensation.
+
 firstPRMergeComment: >
-  Congrats on merging your first pull request! We here at behaviorbot are proud of you!
+  ** Congrats on merging your first pull request!**<br/><br/>Be sure to follow the issue template. Your issue will be reviewed by a maintainer and labeled for further action.
+
+firstIssueWelcomeComment: >
+  **Thanks for opening your first issue here!**<br/><br/>Be sure to follow the issue template. Your issue will be reviewed by a maintainer and labeled for further action.

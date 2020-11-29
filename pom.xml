@@ -1031,6 +1031,7 @@
                                 <exclude>**/*.plt</exclude>
                                 <exclude>**/*.ftl</exclude>
                                 <exclude>**/*.json</exclude>
+                                <exclude>**/*.template</exclude>
                                 <exclude>**/*.bat</exclude>
                                 <exclude>**/*.sh</exclude>
                                 <exclude>**/*.txt</exclude>
@@ -1169,6 +1170,7 @@
                                 <exclude>**/*.uml</exclude>
                                 <exclude>**/*.ftl</exclude>
                                 <exclude>**/*.properties</exclude>
+                                <exclude>**/*.template</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
