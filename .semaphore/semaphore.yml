@@ -35,9 +35,7 @@ blocks:
           commands:
             - sem-version java $JAVA_VERSION
             - checkout
-            - cache restore
             - 'mvn clean compile -DskipTests=true -P test-jar,dev'
-            - cache store
   - name: Run tests
     task:
       env_vars:
