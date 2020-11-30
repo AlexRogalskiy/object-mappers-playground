@@ -55,8 +55,8 @@ install:
   - cd ..
 
 build_script:
-  - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
-  - SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
+  - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx1g
+  - SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx1g
   # Build NIX Java bindings
   - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
 
