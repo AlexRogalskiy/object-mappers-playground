@@ -23,6 +23,7 @@
 [![Build Status](https://alexrogalskiy.semaphoreci.com/badges/object-mappers-playground/branches/master.svg?style=shields)](https://alexrogalskiy.semaphoreci.com/projects/object-mappers-playground)
 [![Codeship Status for AlexRogalskiy/object-mappers-playground](https://app.codeship.com/projects/82b58258-07f9-46a5-9d70-a74f507f8c58/status?branch=master)](https://app.codeship.com/projects/420081)
 [![CircleCI](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground.svg?style=shield)](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e7f28cf582aa9c53c2cd/maintainability)](https://codeclimate.com/github/AlexRogalskiy/object-mappers-playground/maintainability)
 
 ## _Summary_
 

@@ -102,6 +102,15 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   - ./mvnw clean test -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report -P test-jar,test,dev
 
+#deploy:
+#  - provider: script
+#    script: mvn clean deploy -DskipTests=true -B -U -Prelease
+#    skip_cleanup: true
+#    on:
+#      tags: true
+#      jdk: openjdk8
+#      branch: master
+
 notifications:
   email:
     recipients:

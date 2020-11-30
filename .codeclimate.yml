@@ -1,0 +1,34 @@
+engines:
+  sonar-java:
+    enabled: true
+    channel: beta
+    checks:
+      squid:S00112: # Requires dedicated exceptions even for tests
+        enabled: false
+    config:
+      sonar.java.source: 1.8
+      minimum_severity: critical
+      tests_patterns:
+        - src/test/**
+
+plugins:
+  pmd:
+    enabled: true
+    config:
+      rules:
+        - "java-basic"
+        - "java-design"
+        - "java-android"
+
+ratings:
+  paths:
+    - "**.java"
+
+exclude_paths:
+  - build/
+  - .mvn/
+  - .github/
+  - spec/**/*
+  - vendor/**/*
+  - test/**/*
+  - generated/**/*

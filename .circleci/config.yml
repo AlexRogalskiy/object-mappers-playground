@@ -11,6 +11,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
       - checkout
       - run:
@@ -30,6 +31,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
       - checkout
       - restore_cache:
