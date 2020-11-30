@@ -6,22 +6,21 @@ version: 2
 
 dependencies:
   pre:
-    - sudo add-apt-repository ppa:linuxuprising/java
     - sudo apt update
     - sudo apt install oracle-java11-set-default
 
 jobs:
   test:
-    machine:
-      image: ubuntu-1804
+    docker:
+      - image: cimg/base:2020.11
     steps:
       - checkout
       - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
   build:
     parallelism: 2
-    machine:
-      image: ubuntu-1804
+    docker:
+      - image: cimg/base:2020.11
     environment:
       _JAVA_OPTIONS: "-Xmx3g"
       MAVEN_OPTS: -Xmx3200m
