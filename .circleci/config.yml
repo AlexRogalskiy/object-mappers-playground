@@ -7,48 +7,46 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cimg/base:2020.11
+      - image: circleci/openjdk:11.0.3-jdk-stretch
     environment:
       JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            sudo add-apt-repository ppa:linuxuprising/java
-            echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
-            echo oracle-java11-installer shared/accepted-oracle-licence-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
-            sudo apt-get update
-            sudo apt-get -y install oracle-java11-set-default-local
-      - run: env
-      - run: sudo chmod +x ./mvnw
-      - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
-
-  build:
-    parallelism: 2
-    docker:
-      - image: cimg/base:2020.11
-    environment:
-      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-      _JAVA_OPTIONS: "-Xmx3g"
+      JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: |
-            sudo add-apt-repository ppa:linuxuprising/java
-            echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
-            echo oracle-java11-installer shared/accepted-oracle-licence-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
-            sudo apt-get update
-            sudo apt-get -y install oracle-java11-set-default-local
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - run:
+          name: Run build
+          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
+
+  build:
+    parallelism: 2
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+      JVM_OPTS: -Xmx3g
+      MAVEN_OPTS: -Xmx3200m
+    steps:
+      - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
             - v1-dependencies- # fallback in case previous cache key is not found
-      - run: env
-      - run: sudo chmod +x ./mvnw
-      - run: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - run:
+          name: Run build
+          command: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
           paths:
             - ~/.m2
