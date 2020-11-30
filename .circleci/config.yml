@@ -4,24 +4,20 @@
 #
 version: 2
 
-dependencies:
-  pre:
-    - sudo add-apt-repository ppa:linuxuprising/java
-    - sudo apt-get update
-    - sudo apt-get -y install oracle-java11-set-default
-
-machine:
-  environment:
-    JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-
 jobs:
   test:
     docker:
       - image: cimg/base:2020.11
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
     steps:
       - checkout
-      - run: env
-      - run: java -version
+      - run:
+          name: Install dependencies
+          command: |
+            sudo add-apt-repository ppa:linuxuprising/java
+            sudo apt-get update
+            sudo apt-get -y install oracle-java11-set-default
       - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
@@ -30,16 +26,21 @@ jobs:
     docker:
       - image: cimg/base:2020.11
     environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
       _JAVA_OPTIONS: "-Xmx3g"
       MAVEN_OPTS: -Xmx3200m
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            sudo add-apt-repository ppa:linuxuprising/java
+            sudo apt-get update
+            sudo apt-get -y install oracle-java11-set-default
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
             - v1-dependencies- # fallback in case previous cache key is not found
-      - run: env
-      - run: java -version
       - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
