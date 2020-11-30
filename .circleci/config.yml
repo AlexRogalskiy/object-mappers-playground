@@ -16,6 +16,8 @@ jobs:
           name: Install dependencies
           command: |
             sudo add-apt-repository ppa:linuxuprising/java
+            echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
+            echo oracle-java11-installer shared/accepted-oracle-licence-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
             sudo apt-get update
             sudo apt-get -y install oracle-java11-set-default-local
       - run: env
@@ -36,6 +38,8 @@ jobs:
           name: Install dependencies
           command: |
             sudo add-apt-repository ppa:linuxuprising/java
+            echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
+            echo oracle-java11-installer shared/accepted-oracle-licence-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
             sudo apt-get update
             sudo apt-get -y install oracle-java11-set-default-local
       - restore_cache:
