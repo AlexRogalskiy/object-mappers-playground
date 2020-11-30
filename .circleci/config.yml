@@ -15,6 +15,7 @@ jobs:
       - image: cimg/base:2020.11
     steps:
       - checkout
+      - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
   build:
@@ -30,6 +31,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
             - v1-dependencies- # fallback in case previous cache key is not found
+      - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
           paths:
