@@ -17,7 +17,8 @@ jobs:
           command: |
             sudo add-apt-repository ppa:linuxuprising/java
             sudo apt-get update
-            sudo apt-get -y install oracle-java11-set-default
+            sudo apt-get -y install oracle-java11-set-default-local
+      - run: env
       - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
@@ -36,11 +37,12 @@ jobs:
           command: |
             sudo add-apt-repository ppa:linuxuprising/java
             sudo apt-get update
-            sudo apt-get -y install oracle-java11-set-default
+            sudo apt-get -y install oracle-java11-set-default-local
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
             - v1-dependencies- # fallback in case previous cache key is not found
+      - run: env
       - run: sudo chmod +x ./mvnw
       - run: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
