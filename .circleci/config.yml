@@ -2,10 +2,102 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
 
 jobs:
+  build_jdk8:
+    parallelism: 2
+    working_directory: ~/repo
+    docker:
+      - image: circleci/openjdk:8-jdk
+    environment:
+      JVM_OPTS: -Xmx3g
+      MAVEN_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v8-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v8-dependencies-
+      - run:
+          name: Run build
+          command: |
+            ./mvnw install:install-file -Dfile=$JAVA_HOME/lib/tools.jar -DgroupId=com.sun -DartifactId=tools -Dversion=8 -Dpackaging=jar
+            ./mvnw clean install dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v8-dependencies-{{ checksum "pom.xml" }}
+
+  build_jdk11:
+    parallelism: 2
+    working_directory: ~/repo
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
+    environment:
+      JVM_OPTS: -Xmx3g
+      MAVEN_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run:
+          name: Run build
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+  build_jdk13:
+    parallelism: 2
+    working_directory: ~/repo
+    docker:
+      - image: circleci/openjdk:13-jdk-buster
+    environment:
+      JVM_OPTS: -Xmx3g
+      MAVEN_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run:
+          name: Run build
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
   test:
+    parallelism: 2
+    working_directory: ~/repo
     docker:
       - image: circleci/openjdk:11.0.3-jdk-stretch
     environment:
@@ -24,43 +116,17 @@ jobs:
           name: Run build
           command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
-  build:
-    parallelism: 2
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
-    environment:
-      JVM_OPTS: -Xmx3g
-      MAVEN_OPTS: -Xmx3200m
-      TERM: dumb
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
-            - v1-dependencies- # fallback in case previous cache key is not found
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - run:
-          name: Run build
-          command: ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
 workflows:
   version: 2
 
   build-then-test:
     jobs:
-      - build
+      - build_jdk8
+      - build_jdk11
+      - build_jdk13
       - test:
           requires:
-            - build
+            - build_jdk11
           filters:
             branches:
               only: master

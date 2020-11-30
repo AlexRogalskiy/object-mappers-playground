@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${model.groupId}</groupId>
+    <artifactId>${model.artifactId}</artifactId>
+    <version>${model.version}</version>
+    <name>${model.name}</name>
+    <packaging>pom</packaging>
+    <description>Bill of material</description>
+    #if ($model.url)
+
+    <url>${model.url}</url>#end
+    #if ($model.licenses && !$model.licenses.isEmpty())
+
+    <licenses>#foreach($l in $model.licenses)
+
+        <license>
+            <name>${l.name}</name>
+            <url>${l.url}</url>
+            <distribution>${l.distribution}</distribution>
+        </license>
+        #end
+
+    </licenses>
+    #end
+
+    <scm>
+        <url>https://github.com/openfeign/feign</url>
+        <connection>scm:git:https://github.com/openfeign/feign.git</connection>
+        <developerConnection>scm:git:git@github.com:OpenFeign/feign.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    #if ($model.developers && !$model.developers.isEmpty())
+    <developers>#foreach($d in $model.developers)
+
+        <developer>
+            <id>${d.id}</id>
+            <name>${d.name}</name>#if($d.email)
+
+            <email>${d.email}</email>#end#if($d.url)
+
+            <url>${d.url}</url>#end#if($d.organization)
+
+            <organization>${d.organization}</organization>#end#if($d.organizationUrl)
+
+            <organizationUrl>${d.organizationUrl}</organizationUrl>#end
+
+        </developer>
+        #end
+
+    </developers>
+    #end
+
+    <dependencyManagement>
+        <dependencies>#foreach($d in $model.dependencyManagement.dependencies)
+
+            <dependency>
+                <groupId>${d.groupId}</groupId>
+                <artifactId>${d.artifactId}</artifactId>
+                <version>${d.version}</version>#if( $d.scope && $!d.scope != '' )
+
+                <scope>${d.scope}</scope>#end#if( $d.type && $!d.type != '' && $!d.type != 'jar' && $!d.type !=
+                'bundle')
+
+                <type>${d.type}</type>#end#if( $d.classifier && $!d.classifier != '' )
+
+                <classifier>${d.classifier}</classifier>#end#if( $d.exclusions && $d.exclusions.size() > 0 )
+
+                <exclusions>#foreach( $e in $d.exclusions )
+
+                    <exclusion>
+                        <groupId>${e.groupId}</groupId>
+                        <artifactId>${e.artifactId}</artifactId>
+                    </exclusion>
+                    #end
+
+                </exclusions>
+                #end
+
+            </dependency>
+            #end
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

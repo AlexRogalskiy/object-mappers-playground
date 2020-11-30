@@ -24,6 +24,9 @@ jdk:
   - openjdk8
   - oraclejdk11
   - openjdk11
+  - openjdk12
+  - openjdk13
+  - openjdk14
 
 before_script:
   - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
@@ -34,7 +37,7 @@ before_script:
     fi
 
 script:
-  - ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+  - ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
 stages:
   - sonar
@@ -50,9 +53,10 @@ jobs:
         - ./mvnw clean verify sonar:sonar --file pom.xml --errors --batch-mode --lax-checksums -DskipTests=true -P"test-jar","dev" -Dsonar.projectKey=object-mappers-playground -Dsonar.organization=alexrogalskiy-github -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./build/site/jacoco/jacoco.xml
 
     - stage: release
-      if: branch = release AND type IN (push, pull_request)
+      if: branch = release AND type IN (push, pull_request) OR tag =~ /^[0-9\.]+$/
       name: "Release: Tag on GitHub and deploy to OSSRH"
       jdk: oraclejdk8
+      install: true
       script:
         - head_ref=$(git rev-parse HEAD) || travis_terminate 1
         - branch_ref=$(git rev-parse "$TRAVIS_BRANCH") || travis_terminate 1
@@ -78,8 +82,10 @@ jobs:
         - ./mvnw --settings ./.mvn/settings.xml -B release:perform || travis_terminate 1
 
     - stage: snapshot release
-      if: branch = develop AND type IN (push, pull_request)
+      if: branch = develop AND (type IN (push, pull_request) OR tag =~ /^[0-9\.]+$/) AND commit_message !~ /^(prepare release ([0-9\.]+))$/
       name: "Snapshot release"
+      jdk: oraclejdk8
+      install: true
       before_install:
         - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
         - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust

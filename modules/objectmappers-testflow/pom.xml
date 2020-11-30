@@ -54,6 +54,7 @@
             <groupId>net.andreinc.mockneat</groupId>
             <artifactId>mockneat</artifactId>
             <version>${mockneat.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- JUnit test library dependencies -->

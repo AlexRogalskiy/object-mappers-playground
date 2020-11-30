@@ -184,6 +184,7 @@
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
         <maven-dependency-check-plugin.version>5.3.2</maven-dependency-check-plugin.version>
         <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
+        <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -204,6 +205,7 @@
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
         <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
         <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
+        <maven-sundr-plugin.version>1.14.0</maven-sundr-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
@@ -926,7 +928,7 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
             <id>central-1</id>
-            <name>Central Repository</name>
+            <name>Maven Central Repository</name>
             <url>https://repo1.maven.org/maven2</url>
             <layout>default</layout>
         </repository>
@@ -942,7 +944,7 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
             <id>central</id>
-            <name>Central Repository</name>
+            <name>Default Maven Repository</name>
             <url>https://repo.maven.apache.org/maven2</url>
             <layout>default</layout>
         </repository>
@@ -993,13 +995,74 @@
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
             <id>central</id>
-            <name>Central Repository</name>
+            <name>Maven Central Repository</name>
             <url>https://repo1.maven.org/maven2</url>
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
 
     <profiles>
+        <!-- Sundr profile -->
+        <profile>
+            <id>bom</id>
+            <properties>
+                <bom.template.file.path>
+                    ${session.executionRootDirectory}/codestyle/bom.xml
+                </bom.template.file.path>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.sundr</groupId>
+                        <artifactId>sundr-maven-plugin</artifactId>
+                        <version>${maven-sundr-plugin.version}</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <bomTemplateUrl>${bom.template.file.path}</bomTemplateUrl>
+                            <boms>
+                                <bom>
+                                    <artifactId>object-mappers-bom</artifactId>
+                                    <name>ObjectMappers (Bill Of Materials)</name>
+                                    <properties>
+                                        <license.skip>true</license.skip>
+                                    </properties>
+                                    <modules>
+                                        <includes>
+                                            <include>io.nullables.api.playground:*</include>
+                                        </includes>
+                                        <excludes>
+                                            <exclude>*:objectmappers-it</exclude>
+                                            <exclude>*:objectmappers-benchmark</exclude>
+                                        </excludes>
+                                    </modules>
+                                </bom>
+                            </boms>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate-bom</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>io.sundr</groupId>
+                                <artifactId>sundr-codegen</artifactId>
+                                <version>${maven-sundr-plugin.version}</version>
+                                <exclusions>
+                                    <exclusion>
+                                        <groupId>com.sun</groupId>
+                                        <artifactId>tools</artifactId>
+                                    </exclusion>
+                                </exclusions>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Duplicate profile -->
         <profile>
             <id>duplicate</id>
@@ -1612,6 +1675,7 @@
                         <configuration>
                             <configFile>${session.executionRootDirectory}/codestyle/codestyle.xml</configFile>
                             <basedir>modules</basedir>
+                            <encoding>${project.build.sourceEncoding}</encoding>
                         </configuration>
                         <executions>
                             <execution>
@@ -1638,6 +1702,7 @@
                         <configuration>
                             <groups>java.,javax.,org.,com.</groups>
                             <staticGroups>java,*</staticGroups>
+                            <removeUnused>true</removeUnused>
                         </configuration>
                         <executions>
                             <execution>
@@ -1681,6 +1746,35 @@
                                 <id>check</id>
                                 <goals>
                                     <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Sort pom profile -->
+        <profile>
+            <id>sort-pom</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.ekryd.sortpom</groupId>
+                        <artifactId>sortpom-maven-plugin</artifactId>
+                        <version>${maven-sortpom-plugin.version}</version>
+                        <configuration>
+                            <sortOrderFile>${session.executionRootDirectory}/codestyle/pomSortOrder.xml</sortOrderFile>
+                            <keepBlankLines>true</keepBlankLines>
+                            <lineSeparator>\n</lineSeparator>
+                            <createBackupFile>false</createBackupFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>format</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sort</goal>
                                 </goals>
                             </execution>
                         </executions>

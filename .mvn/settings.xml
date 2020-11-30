@@ -17,7 +17,7 @@
             <repositories>
                 <repository>
                     <id>central</id>
-                    <name>Central Repository</name>
+                    <name>Maven Central Repository</name>
                     <url>http://repo.maven.apache.org/maven2</url>
                     <releases>
                         <enabled>true</enabled>
@@ -57,7 +57,7 @@
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
                 </repository>
                 <repository>
-                    <id>sonatype-apache</id>
+                    <id>apache-releases</id>
                     <name>Apache repo (releases)</name>
                     <releases>
                         <enabled>true</enabled>
@@ -85,6 +85,21 @@
                         <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
                     <url>https://repository.apache.org/snapshots/</url>
+                </repository>
+                <repository>
+                    <id>jcenter-releases</id>
+                    <name>JCenter BinTray repo (releases)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                    <url>https://jcenter.bintray.com/</url>
                 </repository>
             </repositories>
         </profile>
