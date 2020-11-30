@@ -4,19 +4,16 @@
 #
 version: 2
 
-machine:
-  environment:
-    JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-
 dependencies:
   pre:
+    - sudo add-apt-repository ppa:linuxuprising/java
     - sudo apt update
-    - sudo apt install openjdk-11-jdk
+    - sudo apt install oracle-java11-set-default
 
 jobs:
   test:
     machine:
-      image: ubuntu-2004
+      image: ubuntu-1804
     steps:
       - checkout
       - run: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
@@ -24,7 +21,7 @@ jobs:
   build:
     parallelism: 2
     machine:
-      image: ubuntu-2004
+      image: ubuntu-1804
     environment:
       _JAVA_OPTIONS: "-Xmx3g"
       MAVEN_OPTS: -Xmx3200m
