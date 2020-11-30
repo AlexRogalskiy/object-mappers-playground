@@ -21,6 +21,8 @@
 [![wercker status](https://app.wercker.com/status/6fa8dbb1f621c654bd7038e29ccb3949/s/master "wercker status")](https://app.wercker.com/project/byKey/6fa8dbb1f621c654bd7038e29ccb3949)
 [![buddy pipeline](https://app.buddy.works/alexanderrogalsky-1/object-mappers-playground/pipelines/pipeline/294219/badge.svg?token=46cb496907aa669bd277e8a8c19b0c7237bb8e0b7b3da305e22d51c373a9dae2 "buddy pipeline")](https://app.buddy.works/alexanderrogalsky-1/object-mappers-playground/pipelines/pipeline/294219)
 [![Build Status](https://alexrogalskiy.semaphoreci.com/badges/object-mappers-playground/branches/master.svg?style=shields)](https://alexrogalskiy.semaphoreci.com/projects/object-mappers-playground)
+[![Codeship Status for AlexRogalskiy/object-mappers-playground](https://app.codeship.com/projects/82b58258-07f9-46a5-9d70-a74f507f8c58/status?branch=master)](https://app.codeship.com/projects/420081)
+[![CircleCI](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground.svg?style=shield)](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 
