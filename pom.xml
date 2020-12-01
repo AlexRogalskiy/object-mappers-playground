@@ -123,6 +123,7 @@
 
         <compile-tests.skip>false</compile-tests.skip>
         <enforce.java.skip>false</enforce.java.skip>
+        <enforce.banned.skip>false</enforce.banned.skip>
         <enforce.maven.skip>false</enforce.maven.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
         <enforce.test.skip>false</enforce.test.skip>
@@ -191,6 +192,7 @@
         <maven-pitest-plugin.version>1.5.2</maven-pitest-plugin.version>
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
         <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
@@ -205,7 +207,7 @@
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
         <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
         <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
-        <maven-sundr-plugin.version>1.14.0</maven-sundr-plugin.version>
+        <maven-sundr-plugin.version>0.23.1</maven-sundr-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
@@ -490,13 +492,36 @@
                     </execution>
                     <execution>
                         <id>copy-dependencies</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
                             <skip>${copy-dependencies.skip}</skip>
+                            <includeScope>runtime</includeScope>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <prependGroupId>true</prependGroupId>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
                         </configuration>
-                        <phase>package</phase>
+                    </execution>
+                    <execution>
+                        <id>set-classpath</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>build-classpath</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <outputProperty>project.dist.classpath</outputProperty>
+                            <attach>false</attach>
+                            <prefix>lib</prefix>
+                            <prependGroupId>true</prependGroupId>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -506,6 +531,28 @@
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>${maven-enforcer-plugin.version}</version>
                 <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.banned.skip}</skip>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <!-- use org.apache.logging.log4j:log4j-slf4j-impl -->
+                                        <exclude>ch.qos.logback:*</exclude>
+                                        <!-- use org.apache.logging.log4j:log4j-1.2-api shim -->
+                                        <exclude>log4j:log4j:*:jar:compile</exclude>
+                                        <!-- use org.apache.logging.log4j:log4j-slf4j-impl -->
+                                        <exclude>org.slf4j:slf4j-log4j12:*:jar:compile</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>enforce-maven</id>
                         <goals>
@@ -858,7 +905,6 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>${maven-project-info-reports-plugin.version}</version>
                 <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
                 </configuration>
                 <reportSets>
@@ -1002,12 +1048,25 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Java version profile -->
+        <profile>
+            <id>java-version</id>
+            <activation>
+                <property>
+                    <name>env.JAVA_VERSION_BUILD</name>
+                </property>
+            </activation>
+            <properties>
+                <java.version>${env.JAVA_VERSION_BUILD}</java.version>
+            </properties>
+        </profile>
+
         <!-- Sundr profile -->
         <profile>
             <id>bom</id>
             <properties>
                 <bom.template.file.path>
-                    ${session.executionRootDirectory}/codestyle/bom.xml
+                    file:///${session.executionRootDirectory}/codestyle/bom.xml
                 </bom.template.file.path>
             </properties>
             <build>
@@ -2571,6 +2630,7 @@
             </activation>
             <properties>
                 <enforce.java.skip>true</enforce.java.skip>
+                <enforce.banned.skip>true</enforce.banned.skip>
                 <enforce.maven.skip>true</enforce.maven.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
                 <enforce.test.skip>true</enforce.test.skip>

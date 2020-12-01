@@ -76,6 +76,40 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>it-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>**/IT*.java</include>
+                                        <include>**/*IT.java</include>
+                                        <include>**/ST*.java</include>
+                                        <include>**/*ST.java</include>
+                                    </includes>
+                                    <trimStackTrace>false</trimStackTrace>
+                                    <forkCount>0</forkCount>
+                                    <useModulePath>false</useModulePath>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>

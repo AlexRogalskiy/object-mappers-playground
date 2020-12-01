@@ -13,6 +13,9 @@ git:
 
 install: true
 
+services:
+  - xvfb
+
 branches:
   only:
     - master
@@ -22,6 +25,7 @@ branches:
 jdk:
   - oraclejdk8
   - openjdk8
+  - openjdk10
   - oraclejdk11
   - openjdk11
   - openjdk12

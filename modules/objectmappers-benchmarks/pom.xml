@@ -61,6 +61,57 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <!-- Assembly profile -->
+        <profile>
+            <id>assembly</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>${maven-assembly-plugin.version}</version>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <appendAssemblyId>true</appendAssemblyId>
+                            <tarLongFileMode>posix</tarLongFileMode>
+                            <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>${session.executionRootDirectory}/assembly/package.xml</descriptor>
+                            </descriptors>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        io.nullables.api.playground.objectmappers.benchmarks.MapperBenchmark
+                                    </mainClass>
+                                </manifest>
+                                <manifestEntries>
+                                    <Name>${project.groupId}/</Name>
+                                    <Specification-Title>${project.name}</Specification-Title>
+                                    <Specification-Version>${project.version}</Specification-Version>
+                                    <Implementation-Title>${project.description}</Implementation-Title>
+                                    <Implementation-Version>${buildNumber}</Implementation-Version>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>package</id>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
