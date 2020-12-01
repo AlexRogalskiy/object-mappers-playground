@@ -149,7 +149,7 @@ mkdocs serve --dirtyreload
 
 ## _Version Store_
 
-[./pom.xml](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/pom.xml)
+[pom.xml](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/pom.xml)
 
 ## _Miscellaneous_
 
@@ -183,7 +183,7 @@ Object Mappers has experimental support for Gitpod, a pre-configured development
 
 ## _License_
 
-Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\).  
+Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\) ([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
 LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)

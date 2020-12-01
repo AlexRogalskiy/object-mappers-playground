@@ -1905,7 +1905,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>findbugs-maven-plugin</artifactId>
                         <version>${maven-findbugs-plugin.version}</version>
-                        <configuration>
+                        <configuration combine.self="override">
                             <findbugsXmlOutput>true</findbugsXmlOutput>
                             <failOnError>false</failOnError>
                             <effort>Max</effort>
@@ -1951,7 +1951,7 @@
                             <execution>
                                 <id>validate</id>
                                 <phase>validate</phase>
-                                <configuration>
+                                <configuration combine.self="override">
                                     <configLocation>
                                         ${session.executionRootDirectory}/checkstyle/checkstyle.xml
                                     </configLocation>
