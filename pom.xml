@@ -2160,7 +2160,7 @@
         <profile>
             <id>module_java</id>
             <activation>
-                <jdk>[10,)</jdk>
+                <jdk>[11,)</jdk>
             </activation>
             <properties>
                 <java.version>11</java.version>
