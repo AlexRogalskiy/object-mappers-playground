@@ -58,7 +58,7 @@ jobs:
 
     - stage: release
       if: branch = release AND type IN (push, pull_request) OR tag =~ /^[0-9\.]+$/
-      name: "Release: Tag on GitHub and deploy to OSSRH"
+      name: "Release: tag on GitHub and deploy to OSSRH"
       jdk: oraclejdk8
       install: true
       script:
