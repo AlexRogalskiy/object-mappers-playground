@@ -170,5 +170,4 @@ jobs:
         timeout-minutes: 20
         if: contains(matrix.os, 'win') == true
         run: |
-          %JAVA_HOME%/bin/java -version
           ./mvnw clean package %MAVEN_ARGS% -P"test-jar","dev"
