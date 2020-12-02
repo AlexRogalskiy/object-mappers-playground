@@ -24,6 +24,7 @@
 [![Codeship Status for AlexRogalskiy/object-mappers-playground](https://app.codeship.com/projects/82b58258-07f9-46a5-9d70-a74f507f8c58/status?branch=master)](https://app.codeship.com/projects/420081)
 [![CircleCI](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground.svg?style=shield)](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e7f28cf582aa9c53c2cd/maintainability)](https://codeclimate.com/github/AlexRogalskiy/object-mappers-playground/maintainability)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_shield)
 
 ## _Summary_
 
@@ -188,9 +189,11 @@ LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
 
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_large)
+
 ## _Development Support_
 
 Like _Object Mappers_ ? Consider buying me a coffee :\)
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/AlexRogalskiy)
-
