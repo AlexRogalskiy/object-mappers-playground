@@ -211,7 +211,7 @@
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
-        <maven-editorconfig-plugin.version>0.1.0</maven-editorconfig-plugin.version>
+        <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
     </properties>
