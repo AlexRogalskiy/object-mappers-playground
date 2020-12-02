@@ -183,10 +183,14 @@ Object Mappers has experimental support for Gitpod, a pre-configured development
 
 ## _License_
 
-Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\) ([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
+Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\).
 LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
+
+([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_large)
 
 ## _Development Support_
 
