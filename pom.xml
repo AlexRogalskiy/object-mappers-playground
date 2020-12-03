@@ -142,8 +142,8 @@
 
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit-platform.version>1.7.0</junit-platform.version>
-        <mockito-junit-jupiter.version>3.6.0</mockito-junit-jupiter.version>
-        <mockito.version>3.6.0</mockito.version>
+        <mockito-junit-jupiter.version>3.6.28</mockito-junit-jupiter.version>
+        <mockito.version>3.6.28</mockito.version>
         <assertj.version>3.18.0</assertj.version>
         <hamcrest.version>2.2</hamcrest.version>
 
@@ -164,7 +164,7 @@
         <maven-plugin-os.version>1.6.2</maven-plugin-os.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
+        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <maven-versions-plugin.version>2.8.1</maven-versions-plugin.version>
@@ -180,10 +180,10 @@
         <maven-appassembler-plugin.version>2.1.0</maven-appassembler-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
         <maven-formatter-plugin.version>2.13.0</maven-formatter-plugin.version>
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
-        <maven-dependency-check-plugin.version>5.3.2</maven-dependency-check-plugin.version>
+        <maven-dependency-check-plugin.version>6.0.3</maven-dependency-check-plugin.version>
         <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
@@ -193,7 +193,7 @@
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
-        <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
         <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
@@ -211,7 +211,7 @@
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
-        <maven-editorconfig-plugin.version>0.1.0</maven-editorconfig-plugin.version>
+        <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
     </properties>
