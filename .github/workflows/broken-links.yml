@@ -11,7 +11,7 @@ jobs:
         run: git config --global core.autocrlf false
 
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           # Disabling shallow clone for improving relevancy of SonarQube reporting
           fetch-depth: 0
