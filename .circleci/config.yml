@@ -119,6 +119,19 @@ jobs:
 workflows:
   version: 2
 
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 7 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build_jdk8
+      - build_jdk11
+      - build_jdk13
+
   build-then-test:
     jobs:
       - build_jdk8
