@@ -29,6 +29,7 @@
 [![Codebeat badge](https://codebeat.co/badges/517da7b1-c836-4a29-a5fe-b0bc97f01a6e)](https://codebeat.co/projects/github-com-alexrogalskiy-object-mappers-playground-master)
 [![CodeFactor](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground/badge)](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground)
 [![Open Source Helpers](https://www.codetriage.com/alexrogalskiy/object-mappers-playground/badges/users.svg)](https://www.codetriage.com/alexrogalskiy/object-mappers-playground)
+[![Codeac](https://static.codeac.io/badges/2-312880465.svg "Codeac")](https://app.codeac.io/github/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 
