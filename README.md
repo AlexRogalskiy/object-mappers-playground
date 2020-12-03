@@ -31,7 +31,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground/badge)](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground)
 [![Open Source Helpers](https://www.codetriage.com/alexrogalskiy/object-mappers-playground/badges/users.svg)](https://www.codetriage.com/alexrogalskiy/object-mappers-playground)
 [![Codeac](https://static.codeac.io/badges/2-312880465.svg "Codeac")](https://app.codeac.io/github/AlexRogalskiy/object-mappers-playground)
-[![CodeScene general](https://codescene.io/images/analyzed-by-codescene-badge.svg)](https://codescene.io/projects/11011)
 [![DeepCode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6IkFsZXhSb2dhbHNraXkiLCJyZXBvMSI6Im9iamVjdC1tYXBwZXJzLXBsYXlncm91bmQiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNTU5MSwiaWF0IjoxNjA3MDA1NjI5fQ.UrcZdUYDALP2dou3LVZ05niu7a5wFZlU2hBnrdq63ho)](https://www.deepcode.ai/app/gh/AlexRogalskiy/object-mappers-playground/_/dashboard?utm_content=gh%2FAlexRogalskiy%2Fobject-mappers-playground)
 
 ## _Summary_
@@ -178,6 +177,10 @@ with community support please contact with us if you have some question or propo
 ![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/AlexRogalskiy?style=social)
+
+## _Code Analysis_
+
+[![CodeScene general](https://codescene.io/images/analyzed-by-codescene-badge.svg)](https://codescene.io/projects/11011)
 
 ## _Sonarcloud Results_
 
