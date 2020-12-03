@@ -11,7 +11,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: wagoid/commitlint-github-action@v1.6.0
+      - uses: wagoid/commitlint-github-action@v2.1.4
         with:
           configFile: './.commitlintrc.json'
           helpURL: https://github.com/AlexRogalskiy/object-mappers-playground/wiki
