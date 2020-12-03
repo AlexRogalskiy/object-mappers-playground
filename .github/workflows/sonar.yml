@@ -19,7 +19,7 @@ jobs:
         run: git config --global core.autocrlf false
 
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Set up JDK
         uses: actions/setup-java@v1

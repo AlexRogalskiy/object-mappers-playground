@@ -18,7 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <smooks.version>1.7.0</smooks.version>
+        <smooks.version>1.7.1</smooks.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 

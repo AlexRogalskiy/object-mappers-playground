@@ -25,6 +25,14 @@
 [![CircleCI](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground.svg?style=shield)](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e7f28cf582aa9c53c2cd/maintainability)](https://codeclimate.com/github/AlexRogalskiy/object-mappers-playground/maintainability)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_shield)
+[![Dependabot](https://img.shields.io/badge/dependabot-enabled-1f8ceb.svg?style=flat-square)](https://dependabot.com/)
+[![DeepScan grade](https://deepscan.io/api/teams/11946/projects/14901/branches/288105/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11946&pid=14901&bid=288105)
+[![Codebeat badge](https://codebeat.co/badges/517da7b1-c836-4a29-a5fe-b0bc97f01a6e)](https://codebeat.co/projects/github-com-alexrogalskiy-object-mappers-playground-master)
+[![CodeFactor](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground/badge)](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground)
+[![Open Source Helpers](https://www.codetriage.com/alexrogalskiy/object-mappers-playground/badges/users.svg)](https://www.codetriage.com/alexrogalskiy/object-mappers-playground)
+[![Codeac](https://static.codeac.io/badges/2-312880465.svg "Codeac")](https://app.codeac.io/github/AlexRogalskiy/object-mappers-playground)
+[![CodeScene System Mastery](https://codescene.io/projects/11011/status-badges/system-mastery)](https://codescene.io/projects/11011)
+[![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6IkFsZXhSb2dhbHNraXkiLCJyZXBvMSI6Im9iamVjdC1tYXBwZXJzLXBsYXlncm91bmQiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNTU5MSwiaWF0IjoxNjA3MDA1NjI5fQ.UrcZdUYDALP2dou3LVZ05niu7a5wFZlU2hBnrdq63ho)](https://www.deepcode.ai/app/gh/AlexRogalskiy/object-mappers-playground/_/dashboard?utm_content=gh%2FAlexRogalskiy%2Fobject-mappers-playground)
 
 ## _Summary_
 
@@ -164,6 +172,26 @@ Object Mappers is maintained by:
 
 with community support please contact with us if you have some question or proposition.
 
+## _Visitor stats_
+
+![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playgroundstyle=social)
+![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)
+![GitHub followers](https://img.shields.io/github/followers/AlexRogalskiy?style=social)
+
+## _Sonarcloud Results_
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=bugs)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=code_smells)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=ncloc)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=alert_status)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=security_rating)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=sqale_index)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=object-mappers-playground&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=object-mappers-playground)
+
 ## _Team Tools_
 
 [![alt tag](http://pylonsproject.org/img/logo-jetbrains.png)](https://www.jetbrains.com/)
@@ -184,11 +212,12 @@ Object Mappers has experimental support for Gitpod, a pre-configured development
 
 ## _License_
 
-Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\) ([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
+Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\).
 LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
 
+([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_large)
 
@@ -196,4 +225,6 @@ LGPLv3 is additional permissions on top of GPLv3.
 
 Like _Object Mappers_ ? Consider buying me a coffee :\)
 
+[![Become a Patron](https://img.shields.io/badge/Become_Patron-Support_me_on_Patreon-blue.svg?style=flat-square&logo=patreon&color=e64413)](https://www.patreon.com/alexrogalskiy)
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/AlexRogalskiy)
+[![KoFi](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellow.svg?logo=ko-fi)](https://ko-fi.com/alexrogalskiy)

@@ -75,6 +75,9 @@ jobs:
           submodules: "recursive"
           fetch-depth: 2
 
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Use Node.js v12
@@ -139,6 +142,9 @@ jobs:
         with:
           submodules: "recursive"
           fetch-depth: 2
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v1

@@ -18,7 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <moo.version>2.0</moo.version>
+        <moo.version>2.1.0</moo.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
