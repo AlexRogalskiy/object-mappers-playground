@@ -28,6 +28,7 @@
 [![DeepScan grade](https://deepscan.io/api/teams/11946/projects/14901/branches/288105/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11946&pid=14901&bid=288105)
 [![Codebeat badge](https://codebeat.co/badges/517da7b1-c836-4a29-a5fe-b0bc97f01a6e)](https://codebeat.co/projects/github-com-alexrogalskiy-object-mappers-playground-master)
 [![CodeFactor](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground/badge)](https://www.codefactor.io/repository/github/alexrogalskiy/object-mappers-playground)
+[![Open Source Helpers](https://www.codetriage.com/alexrogalskiy/object-mappers-playground/badges/users.svg)](https://www.codetriage.com/alexrogalskiy/object-mappers-playground)
 
 ## _Summary_
 
