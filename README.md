@@ -24,6 +24,7 @@
 [![Codeship Status for AlexRogalskiy/object-mappers-playground](https://app.codeship.com/projects/82b58258-07f9-46a5-9d70-a74f507f8c58/status?branch=master)](https://app.codeship.com/projects/420081)
 [![CircleCI](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground.svg?style=shield)](https://circleci.com/gh/AlexRogalskiy/object-mappers-playground)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e7f28cf582aa9c53c2cd/maintainability)](https://codeclimate.com/github/AlexRogalskiy/object-mappers-playground/maintainability)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_shield)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-1f8ceb.svg?style=flat-square)](https://dependabot.com/)
 [![DeepScan grade](https://deepscan.io/api/teams/11946/projects/14901/branches/288105/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11946&pid=14901&bid=288105)
 [![Codebeat badge](https://codebeat.co/badges/517da7b1-c836-4a29-a5fe-b0bc97f01a6e)](https://codebeat.co/projects/github-com-alexrogalskiy-object-mappers-playground-master)
