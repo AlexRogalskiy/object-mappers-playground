@@ -18,7 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <modelmapper.version>2.3.8</modelmapper.version>
+        <modelmapper.version>2.3.9</modelmapper.version>
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
