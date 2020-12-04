@@ -94,6 +94,7 @@ Object Mappers module dependencies:
 * [**ObjectMappers BeanUtils**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanutils) `objectmappers-beanutils` - Library to work with BeanUtils API.
 * [**ObjectMappers Commons**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons) `objectmappers-commons` - Library with utilities for common use cases.
 * [**ObjectMappers Datus**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-datus) `objectmappers-datus` - Library to work with Datus API.
+* [**ObjectMappers Doov**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-doov) `objectmappers-doov` - Library to work with Doov API.
 * [**ObjectMappers Dozer**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-dozer) `objectmappers-dozer` - Library to work with Dozer API.
 * [**ObjectMappers JMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-jmapper) `objectmappers-jmapper` - Library to work with JMapper API.
 * [**ObjectMappers MapStruct**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-mapstruct) `objectmappers-mapstruct` - Library to work with MapStruct API.
@@ -170,6 +171,10 @@ Object Mappers is maintained by:
 * [Alexander Rogalskiy](https://github.com/AlexRogalskiy) 
 
 with community support please contact with us if you have some question or proposition.
+
+## _Contributing_
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## _Visitor stats_
 

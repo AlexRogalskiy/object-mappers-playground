@@ -89,6 +89,7 @@
         <module>modules/objectmappers-bull</module>
         <module>modules/objectmappers-commons</module>
         <module>modules/objectmappers-datus</module>
+        <module>modules/objectmappers-doov</module>
         <module>modules/objectmappers-dozer</module>
         <module>modules/objectmappers-jmapper</module>
         <module>modules/objectmappers-mapstruct</module>

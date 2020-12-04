@@ -27,14 +27,11 @@
  *
  * @since 9
  */
-open module io.nullables.api.playground.objectmappers.dozer {
+open module io.nullables.api.playground.objectmappers.doov {
     requires io.nullables.api.playground.objectmappers.commons;
 
     requires static lombok;
     requires jsr305;
     requires slf4j.api;
-    requires dozer.core;
-    requires org.apache.commons.lang3;
-
-    exports io.nullables.api.playground.objectmappers.dozer.configuration;
+    requires doov.core;
 }

@@ -13,5 +13,5 @@ jobs:
 
       - uses: wagoid/commitlint-github-action@v2.1.4
         with:
-          configFile: './.commitlintrc.json'
+          configFile: './.github/workflows/lint/.commitlintrc.json'
           helpURL: https://github.com/AlexRogalskiy/object-mappers-playground/wiki

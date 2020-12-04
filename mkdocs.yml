@@ -57,6 +57,7 @@ pages:
       - Bull Tutorial: modules/bull/info.md
       - Converter Tutorial: modules/converter/info.md
       - Datus Tutorial: modules/datus/info.md
+      - Doov Tutorial: modules/doov/info.md
       - Dozer Tutorial: modules/dozer/info.md
       - JMapper Tutorial: modules/jmapper/info.md
       - MapStruct Tutorial: modules/mapstruct/info.md

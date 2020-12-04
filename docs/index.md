@@ -34,6 +34,8 @@ docs/
             info.md
         datus/
             info.md
+        doov/
+            info.md
         dozer/
             info.md
         jmapper/
