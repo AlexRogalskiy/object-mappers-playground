@@ -53,8 +53,12 @@ class DozerMapperTest {
 
     @BeforeEach
     void before() {
-        this.mapper = new DozerMapperConfiguration().configureMapper("mappings/config_mapping.xml",
-                        "mappings/address_mapping.xml", "mappings/delivery_mapping.xml");
+        this.mapper = DozerMapperConfiguration.newBuilder()
+            .configureMapper(
+                "mappings/config_mapping.xml",
+                        "mappings/address_mapping.xml", "mappings/delivery_mapping.xml"
+            )
+            .build();
     }
 
     @ParameterizedTest

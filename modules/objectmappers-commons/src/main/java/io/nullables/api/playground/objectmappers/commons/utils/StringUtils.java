@@ -22,6 +22,7 @@ import lombok.experimental.UtilityClass;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,13 +34,13 @@ public class StringUtils {
     @Nonnull
     public Integer[] convertToIntegerArray(final String... value) {
         return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(Integer::valueOf)
-                        .toArray(Integer[]::new);
+            .toArray(Integer[]::new);
     }
 
     @Nonnull
     public String[] convertToStringArray(final Integer... value) {
         return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(String::valueOf)
-                        .toArray(String[]::new);
+            .toArray(String[]::new);
     }
 
     @Nullable
@@ -50,6 +51,11 @@ public class StringUtils {
     @Nullable
     public String convertToString(final UUID value) {
         return Optional.ofNullable(value).map(UUID::toString).orElse(null);
+    }
+
+    @Nullable
+    public BigDecimal convertToBigDecimal(final String value, final BigDecimal defaultValue) {
+        return Optional.ofNullable(value).map(BigDecimal::new).orElse(defaultValue);
     }
 
     @Nullable

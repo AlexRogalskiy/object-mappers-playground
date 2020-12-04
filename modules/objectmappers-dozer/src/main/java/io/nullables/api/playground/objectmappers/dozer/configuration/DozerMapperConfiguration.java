@@ -21,6 +21,7 @@ package io.nullables.api.playground.objectmappers.dozer.configuration;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.classmap.RelationshipType;
+import com.github.dozermapper.core.events.EventListener;
 import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
 import com.github.dozermapper.core.loader.api.FieldsMappingOptions;
 import com.github.dozermapper.core.loader.api.TypeMappingOption;
@@ -32,22 +33,59 @@ import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEn
 import io.nullables.api.playground.objectmappers.dozer.converter.StringToIntegerArrayConvertor;
 import io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor;
 import io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor;
+import lombok.experimental.UtilityClass;
+
+import javax.annotation.Nonnull;
 
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
-public class DozerMapperConfiguration {
+public final class DozerMapperConfiguration {
 
-    private final TypeMappingOption[] TYPE_MAPPING_OPTIONS = {TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
-        TypeMappingOptions.trimStrings(), TypeMappingOptions.wildcardCaseInsensitive(true),
-        TypeMappingOptions.dateFormat(DATETIME_PATTERN)};
+    private final DozerBeanMapperBuilder mapperBuilder;
 
-    public Mapper configureMapper(final String... mappingFileUrls) {
-        return DozerBeanMapperBuilder.create().withEventListener(new CustomEventListener())
-            .withMappingFiles(mappingFileUrls).build();
+    private DozerMapperConfiguration() {
+        this.mapperBuilder = DozerBeanMapperBuilder.create();
     }
 
-    public Mapper configureMapper() {
-        final BeanMappingBuilder addressBuilder = new BeanMappingBuilder() {
+    @Nonnull
+    public static DozerMapperConfiguration newBuilder() {
+        return new DozerMapperConfiguration();
+    }
+
+    public DozerBeanMapperBuilder configureMapper(final String... mappingFileUrls) {
+        return this.mapperBuilder.withMappingFiles(mappingFileUrls);
+    }
+
+    public DozerBeanMapperBuilder configureListener(final EventListener eventListener) {
+        return this.mapperBuilder.withEventListener(eventListener);
+    }
+
+    public DozerBeanMapperBuilder configureDeliveryMapper() {
+        return this.mapperBuilder
+            .withEventListener(new CustomEventListener())
+            .withMappingBuilder(DozerConfiguration.ADDRESS_MAPPING)
+            .withMappingBuilder(DozerConfiguration.DELIVERY_MAPPING);
+    }
+
+    public Mapper build() {
+        return this.mapperBuilder.build();
+    }
+
+    @UtilityClass
+    private static class DozerConfiguration {
+        /**
+         * Default collection of {@link TypeMappingOption}s
+         */
+        private static final TypeMappingOption[] TYPE_MAPPING_OPTIONS = {
+            TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
+            TypeMappingOptions.trimStrings(), TypeMappingOptions.wildcardCaseInsensitive(true),
+            TypeMappingOptions.dateFormat(DATETIME_PATTERN)
+        };
+
+        /**
+         * Address {@link BeanMappingBuilder} configuration
+         */
+        private static final BeanMappingBuilder ADDRESS_MAPPING = new BeanMappingBuilder() {
             @Override
             protected void configure() {
                 this.mapping(AddressDto.class, AddressEntity.class, TYPE_MAPPING_OPTIONS)
@@ -59,7 +97,10 @@ public class DozerMapperConfiguration {
             }
         };
 
-        final BeanMappingBuilder deliveryBuilder = new BeanMappingBuilder() {
+        /**
+         * Delivery {@link BeanMappingBuilder} configuration
+         */
+        private static final BeanMappingBuilder DELIVERY_MAPPING = new BeanMappingBuilder() {
             @Override
             protected void configure() {
                 this.mapping(DeliveryDto.class, DeliveryEntity.class, TYPE_MAPPING_OPTIONS)
@@ -81,7 +122,5 @@ public class DozerMapperConfiguration {
                     .fields("addresses", "addresses");
             }
         };
-        return DozerBeanMapperBuilder.create().withEventListener(new CustomEventListener())
-            .withMappingBuilder(addressBuilder).withMappingBuilder(deliveryBuilder).build();
     }
 }

@@ -29,7 +29,9 @@ public class DozerMapper implements OrderMapper {
     private final Mapper mapper;
 
     public DozerMapper() {
-        this.mapper = new DozerMapperConfiguration().configureMapper("mappings/dozer.xml");
+        this.mapper = DozerMapperConfiguration.newBuilder()
+            .configureMapper("mappings/dozer.xml")
+            .build();
     }
 
     @Override
