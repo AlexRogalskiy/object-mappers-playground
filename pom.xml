@@ -1598,25 +1598,30 @@
                         <groupId>de.thetaphi</groupId>
                         <artifactId>forbiddenapis</artifactId>
                         <version>${maven-forbiddenapis-plugin.version}</version>
+                        <configuration>
+                            <failOnViolation>false</failOnViolation>
+                            <failOnUnsupportedJava>false</failOnUnsupportedJava>
+                            <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+                            <bundledSignatures>
+                                <bundledSignature>jdk-unsafe</bundledSignature>
+                                <bundledSignature>jdk-deprecated</bundledSignature>
+                                <bundledSignature>jdk-internal</bundledSignature>
+                                <bundledSignature>jdk-non-portable</bundledSignature>
+                                <bundledSignature>jdk-reflection</bundledSignature>
+                                <bundledSignature>jdk-system-out</bundledSignature>
+                            </bundledSignatures>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>check-forbidden-apis</id>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
-                                <configuration>
+                                <configuration combine.self="override">
                                     <targetVersion>${java.version}</targetVersion>
                                     <failOnUnsupportedJava>false</failOnUnsupportedJava>
                                     <failOnMissingClasses>true</failOnMissingClasses>
                                     <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
-                                    <bundledSignatures>
-                                        <bundledSignature>jdk-unsafe</bundledSignature>
-                                        <bundledSignature>jdk-deprecated</bundledSignature>
-                                        <bundledSignature>jdk-internal</bundledSignature>
-                                        <bundledSignature>jdk-non-portable</bundledSignature>
-                                        <bundledSignature>jdk-reflection</bundledSignature>
-                                        <bundledSignature>jdk-system-out</bundledSignature>
-                                    </bundledSignatures>
                                     <suppressAnnotations>
                                         <suppressAnnotation>**.SuppressForbidden</suppressAnnotation>
                                     </suppressAnnotations>
@@ -1627,7 +1632,7 @@
                                 <goals>
                                     <goal>testCheck</goal>
                                 </goals>
-                                <configuration>
+                                <configuration combine.self="override">
                                     <targetVersion>${java.version}</targetVersion>
                                     <failOnUnsupportedJava>false</failOnUnsupportedJava>
                                     <failOnMissingClasses>false</failOnMissingClasses>
@@ -1948,6 +1953,12 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>${maven-checkstyle-plugin.version}</version>
+                        <configuration>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>false</failsOnError>
+                            <failOnViolation>false</failOnViolation>
+                            <encoding>${project.build.outputEncoding}</encoding>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>validate</id>
@@ -1959,9 +1970,6 @@
                                     <suppressionsLocation>
                                         ${session.executionRootDirectory}/checkstyle/checkstyle-exclude.xml
                                     </suppressionsLocation>
-                                    <encoding>${project.build.outputEncoding}</encoding>
-                                    <consoleOutput>true</consoleOutput>
-                                    <failsOnError>true</failsOnError>
                                 </configuration>
                                 <goals>
                                     <goal>check</goal>
@@ -2418,11 +2426,11 @@
                                         <skip>${jacoco-check.skip}</skip>
                                         <rules>
                                             <rule
-                                                implementation="org.jacoco.maven.RuleConfiguration">
+                                                    implementation="org.jacoco.maven.RuleConfiguration">
                                                 <element>BUNDLE</element>
                                                 <limits>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>INSTRUCTION</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2430,7 +2438,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>CLASS</counter>
                                                         <value>MISSEDCOUNT</value>
                                                         <maximum>
@@ -2438,7 +2446,7 @@
                                                         </maximum>
                                                     </limit>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>LINE</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2446,7 +2454,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>BRANCH</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2454,7 +2462,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>COMPLEXITY</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2462,7 +2470,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                        implementation="org.jacoco.report.check.Limit">
+                                                            implementation="org.jacoco.report.check.Limit">
                                                         <counter>METHOD</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>

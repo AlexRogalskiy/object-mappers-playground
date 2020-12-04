@@ -56,6 +56,8 @@ install:
   - cmake --build . --config %CONFIGURATION%
   - cd ..
   - cd ..
+  - java -version
+  - mvn --version
 
 build_script:
   - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx1g
@@ -67,7 +69,8 @@ on_failure:
   # Display error log file if generated
   - if exist *.log type *.log
 
-test_script: [ ]
+test_script:
+  - mvn test verify -B -Pdev,test,test-jar && mvn checkstyle:check forbiddenapis:check -B -DskipTests=true -Pdev,test-jar,forbidden-api-check,code-style-check
 
 cache:
   - C:\bin\apache-maven-3.6.3
