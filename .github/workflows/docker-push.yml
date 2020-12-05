@@ -17,7 +17,7 @@ on:
     - cron: '0 0 * * 0'  # At 00:00 on Sunday
 
 env:
-  IMAGE_NAME: io.nullables.api.playground.objectmappers-benchmarks:1.0.0
+  IMAGE_NAME: io.nullables.api.playground.objectmappers-benchmarks
 
 jobs:
   # Run tests.
@@ -76,7 +76,7 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
 
-          echo IMAGE_ID=$IMAGE_ID
+          echo IMAGE_ID=$(echo $IMAGE_ID | tr '[:upper:]' '[:lower:]')
           echo VERSION=$VERSION
 
           docker tag image $IMAGE_ID:$VERSION
