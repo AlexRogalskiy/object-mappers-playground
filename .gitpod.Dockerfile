@@ -57,8 +57,8 @@ ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ENV HOME /home/gitpod
 
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN echo "Adding gitpod user and group" \
+RUN sudo echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN sudo echo "Adding gitpod user and group" \
         && useradd --system --uid 1000 --shell /bin/bash --create-home gitpod \
         && adduser gitpod sudo \
         && chown --recursive gitpod:gitpod /home/gitpod

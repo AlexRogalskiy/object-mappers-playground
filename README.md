@@ -186,7 +186,7 @@ with community support please contact with us if you have some question or propo
 
 ## _Visitor stats_
 
-![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playgroundstyle=social)
+![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/AlexRogalskiy?style=social)
