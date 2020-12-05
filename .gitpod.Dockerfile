@@ -59,10 +59,10 @@ ENV HOME /home/gitpod
 
 USER root
 RUN sudo echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN sudo echo "Adding gitpod user and group" \
-        && useradd --system --uid 1000 --shell /bin/bash --create-home gitpod \
-        && adduser gitpod sudo \
-        && chown --recursive gitpod:gitpod /home/gitpod
+#RUN sudo echo "Adding gitpod user and group" \
+#        && useradd --system --uid 1000 --shell /bin/bash --create-home gitpod \
+#        && adduser gitpod sudo \
+#        && chown --recursive gitpod:gitpod /home/gitpod
 
 USER gitpod
 WORKDIR $HOME

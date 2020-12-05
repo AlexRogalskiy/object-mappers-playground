@@ -13,13 +13,13 @@ environment:
     # 64 bit
     - PLATFORM: x64
       CONFIGURATION: Release
-      JAVA_HOME: C:\Program Files\Java\jdk-11.0.1
+      JAVA_HOME: C:\Program Files\Java\jdk11
       RDP: "no"
-
     # 32 bit
     - PLATFORM: x86
       CONFIGURATION: Release
-      JAVA_HOME: C:\Program Files (x86)\Java\jdk-11.0.1
+      JAVA_HOME: C:\Program Files (x86)\Java\jdk11
+      RDP: "no"
 
 # Maximum number of concurrent jobs for the project
 max_jobs: 1
@@ -70,7 +70,7 @@ on_failure:
   - if exist *.log type *.log
 
 test_script:
-  - mvn test verify -B -Pdev,test,test-jar && mvn checkstyle:check forbiddenapis:check -B -DskipTests=true -Pdev,test-jar,forbidden-api-check,code-style-check
+  - mvn test verify -B -Pdev,test,test-jar && mvn checkstyle:check forbiddenapis:check -B -DskipTests=true -P"dev","test-jar","forbidden-api-check","code-style-check"
 
 cache:
   - C:\bin\apache-maven-3.6.3
