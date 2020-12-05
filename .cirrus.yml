@@ -1,22 +1,27 @@
 # global default
 container:
-  image: maven:3.6.3-openjdk-14-slim
+  image: maven:latest
 
 task:
   name: Cirrus CI
+  before_cache_script: rm -rf $HOME/.m2/repository
   maven_cache:
     folder: ~/.m2
-  before_cache_script: rm -rf $HOME/.m2/repository
   matrix:
     - name: Build
-      allow_failures: false
       only_if: $BRANCH == "master"
       fingerprint_script: mvn --version
       build_script: mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      container:
+        image: maven:3.6.3-openjdk-14-slim
     - name: Test
-      allow_failures: false
       depends_on:
         - Build
+      allow_failures: true
       only_if: $BRANCH == "master"
       fingerprint_script: mvn --version
       test_script: mvn test verify --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
+      container:
+        image: maven:3.6.3-openjdk-15-slim
+  #  build_script: mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+  #  test_script: mvn test verify --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"

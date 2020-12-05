@@ -1,5 +1,7 @@
-# ObjectMappers
+# Object-Mappers Playground
 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/AlexRogalskiy/object-mappers-playground)
+![GitHub Release Date](https://img.shields.io/github/release-date/AlexRogalskiy/object-mappers-playground)
 ![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
@@ -34,6 +36,7 @@
 [![DeepCode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6IkFsZXhSb2dhbHNraXkiLCJyZXBvMSI6Im9iamVjdC1tYXBwZXJzLXBsYXlncm91bmQiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNTU5MSwiaWF0IjoxNjA3MDA1NjI5fQ.UrcZdUYDALP2dou3LVZ05niu7a5wFZlU2hBnrdq63ho)](https://www.deepcode.ai/app/gh/AlexRogalskiy/object-mappers-playground/_/dashboard?utm_content=gh%2FAlexRogalskiy%2Fobject-mappers-playground)
 [![NewReleases](https://newreleases.io/badge.svg)](https://newreleases.io/github/AlexRogalskiy/object-mappers-playground)
 [![Build Status](https://api.cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground.svg)](https://cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
 
 ## _Summary_
 
