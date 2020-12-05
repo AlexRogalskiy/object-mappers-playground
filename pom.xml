@@ -1931,7 +1931,7 @@
         <profile>
             <id>code-style-check</id>
             <properties>
-                <checkstyle.version>8.29</checkstyle.version>
+                <checkstyle.version>8.38</checkstyle.version>
             </properties>
             <build>
                 <plugins>
