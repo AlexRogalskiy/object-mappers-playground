@@ -1641,7 +1641,7 @@
         <profile>
             <id>deploy</id>
             <properties>
-                <wagon-ssh.version>2.10</wagon-ssh.version>
+                <wagon-ssh.version>3.4.2</wagon-ssh.version>
             </properties>
             <build>
                 <plugins>
