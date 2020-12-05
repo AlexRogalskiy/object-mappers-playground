@@ -38,7 +38,7 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            docker build . --file modules/document-generator/src/main/docker/java/Dockerfile --tag image
+            docker build . --file modules/objectmappers-benchmarks/docker/Dockerfile --tag image
           fi
 
   # Push image to GitHub Package Registry.
