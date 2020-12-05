@@ -1599,7 +1599,9 @@
                         <artifactId>forbiddenapis</artifactId>
                         <version>${maven-forbiddenapis-plugin.version}</version>
                         <configuration>
+                            <targetVersion>${java.version}</targetVersion>
                             <failOnViolation>false</failOnViolation>
+                            <failOnMissingClasses>true</failOnMissingClasses>
                             <failOnUnsupportedJava>false</failOnUnsupportedJava>
                             <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
                             <bundledSignatures>
@@ -1617,11 +1619,7 @@
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
-                                <configuration combine.self="override">
-                                    <targetVersion>${java.version}</targetVersion>
-                                    <failOnUnsupportedJava>false</failOnUnsupportedJava>
-                                    <failOnMissingClasses>true</failOnMissingClasses>
-                                    <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+                                <configuration combine.self="append">
                                     <suppressAnnotations>
                                         <suppressAnnotation>**.SuppressForbidden</suppressAnnotation>
                                     </suppressAnnotations>
@@ -1632,19 +1630,6 @@
                                 <goals>
                                     <goal>testCheck</goal>
                                 </goals>
-                                <configuration combine.self="override">
-                                    <targetVersion>${java.version}</targetVersion>
-                                    <failOnUnsupportedJava>false</failOnUnsupportedJava>
-                                    <failOnMissingClasses>false</failOnMissingClasses>
-                                    <bundledSignatures>
-                                        <bundledSignature>jdk-unsafe</bundledSignature>
-                                        <bundledSignature>jdk-deprecated</bundledSignature>
-                                        <bundledSignature>jdk-internal</bundledSignature>
-                                        <bundledSignature>jdk-system-out</bundledSignature>
-                                        <bundledSignature>jdk-non-portable</bundledSignature>
-                                        <bundledSignature>jdk-reflection</bundledSignature>
-                                    </bundledSignatures>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -1963,7 +1948,7 @@
                             <execution>
                                 <id>validate</id>
                                 <phase>validate</phase>
-                                <configuration combine.self="override">
+                                <configuration combine.self="append">
                                     <configLocation>
                                         ${session.executionRootDirectory}/checkstyle/checkstyle.xml
                                     </configLocation>
