@@ -3,8 +3,8 @@
 
 FROM gitpod/workspace-full
 
-ARG BUILD_DATE
-ARG VCS_REF
+ARG BUILD_DATE=`git rev-parse --short HEAD`
+ARG VCS_REF=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 ARG VERSION="1.0.0"
 
 LABEL maintainer="Alexander Rogalskiy <alexander.rogalsky@yandex.ru>"
