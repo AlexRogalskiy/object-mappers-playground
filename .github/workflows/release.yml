@@ -19,7 +19,7 @@ jobs:
       matrix:
         java: [ '8' ]
         architecture: [ 'x64', 'x86' ]
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        os: [ ubuntu-latest, windows-latest ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }} with ${{ matrix.os }}
     steps:
       - name: Prepare git
@@ -39,8 +39,14 @@ jobs:
           architecture: ${{ matrix.architecture }}
 
       - name: Build project
+        if: contains(matrix.os, 'win') == false
         run: |
           zip --junk-paths object-mappers-playground README.md
+
+      - name: Build project for windows
+        if: contains(matrix.os, 'win') == true
+        run: |
+          Get-ChildItem -Path ./README.md | Compress-Archive -DestinationPath ./object-mappers-playground.zip
 
       - name: Create checksum
         run: echo ${{ github.sha }} > checksum.txt
@@ -115,7 +121,7 @@ jobs:
       matrix:
         java: [ '11', '12', '13', '14', '15-ea', '16-ea' ]
         architecture: [ 'x64', 'x86' ]
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        os: [ ubuntu-latest, windows-latest ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }} with ${{ matrix.os }}
     steps:
       - name: Prepare git
@@ -135,8 +141,14 @@ jobs:
           architecture: ${{ matrix.architecture }}
 
       - name: Build project
+        if: contains(matrix.os, 'win') == false
         run: |
           zip --junk-paths object-mappers-playground README.md
+
+      - name: Build project for windows
+        if: contains(matrix.os, 'win') == true
+        run: |
+          Get-ChildItem -Path ./README.md | Compress-Archive -DestinationPath ./object-mappers-playground.zip
 
       - name: Create checksum
         run: echo ${{ github.sha }} > checksum.txt
