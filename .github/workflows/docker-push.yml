@@ -1,6 +1,9 @@
 name: Docker
 
 on:
+  push:
+    branches:
+      - master
   label:
     # Publish `master` as Docker `latest` image.
     branches:
@@ -10,9 +13,8 @@ on:
       - v*
       # Run for tags of the x.x.x* form (i.e. 3.0.0, 3.0.0-beta, etc.).
       - '[0-9]+.[0-9]+.[0-9]+*'
-
-  # Run tests for any PRs.
-  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'  # At 00:00 on Sunday
 
 env:
   IMAGE_NAME: io.nullables.api.playground.objectmappers-benchmarks:1.0.0

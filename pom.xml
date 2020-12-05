@@ -1903,7 +1903,8 @@
                             <threshold>Low</threshold>
                             <xmlOutput>true</xmlOutput>
                             <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
-                            <excludeBugsFile>${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
+                            <excludeBugsFile>
+                                ${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
                             </excludeBugsFile>
                         </configuration>
                         <executions>
@@ -1939,22 +1940,23 @@
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>${maven-checkstyle-plugin.version}</version>
                         <configuration>
-                            <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
                             <encoding>${project.build.outputEncoding}</encoding>
+                            <configLocation>
+                                ${session.executionRootDirectory}/checkstyle/checkstyle.xml
+                            </configLocation>
+                            <suppressionsLocation>
+                                ${session.executionRootDirectory}/checkstyle/checkstyle-exclude.xml
+                            </suppressionsLocation>
                         </configuration>
                         <executions>
                             <execution>
                                 <id>validate</id>
                                 <phase>validate</phase>
                                 <configuration combine.self="append">
-                                    <configLocation>
-                                        ${session.executionRootDirectory}/checkstyle/checkstyle.xml
-                                    </configLocation>
-                                    <suppressionsLocation>
-                                        ${session.executionRootDirectory}/checkstyle/checkstyle-exclude.xml
-                                    </suppressionsLocation>
+                                    <consoleOutput>true</consoleOutput>
+                                    <logViolationsToConsole>true</logViolationsToConsole>
                                 </configuration>
                                 <goals>
                                     <goal>check</goal>
