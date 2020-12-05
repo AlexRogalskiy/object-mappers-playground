@@ -37,7 +37,7 @@ ARG JAR_FILE
 
 # Add the application's jar to the container
 ADD ${JAR_FILE} ${STARTER_HOME}/benchmarks.jar
-ADD ./entrypoint.sh ${STARTER_HOME}/entrypoint.sh
+ADD ./modules/objectmappers-benchmarks/docker/entrypoint.sh ${STARTER_HOME}/entrypoint.sh
 
 # Update script permissions
 RUN chmod 755 ${STARTER_HOME}/entrypoint.sh
