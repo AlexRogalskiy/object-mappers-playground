@@ -145,7 +145,7 @@
         <junit-platform.version>1.7.0</junit-platform.version>
         <mockito-junit-jupiter.version>3.6.28</mockito-junit-jupiter.version>
         <mockito.version>3.6.28</mockito.version>
-        <assertj.version>3.18.0</assertj.version>
+        <assertj.version>3.18.1</assertj.version>
         <hamcrest.version>2.2</hamcrest.version>
 
         <jacoco-check.skip>false</jacoco-check.skip>
@@ -172,7 +172,7 @@
         <maven-checksum-plugin.version>1.8</maven-checksum-plugin.version>
         <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
         <maven-takari-lifecycle-plugin.version>2.0.0</maven-takari-lifecycle-plugin.version>
-        <maven-buildnumber-plugin.version>1.3</maven-buildnumber-plugin.version>
+        <maven-buildnumber-plugin.version>1.4</maven-buildnumber-plugin.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
         <maven-sonar-plugin.version>3.7.0.1746</maven-sonar-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -194,7 +194,7 @@
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
-        <maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
         <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
@@ -1641,7 +1641,7 @@
         <profile>
             <id>deploy</id>
             <properties>
-                <wagon-ssh.version>2.10</wagon-ssh.version>
+                <wagon-ssh.version>3.4.2</wagon-ssh.version>
             </properties>
             <build>
                 <plugins>
@@ -1931,7 +1931,7 @@
         <profile>
             <id>code-style-check</id>
             <properties>
-                <checkstyle.version>8.29</checkstyle.version>
+                <checkstyle.version>8.38</checkstyle.version>
             </properties>
             <build>
                 <plugins>
