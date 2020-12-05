@@ -21,7 +21,7 @@ MAINTAINER Alexander Rogalskiy <alexander.rogalsky@yandex.ru>
 ENV STARTER_HOME=/opt/app
 
 # docker image build arguments for user/group configurations
-ARG USER=wso2carbon
+ARG USER=localtest
 ARG USER_ID=802
 ARG USER_GROUP=wso2
 ARG USER_GROUP_ID=802
