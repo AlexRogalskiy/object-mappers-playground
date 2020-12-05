@@ -1,6 +1,4 @@
 # global default
-container:
-  image: maven:latest
 
 task:
   name: Cirrus CI
@@ -14,7 +12,10 @@ task:
       build_script: |
         mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       container:
-        image: openjdk:11-jdk
+        image: openjdk:11-jdk-slim
+        additional_containers:
+          - name: maven
+            image: maven:3.6.3-openjdk-11
         cpu: 2
         memory: 4G
     - name: Test
@@ -26,7 +27,10 @@ task:
       test_script: |
         mvn test verify --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
       container:
-        image: openjdk:12-jdk
+        image: openjdk:15-jdk-slim
+        additional_containers:
+          - name: maven
+            image: maven:3.6.3-openjdk-15
         cpu: 2
         memory: 4G
   #  build_script: mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
