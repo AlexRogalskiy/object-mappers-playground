@@ -12,11 +12,18 @@ coverage:
   status:
     project:
       default:
+        informational: true
         target: 95%
     patch:
       default:
+        informational: true
         target: 80%
     changes: no
+
+  notify:
+    # Wait for reasonable amount of tests to complete before
+    # reporting coverage
+    after_n_builds: 8
 
   ignore:
     - "**/generated/**"
@@ -32,6 +39,6 @@ parsers:
       macro: no
 
 comment:
-  layout: "header, diff"
+  layout: reach, changes, diff, files
   behavior: default
   require_changes: false
