@@ -11,7 +11,7 @@ addons:
       - gdb
 
 git:
-  depth: false
+  depth: 1
   quiet: true
   submodules: false
   lfs_skip_smudge: true

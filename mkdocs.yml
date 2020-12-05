@@ -1,5 +1,6 @@
 site_name: ObjectMappers Documentation
-site_description: Object mappers - how to eat it and how to make it
+site_description: >
+  Object mappers playground
 site_author: Alexander Rogalskiy
 site_url: https://alexander-rogalsky.gitbook.io/object-mappers-docs/
 
@@ -8,27 +9,36 @@ repo_url: https://gitlab.com/AlexRogalskiy/object-mappers-playground
 edit_uri: https://gitlab.com/AlexRogalskiy/object-mappers-playground/master/docs/
 
 # Copyright
-copyright: ObjectMappers - Documentation
+copyright: ObjectMappers - Documentation © Nullables.io
 
 theme:
   name: material
+  font:
+    text: Roboto
+    code: Roboto Mono
   palette:
+    scheme: preference
     primary: deep-orange
     accent: deep-orange
-  feature:
-    tabs: true
+  features:
+    - navigation.tabs
+    - search.suggest
+    - search.highlight
+    - header.autohide
   highlightjs: true
   language: 'en'
 
+plugins:
+  - search
+#  - minify:
+#      minify_html: true
+
 extra:
-  site_version: 1.0.0
   social:
-    - type: github
-      link: https://github.com/AlexRogalskiy/object-mappers-playground
+    - icon: fontawesome/brands/github-alt
+      link: 'https://github.com/AlexRogalskiy/object-mappers-playground'
 
 markdown_extensions:
-  - markdown_include.include:
-      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true

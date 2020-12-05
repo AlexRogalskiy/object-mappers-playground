@@ -2,4 +2,4 @@ tasks:
   - command: mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
 image:
-  file: .gitpod.Dockerfile
+  file: .gitpod.Dockerfile --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`

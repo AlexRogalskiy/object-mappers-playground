@@ -152,7 +152,13 @@ pip install markdown-include
 4\) Start the server at _**localhost**_ by running the following command:
 
 ```text
-mkdocs serve --dirtyreload
+mkdocs serve --verbose --dirtyreload
+```
+
+5\) Deploy to GitHub pages:
+
+```text
+mkdocs --verbose gh-deploy --force --remote-branch gh-pages
 ```
 
 5\) Open up [localhost](http://127.0.0.1:8000/) in browser to get the default documentation homepage.

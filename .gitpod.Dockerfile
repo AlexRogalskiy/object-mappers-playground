@@ -3,12 +3,20 @@
 
 FROM gitpod/workspace-full
 
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION="1.0.0"
+
 LABEL maintainer="Alexander Rogalskiy <alexander.rogalsky@yandex.ru>"
 LABEL organization="nullables.io"
-LABEL io.nullables.api.playground.image.title="Nullables.io"
+LABEL io.nullables.api.playground.image.build-date=$BUILD_DATE
+LABEL io.nullables.api.playground.image.name="Object Mappers"
 LABEL io.nullables.api.playground.image.description="Object Mappers Playground"
+LABEL io.nullables.api.playground.image.url="https://nullables.io/"
+LABEL io.nullables.api.playground.image.vcs-ref=$VCS_REF
+LABEL io.nullables.api.playground.image.vcs-url="https://github.com/AlexRogalskiy/object-mappers"
 LABEL io.nullables.api.playground.image.vendor="Nullables.io"
-LABEL io.nullables.api.playground.image.version="1.0.0"
+LABEL io.nullables.api.playground.image.version=$VERSION
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG ${LC_ALL}
@@ -48,7 +56,17 @@ RUN sudo mkdir -p /usr/share/maven /usr/share/maven/ref \
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN echo "Adding gitpod user and group" \
+        && useradd --system --uid 1000 --shell /bin/bash --create-home gitpod \
+        && adduser gitpod sudo \
+        && chown --recursive gitpod:gitpod /home/gitpod
+
+ENV HOME /home/gitpod
+
 USER gitpod
+WORKDIR $HOME
 
 #RUN mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 RUN sudo chmod +x /usr/bin/mvn
