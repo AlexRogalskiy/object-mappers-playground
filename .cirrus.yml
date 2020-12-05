@@ -12,10 +12,11 @@ task:
       only_if: $BRANCH == "master"
       fingerprint_script: mvn --version
       build_script: |
-        sudo apt-get install git
         mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       container:
-        image: maven:3.6.3-openjdk-14-slim
+        image: openjdk:11-jdk
+        cpu: 2
+        memory: 4G
     - name: Test
       depends_on:
         - Build
@@ -23,9 +24,10 @@ task:
       only_if: $BRANCH == "master"
       fingerprint_script: mvn --version
       test_script: |
-        sudo apt-get install git
         mvn test verify --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
       container:
-        image: maven:3.6.3-openjdk-15-slim
+        image: openjdk:12-jdk
+        cpu: 2
+        memory: 4G
   #  build_script: mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
   #  test_script: mvn test verify --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
