@@ -33,6 +33,7 @@
 [![Codeac](https://static.codeac.io/badges/2-312880465.svg "Codeac")](https://app.codeac.io/github/AlexRogalskiy/object-mappers-playground)
 [![DeepCode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6IkFsZXhSb2dhbHNraXkiLCJyZXBvMSI6Im9iamVjdC1tYXBwZXJzLXBsYXlncm91bmQiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNTU5MSwiaWF0IjoxNjA3MDA1NjI5fQ.UrcZdUYDALP2dou3LVZ05niu7a5wFZlU2hBnrdq63ho)](https://www.deepcode.ai/app/gh/AlexRogalskiy/object-mappers-playground/_/dashboard?utm_content=gh%2FAlexRogalskiy%2Fobject-mappers-playground)
 [![NewReleases](https://newreleases.io/badge.svg)](https://newreleases.io/github/AlexRogalskiy/object-mappers-playground)
+[![Build Status](https://api.cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground.svg)](https://cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 

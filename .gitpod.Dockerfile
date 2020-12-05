@@ -1,10 +1,10 @@
 #!/bin/echo docker build . -f
 # -*- coding: utf-8 -*-
 
-FROM gitpod/workspace-full
+FROM gitpod/workspace-full:latest
 
-ARG BUILD_DATE=`git rev-parse --short HEAD`
-ARG VCS_REF=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
+ARG BUILD_DATE="$(git rev-parse --short HEAD)"
+ARG VCS_REF="$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")"
 ARG VERSION="1.0.0"
 
 LABEL maintainer="Alexander Rogalskiy <alexander.rogalsky@yandex.ru>"
@@ -55,18 +55,16 @@ RUN sudo mkdir -p /usr/share/maven /usr/share/maven/ref \
 # Define environmental variables required by Maven, like Maven_Home directory and where the maven repo is located
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+ENV HOME /home/gitpod
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 RUN echo "Adding gitpod user and group" \
         && useradd --system --uid 1000 --shell /bin/bash --create-home gitpod \
         && adduser gitpod sudo \
         && chown --recursive gitpod:gitpod /home/gitpod
 
-ENV HOME /home/gitpod
-
 USER gitpod
 WORKDIR $HOME
 
-#RUN mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+# RUN mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 RUN sudo chmod +x /usr/bin/mvn

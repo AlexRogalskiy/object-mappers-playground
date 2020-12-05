@@ -1,6 +1,6 @@
 # global default
 container:
-  image: 3.6.3-openjdk-11
+  image: maven:latest
 
 task:
   name: Cirrus CI
@@ -21,10 +21,10 @@ task:
 test_task:
   matrix:
     - container:
-        image: 3.6.3-openjdk-16-slim
+        image: maven:3.6.3-openjdk-16-slim
     - allow_failures: true
       container:
-        image: 3.6.3-openjdk-15-slim
+        image: maven:3.6.3-openjdk-15-slim
   maven_cache:
     folder: ~/.m2
     fingerprint_script: mvn --version
