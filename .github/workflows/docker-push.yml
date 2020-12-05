@@ -65,7 +65,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=$(echo docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME | tr '[:upper:]' '[:lower:]')
 
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -76,7 +76,7 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
 
-          echo IMAGE_ID=$(echo $IMAGE_ID | tr '[:upper:]' '[:lower:]')
+          echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
           docker tag image $IMAGE_ID:$VERSION
