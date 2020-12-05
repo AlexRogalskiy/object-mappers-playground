@@ -23,14 +23,14 @@ ENV STARTER_HOME=/opt/app
 # docker image build arguments for user/group configurations
 ARG USER=localtest
 ARG USER_ID=802
-ARG USER_GROUP=wso2
+ARG USER_GROUP=tests
 ARG USER_GROUP_ID=802
 ARG USER_HOME=/home/${USER}
 
 # create the user and group
 RUN \
-    addgroup --system -g ${USER_GROUP_ID} ${USER_GROUP} \
-    && adduser --system --home ${USER_HOME} -g ${USER_GROUP_ID} -u ${USER_ID} ${USER}
+    groupadd --system --gid ${USER_GROUP_ID} ${USER_GROUP} \
+    && useradd --system -s /bin/bash --home ${USER_HOME} --gid ${USER_GROUP_ID} --uid ${USER_ID} -m ${USER}
 
 # Define jar file
 ARG JAR_FILE
