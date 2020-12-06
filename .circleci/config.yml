@@ -4,78 +4,8 @@
 #
 version: 2.1
 
-executors:
-  test:
-    parameters:
-      version:
-        type: enum
-        enum: [ '11.0.3-jdk-stretch', '13-jdk-buster' ]
-        default: '11.0.3-jdk-stretch'
-        description: "Java version"
-    resource_class: large
-    docker:
-      - image: circleci/openjdk:<<parameters.version>>
-  build:
-    parameters:
-      version:
-        type: string
-        description: "Java version"
-      variant:
-        type: enum
-        enum: [ '', '-stretch', '-buster' ]
-        default: ''
-        description: "Version variant"
-    resource_class: large
-    docker:
-      - image: circleci/openjdk:<<parameters.version>><<parameters.variant>>
-
-commands:
-  test:
-    description: 'Test'
-    steps:
-      - checkout
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Check current version of java
-          command: java -version
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - run:
-          name: Run build
-          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
-  build:
-    parameters:
-      version:
-        type: integer
-    description: 'Build'
-    steps:
-      - checkout
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Check current version of java
-          command: java -version
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - restore_cache:
-          keys:
-            - v1-dependencies-<<parameters.version>>-{{ checksum "pom.xml" }}
-            - v1-dependencies- # fallback in case previous cache key is not found
-      - run:
-          name: Run build
-          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-<<parameters.version>>-{{ checksum "pom.xml" }}
-
 jobs:
-  build_non_module_jdk:
+  build_jdk8:
     parallelism: 2
     working_directory: ~/repo
     docker:
@@ -89,9 +19,6 @@ jobs:
       - run:
           name: Check environment
           command: env
-      - run:
-          name: Check current version of java
-          command: java -version
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./mvnw
@@ -110,48 +37,84 @@ jobs:
             - ~/.m2
           key: v8-dependencies-{{ checksum "pom.xml" }}
 
-  build_module_jdk11:
+  build_jdk11:
     parallelism: 2
     working_directory: ~/repo
-    executor:
-      name: build
-      version: 11.0.3-jdk
-      variant: -stretch
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - build:
-          version: 11
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run:
+          name: Run build
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
-  build_module_jdk13:
+  build_jdk13:
     parallelism: 2
     working_directory: ~/repo
-    executor:
-      name: build
-      version: 13-jdk
-      variant: -buster
+    docker:
+      - image: circleci/openjdk:13-jdk-buster
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - build:
-          version: 13
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run:
+          name: Run build
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
-  test_module_jdk11:
+  test:
     parallelism: 2
     working_directory: ~/repo
-    executor:
-      name: test
-      version: 11.0.3-jdk-stretch
+    docker:
+      - image: circleci/openjdk:11.0.3-jdk-stretch
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - test
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - run:
+          name: Run build
+          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
 workflows:
   version: 2
@@ -165,18 +128,18 @@ workflows:
               only:
                 - master
     jobs:
-      - build_non_module_jdk
-      - build_module_jdk11
-      - build_module_jdk13
+      - build_jdk8
+      - build_jdk11
+      - build_jdk13
 
   build-then-test:
     jobs:
-      - build_non_module_jdk
-      - build_module_jdk11
-      - build_module_jdk13
-      - test_module_jdk11:
+      - build_jdk8
+      - build_jdk11
+      - build_jdk13
+      - test:
           requires:
-            - build_module_jdk11
+            - build_jdk11
           filters:
             branches:
               only: master
