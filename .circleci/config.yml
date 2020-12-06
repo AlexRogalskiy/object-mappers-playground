@@ -20,7 +20,7 @@ commands:
   build:
     parameters:
       version:
-        type: integer
+        type: string
     description: 'Build'
     steps:
       - checkout
