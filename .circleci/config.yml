@@ -10,6 +10,8 @@ executors:
       version:
         type: enum
         enum: [ '11.0.3-jdk-stretch', '13-jdk-buster' ]
+        default: '11.0.3-jdk-stretch'
+        description: "Java version"
     resource_class: large
     docker:
       - image: circleci/openjdk:<<parameters.version>>
@@ -17,9 +19,12 @@ executors:
     parameters:
       version:
         type: string
+        description: "Java version"
       variant:
         type: enum
         enum: [ '', '-stretch', '-buster' ]
+        default: ''
+        description: "Version variant"
     resource_class: large
     docker:
       - image: circleci/openjdk:<<parameters.version>><<parameters.variant>>
@@ -44,7 +49,7 @@ commands:
   build:
     parameters:
       version:
-        type: string
+        type: integer
     description: 'Build'
     steps:
       - checkout
