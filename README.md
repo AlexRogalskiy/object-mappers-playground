@@ -5,7 +5,6 @@
 ![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/AlexRogalskiy/object-mappers-playground)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/AlexRogalskiy/object-mappers-playground)
-![Github All Contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
 ![GitHub repo size](https://img.shields.io/github/repo-size/AlexRogalskiy/object-mappers-playground)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AlexRogalskiy/object-mappers-playground)
 ![GitHub](https://img.shields.io/github/license/AlexRogalskiy/object-mappers-playground)
@@ -177,9 +176,9 @@ You can find more useful libs and examples on [wiki](https://github.com/AlexRoga
 
 ## _Authors_
 
-Object Mappers is maintained by:
+Object Mappers is maintained by following GitHub team-members:
 
-* [Alexander Rogalskiy](https://github.com/AlexRogalskiy) 
+[![Author](https://img.shields.io/badge/author-AlexRogalskiy-FB8F0A)](https://github.com/AlexRogalskiy)
 
 with community support please contact with us if you have some question or proposition.
 
@@ -189,6 +188,7 @@ with community support please contact with us if you have some question or propo
 
 ## _Visitor stats_
 
+![Github contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
 ![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)

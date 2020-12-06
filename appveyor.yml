@@ -71,7 +71,7 @@ on_failure:
 
 test_script:
   - if %PLATFORM% == x64 mvn test verify -B -Pdev,test,test-jar
-  - if %PLATFORM% == x64 mvn checkstyle:check forbiddenapis:check -B -DskipTests=true -Pdev,test-jar,forbidden-api-check,code-style-check
+  - if %PLATFORM% == x64 mvn clean install checkstyle:check forbiddenapis:check -B -DskipTests=true -Pdev,test-jar,forbidden-api-check,code-style-check
 
 cache:
   - C:\bin\apache-maven-3.6.3
