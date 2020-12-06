@@ -5,6 +5,14 @@
 version: 2.1
 
 executors:
+  test:
+    parameters:
+      version:
+        type: enum
+        enum: [ '11.0.3-jdk-stretch', '13-jdk-buster' ]
+    resource_class: large
+    docker:
+      - image: circleci/openjdk:<<parameters.version>>
   build:
     parameters:
       version:
@@ -17,6 +25,22 @@ executors:
       - image: cimg/openjdk:<<parameters.version>><<parameters.variant>>
 
 commands:
+  test:
+    description: 'Test'
+    steps:
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Check current version of java
+          command: java -version
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - run:
+          name: Run build
+          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
   build:
     parameters:
       version:
@@ -111,30 +135,18 @@ jobs:
       - build:
           version: 11.0.9
 
-  test:
+  test_module_jdk:
     parallelism: 2
     working_directory: ~/repo
-    parameters:
-      version:
-        type: enum
-        enum: [ '11.0.3-jdk-stretch', '13-jdk-buster' ]
-    docker:
-      - image: circleci/openjdk:<<parameters.version>>
+    executor:
+      name: test
+      version: 11.0.3-jdk-stretch
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - checkout
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - run:
-          name: Run build
-          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
+      - test
 
 workflows:
   version: 2
@@ -156,7 +168,7 @@ workflows:
       - build_non_module_jdk
       - build_module_jdk
       - build_module_jdk_with_node
-      - test:
+      - test_module_jdk:
           requires:
             - build_module_jdk
           filters:
