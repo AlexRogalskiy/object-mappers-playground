@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN"
-    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 <suppressions>
     <!-- global -->
     <suppress files="[\\/]src[\\/]integration-test[\\/]java[\\/]" checks="Javadoc*"/>
@@ -34,7 +34,6 @@
 
     <!-- generated sources -->
     <suppress files=".+[\\/]gen[\\/].+\.java" checks="AuthorTagCheck"/>
-    <suppress files="**/*_jmh*.java" checks="AuthorTagCheck"/>
 
     <!-- internal packages -->
     <suppress files=".*[\\/]internal[\\/].*"
@@ -47,6 +46,7 @@
               checks="JavadocType|JavadocVariable|JavadocMethod|JavadocPackage|JavadocFilterCheck"/>
 
     <!-- tests and benchmarks -->
+    <suppress checks="MethodName" files="\*Test.java"/>
     <suppress files=".*[\\/](test|microbench)[\\/].*"
               checks="JavadocMethod|JavadocType|JavadocPackage|JavadocVariable|IllegalThrows|VisibilityModifier"/>
 </suppressions>

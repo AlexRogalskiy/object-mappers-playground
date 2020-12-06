@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
     <module name="BeforeExecutionExclusionFileFilter">
         <property name="fileNamePattern" value="incubator|module\-info\.java$"/>
@@ -28,10 +28,10 @@
             <property name="allowByTailComment" value="true"/>
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
-        <module name="LineLength">
-            <property name="max" value="130"/>
-            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
-        </module>
+        <!--        <module name="LineLength">-->
+        <!--            <property name="max" value="130"/>-->
+        <!--            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>-->
+        <!--        </module>-->
         <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
@@ -222,11 +222,8 @@
         <module name="JavadocMethod">
             <property name="scope" value="public"/>
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
-            <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test, BeforeAll, AfterAll, ParameterizedTest, After"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>

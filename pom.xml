@@ -1067,7 +1067,7 @@
             <id>bom</id>
             <properties>
                 <bom.template.file.path>
-                    file:///${session.executionRootDirectory}/codestyle/bom.xml
+                    file:///${session.executionRootDirectory}/package/bom.xml
                 </bom.template.file.path>
             </properties>
             <build>
@@ -1814,7 +1814,8 @@
                         <artifactId>sortpom-maven-plugin</artifactId>
                         <version>${maven-sortpom-plugin.version}</version>
                         <configuration>
-                            <sortOrderFile>${session.executionRootDirectory}/codestyle/pomSortOrder.xml</sortOrderFile>
+                            <sortOrderFile>${session.executionRootDirectory}/codestyle/pom-sort-style.xml
+                            </sortOrderFile>
                             <keepBlankLines>true</keepBlankLines>
                             <lineSeparator>\n</lineSeparator>
                             <createBackupFile>false</createBackupFile>
@@ -1943,11 +1944,14 @@
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
                             <encoding>${project.build.outputEncoding}</encoding>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                            </sourceDirectories>
                             <configLocation>
-                                ${session.executionRootDirectory}/checkstyle/checkstyle.xml
+                                checkstyle/checkstyle.xml
                             </configLocation>
                             <suppressionsLocation>
-                                ${session.executionRootDirectory}/checkstyle/checkstyle-exclude.xml
+                                checkstyle/checkstyle-exclude.xml
                             </suppressionsLocation>
                         </configuration>
                         <executions>
