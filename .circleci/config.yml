@@ -4,12 +4,53 @@
 #
 version: 2.1
 
+executors:
+  core:
+    parameters:
+      version:
+        type: string
+      variant:
+        type: enum
+        enum: [ '-browsers', '-node' ]
+    resource_class: large
+    docker:
+      - image: cimg/openjdk:<<parameters.version>><<parameters.variant>>
+
+commands:
+  build:
+    parameters:
+      version:
+        type: integer
+    description: 'Build'
+    steps:
+      - checkout
+      - run:
+          name: Check environment
+          command: env
+      - run:
+          name: Check current version of java
+          command: java -version
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./mvnw
+      - restore_cache:
+          keys:
+            - v1-dependencies-<<parameters.version>>-{{ checksum "pom.xml" }}
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run:
+          name: Run build
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-<<parameters.version>>-{{ checksum "pom.xml" }}
+
 jobs:
-  build_jdk8:
+  build_non_module_jdk:
     parallelism: 2
     working_directory: ~/repo
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: cimg/openjdk:8-jdk
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
@@ -19,6 +60,9 @@ jobs:
       - run:
           name: Check environment
           command: env
+      - run:
+          name: Check current version of java
+          command: java -version
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./mvnw
@@ -37,69 +81,44 @@ jobs:
             - ~/.m2
           key: v8-dependencies-{{ checksum "pom.xml" }}
 
-  build_jdk11:
+  build_module_jdk:
     parallelism: 2
     working_directory: ~/repo
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
+    executor:
+      name: build
+      version: 13.0.2
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - checkout
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
-            - v1-dependencies- # fallback in case previous cache key is not found
-      - run:
-          name: Run build
-          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - build:
+          version: 13.0.2
 
-  build_jdk13:
+  build_module_jdk_with_node:
     parallelism: 2
     working_directory: ~/repo
-    docker:
-      - image: circleci/openjdk:13-jdk-buster
+    executor:
+      name: build
+      version: 11.0.9
+      variant: -node
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - checkout
-      - run:
-          name: Check environment
-          command: env
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./mvnw
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
-            - v1-dependencies- # fallback in case previous cache key is not found
-      - run:
-          name: Run build
-          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - build:
+          version: 11.0.9
 
   test:
     parallelism: 2
     working_directory: ~/repo
+    parameters:
+      version:
+        type: enum
+        enum: [ '11.0.3-jdk-stretch', '13-jdk-buster' ]
     docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
+      - image: circleci/openjdk:<<parameters.version>>
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
@@ -128,18 +147,17 @@ workflows:
               only:
                 - master
     jobs:
-      - build_jdk8
-      - build_jdk11
-      - build_jdk13
+      - build_non_module_jdk
+      - build_module_jdk
 
   build-then-test:
     jobs:
-      - build_jdk8
-      - build_jdk11
-      - build_jdk13
+      - build_non_module_jdk
+      - build_module_jdk
+      - build_module_jdk_with_node
       - test:
           requires:
-            - build_jdk11
+            - build_module_jdk
           filters:
             branches:
               only: master
