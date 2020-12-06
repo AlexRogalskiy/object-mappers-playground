@@ -19,10 +19,10 @@ executors:
         type: string
       variant:
         type: enum
-        enum: [ '', '-browsers', '-node' ]
+        enum: [ '', '-stretch', '-buster' ]
     resource_class: large
     docker:
-      - image: cimg/openjdk:<<parameters.version>><<parameters.variant>>
+      - image: circleci/openjdk:<<parameters.version>><<parameters.variant>>
 
 commands:
   test:
@@ -74,7 +74,7 @@ jobs:
     parallelism: 2
     working_directory: ~/repo
     docker:
-      - image: cimg/openjdk:8-jdk
+      - image: circleci/openjdk:8-jdk
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
@@ -105,37 +105,37 @@ jobs:
             - ~/.m2
           key: v8-dependencies-{{ checksum "pom.xml" }}
 
-  build_module_jdk:
+  build_module_jdk11:
     parallelism: 2
     working_directory: ~/repo
     executor:
       name: build
-      version: 13.0.2
-      variant: ""
+      version: 11.0.3-jdk
+      variant: -stretch
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
       - build:
-          version: 13.0.2
+          version: 11
 
-  build_module_jdk_with_node:
+  build_module_jdk13:
     parallelism: 2
     working_directory: ~/repo
     executor:
       name: build
-      version: 11.0.9
-      variant: -node
+      version: 13-jdk
+      variant: -buster
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
       TERM: dumb
     steps:
       - build:
-          version: 11.0.9
+          version: 13
 
-  test_module_jdk:
+  test_module_jdk11:
     parallelism: 2
     working_directory: ~/repo
     executor:
@@ -161,16 +161,17 @@ workflows:
                 - master
     jobs:
       - build_non_module_jdk
-      - build_module_jdk
+      - build_module_jdk11
+      - build_module_jdk13
 
   build-then-test:
     jobs:
       - build_non_module_jdk
-      - build_module_jdk
-      - build_module_jdk_with_node
-      - test_module_jdk:
+      - build_module_jdk11
+      - build_module_jdk13
+      - test_module_jdk11:
           requires:
-            - build_module_jdk
+            - build_module_jdk11
           filters:
             branches:
               only: master
