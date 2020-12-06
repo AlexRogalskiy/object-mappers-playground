@@ -11,7 +11,7 @@ executors:
         type: string
       variant:
         type: enum
-        enum: [ '-browsers', '-node' ]
+        enum: [ '', '-browsers', '-node' ]
     resource_class: large
     docker:
       - image: cimg/openjdk:<<parameters.version>><<parameters.variant>>
@@ -87,7 +87,7 @@ jobs:
     executor:
       name: build
       version: 13.0.2
-      variant:
+      variant: ""
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
