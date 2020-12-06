@@ -172,11 +172,16 @@ mkdocs --verbose gh-deploy --force --remote-branch gh-pages
 
 ## _Miscellaneous_
 
-You can find more useful libs and examples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
+You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
+
+## _Technology stack_
+
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://java.com/en/)
 
 ## _Authors_
 
-Object Mappers is maintained by following GitHub team-members:
+Object Mappers is maintained by the following GitHub team-members:
 
 [![Author](https://img.shields.io/badge/author-AlexRogalskiy-FB8F0A)](https://github.com/AlexRogalskiy)
 
