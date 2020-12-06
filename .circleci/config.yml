@@ -87,6 +87,7 @@ jobs:
     executor:
       name: build
       version: 13.0.2
+      variant:
     environment:
       JVM_OPTS: -Xmx3g
       MAVEN_OPTS: -Xmx3200m
