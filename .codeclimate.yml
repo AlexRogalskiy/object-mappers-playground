@@ -12,6 +12,13 @@ engines:
       minimum_severity: critical
       tests_patterns:
         - src/test/**
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - java
+  fixme:
+    enabled: true
 
 checks:
   argument-count:
