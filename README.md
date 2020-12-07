@@ -36,6 +36,7 @@
 [![NewReleases](https://newreleases.io/badge.svg)](https://newreleases.io/github/AlexRogalskiy/object-mappers-playground)
 [![Build Status](https://api.cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground.svg)](https://cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground)
 [![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
+[![Codecov](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground/branch/master/graph/badge.svg?token=46Y1MSXCZ3)](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 
@@ -172,7 +173,12 @@ mkdocs --verbose gh-deploy --force --remote-branch gh-pages
 
 ## _Miscellaneous_
 
-You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
+<a href="https://www.repostatus.org/#active">
+    <img src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." />
+</a>
+<p>
+    You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
+</p>
 
 ## _Technology stack_
 
