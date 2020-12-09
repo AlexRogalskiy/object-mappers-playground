@@ -11,6 +11,10 @@ pull_requests:
 build:
   verbosity: detailed
 
+# Immediately finish build if something fails.
+matrix:
+  fast_finish: true
+
 environment:
   matrix:
     # 64 bit

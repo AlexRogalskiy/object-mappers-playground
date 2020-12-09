@@ -10,7 +10,8 @@ github:
     addLabel: false
 
 tasks:
-  - command: mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+  - before: mvn --version && java -version
+    command: mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
 image:
   file: .gitpod.Dockerfile
