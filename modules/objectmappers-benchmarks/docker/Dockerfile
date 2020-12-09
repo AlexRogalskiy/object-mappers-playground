@@ -4,9 +4,12 @@
 
 ARG IMAGE_SOURCE=openjdk
 ARG IMAGE_TAG=latest
+ARG TARGET_PLATFORM=linux/amd64
 
 # Init container image
-FROM ${IMAGE_SOURCE}:${IMAGE_TAG}
+FROM --platform=${TARGET_PLATFORM} ${IMAGE_SOURCE}:${IMAGE_TAG}
+
+RUN printf "Running on ${TARGET_PLATFORM}, building for image ${IMAGE_SOURCE}:${IMAGE_TAG}\n$(uname -a)\n"
 
 # Set container labels
 LABEL org.opencontainers.image.title="ObjectMappers"
