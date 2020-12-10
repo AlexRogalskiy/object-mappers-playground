@@ -24,27 +24,27 @@ parts:
     source: https://github.com/AlexRogalskiy/object-mappers-playground.git
     maven-openjdk-version: "11"
     maven-targets:
-      - ./modules/objectmappers-all/.build/bin/io.nullables.api.playground.objectmappers.all
-      - ./modules/objectmappers-beancp/.build/bin/io.nullables.api.playground.objectmappers.beancp
-      - ./modules/objectmappers-beanmapper/.build/bin/io.nullables.api.playground.objectmappers.beanmapper
-      - ./modules/objectmappers-beanutils/.build/bin/io.nullables.api.playground.objectmappers.beanutils
-      - ./modules/objectmappers-benchmarks/.build/bin/io.nullables.api.playground.objectmappers.benchmarks
-      - ./modules/objectmappers-bull/.build/bin/io.nullables.api.playground.objectmappers.bull
-      - ./modules/objectmappers-commons/.build/bin/io.nullables.api.playground.objectmappers.commons
-      - ./modules/objectmappers-datus/.build/bin/io.nullables.api.playground.objectmappers.datus
-      - ./modules/objectmappers-doov/.build/bin/io.nullables.api.playground.objectmappers.doov
-      - ./modules/objectmappers-dozer/.build/bin/io.nullables.api.playground.objectmappers.dozer
-      - ./modules/objectmappers-it/.build/bin/io.nullables.api.playground.objectmappers.it
-      - ./modules/objectmappers-jmapper/.build/bin/io.nullables.api.playground.objectmappers.jmapper
-      - ./modules/objectmappers-mapstruct/.build/bin/io.nullables.api.playground.objectmappers.mapstruct
-      - ./modules/objectmappers-modelmapper/.build/bin/io.nullables.api.playground.objectmappers.modelmapper
-      - ./modules/objectmappers-moo/.build/bin/io.nullables.api.playground.objectmappers.moo
-      - ./modules/objectmappers-nomin/.build/bin/io.nullables.api.playground.objectmappers.nomin
-      - ./modules/objectmappers-orika/.build/bin/io.nullables.api.playground.objectmappers.orika
-      - ./modules/objectmappers-remap/.build/bin/io.nullables.api.playground.objectmappers.remap
-      - ./modules/objectmappers-selma/.build/bin/io.nullables.api.playground.objectmappers.selma
-      - ./modules/objectmappers-smooks/.build/bin/io.nullables.api.playground.objectmappers.smooks
-      - ./modules/objectmappers-testflow/.build/bin/io.nullables.api.playground.objectmappers.testflow
+      - modules/objectmappers-all/.build/bin/io.nullables.api.playground.objectmappers.all
+      - modules/objectmappers-beancp/.build/bin/io.nullables.api.playground.objectmappers.beancp
+      - modules/objectmappers-beanmapper/.build/bin/io.nullables.api.playground.objectmappers.beanmapper
+      - modules/objectmappers-beanutils/.build/bin/io.nullables.api.playground.objectmappers.beanutils
+      - modules/objectmappers-benchmarks/.build/bin/io.nullables.api.playground.objectmappers.benchmarks
+      - modules/objectmappers-bull/.build/bin/io.nullables.api.playground.objectmappers.bull
+      - modules/objectmappers-commons/.build/bin/io.nullables.api.playground.objectmappers.commons
+      - modules/objectmappers-datus/.build/bin/io.nullables.api.playground.objectmappers.datus
+      - modules/objectmappers-doov/.build/bin/io.nullables.api.playground.objectmappers.doov
+      - modules/objectmappers-dozer/.build/bin/io.nullables.api.playground.objectmappers.dozer
+      - modules/objectmappers-it/.build/bin/io.nullables.api.playground.objectmappers.it
+      - modules/objectmappers-jmapper/.build/bin/io.nullables.api.playground.objectmappers.jmapper
+      - modules/objectmappers-mapstruct/.build/bin/io.nullables.api.playground.objectmappers.mapstruct
+      - modules/objectmappers-modelmapper/.build/bin/io.nullables.api.playground.objectmappers.modelmapper
+      - modules/objectmappers-moo/.build/bin/io.nullables.api.playground.objectmappers.moo
+      - modules/objectmappers-nomin/.build/bin/io.nullables.api.playground.objectmappers.nomin
+      - modules/objectmappers-orika/.build/bin/io.nullables.api.playground.objectmappers.orika
+      - modules/objectmappers-remap/.build/bin/io.nullables.api.playground.objectmappers.remap
+      - modules/objectmappers-selma/.build/bin/io.nullables.api.playground.objectmappers.selma
+      - modules/objectmappers-smooks/.build/bin/io.nullables.api.playground.objectmappers.smooks
+      - modules/objectmappers-testflow/.build/bin/io.nullables.api.playground.objectmappers.testflow
     source-type: git
     source-branch: master
     source-depth: 1
