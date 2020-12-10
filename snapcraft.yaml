@@ -55,8 +55,8 @@ parts:
       - --lax-checksums
       - -DskipTests=true
       - -P test-jar, dev
-    #    override-build: |
-    #      snapcraftctl build
+    override-build: |
+      mvn clean package --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
     build-packages:
       - openjdk-11-jdk
       - unzip

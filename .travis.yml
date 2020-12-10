@@ -39,8 +39,8 @@ jdk:
 
 env:
   global:
-    - MAVEN_OPTS="-Xmx256m"
-    - JAVA_OPTS="-Xmx256m"
+    - MAVEN_OPTS="-Xmx1G"
+    - JAVA_OPTS="-Xmx1G"
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
@@ -60,6 +60,7 @@ before_script:
 script:
   - set -e
   - ${JAVA_HOME}/bin/java -version
+  - ./mvnw --version
   - ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
 stages:
