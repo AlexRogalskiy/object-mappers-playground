@@ -40,6 +40,12 @@ jobs:
         architecture: [ 'x64', 'x86' ]
         os: [ ubuntu-latest, windows-latest ]
         machines: [ 1, 2 ]
+        include:
+          - java: 11
+            architecture: x86
+            os: macos-latest
+            machines: 1
+
     name: Commit Check with JDK ${{ matrix.java }} on ${{ matrix.architecture }} with ${{ matrix.os }} on ${{ matrix.machine }}
     steps:
       - name: commit check
