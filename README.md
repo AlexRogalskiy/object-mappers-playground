@@ -40,6 +40,7 @@
 ![CodeQL](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/CodeQL/badge.svg)
 [![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
 [![Utilization (%)](https://api.gitential.com/accounts/2318/projects/4210/badges/utilization.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
+[![Hits-of-Code](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground)](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground/view)
 
 ## _Summary_
 
@@ -89,7 +90,7 @@ Choose one of the modules and add to your `pom.xml`:
 
 Bundle with all Object Mappers dependencies:
 
-* [**ObjectMappers All**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all)  
+* [**ObjectMappers All**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all)
 
   `objectmappers-all` - Library to work with Object Mappers API.
 
@@ -197,6 +198,9 @@ Object Mappers is maintained by the following GitHub team-members:
 with community support please contact with us if you have some question or proposition.
 
 ## _Contributing_
+
+[![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 

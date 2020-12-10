@@ -186,6 +186,7 @@
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
         <maven-dependency-check-plugin.version>6.0.3</maven-dependency-check-plugin.version>
         <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
+        <maven-qulice-plugin.version>0.18.19</maven-qulice-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
@@ -1924,6 +1925,25 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <plugin>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>qulice-maven-plugin</artifactId>
+                        <version>${maven-qulice-plugin.version}</version>
+                        <configuration>
+                            <excludes combine.children="append">
+                                <exclude>findbugs:.*</exclude>
+                            </excludes>
+                            <license>file:${basedir}/LICENSE.txt</license>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -2417,11 +2437,11 @@
                                         <skip>${jacoco-check.skip}</skip>
                                         <rules>
                                             <rule
-                                                    implementation="org.jacoco.maven.RuleConfiguration">
+                                                implementation="org.jacoco.maven.RuleConfiguration">
                                                 <element>BUNDLE</element>
                                                 <limits>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>INSTRUCTION</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2429,7 +2449,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>CLASS</counter>
                                                         <value>MISSEDCOUNT</value>
                                                         <maximum>
@@ -2437,7 +2457,7 @@
                                                         </maximum>
                                                     </limit>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>LINE</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2445,7 +2465,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>BRANCH</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2453,7 +2473,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>COMPLEXITY</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>
@@ -2461,7 +2481,7 @@
                                                         </minimum>
                                                     </limit>
                                                     <limit
-                                                            implementation="org.jacoco.report.check.Limit">
+                                                        implementation="org.jacoco.report.check.Limit">
                                                         <counter>METHOD</counter>
                                                         <value>COVEREDRATIO</value>
                                                         <minimum>

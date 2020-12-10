@@ -37,6 +37,11 @@ jdk:
   - openjdk13
   - openjdk14
 
+env:
+  global:
+    - MAVEN_OPTS="-Xmx256m"
+    - JAVA_OPTS="-Xmx256m"
+
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gnu-tar git-lfs; fi
@@ -53,6 +58,7 @@ before_script:
     fi
 
 script:
+  - set -e
   - ${JAVA_HOME}/bin/java -version
   - ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
 
