@@ -37,6 +37,11 @@ jdk:
   - openjdk13
   - openjdk14
 
+matrix:
+  allow_failures:
+    - jdk: oraclejdk8
+    - jdk: openjdk8
+
 env:
   global:
     - MAVEN_OPTS="-Xmx1G"
@@ -70,6 +75,7 @@ stages:
   - snapshot release
 
 jobs:
+  fast_finish: true
   include:
     - stage: sonar
       if: (branch = master OR branch =~ /^r[0-9]+\.[0-9]+/) AND type = pull_request
@@ -131,7 +137,7 @@ jobs:
 
 after_success:
   - bash <(curl -s --retry 5 --retry-delay 2 --connect-timeout 2 https://codecov.io/bash) -t $CODECOV_TOKEN
-  - test ("$TRAVIS_JDK_VERSION" != "oraclejdk8" -o "$TRAVIS_JDK_VERSION" != "openjdk8") && ./mvnw clean test -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report -P test-jar,test,dev
+  - ./mvnw clean test -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report -P test-jar,test,dev
 
 after_failure:
   - cat hs_err*
