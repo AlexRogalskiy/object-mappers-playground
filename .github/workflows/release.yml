@@ -22,18 +22,18 @@ jobs:
         os: [ ubuntu-latest, windows-latest ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }} with ${{ matrix.os }}
     steps:
-      - name: Prepare git
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.ignorecase false
-          git config --global help.autocorrect 1
-          git config core.fileMode false
-
       - name: Checkout repository
         uses: actions/checkout@master
         with:
           submodules: "recursive"
           fetch-depth: 2
+
+      - name: Prepare git
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config --global core.fileMode false
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v1
@@ -128,18 +128,18 @@ jobs:
         os: [ ubuntu-latest, windows-latest ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }} with ${{ matrix.os }}
     steps:
-      - name: Prepare git
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.ignorecase false
-          git config --global help.autocorrect 1
-          git config core.fileMode false
-
       - name: Checkout repository
         uses: actions/checkout@master
         with:
           submodules: "recursive"
           fetch-depth: 2
+
+      - name: Prepare git
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config --global core.fileMode false
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v1

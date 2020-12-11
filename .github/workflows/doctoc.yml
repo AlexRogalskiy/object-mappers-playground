@@ -10,15 +10,18 @@ jobs:
     name: Doc TOC Check
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
       - name: Prepare git
         run: |
           git config --global core.autocrlf false
           git config --global core.ignorecase false
           git config --global help.autocorrect 1
-          git config core.fileMode false
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
+          git config --global core.fileMode false
 
       - uses: actions/setup-node@v1
         with:

@@ -26,15 +26,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
       - name: Prepare git
         run: |
           git config --global core.autocrlf false
           git config --global core.ignorecase false
           git config --global help.autocorrect 1
-          git config core.fileMode false
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
+          git config --global core.fileMode false
 
       - name: Run tests
         run: |
@@ -55,15 +58,18 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
       - name: Prepare git
         run: |
           git config --global core.autocrlf false
           git config --global core.ignorecase false
           git config --global help.autocorrect 1
-          git config core.fileMode false
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
+          git config --global core.fileMode false
 
       - name: Build image
         run: docker build . --file modules/objectmappers-benchmarks/docker/Dockerfile --tag image

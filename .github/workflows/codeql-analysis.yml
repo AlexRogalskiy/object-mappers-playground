@@ -25,19 +25,19 @@ jobs:
         language: [ 'java' ]
 
     steps:
-      - name: 'Prepare git'
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.ignorecase false
-          git config --global help.autocorrect 1
-          git config core.fileMode false
-
       - name: 'Checkout repository'
         uses: actions/checkout@v2
         with:
           # We must fetch at least the immediate parents so that if this is
           # a pull request then we can checkout the head.
           fetch-depth: 2
+
+      - name: Prepare git
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config --global core.fileMode false
 
       # If this run was triggered by a pull request event, then checkout
       # the head of the pull request instead of the merge commit.

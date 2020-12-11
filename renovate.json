@@ -3,7 +3,15 @@
         "config:base",
         ":maintainLockFilesWeekly",
         ":prHourlyLimitNone",
-        ":prConcurrentLimitNone"
+        ":prConcurrentLimitNone",
+        ":gitSignOff",
+        "group:monorepos",
+        "group:recommended"
+    ],
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/__tests__/**",
+        "**/test/**"
     ],
     "maven": {
         "enabled": true
@@ -14,14 +22,40 @@
         "before 5am every weekday",
         "every weekend"
     ],
+    "lockFileMaintenance": {
+        "enabled": true,
+        "schedule": [
+            "before 5am on monday"
+        ]
+    },
     "automerge": true,
+    "statusCheckVerify": true,
+    "updateNotScheduled": true,
+    "branchPrefix": "renovate/",
     "automergeType": "branch",
     "major": {
         "automerge": false
     },
+    "travis": {
+        "enabled": true,
+        "supportPolicy": [
+            "lts",
+            "current"
+        ]
+    },
     "masterIssue": true,
+    "masterIssueApproval": false,
+    "masterIssueAutoclose": true,
+    "prConcurrentLimit": 5,
+    "prCreation": "immediate",
     "timezone": "Europe/Moscow",
     "rangeStrategy": "bump",
+    "prHourlyLimit": 2,
+    "semanticCommits": "enabled",
+    "semanticCommitType": "chore",
+    "semanticCommitScope": "null",
+    "separateMajorMinor": true,
+    "separateMinorPatch": false,
     "commitMessageAction": "Updates",
     "commitMessageTopic": "{{depName}}",
     "commitMessagePrefix": ":arrow_up:",

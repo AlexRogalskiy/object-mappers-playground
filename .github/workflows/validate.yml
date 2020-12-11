@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
 
       - name: Validate images
         uses: ./.github/workflows/validate
