@@ -130,7 +130,7 @@ jobs:
 
 after_success:
   - bash <(curl -s --retry 5 --retry-delay 2 --connect-timeout 2 https://codecov.io/bash) -t $CODECOV_TOKEN
-  - test ("TRAVIS_JDK_VERSION " != "oraclejdk8" -o "TRAVIS_JDK_VERSION " != "openjdk8") && ./mvnw clean test -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report -P test-jar,test,dev
+  - test ("TRAVIS_JDK_VERSION" != "oraclejdk8" -o "TRAVIS_JDK_VERSION" != "openjdk8") && ./mvnw clean test -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report -P test-jar,test,dev
 
 after_failure:
   - cat hs_err*
