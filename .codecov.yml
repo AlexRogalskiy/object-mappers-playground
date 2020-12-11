@@ -14,6 +14,7 @@ coverage:
       default:
         informational: true
         target: 95%
+        threshold: 0.5
     patch:
       default:
         informational: true

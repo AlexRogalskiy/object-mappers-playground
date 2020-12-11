@@ -14,7 +14,11 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Prepare git
-        run: git config --global core.autocrlf false
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config core.fileMode false
 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -45,7 +49,11 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Prepare git
-        run: git config --global core.autocrlf false
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config core.fileMode false
 
       - name: Checkout repository
         uses: actions/checkout@v2
