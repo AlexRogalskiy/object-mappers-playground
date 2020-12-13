@@ -1,5 +1,17 @@
 # Object-Mappers Playground
 
+<p align="center">
+  <a href="https://nullable.io/">
+    <img src="https://img.shields.io/badge/made%20by-Nullables%20Labs-blue.svg?style=flat-square" />
+  </a>
+  <a href="https://github.com/AlexRogalskiy/object-mappers-playground/">
+    <img src="https://img.shields.io/badge/project-ObjectMappers-blue.svg?style=flat-square" />
+  </a>
+  <a href="https://webchat.freenode.net/#nullables-objectmappers/">
+    <img src="https://img.shields.io/badge/nullables-%23objectmappers-blue.svg?style=flat-square" />
+  </a>
+</p>
+
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/AlexRogalskiy/object-mappers-playground)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AlexRogalskiy/object-mappers-playground)
 ![Lines of code](https://tokei.rs/b1/github/AlexRogalskiy/object-mappers-playground?category=lines)
@@ -35,11 +47,12 @@
 [![DeepCode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6IkFsZXhSb2dhbHNraXkiLCJyZXBvMSI6Im9iamVjdC1tYXBwZXJzLXBsYXlncm91bmQiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNTU5MSwiaWF0IjoxNjA3MDA1NjI5fQ.UrcZdUYDALP2dou3LVZ05niu7a5wFZlU2hBnrdq63ho)](https://www.deepcode.ai/app/gh/AlexRogalskiy/object-mappers-playground/_/dashboard?utm_content=gh%2FAlexRogalskiy%2Fobject-mappers-playground)
 [![NewReleases](https://newreleases.io/badge.svg)](https://newreleases.io/github/AlexRogalskiy/object-mappers-playground)
 [![Build Status](https://api.cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground.svg)](https://cirrus-ci.com/github/AlexRogalskiy/object-mappers-playground)
-[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
+[![Codefresh build status](https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
 [![Codecov](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground/branch/master/graph/badge.svg?token=46Y1MSXCZ3)](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground)
 ![CodeQL](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/CodeQL/badge.svg)
-[![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
-[![Utilization (%)](https://api.gitential.com/accounts/2318/projects/4210/badges/utilization.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
+[![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://app.gitential.com/accounts/2318/projects/4210)
+[![Coding Hours](https://api.gitential.com/accounts/2318/projects/4210/badges/coding-hours.svg)](https://app.gitential.com/accounts/2318/projects/4210)
+[![Utilization (%)](https://api.gitential.com/accounts/2318/projects/4210/badges/utilization.svg)](https://app.gitential.com/accounts/2318/projects/4210)
 [![Hits-of-Code](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground)](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground/view)
 [![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/AlexRogalskiy/object-mappers-playground)
 
@@ -192,7 +205,7 @@ mkdocs --verbose gh-deploy --force --remote-branch gh-pages
 
 ## _Authors_
 
-Object Mappers is maintained by the following GitHub team-members:
+_Object Mappers_ is maintained by the following GitHub team-members:
 
 [![Author](https://img.shields.io/badge/author-AlexRogalskiy-FB8F0A)](https://github.com/AlexRogalskiy)
 
@@ -208,6 +221,7 @@ with community support please contact with us if you have some question or propo
 ## _Visitor stats_
 
 ![Github contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
+[![Active Contributors](https://api.gitential.com/accounts/2318/projects/4210/badges/active-contributors.svg)](https://app.gitential.com/accounts/2318/projects/4210)
 ![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)
@@ -234,23 +248,23 @@ with community support please contact with us if you have some question or propo
 
 [![alt tag](http://pylonsproject.org/img/logo-jetbrains.png)](https://www.jetbrains.com/)
 
-Object Mappers Team would like inform that JetBrains is helping by provided IDE to develop the application. Thanks to its support program for an Open Source projects!
+_Object Mappers_ Team would like inform that JetBrains is helping by provided IDE to develop the application. Thanks to its support program for an Open Source projects!
 
 [![alt tag](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=org.schemaspy%3Aschemaspy)
 
-Object Mappers project is using SonarCloud for code quality. Thanks to SonarQube Team for free analysis solution for open source projects.
+_Object Mappers_ project is using SonarCloud for code quality. Thanks to SonarQube Team for free analysis solution for open source projects.
 
 [![alt tag](https://app.shippable.com/app/assets/images/shippable-logo.png)](https://www.shippable.com/)
 
-Object Mappers project is using Shippable DevOps and CI automation tool.
+_Object Mappers_ project is using Shippable DevOps and CI automation tool.
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/AlexRogalskiy/object-mappers-playground)
 
-Object Mappers has experimental support for Gitpod, a pre-configured development environment that runs in your browser. To use Gitpod, click the button below and sign in with GitHub. Gitpod also offers a browser add-on, though it is not required.
+_Object Mappers_ has experimental support for Gitpod, a pre-configured development environment that runs in your browser. To use Gitpod, click the button below and sign in with GitHub. Gitpod also offers a browser add-on, though it is not required.
 
-## _License_
+## _Licensing_
 
-Object Mappers is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\).
+_Object Mappers_ is distributed under LGPL version 3 or later, see COPYING.LESSER\(LGPL\) and COPYING\(GPL\).
 LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
