@@ -41,6 +41,7 @@
 [![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
 [![Utilization (%)](https://api.gitential.com/accounts/2318/projects/4210/badges/utilization.svg)](https://gitential.com/accounts/2318/projects/4210/share?uuid=aee3fe2a-906e-4390-b1b8-ec970c4a3c1b&utm_source=shield&utm_medium=shield&utm_campaign=4210)
 [![Hits-of-Code](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground)](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground/view)
+[![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/AlexRogalskiy/object-mappers-playground)
 
 ## _Summary_
 
