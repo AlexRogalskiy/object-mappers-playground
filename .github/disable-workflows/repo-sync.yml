@@ -23,3 +23,8 @@ jobs:
           source_branch: ${{ secrets.INTERMEDIATE_BRANCH }}
           destination_branch: "master"
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+#  SOURCE_REPO=owner/repoB
+#  SOURCE_BRANCH=master
+#  DESTINATION_BRANCH=from-repoB
+#  PR_DESTINATION_BRANCH=master
