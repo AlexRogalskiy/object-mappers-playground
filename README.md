@@ -50,9 +50,11 @@
 [![Codefresh build status](https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
 [![Codecov](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground/branch/master/graph/badge.svg?token=46Y1MSXCZ3)](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground)
 ![CodeQL](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/CodeQL/badge.svg)
+<!--
 [![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://app.gitential.com/accounts/2318/projects/4210)
 [![Coding Hours](https://api.gitential.com/accounts/2318/projects/4210/badges/coding-hours.svg)](https://app.gitential.com/accounts/2318/projects/4210)
 [![Utilization (%)](https://api.gitential.com/accounts/2318/projects/4210/badges/utilization.svg)](https://app.gitential.com/accounts/2318/projects/4210)
+-->
 [![Hits-of-Code](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground)](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground/view)
 [![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/AlexRogalskiy/object-mappers-playground)
 
@@ -221,7 +223,10 @@ with community support please contact with us if you have some question or propo
 ## _Visitor stats_
 
 ![Github contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/object-mappers-playground)
+<!-- 
 [![Active Contributors](https://api.gitential.com/accounts/2318/projects/4210/badges/active-contributors.svg)](https://app.gitential.com/accounts/2318/projects/4210)
+-->
+
 ![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)

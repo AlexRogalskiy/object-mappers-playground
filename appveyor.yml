@@ -1,6 +1,8 @@
 version: "{branch} {build}"
 
 skip_tags: true
+skip_branch_with_pr: true
+
 clone_depth: 25
 
 os: Visual Studio 2014 CTP4
@@ -40,10 +42,12 @@ init:
   - git config --global core.autocrlf input
 
 install:
+  - appveyor-retry git submodule update --init --recursive
+
   # Install Maven
   - set MVN_VERSION=3.6.3
   - set PATH=%PATH%;C:\bin\apache-maven-%MVN_VERSION%\bin
-  - if not exist "C:\bin\apache-maven-%MVN_VERSION%\bin\*.*" (echo Maven %MVN_VERSION% not installed, so install it & cinst maven -Version %MVN_VERSION%) else (echo  Maven %MVN_VERSION% already installed)
+  - if not exist "C:\bin\apache-maven-%MVN_VERSION%\bin\*.*" (echo Maven %MVN_VERSION% not installed, so install it & cinst maven -Version %MVN_VERSION%) else (echo Maven %MVN_VERSION% already installed)
 
   # Set VC variables for the platform
   - if %PLATFORM% == x64 call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\vcvarsx86_amd64.bat"
@@ -58,7 +62,7 @@ install:
   - c:\deps\nixenv.bat
 
   # Build NIX
-  - git clone https://github.com/G-Node/nix.git
+  - appveyor-retry git clone https://github.com/G-Node/nix.git
   - cd nix
   - mkdir build
   - cd build
@@ -70,9 +74,11 @@ install:
   - java -version
   - mvn --version
 
-build_script:
+before_build:
   - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx1g
   - SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx1g
+
+build_script:
   # Build NIX Java bindings
   - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
 
@@ -101,3 +107,12 @@ notifications:
     on_build_success: false
     on_build_failure: true
     on_build_status_changed: true
+
+for:
+  - branches:
+      only:
+        - nightly
+    only_commits:
+      message: /trigger Nightly build/
+    build_script:
+      - appveyor-retry mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
