@@ -75,8 +75,8 @@ install:
   - mvn --version
 
 before_build:
-  - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx1g
-  - SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx1g
+  - SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx1g -Dfile.encoding=UTF8
+  - SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx1g -Dfile.encoding=UTF8
 
 build_script:
   # Build NIX Java bindings

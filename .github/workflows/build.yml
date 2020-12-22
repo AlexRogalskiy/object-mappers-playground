@@ -9,7 +9,9 @@ on:
     branches: [ master ]
 
 env:
-  LANG: en_US.UTF-8
+  LANG: "en_US.UTF-8"
+  LC_MESSAGES: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
   JAVA_HOME: ${{ github.workspace }}/jdk
   MAVEN_ARGS: >-
     --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true

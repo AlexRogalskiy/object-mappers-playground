@@ -82,7 +82,6 @@
     </distributionManagement>
 
     <modules>
-        <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-beancp</module>
         <module>modules/objectmappers-beanmapper</module>
         <module>modules/objectmappers-beanutils</module>
@@ -127,6 +126,7 @@
         <enforce.banned.skip>false</enforce.banned.skip>
         <enforce.maven.skip>false</enforce.maven.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
+        <enforce.jkd8.skip>false</enforce.jkd8.skip>
         <enforce.test.skip>false</enforce.test.skip>
         <package-tests.skip>true</package-tests.skip>
         <copy-dependencies.skip>false</copy-dependencies.skip>
@@ -166,6 +166,7 @@
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+        <maven-jib-plugin.version>2.7.0</maven-jib-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <maven-versions-plugin.version>2.8.1</maven-versions-plugin.version>
@@ -175,16 +176,22 @@
         <maven-buildnumber-plugin.version>1.4</maven-buildnumber-plugin.version>
         <maven-build-helper-plugin.version>3.2.0</maven-build-helper-plugin.version>
         <maven-sonar-plugin.version>3.7.0.1746</maven-sonar-plugin.version>
+        <maven-sonar-packaging-plugin.version>1.20.0.405</maven-sonar-packaging-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-appassembler-plugin.version>2.1.0</maven-appassembler-plugin.version>
+        <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+        <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
         <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
         <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
         <maven-formatter-plugin.version>2.13.0</maven-formatter-plugin.version>
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
         <maven-dependency-check-plugin.version>6.0.3</maven-dependency-check-plugin.version>
+        <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+        <maven-git-commit-id-plugin.version>4.0.3</maven-git-commit-id-plugin.version>
         <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
         <maven-qulice-plugin.version>0.18.19</maven-qulice-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
@@ -198,6 +205,7 @@
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
         <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
@@ -209,6 +217,8 @@
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
         <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
         <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
+        <maven-lombok-plugin.version>1.18.16.0</maven-lombok-plugin.version>
+        <maven-versionizer-plugin.version>1.0.6</maven-versionizer-plugin.version>
         <maven-sundr-plugin.version>0.23.1</maven-sundr-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
@@ -646,6 +656,29 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>enforce-jdk8-available</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.jkd8.skip}</skip>
+                            <rules>
+                                <evaluateBeanshell>
+                                    <message>
+                                        To create a release build of this project with JDK 11+ you need to provide
+                                        a system property "jdk8.home" that can be used to access the rt.jar or
+                                        classes.jar on Mac
+                                    </message>
+                                    <condition>
+                                        System.getProperty("java.specification.version").contains(".") ||
+                                        Integer.parseInt(System.getProperty("java.specification.version")) &lt; 11 ||
+                                        new java.io.File(System.getProperty("jdk8.classes.jar.escaped")).exists()
+                                    </condition>
+                                </evaluateBeanshell>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>enforce-test-resources</id>
                         <phase>test</phase>
                         <goals>
@@ -817,15 +850,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>${maven-sonar-plugin.version}</version>
-                <configuration>
-                    <detail>true</detail>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
@@ -902,6 +926,36 @@
     <reporting>
         <outputDirectory>${project.build.directory}/reporting</outputDirectory>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <version>${maven-changes-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>changes-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin-plugin.version}</version>
+                <configuration>
+                    <goalPrefix>web2docs</goalPrefix>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -1050,6 +1104,62 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Lombok profile -->
+        <profile>
+            <id>delombok</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-maven-plugin</artifactId>
+                        <version>${maven-lombok-plugin.version}</version>
+                        <configuration>
+                            <sourceDirectory>src/main/java</sourceDirectory>
+                            <addOutputDirectory>false</addOutputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/delombok</outputDirectory>
+                            <verbose>true</verbose>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>delombok</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Versionizer profile-->
+        <profile>
+            <id>versionizer</id>
+            <properties>
+                <version-java-package>io.nullables.api.playground.objectmappers</version-java-package>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.fizzed</groupId>
+                        <artifactId>fizzed-versionizer-maven-plugin</artifactId>
+                        <version>${maven-versionizer-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>generate-version-class</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <javaPackage>${version-java-package}</javaPackage>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Kotlin profile -->
         <profile>
             <id>kotlin</id>
@@ -1725,6 +1835,12 @@
         <!-- Forbidden API check profile -->
         <profile>
             <id>forbidden-api-check</id>
+            <properties>
+                <forbiddenapis.failOnViolation>false</forbiddenapis.failOnViolation>
+                <forbiddenapis.failOnMissingClasses>true</forbiddenapis.failOnMissingClasses>
+                <forbiddenapis.failOnUnsupportedJava>false</forbiddenapis.failOnUnsupportedJava>
+                <forbiddenapis.failOnUnresolvableSignatures>false</forbiddenapis.failOnUnresolvableSignatures>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1733,10 +1849,11 @@
                         <version>${maven-forbiddenapis-plugin.version}</version>
                         <configuration>
                             <targetVersion>${java.version}</targetVersion>
-                            <failOnViolation>false</failOnViolation>
-                            <failOnMissingClasses>true</failOnMissingClasses>
-                            <failOnUnsupportedJava>false</failOnUnsupportedJava>
-                            <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+                            <failOnViolation>${forbiddenapis.failOnViolation}</failOnViolation>
+                            <failOnMissingClasses>${forbiddenapis.failOnMissingClasses}</failOnMissingClasses>
+                            <failOnUnsupportedJava>${forbiddenapis.failOnUnsupportedJava}</failOnUnsupportedJava>
+                            <failOnUnresolvableSignatures>${forbiddenapis.failOnUnresolvableSignatures}
+                            </failOnUnresolvableSignatures>
                             <bundledSignatures>
                                 <bundledSignature>jdk-unsafe</bundledSignature>
                                 <bundledSignature>jdk-deprecated</bundledSignature>
@@ -1856,8 +1973,8 @@
                         <artifactId>formatter-maven-plugin</artifactId>
                         <version>${maven-formatter-plugin.version}</version>
                         <configuration>
-                            <configFile>${session.executionRootDirectory}/codestyle/codestyle.xml</configFile>
                             <basedir>modules</basedir>
+                            <configFile>${session.executionRootDirectory}/codestyle/codestyle.xml</configFile>
                             <encoding>${project.build.sourceEncoding}</encoding>
                         </configuration>
                         <executions>
@@ -1947,11 +2064,18 @@
                         <artifactId>sortpom-maven-plugin</artifactId>
                         <version>${maven-sortpom-plugin.version}</version>
                         <configuration>
-                            <sortOrderFile>${session.executionRootDirectory}/codestyle/pom-sort-style.xml
+                            <sortOrderFile>
+                                ${session.executionRootDirectory}/codestyle/pom-sort-style.xml
                             </sortOrderFile>
-                            <keepBlankLines>true</keepBlankLines>
-                            <lineSeparator>\n</lineSeparator>
                             <createBackupFile>false</createBackupFile>
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <lineSeparator>\n</lineSeparator>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <sortProperties>true</sortProperties>
+                            <keepBlankLines>true</keepBlankLines>
+                            <sortDependencies>groupId,artifactId</sortDependencies>
+                            <sortPlugins>groupId,artifactId</sortPlugins>
+                            <expandEmptyElements>false</expandEmptyElements>
                         </configuration>
                         <executions>
                             <execution>
@@ -2036,7 +2160,9 @@
                             <effort>Max</effort>
                             <threshold>Low</threshold>
                             <xmlOutput>true</xmlOutput>
-                            <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+                            <findbugsXmlOutputDirectory>
+                                ${project.build.directory}/findbugs
+                            </findbugsXmlOutputDirectory>
                             <excludeBugsFile>
                                 ${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
                             </excludeBugsFile>
@@ -2085,6 +2211,15 @@
             <id>code-style-check</id>
             <properties>
                 <checkstyle.version>8.38</checkstyle.version>
+                <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+                <checkstyle.enableSummary>false</checkstyle.enableSummary>
+                <checkstyle.failOnError>false</checkstyle.failOnError>
+                <checkstyle.failOnViolation>false</checkstyle.failOnViolation>
+                <checkstyle.includeResources>false</checkstyle.includeResources>
+                <checkstyle.includeTestSourceDirectory>false</checkstyle.includeTestSourceDirectory>
+                <checkstyle.linkXRef>false</checkstyle.linkXRef>
+                <checkstyle.logToConsole>true</checkstyle.logToConsole>
+                <checkstyle.violationSeverity>warning</checkstyle.violationSeverity>
             </properties>
             <build>
                 <plugins>
@@ -2093,12 +2228,26 @@
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>${maven-checkstyle-plugin.version}</version>
                         <configuration>
-                            <failsOnError>false</failsOnError>
-                            <failOnViolation>false</failOnViolation>
-                            <encoding>${project.build.outputEncoding}</encoding>
+                            <failsOnError>${checkstyle.failOnError}</failsOnError>
+                            <failOnViolation>${checkstyle.failOnViolation}</failOnViolation>
+                            <enableRulesSummary>${checkstyle.enableSummary}</enableRulesSummary>
+                            <includeResources>${checkstyle.includeResources}</includeResources>
+                            <includeTestSourceDirectory>${checkstyle.includeTestSourceDirectory}
+                            </includeTestSourceDirectory>
+                            <logViolationsToConsole>${checkstyle.logToConsole}</logViolationsToConsole>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <consoleOutput>${checkstyle.consoleOutput}</consoleOutput>
+                            <violationSeverity>${checkstyle.violationSeverity}</violationSeverity>
+                            <linkXRef>${checkstyle.linkXRef}</linkXRef>
+                            <maxAllowedViolations>0</maxAllowedViolations>
+                            <includeTestResources>false</includeTestResources>
+                            <propertyExpansion>lineLength=${jacoco-rule.line.length}</propertyExpansion>
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                             </sourceDirectories>
+                            <headerLocation>
+                                checkstyle/checkstyle-header.txt
+                            </headerLocation>
                             <configLocation>
                                 checkstyle/checkstyle.xml
                             </configLocation>
@@ -2126,6 +2275,29 @@
                                 <version>${checkstyle.version}</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>${maven-pmd-plugin.version}</version>
+                        <configuration>
+                            <printFailingErrors>true</printFailingErrors>
+                            <analysisCache>true</analysisCache>
+                            <linkXRef>false</linkXRef>
+                            <rulesets>
+                                <ruleset>checkstyle/rules.xml</ruleset>
+                            </rulesets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>check</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -2462,6 +2634,12 @@
                                     <systemPropertyVariables>
                                         <java.awt.headless>true</java.awt.headless>
                                         <org.slf4j.simpleLogger.showDateTime>true</org.slf4j.simpleLogger.showDateTime>
+                                        <reportDirectory>
+                                            ${project.build.directory}/allure-report
+                                        </reportDirectory>
+                                        <allure.results.directory>
+                                            ${project.build.directory}/allure-results
+                                        </allure.results.directory>
                                     </systemPropertyVariables>
                                 </properties>
                             </configuration>
@@ -2756,6 +2934,341 @@
             </build>
         </profile>
 
+        <!-- Source profile -->
+        <profile>
+            <id>generate-sources</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-source-plugin</artifactId>
+                            <version>${maven-source-plugin.version}</version>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <excludeResources>true</excludeResources>
+                                <useDefaultExcludes>true</useDefaultExcludes>
+                                <classifier>sources</classifier>
+                                <archive>
+                                    <manifest>
+                                        <packageName>${project.groupId}</packageName>
+                                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    </manifest>
+                                    <manifestEntries>
+                                        <Specification-Version>${project.version}</Specification-Version>
+                                        <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+                                        <Bundle-Name>${project.name} Sources</Bundle-Name>
+                                        <Bundle-SymbolicName>${project.artifactId}.sources</Bundle-SymbolicName>
+                                        <Bundle-Vendor>${project.organization.name} Sources</Bundle-Vendor>
+                                        <Bundle-License>LGPL-3-Clause</Bundle-License>
+                                        <Eclipse-SourceBundle>${project.artifactId};version=${project.version}
+                                        </Eclipse-SourceBundle>
+                                        <X-Compile-Source>${maven.compiler.source}</X-Compile-Source>
+                                        <X-Compile-Target>${maven.compiler.target}</X-Compile-Target>
+                                        <X-Builder>Maven ${maven.version}</X-Builder>
+                                        <X-Build-Time>${maven.build.timestamp}</X-Build-Time>
+                                        <X-Build-Os>${os.name}</X-Build-Os>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>attach-source</id>
+                                    <goals>
+                                        <goal>jar-no-fork</goal>
+                                    </goals>
+                                    <phase>package</phase>
+                                </execution>
+                                <execution>
+                                    <id>attach-sources-no-fork</id>
+                                    <inherited>true</inherited>
+                                    <goals>
+                                        <goal>jar-no-fork</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Generate build properties profile -->
+        <profile>
+            <id>generate-build-properties</id>
+            <activation>
+                <file>
+                    <exists>${basedir}/src</exists>
+                </file>
+            </activation>
+            <properties>
+                <commons-net.version>3.7.2</commons-net.version>
+                <ant-commons-net.version>1.10.9</ant-commons-net.version>
+                <ant-nodeps.version>1.8.1</ant-nodeps.version>
+                <ant-contrib.version>20020829</ant-contrib.version>
+                <antelopetasks.version>3.2.10</antelopetasks.version>
+            </properties>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-antrun-plugin</artifactId>
+                            <version>${maven-antrun-plugin.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>commons-net</groupId>
+                                    <artifactId>commons-net</artifactId>
+                                    <version>${commons-net.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant-commons-net</artifactId>
+                                    <version>${ant-commons-net.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant-nodeps</artifactId>
+                                    <version>${ant-nodeps.version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>ant-contrib</groupId>
+                                    <artifactId>ant-contrib</artifactId>
+                                    <version>${ant-contrib.version}</version>
+                                    <exclusions>
+                                        <exclusion>
+                                            <groupId>ant</groupId>
+                                            <artifactId>ant</artifactId>
+                                        </exclusion>
+                                    </exclusions>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.tigris.antelope</groupId>
+                                    <artifactId>antelopetasks</artifactId>
+                                    <version>${antelopetasks.version}</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>setup-maven-properties</id>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <exportAntProperties>true</exportAntProperties>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>generate-build-properties</id>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <phase>generate-resources</phase>
+                                    <configuration>
+                                        <target>
+                                            <mkdir dir="${project.build.directory}/classes/"/>
+                                            <propertyfile file="${project.build.directory}/classes/build.properties">
+                                                <entry key="pom.name" value="${project.name}"/>
+                                                <entry key="pom.groupId" value="${project.groupId}"/>
+                                                <entry key="pom.artifactId" value="${project.artifactId}"/>
+                                                <entry key="pom.version" value="${project.version}"/>
+                                                <entry key="pom.packaging" value="${project.packaging}"/>
+                                                <entry key="git.branch" value="${git.branch}"/>
+                                                <entry key="git.commit.tags" value="${git.tags}"/>
+                                                <entry key="git.commit.id" value="${git.commit.id}"/>
+                                                <entry key="git.commit.id.describe" value="${git.commit.id.describe}"/>
+                                                <entry key="git.commit.id.abbrev" value="${git.commit.id.abbrev}"/>
+                                                <entry key="git.commit.user.name" value="${git.commit.user.name}"/>
+                                                <entry key="git.commit.user.email" value="${git.commit.user.email}"/>
+                                                <entry key="git.commit.message.full"
+                                                       value="${git.commit.message.full}"/>
+                                                <entry key="git.commit.message.short"
+                                                       value="${git.commit.message.short}"/>
+                                                <entry key="git.commit.time" value="${git.commit.time}"/>
+                                            </propertyfile>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>pl.project13.maven</groupId>
+                            <artifactId>git-commit-id-plugin</artifactId>
+                            <version>${maven-git-commit-id-plugin.version}</version>
+                            <configuration>
+                                <!--
+                                    If you'd like to tell the plugin where your .git directory is,
+                                    use this setting, otherwise we'll perform a search trying to
+                                    figure out the right directory. It's better to add it explicitly IMHO.
+                                -->
+                                <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                                <injectAllReactorProjects>false</injectAllReactorProjects>
+                                <!-- ALTERNATE SETUP - GENERATE FILE -->
+                                <!--
+                                    If you want to keep git information, even in your WAR file etc,
+                                    use this mode, which will generate a properties file (with filled out values)
+                                    which you can then normally read using new Properties().load(/**/)
+                                -->
+
+                                <!-- true by default, controls whether the plugin will fail when no .git directory is found, when set to false the plugin will just skip execution -->
+                                <failOnNoGitDirectory>true</failOnNoGitDirectory>
+                                <!-- true by default, controls whether the plugin will fail if it was unable to obtain enough data for a complete run, if you don't care about this, you may want to set this value to false. -->
+                                <failOnUnableToExtractRepoInfo>true</failOnUnableToExtractRepoInfo>
+                                <!--
+                                    skip the plugin execution completely. This is useful for e.g. profile activated plugin invocations or
+                                    to use properties to enable / disable pom features. Default value is 'false'.
+                                -->
+                                <!--
+                                                    <skip>false</skip>
+                                -->
+                                <!--
+                                     The option can be used to tell the plugin how it should generate the 'git.commit.id' property. Due to some naming issues when exporting the properties as an json-object (https://github.com/ktoso/maven-git-commit-id-plugin/issues/122) we needed to make it possible to export all properties as a valid json-object.
+                                     Due to the fact that this is one of the major properties the plugin is exporting we just don't want to change the exporting mechanism and somehow throw the backwards compatibility away.
+                                     We rather provide a convenient switch where you can choose if you would like the properties as they always had been, or if you rather need to support full json-object compatibility.
+                                     In the case you need to fully support json-object we unfortunately need to change the 'git.commit.id' property from 'git.commit.id' to 'git.commit.id.full' in the exporting mechanism to allow the generation of a fully valid json object.
+                                     Currently the switch allows two different options:
+                                     1. By default this property is set to 'flat' and will generate the formerly known property 'git.commit.id' as it was in the previous versions of the plugin. Keeping it to 'flat' by default preserve backwards compatibility and does not require further adjustments by the end user.
+                                     2. If you set this switch to 'full' the plugin will export the formerly known property 'git.commit.id' as 'git.commit.id.full' and therefore will generate a fully valid json object in the exporting mechanism.
+                                     *Note*: Depending on your plugin configuration you obviously can choose the 'prefix' of your properties by setting it accordingly in the plugin's configuration. As a result this is therefore only an illustration what the switch means when the 'prefix' is set to it's default value.
+                                     *Note*: If you set the value to something that's not equal to 'flat' or 'full' (ignoring the case) the plugin will output a warning and will fallback to the default 'flat' mode.
+                                -->
+                                <commitIdGenerationMode>flat</commitIdGenerationMode>
+                                <excludeProperties>
+                                    <excludeProperty>git.user.*</excludeProperty>
+                                    <excludeProperty>git.closest.tag.commit.count</excludeProperty>
+                                    <excludeProperty>git.closest.tag.name</excludeProperty>
+                                </excludeProperties>
+                                <!--
+                                    read up about git-describe on the in man, or it's homepage - it's a really powerful versioning helper
+                                    and the recommended way to use git-commit-id-plugin. The configuration bellow is optional,
+                                    by default describe will run "just like git-describe on the command line", even though it's a JGit reimplementation.
+                                -->
+                                <gitDescribe>
+                                    <!--
+                                                            &lt;!&ndash; don't generate the describe property &ndash;&gt;
+                                                            <skip>false</skip>
+                                    -->
+                                    <!--
+                                        if no tag was found "near" this commit, just print the commit's id instead,
+                                        helpful when you always expect this field to be not-empty
+                                    -->
+                                    <always>true</always>
+                                    <!--
+                                         how many chars should be displayed as the commit object id?
+                                         7 is git's default,
+                                         0 has a special meaning (see end of this README.md),
+                                         and 40 is the maximum value here
+                                    -->
+                                    <abbrev>7</abbrev>
+                                    <!-- when the build is triggered while the repo is in "dirty state", append this suffix -->
+                                    <dirty>-dirty</dirty>
+
+                                    <!-- Only consider tags matching the given pattern. This can be used to avoid leaking private tags from the repository. -->
+                                    <match>*</match>
+                                    <!--
+                                        when you run git-describe it only looks only for *annotated tags* by default
+                                        if you wish to consider *lightweight tags* in your describe as well you would need to switch this to *true*
+                                        The difference between *annotated tags* and *lightweight tags* is outlined in more depth here:
+                                        https://github.com/ktoso/maven-git-commit-id-plugin/#git-describe-and-a-small-gotcha-with-tags
+                                    -->
+                                    <tags>false</tags>
+                                    <!--
+                                         always print using the "tag-commits_from_tag-g_commit_id-maybe_dirty" format, even if "on" a tag.
+                                         The distance will always be 0 if you're "on" the tag.
+                                    -->
+                                    <forceLongFormat>false</forceLongFormat>
+                                </gitDescribe>
+                                <verbose>false</verbose>
+                                <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                                <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                                <generateGitPropertiesFilename>
+                                    ${project.build.directory}/generated-sources/versions/version.properties
+                                </generateGitPropertiesFilename>
+                                <skipPoms>false</skipPoms>
+                                <runOnlyOnce>true</runOnlyOnce>
+                                <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                                <prefix>git</prefix>
+                                <dateFormat>${maven.build.timestamp.format}</dateFormat>
+                                <includeOnlyProperties>
+                                    <includeOnlyProperty>^git.commit.id.abbrev$</includeOnlyProperty>
+                                    <includeOnlyProperty>^git.commit.id.describe$</includeOnlyProperty>
+                                    <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+                                </includeOnlyProperties>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>set-git-properties</id>
+                                    <goals>
+                                        <goal>revision</goal>
+                                    </goals>
+                                    <phase>initialize</phase>
+                                </execution>
+                                <execution>
+                                    <id>validate-the-git-infos</id>
+                                    <goals>
+                                        <goal>validateRevision</goal>
+                                    </goals>
+                                    <phase>package</phase>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>pl.project13.maven</groupId>
+                        <artifactId>git-commit-id-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Sonar profile -->
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+                        <artifactId>sonar-packaging-maven-plugin</artifactId>
+                        <version>${maven-sonar-packaging-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <sonarLintSupported>true</sonarLintSupported>
+                            <sonarQubeMinVersion>6.0</sonarQubeMinVersion>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>${maven-sonar-plugin.version}</version>
+                        <configuration>
+                            <detail>true</detail>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Compile with debug profile -->
         <profile>
             <id>compile-with-debug</id>
@@ -2785,10 +3298,24 @@
                 <enforce.banned.skip>true</enforce.banned.skip>
                 <enforce.maven.skip>true</enforce.maven.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
+                <enforce.jkd8.skip>true</enforce.jkd8.skip>
                 <enforce.test.skip>true</enforce.test.skip>
                 <copy-dependencies.skip>true</copy-dependencies.skip>
                 <logback.loglevel>DEBUG</logback.loglevel>
             </properties>
+        </profile>
+
+        <!-- Full profile-->
+        <profile>
+            <id>full-profile</id>
+            <activation>
+                <property>
+                    <name>full</name>
+                </property>
+            </activation>
+            <modules>
+                <module>modules/objectmappers-all</module>
+            </modules>
         </profile>
     </profiles>
 </project>

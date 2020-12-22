@@ -79,31 +79,125 @@
     <profiles>
         <profile>
             <id>it-test</id>
+            <properties>
+                <failsafe.commands>
+                    -Duser.language=en
+                    -Duser.country=GB
+                    --add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+                    --illegal-access=permit
+                    --enable-preview
+                </failsafe.commands>
+
+                <failsafe.memory>-Xmx512m</failsafe.memory>
+                <failsafe.timezone>-Duser.timezone=US/Eastern</failsafe.timezone>
+                <integration-tests.fail>${failIfNoTests}</integration-tests.fail>
+
+                <integration-tests.skip>${skipTests}</integration-tests.skip>
+                <parallel.tests>2</parallel.tests>
+                <test-groups.include/>
+            </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <version>${maven-failsafe-plugin.version}</version>
+                            <configuration>
+                                <disableXmlReport>true</disableXmlReport>
+                                <skipTests>${integration-tests.skip}</skipTests>
+                                <groups>${test-groups.include}</groups>
+                                <threadCount>${parallel.tests}</threadCount>
+                                <forkCount>${parallel.tests}</forkCount>
+                                <reuseForks>true</reuseForks>
+                                <failIfNoTests>${integration-tests.fail}</failIfNoTests>
+                                <argLine>
+                                    @{failsafeArgLine}
+                                    ${failsafe.memory}
+                                    ${failsafe.timezone}
+                                    ${failsafe.commands}
+                                </argLine>
+                                <useFile>false</useFile>
+                                <reportFormat>plain</reportFormat>
+                                <parallel>classes</parallel>
+                                <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                <trimStackTrace>false</trimStackTrace>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>integration-test</goal>
+                                        <goal>verify</goal>
+                                    </goals>
+                                    <configuration>
+                                        <includes>
+                                            <include>**/IT*.java</include>
+                                            <include>**/*IT.java</include>
+                                            <include>**/ST*.java</include>
+                                            <include>**/*ST.java</include>
+                                        </includes>
+                                        <forkCount>0</forkCount>
+                                        <useModulePath>false</useModulePath>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <version>${maven-jacoco-plugin.version}</version>
+                            <configuration>
+                                <excludes>
+                                    <exclude>${jacoco.coverage.exclusions}</exclude>
+                                </excludes>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>before-tests</id>
+                                    <goals>
+                                        <goal>prepare-agent-integration</goal>
+                                    </goals>
+                                    <phase>pre-integration-test</phase>
+                                    <configuration>
+                                        <skip>${integration-tests.skip}</skip>
+                                        <!-- Sets the path to the file which contains the execution data. -->
+                                        <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                                        <!--
+                                            Sets the name of the property containing the settings
+                                            for JaCoCo runtime agent.
+                                        -->
+                                        <propertyName>failsafeArgLine</propertyName>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>after-tests</id>
+                                    <goals>
+                                        <goal>report-integration</goal>
+                                    </goals>
+                                    <phase>post-integration-test</phase>
+                                    <configuration>
+                                        <skip>${integration-tests.skip}</skip>
+                                        <!-- Sets the path to the file which contains the execution data. -->
+                                        <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                                        <!-- Sets the output directory for the code coverage report. -->
+                                        <outputDirectory>${project.reporting.outputDirectory}/jacoco-it
+                                        </outputDirectory>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                                <configuration>
-                                    <includes>
-                                        <include>**/IT*.java</include>
-                                        <include>**/*IT.java</include>
-                                        <include>**/ST*.java</include>
-                                        <include>**/*ST.java</include>
-                                    </includes>
-                                    <trimStackTrace>false</trimStackTrace>
-                                    <forkCount>0</forkCount>
-                                    <useModulePath>false</useModulePath>
-                                </configuration>
-                            </execution>
-                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
