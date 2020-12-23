@@ -18,12 +18,17 @@
  */
 package io.nullables.api.playground.objectmappers.testflow.utils;
 
-import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
-import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
-import lombok.experimental.UtilityClass;
-import net.andreinc.mockneat.MockNeat;
-import net.andreinc.mockneat.abstraction.MockUnit;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.alphaNumericStringMock;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.doubleMock;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.generateInts;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.intMock;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.lettersStringMock;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.localDateMock;
+import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.localDateTimeMock;
+import static net.andreinc.mockneat.unit.id.UUIDs.uuids;
+import static net.andreinc.mockneat.unit.objects.Filler.filler;
+import static net.andreinc.mockneat.unit.types.Ints.ints;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -31,11 +36,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
-import static io.nullables.api.playground.objectmappers.testflow.utils.MockTestUtils.*;
-import static net.andreinc.mockneat.unit.id.UUIDs.uuids;
-import static net.andreinc.mockneat.unit.objects.Filler.filler;
-import static net.andreinc.mockneat.unit.types.Ints.ints;
+import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
+import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
+import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
+import lombok.experimental.UtilityClass;
+import net.andreinc.mockneat.MockNeat;
+import net.andreinc.mockneat.abstraction.MockUnit;
 
 @UtilityClass
 public class ModelMockTestUtils {

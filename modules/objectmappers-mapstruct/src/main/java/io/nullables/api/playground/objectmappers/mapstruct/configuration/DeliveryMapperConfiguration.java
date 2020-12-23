@@ -18,17 +18,23 @@
  */
 package io.nullables.api.playground.objectmappers.mapstruct.configuration;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
+
+import java.util.List;
+
+import org.mapstruct.CollectionMappingStrategy;
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.IterableMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.mapstruct.mapping.BaseMappings;
-import org.mapstruct.*;
-import org.mapstruct.factory.Mappers;
-
-import java.util.List;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
 @Mapper(
     config = IgnoreUnmappedConfiguration.class,

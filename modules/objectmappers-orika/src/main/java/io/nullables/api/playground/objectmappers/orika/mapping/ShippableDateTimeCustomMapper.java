@@ -18,13 +18,13 @@
  */
 package io.nullables.api.playground.objectmappers.orika.mapping;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
 
 public class ShippableDateTimeCustomMapper extends CustomMapper<DeliveryDto, DeliveryEntity> {
 

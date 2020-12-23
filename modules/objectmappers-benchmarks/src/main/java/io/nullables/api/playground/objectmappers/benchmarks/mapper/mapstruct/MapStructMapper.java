@@ -18,10 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.mapstruct;
 
+import org.mapstruct.factory.Mappers;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
-import org.mapstruct.factory.Mappers;
 
 public class MapStructMapper implements OrderMapper {
 

@@ -18,11 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.dozer.converter;
 
-import com.github.dozermapper.core.DozerConverter;
-import org.apache.commons.lang3.ArrayUtils;
-
 import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
 import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToStringArray;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.github.dozermapper.core.DozerConverter;
 
 public class StringToIntegerArrayConvertor extends DozerConverter<String[], Integer[]> {
 

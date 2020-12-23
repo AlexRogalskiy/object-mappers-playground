@@ -18,13 +18,14 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.propertymap;
 
+import org.modelmapper.PropertyMap;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToIntegerArrayConverter;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToLocalDateTimeConverter;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToUuidConverter;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.PropertyMap;
 
 /**
  * {@link DeliveryDto} to {@link DeliveryEntity} {@link PropertyMap} binding configuration

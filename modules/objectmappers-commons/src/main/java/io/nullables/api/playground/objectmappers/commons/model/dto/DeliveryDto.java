@@ -18,12 +18,16 @@
  */
 package io.nullables.api.playground.objectmappers.commons.model.dto;
 
-import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import lombok.*;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 @Data
 @Builder

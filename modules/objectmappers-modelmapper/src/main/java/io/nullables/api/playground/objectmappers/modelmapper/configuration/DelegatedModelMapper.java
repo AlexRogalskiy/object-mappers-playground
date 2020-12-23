@@ -18,12 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.configuration;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
-
 import java.lang.reflect.Type;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 
 /**
  * Delegated {@link ModelMapper} implementation

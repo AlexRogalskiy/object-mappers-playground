@@ -18,10 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.modelmapper;
 
+import org.modelmapper.PropertyMap;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
-import org.modelmapper.PropertyMap;
 
 public class ModelMapper implements OrderMapper {
 

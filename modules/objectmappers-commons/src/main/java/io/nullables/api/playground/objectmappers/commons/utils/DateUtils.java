@@ -18,9 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.commons.utils;
 
-import lombok.experimental.UtilityClass;
+import static java.time.temporal.ChronoField.HOUR_OF_DAY;
+import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
+import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
 
-import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -28,7 +29,9 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import static java.time.temporal.ChronoField.*;
+import javax.annotation.Nullable;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class DateUtils {

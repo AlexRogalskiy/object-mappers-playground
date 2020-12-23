@@ -18,13 +18,17 @@
  */
 package io.nullables.api.playground.objectmappers.smooks;
 
-import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
-import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
-import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
-import io.nullables.api.playground.objectmappers.smooks.configuration.SmooksMapperBuilder;
-import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
-import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
+import static io.nullables.api.playground.objectmappers.testflow.utils.ModelMockTestUtils.deliveryDtoMock;
+import static org.assertj.core.api.Assertions.tuple;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
@@ -38,15 +42,13 @@ import org.milyn.event.report.HtmlReportGenerator;
 import org.milyn.payload.JavaResult;
 import org.milyn.payload.JavaSource;
 
-import javax.annotation.Nonnull;
-import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static io.nullables.api.playground.objectmappers.testflow.utils.ModelMockTestUtils.deliveryDtoMock;
-import static org.assertj.core.api.Assertions.tuple;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
+import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
+import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import io.nullables.api.playground.objectmappers.commons.utils.ArrayUtils;
+import io.nullables.api.playground.objectmappers.smooks.configuration.SmooksMapperBuilder;
+import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
+import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSource;
 
 @SimpleTest
 class SmooksMapperTest {

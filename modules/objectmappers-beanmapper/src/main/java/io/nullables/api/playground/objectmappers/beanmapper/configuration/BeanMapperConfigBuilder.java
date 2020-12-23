@@ -18,13 +18,13 @@
  */
 package io.nullables.api.playground.objectmappers.beanmapper.configuration;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import io.beanmapper.BeanMapper;
 import io.beanmapper.config.BeanMapperBuilder;
 import io.beanmapper.core.collections.CollectionHandler;
 import io.beanmapper.core.converter.BeanConverter;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public final class BeanMapperConfigBuilder {
 

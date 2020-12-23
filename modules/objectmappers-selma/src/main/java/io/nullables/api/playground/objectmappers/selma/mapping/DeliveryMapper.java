@@ -18,14 +18,14 @@
  */
 package io.nullables.api.playground.objectmappers.selma.mapping;
 
+import static fr.xebia.extras.selma.CollectionMappingStrategy.ALLOW_GETTER;
+
 import fr.xebia.extras.selma.Field;
 import fr.xebia.extras.selma.IgnoreMissing;
 import fr.xebia.extras.selma.Mapper;
 import fr.xebia.extras.selma.Maps;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-
-import static fr.xebia.extras.selma.CollectionMappingStrategy.ALLOW_GETTER;
 
 @Mapper(
     withIgnoreMissing = IgnoreMissing.ALL,

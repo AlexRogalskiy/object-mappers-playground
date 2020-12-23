@@ -22,6 +22,7 @@ import com.github.roookeee.datus.api.Datus;
 import com.github.roookeee.datus.api.Mapper;
 import com.github.roookeee.datus.functions.Fn1;
 import com.github.roookeee.datus.immutable.ConstructorParameter;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.ProductDto;

@@ -18,12 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.orika.converter;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToStringArray;
+
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.converter.BidirectionalConverter;
 import ma.glasnost.orika.metadata.Type;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToStringArray;
 
 public class StringToIntegerArrayConverter extends BidirectionalConverter<String[], Integer[]> {
 

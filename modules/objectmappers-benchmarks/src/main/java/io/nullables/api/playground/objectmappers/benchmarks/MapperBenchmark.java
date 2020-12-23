@@ -18,6 +18,17 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks;
 
+import java.util.Collection;
+import java.util.concurrent.TimeUnit;
+
+import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.results.Result;
+import org.openjdk.jmh.results.RunResult;
+import org.openjdk.jmh.results.format.ResultFormatType;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.beanmapper.GeneralBeanMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.beanutils.BeanUtilsMapper;
@@ -34,16 +45,6 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.results.Result;
-import org.openjdk.jmh.results.RunResult;
-import org.openjdk.jmh.results.format.ResultFormatType;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-
-import java.util.Collection;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @State(Scope.Benchmark)

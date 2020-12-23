@@ -18,17 +18,18 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.beanutils;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
+import org.apache.commons.beanutils.BeanUtils;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.ProductDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.ProductEntity;
-import org.apache.commons.beanutils.BeanUtils;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class BeanUtilsMapper implements OrderMapper {
 

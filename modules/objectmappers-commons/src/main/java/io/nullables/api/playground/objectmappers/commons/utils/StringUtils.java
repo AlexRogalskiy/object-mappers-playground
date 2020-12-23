@@ -18,15 +18,16 @@
  */
 package io.nullables.api.playground.objectmappers.commons.utils;
 
-import lombok.experimental.UtilityClass;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class StringUtils {

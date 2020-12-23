@@ -18,6 +18,9 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.ProductDto;
@@ -25,9 +28,6 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.Address
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.CustomerEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.ProductEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class ConverterMapper implements OrderMapper {
 

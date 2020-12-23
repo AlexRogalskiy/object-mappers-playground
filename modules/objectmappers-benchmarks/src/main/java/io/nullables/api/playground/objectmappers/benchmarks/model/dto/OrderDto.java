@@ -18,6 +18,8 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.model.dto;
 
+import java.util.List;
+
 import io.beanmapper.annotations.BeanCollection;
 import io.beanmapper.annotations.BeanCollectionUsage;
 import io.beanmapper.annotations.BeanProperty;
@@ -25,8 +27,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

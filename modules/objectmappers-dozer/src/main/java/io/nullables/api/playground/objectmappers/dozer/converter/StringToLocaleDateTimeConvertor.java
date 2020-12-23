@@ -18,12 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.dozer.converter;
 
-import com.github.dozermapper.core.DozerConverter;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
 
 import java.time.LocalDateTime;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
+import com.github.dozermapper.core.DozerConverter;
 
 public class StringToLocaleDateTimeConvertor extends DozerConverter<String, LocalDateTime> {
 

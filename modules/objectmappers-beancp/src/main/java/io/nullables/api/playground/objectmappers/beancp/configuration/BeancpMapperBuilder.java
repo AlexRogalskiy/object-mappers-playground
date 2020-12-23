@@ -18,18 +18,7 @@
  */
 package io.nullables.api.playground.objectmappers.beancp.configuration;
 
-import com.github.erchu.beancp.BindingOption;
-import com.github.erchu.beancp.Mapper;
-import com.github.erchu.beancp.MapperBuilder;
-import com.github.erchu.beancp.commons.CollectionConverters;
-import com.github.erchu.beancp.commons.NameBasedMapConvention;
-import com.github.erchu.beancp.commons.NumberConverters;
-import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
-import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
-import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
-import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
-import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -37,7 +26,19 @@ import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import com.github.erchu.beancp.BindingOption;
+import com.github.erchu.beancp.Mapper;
+import com.github.erchu.beancp.MapperBuilder;
+import com.github.erchu.beancp.commons.CollectionConverters;
+import com.github.erchu.beancp.commons.NameBasedMapConvention;
+import com.github.erchu.beancp.commons.NumberConverters;
+
+import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
+import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
+import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
+import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
+import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
 
 public final class BeancpMapperBuilder {
 

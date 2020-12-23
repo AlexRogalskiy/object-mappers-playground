@@ -18,14 +18,14 @@
  */
 package io.nullables.api.playground.objectmappers.orika.converter;
 
-import ma.glasnost.orika.MappingContext;
-import ma.glasnost.orika.converter.BidirectionalConverter;
-import ma.glasnost.orika.metadata.Type;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
 
 import java.time.LocalDateTime;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
+import ma.glasnost.orika.MappingContext;
+import ma.glasnost.orika.converter.BidirectionalConverter;
+import ma.glasnost.orika.metadata.Type;
 
 public class StringToLocalDateTimeConverter extends BidirectionalConverter<String, LocalDateTime> {
 

@@ -18,10 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.selma.mapping;
 
-import java.time.LocalDateTime;
-
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToString;
+
+import java.time.LocalDateTime;
 
 public class StringToLocalDateTimeMapper {
 

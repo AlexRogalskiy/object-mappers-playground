@@ -18,8 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.remap;
 
+import java.util.Optional;
+
 import com.remondis.remap.Mapper;
 import com.remondis.remap.Mapping;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.ProductDto;
@@ -27,8 +30,6 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.Address
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.CustomerEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.ProductEntity;
-
-import java.util.Optional;
 
 public final class ReMapper implements OrderMapper {
 

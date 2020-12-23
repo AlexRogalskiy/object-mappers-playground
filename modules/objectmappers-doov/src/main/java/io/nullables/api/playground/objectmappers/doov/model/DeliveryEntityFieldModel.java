@@ -1,11 +1,19 @@
 package io.nullables.api.playground.objectmappers.doov.model;
 
-import io.doov.core.dsl.runtime.RuntimeField;
-import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
-import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
+import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.ADDRESSES;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.BALANCE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.CODES;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.CREATE_AT;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.DESCRIPTION;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.DISCOUNT;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.GID;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.ID;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.SHIPPABLE_DUE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.STATUS;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.TYPE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.UPDATE_AT;
 
-import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +21,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
-import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryEntityFieldType.*;
+import javax.annotation.Nonnull;
+
+import io.doov.core.dsl.runtime.RuntimeField;
+import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
+import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
+import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 
 public class DeliveryEntityFieldModel extends RuntimeFieldRegistry<DeliveryEntity> {
 

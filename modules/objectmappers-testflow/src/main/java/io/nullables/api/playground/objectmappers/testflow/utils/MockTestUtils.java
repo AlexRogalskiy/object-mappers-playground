@@ -18,9 +18,20 @@
  */
 package io.nullables.api.playground.objectmappers.testflow.utils;
 
-import lombok.experimental.UtilityClass;
-import net.andreinc.mockneat.MockNeat;
-import net.andreinc.mockneat.abstraction.*;
+import static io.nullables.api.playground.objectmappers.testflow.utils.LocalDateTimes.localDateTimes;
+import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_A;
+import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_C;
+import static net.andreinc.mockneat.types.enums.StringFormatType.LOWER_CASE;
+import static net.andreinc.mockneat.types.enums.StringFormatType.UPPER_CASE;
+import static net.andreinc.mockneat.types.enums.StringType.ALPHA_NUMERIC;
+import static net.andreinc.mockneat.types.enums.StringType.LETTERS;
+import static net.andreinc.mockneat.types.enums.StringType.NUMBERS;
+import static net.andreinc.mockneat.unit.text.Strings.strings;
+import static net.andreinc.mockneat.unit.time.LocalDates.localDates;
+import static net.andreinc.mockneat.unit.types.Doubles.doubles;
+import static net.andreinc.mockneat.unit.types.Floats.floats;
+import static net.andreinc.mockneat.unit.types.Ints.ints;
+import static net.andreinc.mockneat.unit.types.Longs.longs;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,18 +39,15 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import static io.nullables.api.playground.objectmappers.testflow.utils.LocalDateTimes.localDateTimes;
-import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_A;
-import static net.andreinc.mockneat.types.enums.IPv4Type.CLASS_C;
-import static net.andreinc.mockneat.types.enums.StringFormatType.LOWER_CASE;
-import static net.andreinc.mockneat.types.enums.StringFormatType.UPPER_CASE;
-import static net.andreinc.mockneat.types.enums.StringType.*;
-import static net.andreinc.mockneat.unit.text.Strings.strings;
-import static net.andreinc.mockneat.unit.time.LocalDates.localDates;
-import static net.andreinc.mockneat.unit.types.Doubles.doubles;
-import static net.andreinc.mockneat.unit.types.Floats.floats;
-import static net.andreinc.mockneat.unit.types.Ints.ints;
-import static net.andreinc.mockneat.unit.types.Longs.longs;
+import lombok.experimental.UtilityClass;
+import net.andreinc.mockneat.MockNeat;
+import net.andreinc.mockneat.abstraction.MockUnit;
+import net.andreinc.mockneat.abstraction.MockUnitDouble;
+import net.andreinc.mockneat.abstraction.MockUnitFloat;
+import net.andreinc.mockneat.abstraction.MockUnitInt;
+import net.andreinc.mockneat.abstraction.MockUnitLocalDate;
+import net.andreinc.mockneat.abstraction.MockUnitLong;
+import net.andreinc.mockneat.abstraction.MockUnitString;
 
 @UtilityClass
 public class MockTestUtils {

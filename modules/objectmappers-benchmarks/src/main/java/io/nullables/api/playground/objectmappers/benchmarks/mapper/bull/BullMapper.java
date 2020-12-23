@@ -18,14 +18,15 @@
  */
 package io.nullables.api.playground.objectmappers.benchmarks.mapper.bull;
 
+import java.util.stream.Stream;
+
 import com.hotels.beans.BeanUtils;
 import com.hotels.beans.transformer.BeanTransformer;
 import com.hotels.transformer.model.FieldMapping;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
-
-import java.util.stream.Stream;
 
 public class BullMapper implements OrderMapper {
 

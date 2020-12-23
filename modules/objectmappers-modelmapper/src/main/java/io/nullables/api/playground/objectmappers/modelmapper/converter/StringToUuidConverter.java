@@ -18,13 +18,14 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.converter;
 
-import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.Converter;
-import org.modelmapper.spi.MappingContext;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
 
 import java.util.UUID;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
+import org.modelmapper.Converter;
+import org.modelmapper.spi.MappingContext;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link String} to {@link UUID} {@link Converter} implementation

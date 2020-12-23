@@ -18,14 +18,15 @@
  */
 package io.nullables.api.playground.objectmappers.smooks.converter;
 
+import java.io.IOException;
+
+import javax.xml.transform.stream.StreamSource;
+
 import org.milyn.Smooks;
 import org.milyn.payload.JavaResult;
 import org.milyn.payload.StringResult;
 import org.milyn.validation.ValidationResult;
 import org.xml.sax.SAXException;
-
-import javax.xml.transform.stream.StreamSource;
-import java.io.IOException;
 
 public class OrderValidator {
 

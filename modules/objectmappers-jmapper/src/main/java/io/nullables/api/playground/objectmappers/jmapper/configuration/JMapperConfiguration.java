@@ -18,12 +18,16 @@
  */
 package io.nullables.api.playground.objectmappers.jmapper.configuration;
 
+import static com.googlecode.jmapper.api.JMapperAPI.attribute;
+import static com.googlecode.jmapper.api.JMapperAPI.conversion;
+import static com.googlecode.jmapper.api.JMapperAPI.global;
+import static com.googlecode.jmapper.api.JMapperAPI.mappedClass;
+
 import com.googlecode.jmapper.annotations.JMapConversion;
 import com.googlecode.jmapper.api.JMapperAPI;
+
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
-
-import static com.googlecode.jmapper.api.JMapperAPI.*;
 
 public class JMapperConfiguration {
 

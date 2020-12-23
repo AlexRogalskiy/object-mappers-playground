@@ -19,13 +19,14 @@
 package io.nullables.api.playground.objectmappers.benchmarks;
 
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import io.nullables.api.playground.objectmappers.benchmarks.mapper.OrderMapper;
 import io.nullables.api.playground.objectmappers.benchmarks.model.dto.OrderDto;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEntity;
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderFactory;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractMapperTest {
 

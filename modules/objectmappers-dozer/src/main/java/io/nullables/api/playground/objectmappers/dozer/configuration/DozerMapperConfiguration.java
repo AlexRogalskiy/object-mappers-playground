@@ -18,6 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.dozer.configuration;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
+
+import javax.annotation.Nonnull;
+
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.classmap.RelationshipType;
@@ -26,6 +30,7 @@ import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
 import com.github.dozermapper.core.loader.api.FieldsMappingOptions;
 import com.github.dozermapper.core.loader.api.TypeMappingOption;
 import com.github.dozermapper.core.loader.api.TypeMappingOptions;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
@@ -34,10 +39,6 @@ import io.nullables.api.playground.objectmappers.dozer.converter.StringToInteger
 import io.nullables.api.playground.objectmappers.dozer.converter.StringToLocaleDateTimeConvertor;
 import io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor;
 import lombok.experimental.UtilityClass;
-
-import javax.annotation.Nonnull;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
 public final class DozerMapperConfiguration {
 

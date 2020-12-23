@@ -18,11 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.propertymap;
 
+import org.modelmapper.PropertyMap;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.modelmapper.converter.StringToUuidConverter;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.PropertyMap;
 
 /**
  * {@link AddressDto} to {@link AddressEntity} {@link PropertyMap} binding configuration

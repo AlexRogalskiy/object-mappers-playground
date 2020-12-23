@@ -1,15 +1,21 @@
 package io.nullables.api.playground.objectmappers.doov.model;
 
-import io.doov.core.dsl.runtime.RuntimeField;
-import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
-import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
+import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.CITY;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.COUNTRY;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.ID;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.POSTAL_CODE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.STATE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.STREET;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
-import static io.nullables.api.playground.objectmappers.doov.enumeration.AddressDtoFieldType.*;
+import javax.annotation.Nonnull;
+
+import io.doov.core.dsl.runtime.RuntimeField;
+import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
+import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 
 public class AddressDtoFieldModel extends RuntimeFieldRegistry<AddressDto> {
 

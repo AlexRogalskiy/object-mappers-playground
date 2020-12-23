@@ -1,17 +1,29 @@
 package io.nullables.api.playground.objectmappers.doov.model;
 
-import io.doov.core.dsl.runtime.RuntimeField;
-import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
-import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
+import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.ADDRESSES;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.BALANCE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.CODES;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.CREATE_AT;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.DESCRIPTION;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.DISCOUNT;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.GID;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.ID;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.SHIPPABLE_DUE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.STATUS;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.TYPE;
+import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.UPDATE_AT;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static io.doov.core.dsl.runtime.FieldChainBuilder.from;
-import static io.nullables.api.playground.objectmappers.doov.enumeration.DeliveryDtoFieldType.*;
+import javax.annotation.Nonnull;
+
+import io.doov.core.dsl.runtime.RuntimeField;
+import io.doov.core.dsl.runtime.RuntimeFieldRegistry;
+import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
+import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 
 public class DeliveryDtoFieldModel extends RuntimeFieldRegistry<DeliveryDto> {
 

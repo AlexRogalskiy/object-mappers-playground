@@ -18,10 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.selma.mapping;
 
-import java.util.UUID;
-
 import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
 import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
+
+import java.util.UUID;
 
 public class StringToUuidMapper {
 

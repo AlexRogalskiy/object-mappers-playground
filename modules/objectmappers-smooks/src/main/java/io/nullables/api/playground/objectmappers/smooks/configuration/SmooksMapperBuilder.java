@@ -18,11 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.smooks.configuration;
 
+import java.io.IOException;
+
 import org.milyn.Smooks;
 import org.milyn.delivery.Visitor;
 import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 public final class SmooksMapperBuilder {
 

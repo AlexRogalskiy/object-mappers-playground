@@ -18,15 +18,19 @@
  */
 package io.nullables.api.playground.objectmappers.commons.model.entity;
 
-import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
-import lombok.*;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import io.nullables.api.playground.objectmappers.commons.enumeration.DeliveryStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 @Data
 @Builder

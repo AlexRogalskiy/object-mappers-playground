@@ -18,14 +18,14 @@
  */
 package io.nullables.api.playground.objectmappers.orika.converter;
 
-import ma.glasnost.orika.MappingContext;
-import ma.glasnost.orika.converter.BidirectionalConverter;
-import ma.glasnost.orika.metadata.Type;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
 
 import java.util.UUID;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
+import ma.glasnost.orika.MappingContext;
+import ma.glasnost.orika.converter.BidirectionalConverter;
+import ma.glasnost.orika.metadata.Type;
 
 public class StringToUuidConverter extends BidirectionalConverter<String, UUID> {
 

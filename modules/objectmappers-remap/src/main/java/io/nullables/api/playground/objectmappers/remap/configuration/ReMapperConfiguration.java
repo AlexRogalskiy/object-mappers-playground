@@ -18,16 +18,17 @@
  */
 package io.nullables.api.playground.objectmappers.remap.configuration;
 
+import java.math.BigDecimal;
+
 import com.remondis.remap.Mapper;
 import com.remondis.remap.Mapping;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
 import io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity;
 import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
-
-import java.math.BigDecimal;
 
 public class ReMapperConfiguration {
 

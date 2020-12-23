@@ -18,8 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.remap;
 
+import org.junit.jupiter.api.Test;
+
 import com.remondis.remap.AssertMapping;
 import com.remondis.remap.Mapper;
+
 import io.nullables.api.playground.objectmappers.commons.model.dto.AddressDto;
 import io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto;
 import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEntity;
@@ -28,7 +31,6 @@ import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
 import io.nullables.api.playground.objectmappers.remap.configuration.ReMapperConfiguration;
 import io.nullables.api.playground.objectmappers.testflow.annotation.SimpleTest;
-import org.junit.jupiter.api.Test;
 
 @SimpleTest
 class ReMapperValidationTest {

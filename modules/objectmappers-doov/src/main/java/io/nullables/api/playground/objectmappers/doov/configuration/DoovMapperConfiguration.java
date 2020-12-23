@@ -18,6 +18,15 @@
  */
 package io.nullables.api.playground.objectmappers.doov.configuration;
 
+import static io.doov.core.dsl.DOOV.map;
+import static io.doov.core.dsl.mapping.TypeConverters.converter;
+import static io.nullables.api.playground.objectmappers.doov.model.AddressDtoFieldModel.STREET_SOURCE;
+import static io.nullables.api.playground.objectmappers.doov.model.AddressEntityFieldModel.STREET_TARGET;
+
+import java.math.BigDecimal;
+
+import javax.annotation.Nonnull;
+
 import io.doov.core.dsl.mapping.MappingRegistry;
 import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
@@ -25,14 +34,6 @@ import io.nullables.api.playground.objectmappers.doov.model.AddressDtoFieldModel
 import io.nullables.api.playground.objectmappers.doov.model.AddressEntityFieldModel;
 import io.nullables.api.playground.objectmappers.doov.model.DeliveryDtoFieldModel;
 import io.nullables.api.playground.objectmappers.doov.model.DeliveryEntityFieldModel;
-
-import javax.annotation.Nonnull;
-import java.math.BigDecimal;
-
-import static io.doov.core.dsl.DOOV.map;
-import static io.doov.core.dsl.mapping.TypeConverters.converter;
-import static io.nullables.api.playground.objectmappers.doov.model.AddressDtoFieldModel.STREET_SOURCE;
-import static io.nullables.api.playground.objectmappers.doov.model.AddressEntityFieldModel.STREET_TARGET;
 
 public final class DoovMapperConfiguration {
 

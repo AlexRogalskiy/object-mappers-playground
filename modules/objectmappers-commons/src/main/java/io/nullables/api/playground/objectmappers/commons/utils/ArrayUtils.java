@@ -18,9 +18,9 @@
  */
 package io.nullables.api.playground.objectmappers.commons.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.util.Objects;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ArrayUtils {

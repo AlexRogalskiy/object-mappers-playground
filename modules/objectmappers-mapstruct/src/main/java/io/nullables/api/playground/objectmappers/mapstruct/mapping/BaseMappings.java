@@ -18,8 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.mapstruct.mapping;
 
-import org.mapstruct.Named;
-import org.mapstruct.Qualifier;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToStringArray;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -27,7 +29,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.UUID;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.*;
+import org.mapstruct.Named;
+import org.mapstruct.Qualifier;
 
 public class BaseMappings {
 

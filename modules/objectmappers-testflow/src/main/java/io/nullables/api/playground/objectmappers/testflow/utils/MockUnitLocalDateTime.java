@@ -18,8 +18,9 @@
  */
 package io.nullables.api.playground.objectmappers.testflow.utils;
 
-import net.andreinc.mockneat.abstraction.MockUnit;
-import net.andreinc.mockneat.abstraction.MockUnitString;
+import static java.util.Date.from;
+import static net.andreinc.mockneat.utils.MockUnitUtils.ifSupplierNotNullDo;
+import static net.andreinc.mockneat.utils.ValidationUtils.notNull;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -27,9 +28,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
-import static java.util.Date.from;
-import static net.andreinc.mockneat.utils.MockUnitUtils.ifSupplierNotNullDo;
-import static net.andreinc.mockneat.utils.ValidationUtils.notNull;
+import net.andreinc.mockneat.abstraction.MockUnit;
+import net.andreinc.mockneat.abstraction.MockUnitString;
 
 public interface MockUnitLocalDateTime extends MockUnit<LocalDateTime> {
 

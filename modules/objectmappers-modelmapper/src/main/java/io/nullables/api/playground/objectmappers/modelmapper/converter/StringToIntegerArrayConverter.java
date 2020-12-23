@@ -18,10 +18,10 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.converter;
 
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
+
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
-
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToIntegerArray;
 
 /**
  * {@link String} to {@link Integer} array {@link Converter} implementation

@@ -18,12 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.dozer.converter;
 
-import com.github.dozermapper.core.DozerConverter;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
+import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
 
 import java.util.UUID;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToString;
-import static io.nullables.api.playground.objectmappers.commons.utils.StringUtils.convertToUuid;
+import com.github.dozermapper.core.DozerConverter;
 
 public class StringToUuidConvertor extends DozerConverter<String, UUID> {
 

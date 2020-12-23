@@ -18,12 +18,12 @@
  */
 package io.nullables.api.playground.objectmappers.modelmapper.converter;
 
-import org.modelmapper.Converter;
-import org.modelmapper.spi.MappingContext;
+import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
 
 import java.time.LocalDateTime;
 
-import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.convertToLocalDateTime;
+import org.modelmapper.Converter;
+import org.modelmapper.spi.MappingContext;
 
 /**
  * {@link String} to {@link LocalDateTime} array {@link Converter} implementation
