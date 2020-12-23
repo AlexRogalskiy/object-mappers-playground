@@ -18,16 +18,17 @@
  */
 package io.nullables.api.playground.objectmappers.testflow.annotation;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.platform.commons.util.ReflectionUtils.tryToReadFieldValue;
+
+import java.lang.reflect.Field;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.support.AnnotationConsumer;
 
-import java.lang.reflect.Field;
-import java.util.stream.Stream;
-
-import static org.junit.platform.commons.util.ReflectionUtils.tryToReadFieldValue;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class VariableArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<VariableSource> {
