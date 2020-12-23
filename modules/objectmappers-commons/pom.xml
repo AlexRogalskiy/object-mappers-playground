@@ -7,7 +7,7 @@
         <groupId>io.nullables.api.playground</groupId>
         <artifactId>objectmappers-parent</artifactId>
         <version>${revision}</version>
-        <relativePath>../../</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.commons</name>
