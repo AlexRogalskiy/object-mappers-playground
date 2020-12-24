@@ -99,6 +99,7 @@
         <module>modules/objectmappers-remap</module>
         <module>modules/objectmappers-selma</module>
         <module>modules/objectmappers-smooks</module>
+        <module>modules/objectmappers-scalaflow</module>
         <module>modules/objectmappers-testflow</module>
         <module>modules/objectmappers-it</module>
     </modules>
@@ -132,7 +133,6 @@
         <enforce.test.skip>false</enforce.test.skip>
         <package-tests.skip>true</package-tests.skip>
         <copy-dependencies.skip>false</copy-dependencies.skip>
-        <moditect.skip>false</moditect.skip>
 
         <failIfNoTests>false</failIfNoTests>
         <skipTests>false</skipTests>
@@ -222,9 +222,6 @@
         <maven-lombok-plugin.version>1.18.16.0</maven-lombok-plugin.version>
         <maven-versionizer-plugin.version>1.0.6</maven-versionizer-plugin.version>
         <maven-sundr-plugin.version>0.23.1</maven-sundr-plugin.version>
-        <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
-        <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>
-        <maven-scalastyle-plugin.version>1.0.0</maven-scalastyle-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
@@ -265,13 +262,6 @@
             <version>${lombok.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Apache commons library dependencies -->
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.13.2</version>
         </dependency>
 
         <!-- Apache commons library dependencies -->
@@ -754,34 +744,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.moditect</groupId>
-                <artifactId>moditect-maven-plugin</artifactId>
-                <version>${maven.moditect.plugin.version}</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <skip>${moditect.skip}</skip>
-                    <artifactId>${project.groupId}-${project.artifactId}</artifactId>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>add-module-infos</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-module-info</goal>
-                        </goals>
-                        <configuration>
-                            <jvmVersion>11</jvmVersion>
-                            <overwriteExistingFiles>true</overwriteExistingFiles>
-                            <module>
-                                <moduleInfoFile>${project.build.sourceDirectory}/module-info.java
-                                </moduleInfoFile>
-                            </module>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-help-plugin</artifactId>
                 <version>${maven-help-plugin.version}</version>
@@ -1157,22 +1119,6 @@
             <url>https://projectlombok.org/edge-releases</url>
             <layout>default</layout>
         </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-            <id>scala-tools.org</id>
-            <name>Scala-tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
-            <layout>default</layout>
-        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -1190,22 +1136,6 @@
             <id>central</id>
             <name>Maven Central Repository</name>
             <url>https://repo1.maven.org/maven2</url>
-            <layout>default</layout>
-        </pluginRepository>
-        <pluginRepository>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-            <id>scala-tools.org</id>
-            <name>Scala-tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases</url>
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
@@ -1397,141 +1327,6 @@
                     <version>${kotlinx-coroutines.version}</version>
                 </dependency>
             </dependencies>
-        </profile>
-
-        <!-- Scala profile -->
-        <profile>
-            <id>scala</id>
-            <properties>
-                <scala.version>2.13.4</scala.version>
-                <scala.binary.version>2.12</scala.binary.version>
-                <scalafmt.skip>false</scalafmt.skip>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.scala-lang.modules</groupId>
-                    <artifactId>scala-parser-combinators_${scala.binary.version}</artifactId>
-                    <version>1.2.0-M1</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scala-lang.modules</groupId>
-                    <artifactId>scala-xml_${scala.binary.version}</artifactId>
-                    <version>2.0.0-M3</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scalatest</groupId>
-                    <artifactId>scalatest_${scala.binary.version}</artifactId>
-                    <version>3.3.0-SNAP3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scalatestplus</groupId>
-                    <artifactId>scalatestplus-scalacheck_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scalatestplus</groupId>
-                    <artifactId>scalatestplus-mockito_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scalatestplus</groupId>
-                    <artifactId>scalatestplus-selenium_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.scalacheck</groupId>
-                    <artifactId>scalacheck_${scala.binary.version}</artifactId>
-                    <version>1.15.2</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>net.alchim31.maven</groupId>
-                        <artifactId>scala-maven-plugin</artifactId>
-                        <version>${maven-scala-plugin.version}</version>
-                        <configuration>
-                            <scalaVersion>${scala.version}</scalaVersion>
-                            <scalaCompatVersion>${scala.binary.version}</scalaCompatVersion>
-                            <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
-                            <failOnMultipleScalaVersions>false</failOnMultipleScalaVersions>
-                            <recompileMode>incremental</recompileMode>
-                            <useZincServer>false</useZincServer>
-                            <verbose>true</verbose>
-                            <args>
-                                <arg>-unchecked</arg>
-                                <arg>-deprecation</arg>
-                                <arg>-feature</arg>
-                                <arg>-explaintypes</arg>
-                                <arg>-target:jvm-1.8</arg>
-                            </args>
-                            <jvmArgs>
-                                <jvmArg>-Xms1024m</jvmArg>
-                                <jvmArg>-Xmx1024m</jvmArg>
-                                <jvmArg>-XX:ReservedCodeCacheSize=1g</jvmArg>
-                            </jvmArgs>
-                            <javacArgs>
-                                <javacArg>-source</javacArg>
-                                <javacArg>${java.version}</javacArg>
-                                <javacArg>-target</javacArg>
-                                <javacArg>${java.version}</javacArg>
-                                <javacArg>-Xlint:all,-serial,-path,-try</javacArg>
-                            </javacArgs>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>scala-compile-first</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>add-source</goal>
-                                    <goal>compile</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>scala-test-compile</id>
-                                <phase>process-test-resources</phase>
-                                <goals>
-                                    <goal>add-source</goal>
-                                    <goal>testCompile</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>scasla-docs-attach</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>doc-jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.antipathy</groupId>
-                        <artifactId>mvn-scalafmt_${scala.binary.version}</artifactId>
-                        <version>${maven-scalafmt-plugin.version}</version>
-                        <configuration>
-                            <skipSources>${scalafmt.skip}</skipSources>
-                            <skipTestSources>${scalafmt.skip}</skipTestSources>
-                            <onlyChangedFiles>true</onlyChangedFiles>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>format</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
 
         <!-- Java version profile -->
@@ -2491,7 +2286,6 @@
                             <sourceDirectories>
                                 <directory>${basedir}/src/main/java</directory>
                                 <directory>${basedir}/src/main/kotlin</directory>
-                                <directory>${basedir}/src/main/scala</directory>
                             </sourceDirectories>
                             <testSourceDirectories>
                                 <directory>
@@ -2546,44 +2340,6 @@
                             <execution>
                                 <id>check</id>
                                 <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.scalastyle</groupId>
-                        <artifactId>scalastyle-maven-plugin</artifactId>
-                        <version>${maven-scalastyle-plugin.version}</version>
-                        <configuration>
-                            <verbose>false</verbose>
-                            <failOnWarning>false</failOnWarning>
-                            <failOnViolation>false</failOnViolation>
-                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                            <configLocation>
-                                ${session.executionRootDirectory}/codestyle/scalastyle-config.xml
-                            </configLocation>
-                            <outputFile>
-                                ${project.build.outputDirectory}/scalastyle-output.xml
-                            </outputFile>
-                            <inputEncoding>
-                                ${project.build.sourceEncoding}
-                            </inputEncoding>
-                            <outputEncoding>
-                                ${project.reporting.outputEncoding}
-                            </outputEncoding>
-                            <sourceDirectories>
-                                <dir>${project.basedir}/src/main/scala</dir>
-                                <dir>${project.basedir}/src/main/generated-scala</dir>
-                            </sourceDirectories>
-                            <testSourceDirectory>
-                                <dir>${project.basedir}/src/test/scala</dir>
-                            </testSourceDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
@@ -2734,8 +2490,8 @@
                             <forceJavacCompilerUse>true</forceJavacCompilerUse>
 
                             <compilerArgs>
-                                -XDignore.symbol.file
-                                -Xlint:all
+                                <arg>-XDignore.symbol.file</arg>
+                                <arg>-Xlint:all</arg>
                             </compilerArgs>
 
                             <excludes>
@@ -2820,12 +2576,11 @@
                             <meminitial>128m</meminitial>
                             <maxmem>512m</maxmem>
 
-                            <compilerArgs>
-                                <arg>-Xpkginfo:always</arg>
-                                <arg>
-                                    --add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow
-                                </arg>
-                            </compilerArgs>
+<!--                            <compilerArgs>-->
+<!--                                <arg>-->
+<!--                                    &#45;&#45;add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow-->
+<!--                                </arg>-->
+<!--                            </compilerArgs>-->
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -2850,6 +2605,34 @@
                                 <phase>test-compile</phase>
                                 <configuration>
                                     <skip>${compile-tests.skip}</skip>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.moditect</groupId>
+                        <artifactId>moditect-maven-plugin</artifactId>
+                        <version>${maven.moditect.plugin.version}</version>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <artifactId>${project.groupId}-${project.artifactId}</artifactId>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>add-module-infos</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>add-module-info</goal>
+                                </goals>
+                                <configuration>
+                                    <jvmVersion>${java.version}</jvmVersion>
+                                    <module>
+                                        <moduleInfoFile>
+                                            ${project.build.sourceDirectory}/module-info.java
+                                        </moduleInfoFile>
+                                    </module>
                                 </configuration>
                             </execution>
                         </executions>
