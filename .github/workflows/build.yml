@@ -17,6 +17,16 @@ env:
     --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
+  setup:
+    name: Cancel previous builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stop old builds
+        if: github.ref != 'refs/heads/master'
+        uses: styfle/cancel-workflow-action@0.4.0
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
   cli-args:
     name: Cmd arguments
     runs-on: ubuntu-latest

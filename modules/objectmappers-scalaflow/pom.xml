@@ -18,13 +18,15 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
-
         <scala.version>2.13.4</scala.version>
+        <scala.binary.version>2.12</scala.binary.version>
+
+        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
 
         <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
         <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>
         <maven-scalastyle-plugin.version>1.0.0</maven-scalastyle-plugin.version>
+        <maven-scala-tools-plugin.version>2.15.2</maven-scala-tools-plugin.version>
     </properties>
 
     <repositories>
@@ -66,15 +68,49 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Scala tools profile -->
+        <profile>
+            <id>scala-tools</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.scala-tools</groupId>
+                        <artifactId>maven-scala-plugin</artifactId>
+                        <version>${maven-scala-tools-plugin.version}</version>
+                        <configuration>
+                            <charset>${project.build.sourceEncoding}</charset>
+                            <jvmArgs>
+                                <jvmArg>-Xmx1024m</jvmArg>
+                            </jvmArgs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Scala profile -->
         <profile>
             <id>scala</id>
             <properties>
-                <scala.binary.version>2.12</scala.binary.version>
                 <scalafmt.skip>false</scalafmt.skip>
                 <compilerArgs>-Xpkginfo:always</compilerArgs>
-            </properties>
 
+                <scala-parser-combinators.version>1.2.0-M1</scala-parser-combinators.version>
+                <scala-xml.version>2.0.0-M3</scala-xml.version>
+                <scalatest.version>3.3.0-SNAP3</scalatest.version>
+                <scalatest-check.version>1.0.0-M2</scalatest-check.version>
+                <scalatest-mockito.version>1.0.0-M2</scalatest-mockito.version>
+                <scalatest-selenium.version>1.0.0-M2</scalatest-selenium.version>
+                <scalacheck.version>1.15.2</scalacheck.version>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.scala-lang</groupId>
@@ -84,47 +120,46 @@
                 <dependency>
                     <groupId>org.scala-lang.modules</groupId>
                     <artifactId>scala-parser-combinators_${scala.binary.version}</artifactId>
-                    <version>1.2.0-M1</version>
+                    <version>${scala-parser-combinators.version}</version>
                     <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scala-lang.modules</groupId>
                     <artifactId>scala-xml_${scala.binary.version}</artifactId>
-                    <version>2.0.0-M3</version>
+                    <version>${scala-xml.version}</version>
                     <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scalatest</groupId>
                     <artifactId>scalatest_${scala.binary.version}</artifactId>
-                    <version>3.3.0-SNAP3</version>
+                    <version>${scalatest.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scalatestplus</groupId>
                     <artifactId>scalatestplus-scalacheck_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
+                    <version>${scalatest-check.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scalatestplus</groupId>
                     <artifactId>scalatestplus-mockito_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
+                    <version>${scalatest-mockito.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scalatestplus</groupId>
                     <artifactId>scalatestplus-selenium_${scala.binary.version}</artifactId>
-                    <version>1.0.0-M2</version>
+                    <version>${scalatest-selenium.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.scalacheck</groupId>
                     <artifactId>scalacheck_${scala.binary.version}</artifactId>
-                    <version>1.15.2</version>
+                    <version>${scalacheck.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-
             <build>
                 <plugins>
                     <plugin>
@@ -290,8 +325,8 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/scala</testSourceDirectory>
         <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
         <resources>
             <resource>
@@ -338,6 +373,74 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src</directory>
+                                    <includes>
+                                        <include>*.properties</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${maven-scala-plugin.version}</version>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <scalaCompatVersion>${scala.binary.version}</scalaCompatVersion>
+                    <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
+                    <failOnMultipleScalaVersions>false</failOnMultipleScalaVersions>
+                    <recompileMode>incremental</recompileMode>
+                    <verbose>true</verbose>
+                    <args>
+                        <arg>-unchecked</arg>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                        <arg>-explaintypes</arg>
+                        <arg>-target:jvm-1.8</arg>
+                    </args>
+                    <jvmArgs>
+                        <jvmArg>-Xms1024m</jvmArg>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                        <jvmArg>-XX:ReservedCodeCacheSize=1g</jvmArg>
+                    </jvmArgs>
+                    <javacArgs>
+                        <javacArg>-source</javacArg>
+                        <javacArg>${java.version}</javacArg>
+                        <javacArg>-target</javacArg>
+                        <javacArg>${java.version}</javacArg>
+                        <javacArg>-Xlint:all,-serial,-path,-try</javacArg>
+                    </javacArgs>
+                    <excludes>
+                        <exclude>module-info.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

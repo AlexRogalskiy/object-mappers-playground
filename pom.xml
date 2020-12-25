@@ -180,6 +180,7 @@
         <maven-sonar-plugin.version>3.7.0.1746</maven-sonar-plugin.version>
         <maven-sonar-packaging-plugin.version>1.20.0.405</maven-sonar-packaging-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-idea-plugin.version>2.2</maven-idea-plugin.version>
         <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-appassembler-plugin.version>2.1.0</maven-appassembler-plugin.version>
@@ -231,7 +232,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com/AlexRogalskiy/object-mappers-playground.git
+        <connection>
+            scm:git:git@github.com/AlexRogalskiy/object-mappers-playground.git
         </connection>
         <developerConnection>
             scm:git:git@github.com:/AlexRogalskiy/object-mappers-playground.git
@@ -762,6 +764,11 @@
                 <groupId>io.takari.maven.plugins</groupId>
                 <artifactId>takari-lifecycle-plugin</artifactId>
                 <version>${maven-takari-lifecycle-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <proc>proc</proc>
+                    <compilerId>javac</compilerId>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -955,6 +962,16 @@
                 <inherited>true</inherited>
                 <configuration>
                     <encoding>${project.build.outputEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>${maven-idea-plugin.version}</version>
+                <configuration>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <downloadSources>true</downloadSources>
                 </configuration>
             </plugin>
         </plugins>
@@ -2576,11 +2593,11 @@
                             <meminitial>128m</meminitial>
                             <maxmem>512m</maxmem>
 
-<!--                            <compilerArgs>-->
-<!--                                <arg>-->
-<!--                                    &#45;&#45;add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow-->
-<!--                                </arg>-->
-<!--                            </compilerArgs>-->
+                            <!--                            <compilerArgs>-->
+                            <!--                                <arg>-->
+                            <!--                                    &#45;&#45;add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow-->
+                            <!--                                </arg>-->
+                            <!--                            </compilerArgs>-->
                         </configuration>
                         <dependencies>
                             <dependency>

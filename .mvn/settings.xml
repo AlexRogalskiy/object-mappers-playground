@@ -18,13 +18,18 @@
                 <repository>
                     <id>central</id>
                     <name>Maven Central Repository</name>
-                    <url>http://repo.maven.apache.org/maven2</url>
                     <releases>
                         <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
                     </releases>
                     <snapshots>
                         <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
+                    <url>http://repo.maven.apache.org/maven2</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>sonatype</id>
@@ -40,6 +45,7 @@
                         <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
                     <url>https://oss.sonatype.org/content/repositories/releases/</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>sonatype-snapshots</id>
@@ -55,6 +61,7 @@
                         <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>apache-releases</id>
@@ -70,6 +77,7 @@
                         <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
                     <url>https://repository.apache.org/content/repositories/releases/</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>apache-snapshots</id>
@@ -85,6 +93,7 @@
                         <checksumPolicy>fail</checksumPolicy>
                     </snapshots>
                     <url>https://repository.apache.org/snapshots/</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>jcenter-releases</id>
@@ -100,6 +109,7 @@
                         <checksumPolicy>warn</checksumPolicy>
                     </snapshots>
                     <url>https://jcenter.bintray.com/</url>
+                    <layout>default</layout>
                 </repository>
             </repositories>
         </profile>
@@ -123,6 +133,7 @@
                     <id>github</id>
                     <name>GitHub OWNER Apache Maven Packages</name>
                     <url>https://maven.pkg.github.com/AlexRogalskiy/object-mappers-playground</url>
+                    <layout>default</layout>
                 </repository>
             </repositories>
         </profile>

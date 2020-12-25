@@ -1,0 +1,23 @@
+language: workflow
+
+tools:
+  jdk: 11
+  maven: 3.6.3
+
+triggers:
+  - manual: Run default
+
+flows:
+  master:
+    - (on master, name mvn test) ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test-jar","test","dev"
+  default:
+    - call: versionsCheck
+    - call: pr
+  pr:
+    - echo "Running build for $GITHUB_PR_URL"
+    - call: versionsCheck
+    #- (name Maven build) mvn clean install
+    - (name Maven Wrapper Build) ./mvnw clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+  versionsCheck:
+    - (name JDK Version) java -version
+    - (name Maven version) mvn -v
