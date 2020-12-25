@@ -67,8 +67,8 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gnu-tar git-lfs; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git lfs pull; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://github.com/github/git-lfs/releases/download/v1.2.0/git-lfs-linux-amd64-1.2.0.tar.gz | tar -xz; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then git-lfs-1.2.0/git-lfs pull; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_retry curl -L https://github.com/github/git-lfs/releases/download/v1.2.0/git-lfs-linux-amd64-1.2.0.tar.gz | tar -xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_retry git-lfs-1.2.0/git-lfs pull; fi
 
 before_script:
   - mvn -N io.takari:maven:wrapper -Dmaven=3.6.3

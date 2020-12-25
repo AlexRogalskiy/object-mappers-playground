@@ -240,12 +240,12 @@
                                 ${project.reporting.outputEncoding}
                             </outputEncoding>
                             <sourceDirectories>
-                                <dir>${project.basedir}/src/main/scala</dir>
-                                <dir>${project.basedir}/src/main/generated-scala</dir>
+                                <sourceDirectory>${project.basedir}/src/main/scala</sourceDirectory>
+                                <sourceDirectory>${project.basedir}/src/main/generated-scala</sourceDirectory>
                             </sourceDirectories>
-                            <testSourceDirectory>
-                                <dir>${project.basedir}/src/test/scala</dir>
-                            </testSourceDirectory>
+                            <testSourceDirectories>
+                                <testSourceDirectory>${project.basedir}/src/test/scala</testSourceDirectory>
+                            </testSourceDirectories>
                         </configuration>
                         <executions>
                             <execution>
