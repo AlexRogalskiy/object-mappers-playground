@@ -22,7 +22,7 @@
 
         <scala.version>2.13.4</scala.version>
 
-        <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
+        <maven-scalafmt-plugin.version>1.0.1604233120.d167f11</maven-scalafmt-plugin.version>
         <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>
         <maven-scalastyle-plugin.version>1.0.0</maven-scalastyle-plugin.version>
     </properties>
