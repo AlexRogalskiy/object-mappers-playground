@@ -102,6 +102,8 @@
             <properties>
                 <scalafmt.skip>false</scalafmt.skip>
                 <compilerArgs>-Xpkginfo:always</compilerArgs>
+                <scala.plugin.recompileMode>incremental</scala.plugin.recompileMode>
+                <scala.target.vm>1.8</scala.target.vm>
 
                 <scala-parser-combinators.version>1.2.0-M1</scala-parser-combinators.version>
                 <scala-xml.version>2.0.0-M3</scala-xml.version>
@@ -171,14 +173,19 @@
                             <scalaCompatVersion>${scala.binary.version}</scalaCompatVersion>
                             <checkMultipleScalaVersions>false</checkMultipleScalaVersions>
                             <failOnMultipleScalaVersions>false</failOnMultipleScalaVersions>
-                            <recompileMode>incremental</recompileMode>
+                            <recompileMode>${scala.plugin.recompileMode}</recompileMode>
+                            <secondaryCacheDir>${java.io.tmpdir}</secondaryCacheDir>
                             <verbose>true</verbose>
                             <args>
+                                <arg>-Xmax-classfile-name</arg>
+                                <arg>100</arg>
+                                <arg>-Xlint</arg>
                                 <arg>-unchecked</arg>
                                 <arg>-deprecation</arg>
                                 <arg>-feature</arg>
+                                <arg>-nobootcp</arg>
                                 <arg>-explaintypes</arg>
-                                <arg>-target:jvm-1.8</arg>
+                                <arg>-target:jvm-${scala.target.vm}</arg>
                             </args>
                             <jvmArgs>
                                 <jvmArg>-Xms1024m</jvmArg>

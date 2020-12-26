@@ -33,13 +33,17 @@ public class CustomEventListener implements EventListener {
 
     @Override
     public void onPreWritingDestinationValue(final Event event) {
-        log.info(">>> Preinitializing object mapping by ID: [{}]", event.getClassMap().getMapId());
+        log.info(">>> Pre-init object mapping by ID: [{}]",
+            event.getClassMap().getMapId());
     }
 
     @Override
     public void onPostWritingDestinationValue(final Event event) {
-        log.info(">>> Copying to target object by event: [{}], source field: [{}], target field: [{}], value: [{}]",
-            event.getType(), event.getFieldMap().getSrcFieldName(), event.getFieldMap().getDestFieldName(),
+        log.info(
+            ">>> Copying to target object by event: [{}], source field: " +
+                "[{}], target field: [{}], value: [{}]",
+            event.getType(), event.getFieldMap().getSrcFieldName(),
+            event.getFieldMap().getDestFieldName(),
             event.getDestinationValue());
     }
 

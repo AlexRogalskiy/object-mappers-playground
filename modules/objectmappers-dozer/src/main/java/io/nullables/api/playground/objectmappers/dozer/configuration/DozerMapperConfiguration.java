@@ -18,6 +18,11 @@
  */
 package io.nullables.api.playground.objectmappers.dozer.configuration;
 
+import static com.github.dozermapper.core.loader.api.FieldsMappingOptions.collectionStrategy;
+import static com.github.dozermapper.core.loader.api.FieldsMappingOptions.customConverter;
+import static com.github.dozermapper.core.loader.api.FieldsMappingOptions.hintA;
+import static com.github.dozermapper.core.loader.api.FieldsMappingOptions.hintB;
+import static com.github.dozermapper.core.loader.api.FieldsMappingOptions.oneWay;
 import static io.nullables.api.playground.objectmappers.commons.utils.DateUtils.DATETIME_PATTERN;
 
 import javax.annotation.Nonnull;
@@ -27,7 +32,6 @@ import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.classmap.RelationshipType;
 import com.github.dozermapper.core.events.EventListener;
 import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
-import com.github.dozermapper.core.loader.api.FieldsMappingOptions;
 import com.github.dozermapper.core.loader.api.TypeMappingOption;
 import com.github.dozermapper.core.loader.api.TypeMappingOptions;
 
@@ -62,8 +66,7 @@ public final class DozerMapperConfiguration {
     }
 
     public DozerBeanMapperBuilder configureDeliveryMapper() {
-        return this.mapperBuilder
-            .withEventListener(new CustomEventListener())
+        return this.mapperBuilder.withEventListener(new CustomEventListener())
             .withMappingBuilder(DozerConfiguration.ADDRESS_MAPPING)
             .withMappingBuilder(DozerConfiguration.DELIVERY_MAPPING);
     }
@@ -77,51 +80,63 @@ public final class DozerMapperConfiguration {
         /**
          * Default collection of {@link TypeMappingOption}s
          */
-        private static final TypeMappingOption[] TYPE_MAPPING_OPTIONS = {
-            TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
-            TypeMappingOptions.trimStrings(), TypeMappingOptions.wildcardCaseInsensitive(true),
-            TypeMappingOptions.dateFormat(DATETIME_PATTERN)
-        };
+        private static final TypeMappingOption[] TYPE_MAPPING_OPTIONS =
+            {TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
+                TypeMappingOptions.trimStrings(),
+                TypeMappingOptions.wildcardCaseInsensitive(true),
+                TypeMappingOptions.dateFormat(DATETIME_PATTERN)};
 
         /**
          * Address {@link BeanMappingBuilder} configuration
          */
-        private static final BeanMappingBuilder ADDRESS_MAPPING = new BeanMappingBuilder() {
-            @Override
-            protected void configure() {
-                this.mapping(AddressDto.class, AddressEntity.class, TYPE_MAPPING_OPTIONS)
-                    .fields(field("id").accessible(), field("id").accessible(),
-                        FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
-                    .fields("city", "city").fields("country", "country")
-                    .fields("stateOrProvince", "stateOrProvince").fields("postalCode", "postalCode")
-                    .fields("street", "street");
-            }
-        };
+        private static final BeanMappingBuilder ADDRESS_MAPPING =
+            new BeanMappingBuilder() {
+                @Override
+                protected void configure() {
+                    this.mapping(AddressDto.class, AddressEntity.class,
+                        TYPE_MAPPING_OPTIONS)
+                        .fields(field("id").accessible(),
+                            field("id").accessible(),
+                            customConverter(StringToUuidConvertor.class))
+                        .fields("city", "city")
+                        .fields("country", "country")
+                        .fields("stateOrProvince", "stateOrProvince")
+                        .fields("postalCode", "postalCode")
+                        .fields("street", "street");
+                }
+            };
 
         /**
          * Delivery {@link BeanMappingBuilder} configuration
          */
-        private static final BeanMappingBuilder DELIVERY_MAPPING = new BeanMappingBuilder() {
-            @Override
-            protected void configure() {
-                this.mapping(DeliveryDto.class, DeliveryEntity.class, TYPE_MAPPING_OPTIONS)
-                    .fields(field("id").accessible(), field("id").accessible(),
-                        FieldsMappingOptions.customConverter(StringToUuidConvertor.class))
-                    .fields("shippableDue", "shippableDue",
-                        FieldsMappingOptions
-                            .customConverter(StringToLocaleDateTimeConvertor.class))
-                    .fields("codes", "codes", FieldsMappingOptions.oneWay(),
-                        FieldsMappingOptions.hintA(String[].class),
-                        FieldsMappingOptions.hintB(Integer[].class),
-                        FieldsMappingOptions
-                            .customConverter(StringToIntegerArrayConvertor.class),
-                        FieldsMappingOptions.collectionStrategy(true,
-                            RelationshipType.NON_CUMULATIVE))
-                    .fields("type", "type").fields("description", "description").fields("gid", "gid")
-                    .fields("createdAt", "createdAt").fields("updatedAt", "updatedAt")
-                    .fields("balance", "balance").fields("discount", "discount").fields("status", "status")
-                    .fields("addresses", "addresses");
-            }
-        };
+        private static final BeanMappingBuilder DELIVERY_MAPPING =
+            new BeanMappingBuilder() {
+                @Override
+                protected void configure() {
+                    this.mapping(DeliveryDto.class, DeliveryEntity.class,
+                        TYPE_MAPPING_OPTIONS)
+                        .fields(field("id").accessible(),
+                            field("id").accessible(),
+                            customConverter(StringToUuidConvertor.class))
+                        .fields("shippableDue", "shippableDue",
+                            customConverter(
+                                StringToLocaleDateTimeConvertor.class))
+                        .fields("codes", "codes", oneWay(),
+                            hintA(String[].class), hintB(Integer[].class),
+                            customConverter(
+                                StringToIntegerArrayConvertor.class),
+                            collectionStrategy(true,
+                                RelationshipType.NON_CUMULATIVE))
+                        .fields("type", "type")
+                        .fields("description", "description")
+                        .fields("gid", "gid")
+                        .fields("createdAt", "createdAt")
+                        .fields("updatedAt", "updatedAt")
+                        .fields("balance", "balance")
+                        .fields("discount", "discount")
+                        .fields("status", "status")
+                        .fields("addresses", "addresses");
+                }
+            };
     }
 }
