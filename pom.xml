@@ -3206,12 +3206,12 @@
                             <artifactId>git-commit-id-plugin</artifactId>
                             <version>${maven-git-commit-id-plugin.version}</version>
                             <configuration>
+                                <dateFormat>yyyyMMdd-HHmmss</dateFormat>
                                 <!--
                                     If you'd like to tell the plugin where your .git directory is,
                                     use this setting, otherwise we'll perform a search trying to
                                     figure out the right directory. It's better to add it explicitly IMHO.
                                 -->
-                                <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
                                 <injectAllReactorProjects>false</injectAllReactorProjects>
                                 <!-- ALTERNATE SETUP - GENERATE FILE -->
                                 <!--

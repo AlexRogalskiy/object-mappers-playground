@@ -9,6 +9,7 @@ addons:
   apt:
     packages:
       - gdb
+      - wget
 
 git:
   depth: 25
