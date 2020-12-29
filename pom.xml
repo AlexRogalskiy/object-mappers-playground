@@ -2593,11 +2593,11 @@
                             <meminitial>128m</meminitial>
                             <maxmem>512m</maxmem>
 
-                            <!--                            <compilerArgs>-->
-                            <!--                                <arg>-->
-                            <!--                                    &#45;&#45;add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow-->
-                            <!--                                </arg>-->
-                            <!--                            </compilerArgs>-->
+                            <compilerArgs>
+                                <arg>
+                                    --add-exports=org.junit.platform.commons/org.junit.platform.commons.util=io.nullables.api.playground.objectmappers.testflow
+                                </arg>
+                            </compilerArgs>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -2690,6 +2690,7 @@
                 <unit-tests.fail>${failIfNoTests}</unit-tests.fail>
                 <unit-tests.skip>${skipTests}</unit-tests.skip>
             </properties>
+
             <build>
                 <pluginManagement>
                     <plugins>
