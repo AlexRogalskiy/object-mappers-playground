@@ -32,6 +32,22 @@
     <repositories>
         <repository>
             <releases>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <id>scala-tools-snapshots</id>
+            <name>Scala-Tools Maven2 Snapshot Repository</name>
+            <url>http://scala-tools.org/repo-snapshots</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
                 <checksumPolicy>warn</checksumPolicy>
@@ -41,8 +57,8 @@
                 <updatePolicy>never</updatePolicy>
                 <checksumPolicy>warn</checksumPolicy>
             </snapshots>
-            <id>scala-tools.org</id>
-            <name>Scala-tools Maven2 Repository</name>
+            <id>scala-tools-releases</id>
+            <name>Scala-tools Maven2 Release Repository</name>
             <url>http://scala-tools.org/repo-releases</url>
             <layout>default</layout>
         </repository>
@@ -82,6 +98,10 @@
                             <jvmArgs>
                                 <jvmArg>-Xmx1024m</jvmArg>
                             </jvmArgs>
+                            <args>
+                                <!-- arg>-unchecked</arg -->
+                                <arg>-deprecation</arg>
+                            </args>
                         </configuration>
                         <executions>
                             <execution>
@@ -114,6 +134,7 @@
                 <scalacheck.version>1.15.2</scalacheck.version>
             </properties>
             <dependencies>
+                <!-- Scala library dependencies -->
                 <dependency>
                     <groupId>org.scala-lang</groupId>
                     <artifactId>scala-library</artifactId>
@@ -131,6 +152,8 @@
                     <version>${scala-xml.version}</version>
                     <scope>compile</scope>
                 </dependency>
+
+                <!-- Scala test library dependencies -->
                 <dependency>
                     <groupId>org.scalatest</groupId>
                     <artifactId>scalatest_${scala.binary.version}</artifactId>
