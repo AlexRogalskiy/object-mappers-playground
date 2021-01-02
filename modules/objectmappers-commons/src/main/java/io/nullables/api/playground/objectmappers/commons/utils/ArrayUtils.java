@@ -18,7 +18,13 @@
  */
 package io.nullables.api.playground.objectmappers.commons.utils;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
 
 import lombok.experimental.UtilityClass;
 
@@ -45,5 +51,11 @@ public class ArrayUtils {
         }
 
         return a.length != b.length ? length : -1;
+    }
+
+    @Nonnull
+    public static <E> List<String> transformUnique(final E[] values,
+                                                   final Function<E, String> mapper) {
+        return Stream.of(values).map(mapper).distinct().collect(Collectors.toList());
     }
 }

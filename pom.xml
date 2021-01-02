@@ -3334,6 +3334,7 @@
                                 <runOnlyOnce>true</runOnlyOnce>
                                 <failOnNoGitDirectory>false</failOnNoGitDirectory>
                                 <prefix>git</prefix>
+                                <useNativeGit>false</useNativeGit>
                                 <dateFormat>${maven.build.timestamp.format}</dateFormat>
                                 <includeOnlyProperties>
                                     <includeOnlyProperty>^git.commit.id.abbrev$</includeOnlyProperty>
