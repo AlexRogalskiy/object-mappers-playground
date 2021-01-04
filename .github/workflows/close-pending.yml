@@ -3,6 +3,7 @@ name: close-prs
 on:
   schedule:
     - cron: '0 0 * * *'
+    #- cron:  '0 * * * *' # Every hour. Ref https://crontab.guru/examples.html
 
 jobs:
   close-pending:
