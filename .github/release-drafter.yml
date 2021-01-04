@@ -1,7 +1,10 @@
 # Configuration for Release Drafter: https://github.com/toolmantim/release-drafter
+
 name-template: 'v$NEXT_PATCH_VERSION'
 tag-template: 'v$NEXT_PATCH_VERSION'
 version-template: 'v$MAJOR.$MINOR.$PATCH'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+no-changes-template: '- No changes'
 
 # Emoji reference: https://gitmoji.carloscuesta.me/
 categories:
@@ -65,7 +68,10 @@ exclude-labels:
   - skip-changelog
   - invalid
 
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 template: |
   <!-- Optional: add a release summary here -->
   $CHANGES
+
+  ***
+
+  For full changes, see the [comparison between $PREVIOUS_TAG and v$NEXT_PATCH_VERSION](https://github.com/AlexRogalskiy/object-mappers-playground/compare/$PREVIOUS_TAG...v$NEXT_PATCH_VERSION)

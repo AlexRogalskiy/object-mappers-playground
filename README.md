@@ -62,7 +62,7 @@
 
 Object Mappers playground is intended to provide various mapping operations on DTO objects while converting from source to target objects.
 
-## _Description_
+## 💻 _Description_
 
 Playground can be used for processing and testing mapping operations in order to evaluate major available options on objects conversion.
 
