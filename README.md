@@ -57,6 +57,7 @@
 -->
 [![Hits-of-Code](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground)](https://hitsofcode.com/github/AlexRogalskiy/object-mappers-playground/view)
 [![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/AlexRogalskiy/object-mappers-playground)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4567/badge)](https://bestpractices.coreinfrastructure.org/projects/4567)
 
 ## ☝ _Summary_
 

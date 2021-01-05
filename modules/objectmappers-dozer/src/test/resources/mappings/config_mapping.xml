@@ -7,6 +7,8 @@
         <date-format>yyyy-MM-dd'T'HH:mm:ss</date-format>
         <wildcard>false</wildcard>
 
+        <relationship-type>non-cumulative</relationship-type>
+
         <custom-converters>
             <converter type="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
                 <class-a>java.lang.String</class-a>

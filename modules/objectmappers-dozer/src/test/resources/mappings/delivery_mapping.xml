@@ -2,9 +2,11 @@
 <mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://dozermapper.github.io/schema/bean-mapping"
           xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
-    <mapping wildcard="false" type="one-way">
+    <mapping wildcard="false" type="one-way" map-null="false" map-empty-string="false">
         <class-a>io.nullables.api.playground.objectmappers.commons.model.dto.DeliveryDto</class-a>
-        <class-b map-null="false" map-empty-string="false">io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity</class-b>
+        <class-b map-null="false" map-empty-string="false">
+            io.nullables.api.playground.objectmappers.commons.model.entity.DeliveryEntity
+        </class-b>
 
         <field custom-converter="io.nullables.api.playground.objectmappers.dozer.converter.StringToUuidConvertor">
             <a>id</a>
@@ -42,12 +44,14 @@
         <field>
             <a>discount</a>
             <b>discount</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.math.BigDecimal</b-hint>
         </field>
         <field>
             <a>status</a>
             <b>status</b>
         </field>
-        <field remove-orphans="false">
+        <field relationship-type="non-cumulative" remove-orphans="false">
             <a>addresses</a>
             <b>addresses</b>
         </field>
@@ -57,5 +61,9 @@
             <a>codes</a>
             <b>codes</b>
         </field>
+        <!--        <field-exclude>-->
+        <!--            <a>password</a>-->
+        <!--            <b>password</b>-->
+        <!--        </field-exclude>-->
     </mapping>
 </mappings>

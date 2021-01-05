@@ -58,11 +58,11 @@
     <!-- Logger configuration -->
     <logger name="ROOT" level="ERROR"/>
 
-    <logger name="io.nullables.api.playground.objectmappers.beanmapper" level="INFO" additivity="true">
+    <logger name="io.nullables.api.playground.objectmappers.beanmapper" level="${log.verbose:-INFO}" additivity="true">
         <appender-ref ref="FILE"/>
     </logger>
 
-    <root level="INFO">
+    <root level="${log.verbose:-INFO}">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>

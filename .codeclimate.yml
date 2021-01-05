@@ -1,6 +1,8 @@
 version: "2"
 
 engines:
+  csslint:
+    enabled: true
   sonar-java:
     enabled: true
     channel: beta
@@ -17,6 +19,9 @@ engines:
     config:
       languages:
         - java
+  eslint:
+    enabled: true
+    channel: "eslint-2"
   fixme:
     enabled: true
 
@@ -56,6 +61,7 @@ plugins:
 
 ratings:
   paths:
+    - "**.css"
     - "**.java"
 
 exclude_paths:
