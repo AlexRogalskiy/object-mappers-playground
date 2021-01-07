@@ -4,12 +4,23 @@ dist: trusty
 
 os:
   - linux
+  - osx
 
 addons:
   apt:
     packages:
+      - fakeroot
+      - dpkg
+      - rpm
+      - lintian
+      - reprepro
+      - createrepo
       - gdb
       - wget
+  homebrew:
+    packages:
+      - graphicsmagick
+      - imagemagick
 
 git:
   depth: 25
