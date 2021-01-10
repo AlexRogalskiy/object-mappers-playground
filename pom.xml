@@ -452,12 +452,16 @@
                 <version>${maven-clean-plugin.version}</version>
                 <configuration>
                     <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    <followSymLinks>false</followSymLinks>
                     <filesets>
                         <fileset>
-                            <directory>${java.io.tmpdir}</directory>
                             <directory>${project.build.directory}</directory>
+                        </fileset>
+                        <fileset>
                             <directory>${project.basedir}/src/main/generated-sources</directory>
-                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/.log</directory>
                         </fileset>
                     </filesets>
                 </configuration>
@@ -497,6 +501,8 @@
                     <overWriteSnapshots>false</overWriteSnapshots>
                     <overWriteIfNewer>true</overWriteIfNewer>
                     <excludeTransitive>true</excludeTransitive>
+                    <prependGroupId>false</prependGroupId>
+                    <useBaseVersion>false</useBaseVersion>
                     <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                 </configuration>
                 <executions>
@@ -580,11 +586,11 @@
                                         <exclude>log4j:log4j:*:jar:compile</exclude>
                                         <!-- use org.apache.logging.log4j:log4j-slf4j-impl -->
                                         <exclude>org.slf4j:slf4j-log4j12:*:jar:compile</exclude>
+                                        <exclude>com.google.code.findbugs:annotations</exclude>
                                     </excludes>
                                     <searchTransitive>true</searchTransitive>
                                 </bannedDependencies>
                             </rules>
-                            <fail>true</fail>
                         </configuration>
                     </execution>
                     <execution>
@@ -673,6 +679,8 @@
                             <rules>
                                 <requireReleaseDeps>
                                     <message>You are using snapshot dependency versions</message>
+                                    <searchTransitive>true</searchTransitive>
+                                    <onlyWhenRelease>true</onlyWhenRelease>
                                     <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                                 </requireReleaseDeps>
                                 <requireReleaseVersion>
@@ -2392,6 +2400,7 @@
                             <printFailingErrors>true</printFailingErrors>
                             <analysisCache>true</analysisCache>
                             <linkXRef>false</linkXRef>
+                            <includeTests>false</includeTests>
                             <rulesets>
                                 <ruleset>checkstyle/rules.xml</ruleset>
                             </rulesets>
@@ -2434,7 +2443,7 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>package</id>
+                                <id>single</id>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>

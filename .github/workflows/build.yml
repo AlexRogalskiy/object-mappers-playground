@@ -12,6 +12,7 @@ env:
   LANG: "en_US.UTF-8"
   LC_MESSAGES: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
+  LANGUAGE: "en_US:en"
   JAVA_HOME: ${{ github.workspace }}/jdk
   MAVEN_ARGS: >-
     --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
@@ -116,12 +117,12 @@ jobs:
           npm i -g @bahmutov/print-env
           print-env GITHUB
 
-#      - name: Get current git tag
-#        id: get_tag
-#        uses: keeweb/get-tag@v2
-#        with:
-#          tagRegex: "^v(\\d+\\.\\d+\\.\\d+)$"
-#          tagRegexGroup: 1
+      #      - name: Get current git tag
+      #        id: get_tag
+      #        uses: keeweb/get-tag@v2
+      #        with:
+      #          tagRegex: "^v(\\d+\\.\\d+\\.\\d+)$"
+      #          tagRegexGroup: 1
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v1
