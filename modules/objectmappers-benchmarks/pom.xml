@@ -263,6 +263,10 @@
                                     </manifestEntries>
                                 </transformer>
                                 <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+                                    <resource>model.uml</resource>
+                                </transformer>
+                                <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
                         </configuration>
