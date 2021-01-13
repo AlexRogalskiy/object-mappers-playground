@@ -1,0 +1,8 @@
+---
+linters:
+  checkstyle:
+    config: ./checkstyle/checkstyle.xml
+
+files:
+  ignore:
+    - 'test/*'
