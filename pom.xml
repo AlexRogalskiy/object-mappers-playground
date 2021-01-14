@@ -218,6 +218,7 @@
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
         <maven-forbiddenapis-plugin.version>3.1</maven-forbiddenapis-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
@@ -1889,9 +1890,9 @@
             </build>
         </profile>
 
-        <!-- GPG profile -->
+        <!-- GPG sign profile -->
         <profile>
-            <id>sign-artifacts</id>
+            <id>gpg-sign</id>
             <activation>
                 <property>
                     <name>performRelease</name>
@@ -1925,6 +1926,49 @@
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>
                                     </gpgArguments>
+                                    <excludes>
+                                        <exclude>**/*.gz</exclude>
+                                        <exclude>**/*.zip</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Jar sign profile -->
+        <profile>
+            <id>jar-sign</id>
+            <properties>
+                <jarsigner.alias>objectmap-keystore</jarsigner.alias>
+                <jarsigner.password>testtest</jarsigner.password>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>${maven-jarsigner-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>signing</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <keystore>${session.executionRootDirectory}/keystore/objectmap.keystore</keystore>
+                                    <alias>${jarsigner.alias}</alias>
+                                    <storepass>${jarsigner.password}</storepass>
+                                    <keypass>${jarsigner.password}</keypass>
+                                    <arguments>
+                                        <argument>-sigalg</argument>
+                                        <argument>MD5withRSA</argument>
+                                        <argument>-digestalg</argument>
+                                        <argument>SHA1</argument>
+                                    </arguments>
                                     <excludes>
                                         <exclude>**/*.gz</exclude>
                                         <exclude>**/*.zip</exclude>
