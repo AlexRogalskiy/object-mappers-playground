@@ -135,7 +135,7 @@
         <enforce.test.skip>false</enforce.test.skip>
         <package-tests.skip>true</package-tests.skip>
         <copy-dependencies.skip>false</copy-dependencies.skip>
-        <fast-build>false</fast-build>
+        <assembly.skip>false</assembly.skip>
 
         <failIfNoTests>false</failIfNoTests>
         <skipTests>false</skipTests>
@@ -172,7 +172,10 @@
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+        <maven-jdepend-plugin.version>2.0</maven-jdepend-plugin.version>
         <maven-jib-plugin.version>2.7.0</maven-jib-plugin.version>
+        <maven-proguard-plugin.version>2.3.1</maven-proguard-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <maven-versions-plugin.version>2.8.1</maven-versions-plugin.version>
@@ -473,20 +476,6 @@
                             <goal>clean</goal>
                         </goals>
                         <phase>clean</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>${maven-site-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-descriptor</id>
-                        <goals>
-                            <goal>attach-descriptor</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -1023,100 +1012,6 @@
         </plugins>
     </build>
 
-    <reporting>
-        <outputDirectory>${project.build.directory}/reporting</outputDirectory>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <version>${maven-changes-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>changes-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>${maven-plugin-plugin.version}</version>
-                <configuration>
-                    <goalPrefix>web2docs</goalPrefix>
-                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>${maven-project-info-reports-plugin.version}</version>
-                <configuration>
-                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>index</report>
-                            <report>modules</report>
-                            <report>dependencies</report>
-                            <report>dependency-info</report>
-                            <report>mailing-lists</report>
-                            <report>dependency-convergence</report>
-                            <report>distribution-management</report>
-                            <report>dependency-management</report>
-                            <report>plugin-management</report>
-                            <report>issue-management</report>
-                            <report>ci-management</report>
-                            <report>licenses</report>
-                            <report>plugins</report>
-                            <report>summary</report>
-                            <report>team</report>
-                            <report>scm</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <configuration>
-                    <source>8</source>
-                    <detectJavaApiLink>false</detectJavaApiLink>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <attach>true</attach>
-                    <quiet>true</quiet>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>default</id>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
-
     <repositories>
         <repository>
             <releases>
@@ -1204,6 +1099,115 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Site profile -->
+        <profile>
+            <id>site</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-changes-plugin</artifactId>
+                        <version>${maven-changes-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>validate-changes</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>changes-validate</goal>
+                                </goals>
+                                <configuration>
+                                    <failOnError>false</failOnError>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>${maven-site-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-descriptor</id>
+                                <goals>
+                                    <goal>attach-descriptor</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <version>${maven-jxr-plugin.version}</version>
+                        <configuration>
+                            <linkJavadoc>true</linkJavadoc>
+                            <aggregate>true</aggregate>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jdepend-maven-plugin</artifactId>
+                        <version>${maven-jdepend-plugin.version}</version>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>${maven-pmd-plugin.version}</version>
+                        <configuration>
+                            <format>html</format>
+                            <linkXRef>true</linkXRef>
+                            <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                            <minimumTokens>100</minimumTokens>
+                            <targetJdk>${java.version}</targetJdk>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Proguard profile -->
+        <profile>
+            <id>proguard</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.wvengen</groupId>
+                        <artifactId>proguard-maven-plugin</artifactId>
+                        <version>${maven-proguard-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>proguard</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>proguard</goal>
+                                </goals>
+                                <configuration>
+                                    <injar>${project.build.finalName}-shade.jar</injar>
+                                    <outjar>${project.build.finalName}.jar</outjar>
+                                    <libs>
+                                        <lib>${java.home}/lib/rt.jar</lib>
+                                        <lib>${java.home}/lib/jsse.jar</lib>
+                                        <lib>${project.build.directory}/dependencies/jsr305.jar</lib>
+                                        <lib>${project.build.directory}/dependencies/javax.inject.jar</lib>
+                                    </libs>
+                                    <options>
+                                        <option>-dontoptimize</option>
+                                        <option>-dontobfuscate</option>
+                                        <option>-keepparameternames</option>
+                                        <option>-keepattributes Signature,InnerClasses,*Annotation*</option>
+                                    </options>
+                                    <addMavenDescriptor>false</addMavenDescriptor>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Lombok profile -->
         <profile>
             <id>delombok</id>
@@ -2096,6 +2100,7 @@
                             <localCheckout>true</localCheckout>
                             <pushChanges>false</pushChanges>
                             <goals>deploy site</goals>
+                            <remoteTagging>true</remoteTagging>
                             <preparationGoals>clean install</preparationGoals>
                             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -2463,10 +2468,15 @@
                         <artifactId>maven-pmd-plugin</artifactId>
                         <version>${maven-pmd-plugin.version}</version>
                         <configuration>
-                            <printFailingErrors>true</printFailingErrors>
+                            <format>html</format>
                             <analysisCache>true</analysisCache>
                             <linkXRef>false</linkXRef>
                             <includeTests>false</includeTests>
+                            <sourceEncoding>${project.reporting.outputEncoding}</sourceEncoding>
+                            <minimumTokens>100</minimumTokens>
+                            <failOnViolation>false</failOnViolation>
+                            <failurePriority>5</failurePriority>
+                            <printFailingErrors>true</printFailingErrors>
                             <rulesets>
                                 <ruleset>checkstyle/rules.xml</ruleset>
                             </rulesets>
@@ -2478,6 +2488,11 @@
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
+                                <configuration>
+                                    <excludeFromFailureFile>
+                                        checkstyle/exclude-pmd.properties
+                                    </excludeFromFailureFile>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -2496,16 +2511,20 @@
                         <version>${maven-assembly-plugin.version}</version>
                         <inherited>true</inherited>
                         <configuration>
-                            <skipAssembly>${fast-build}</skipAssembly>
+                            <skipAssembly>${assembly.skip}</skipAssembly>
                             <appendAssemblyId>true</appendAssemblyId>
                             <tarLongFileMode>posix</tarLongFileMode>
                             <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+                            <descriptorSourceDirectory>assembly</descriptorSourceDirectory>
                             <descriptors>
                                 <descriptor>${session.executionRootDirectory}/assembly/package.xml</descriptor>
                             </descriptors>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
+                            <archiverConfig>
+                                <duplicateBehavior>skip</duplicateBehavior>
+                            </archiverConfig>
                         </configuration>
                         <executions>
                             <execution>
@@ -2588,7 +2607,116 @@
             </build>
         </profile>
 
-        <!-- JDK 8 and minor versions -->
+        <!-- Reporting profile -->
+        <profile>
+            <id>reporting</id>
+            <reporting>
+                <outputDirectory>${project.build.directory}/reporting</outputDirectory>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-changes-plugin</artifactId>
+                        <version>${maven-changes-plugin.version}</version>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>changes-report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-plugin-plugin</artifactId>
+                        <version>${maven-plugin-plugin.version}</version>
+                        <configuration>
+                            <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>${maven-project-info-reports-plugin.version}</version>
+                        <configuration>
+                            <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>index</report>
+                                    <report>modules</report>
+                                    <report>dependencies</report>
+                                    <report>dependency-info</report>
+                                    <report>mailing-lists</report>
+                                    <report>dependency-convergence</report>
+                                    <report>distribution-management</report>
+                                    <report>dependency-management</report>
+                                    <report>plugin-management</report>
+                                    <report>issue-management</report>
+                                    <report>ci-management</report>
+                                    <report>licenses</report>
+                                    <report>plugins</report>
+                                    <report>summary</report>
+                                    <report>team</report>
+                                    <report>scm</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <version>${maven-jxr-plugin.version}</version>
+                        <configuration>
+                            <linkJavadoc>true</linkJavadoc>
+                            <docTitle>${project.name} Source Xref (${project.version})</docTitle>
+                            <windowTitle>${project.name} Source Xref (${project.version})</windowTitle>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <source>8</source>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <attach>true</attach>
+                            <quiet>true</quiet>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <id>non-aggregate</id>
+                                <reports>
+                                    <report>javadoc</report>
+                                    <report>test-javadoc</report>
+                                </reports>
+                            </reportSet>
+                            <reportSet>
+                                <id>aggregate</id>
+                                <inherited>false</inherited>
+                                <reports>
+                                    <report>aggregate</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+
+        <!-- JDK 8 and minor versions profile -->
         <profile>
             <id>non_module_java</id>
             <activation>
@@ -2678,7 +2806,7 @@
             </build>
         </profile>
 
-        <!-- JDK 11 and major versions -->
+        <!-- JDK 11 and major versions profile -->
         <profile>
             <id>module_java</id>
             <activation>
@@ -2879,6 +3007,11 @@
                                 <showSuccess>true</showSuccess>
                                 <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
                             </configuration>
+                            <executions>
+                                <execution>
+                                    <phase>test</phase>
+                                </execution>
+                            </executions>
                         </plugin>
 
                         <plugin>
@@ -3537,7 +3670,7 @@
                 <enforce.duplicate.skip>true</enforce.duplicate.skip>
                 <enforce.test.skip>true</enforce.test.skip>
                 <copy-dependencies.skip>true</copy-dependencies.skip>
-                <fast-build>true</fast-build>
+                <assembly.skip>true</assembly.skip>
                 <logback.loglevel>DEBUG</logback.loglevel>
             </properties>
         </profile>

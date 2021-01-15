@@ -201,11 +201,10 @@
                 <configuration>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
                     <shadedArtifactAttached>true</shadedArtifactAttached>
-                    <!--<shadedClassifierName>shaded</shadedClassifierName>-->
+                    <shadedClassifierName>shaded</shadedClassifierName>
                     <minimizeJar>false</minimizeJar>
-                    <outputFile>
-                        ${project.build.directory}/maven-shade/reduced-pom.zip
-                    </outputFile>
+                    <createSourcesJar>false</createSourcesJar>
+                    <shadeSourcesContent>false</shadeSourcesContent>
                     <artifactSet>
                         <excludes>
                             <exclude>module-info.java</exclude>

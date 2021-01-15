@@ -16,11 +16,12 @@ coverage:
         base: auto
         informational: true
         target: 95%
-        threshold: 0.5
+        threshold: 1%
     patch:
       default:
         informational: true
         target: 80%
+        threshold: 1%
     changes: no
 
   notify:
@@ -42,6 +43,9 @@ parsers:
       macro: no
 
 comment:
-  layout: reach, changes, diff, files
+  layout: header, reach, diff, flags, files
   behavior: default
   require_changes: false
+  require_base: false
+  require_head: true
+  branches: master
