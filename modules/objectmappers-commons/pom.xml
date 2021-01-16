@@ -17,6 +17,10 @@
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons</url>
     <inceptionYear>2020</inceptionYear>
 
+    <properties>
+        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
+    </properties>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>

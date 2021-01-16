@@ -18,6 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
+        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
         <uberjar.name>benchmarks</uberjar.name>
 
         <lombok-mapstruct.version>0.1.0</lombok-mapstruct.version>

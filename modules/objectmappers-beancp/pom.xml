@@ -18,7 +18,10 @@
 	<inceptionYear>2020</inceptionYear>
 
 	<properties>
+        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
+
 		<beancp.version>1.0.2</beancp.version>
+
 		<objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
 	</properties>
 

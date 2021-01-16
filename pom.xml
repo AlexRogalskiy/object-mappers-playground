@@ -816,10 +816,29 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>get-build-timestamp</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>create-timestamp</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Example date: Wed, 4 Jul 2001 12:08:56 -0700 -->
+                            <timestampFormat>EEE, d MMM yyyy HH:mm:ss Z</timestampFormat>
+                            <timestampPropertyName>build.datetime</timestampPropertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-scm-revision</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>create</goal>
                         </goals>
+                        <configuration>
+                            <doCheck>false</doCheck>
+                            <doUpdate>false</doUpdate>
+                            <revisionOnScmFailure>UNKNOWN</revisionOnScmFailure>
+                            <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -1431,7 +1450,9 @@
                                     <artifactId>object-mappers-bom</artifactId>
                                     <name>ObjectMappers (Bill Of Materials)</name>
                                     <properties>
+                                        <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
                                         <license.skip>true</license.skip>
+                                        <sonar.skip>true</sonar.skip>
                                     </properties>
                                     <modules>
                                         <includes>
@@ -1729,7 +1750,7 @@
         <profile>
             <id>license</id>
             <properties>
-                <license.licenseName>gpl-3.0</license.licenseName>
+                <license.licenseName>gpl_v3</license.licenseName>
                 <license.licenseResolver>${project.baseUri}/license</license.licenseResolver>
             </properties>
             <build>
@@ -1757,9 +1778,11 @@
                             <licenseResolver>${license.licenseResolver}</licenseResolver>
                             <inceptionYear>${project.inceptionYear}</inceptionYear>
                             <organizationName>${project.organization.name}</organizationName>
-                            <processStartTag>========================LICENSE_START=================================
+                            <processStartTag>
+                                ========================LICENSE_START=================================
                             </processStartTag>
-                            <processEndTag>=========================LICENSE_END==================================
+                            <processEndTag>
+                                =========================LICENSE_END==================================
                             </processEndTag>
                             <includedLicenses>
                                 <includedLicense>Apache License, Version 2.0</includedLicense>

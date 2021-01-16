@@ -18,7 +18,10 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
+        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
+
         <selma.version>1.0</selma.version>
+
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 

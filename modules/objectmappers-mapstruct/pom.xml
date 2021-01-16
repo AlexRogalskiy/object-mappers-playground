@@ -18,7 +18,10 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
+        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
+
         <mapstruct.version>1.4.1.Final</mapstruct.version>
+
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
     </properties>
 
