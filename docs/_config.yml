@@ -2,7 +2,8 @@ theme: jekyll-theme-cayman
 
 permalink: pretty
 
-baseurl: https://github.com/AlexRogalskiy/object-mappers-playground
+url: https://alexander-rogalsky.gitbook.io/object-mappers-docs
+baseurl: /
 title: Object Mappers
 description: Explores different features of end-to-end object mappings in-depth
 
