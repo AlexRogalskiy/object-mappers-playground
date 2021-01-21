@@ -46,6 +46,24 @@
         </developer>
     </developers>
 
+    <contributors>
+        <contributor>
+            <name>Alexander Rogalskiy</name>
+            <email>alexander.rogalskiy@yandex.ru</email>
+            <url>http://github.com/AlexRogalskiy</url>
+            <organization>gkomega, Ltd.</organization>
+            <organizationUrl>https://nullables.io/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>architect</role>
+            </roles>
+            <timezone>+3</timezone>
+            <properties>
+                <github>https://github.com/AlexRogalskiy</github>
+            </properties>
+        </contributor>
+    </contributors>
+
     <issueManagement>
         <system>GitHub Issue</system>
         <url>https://github.com/AlexRogalskiy/object-mappers-playground/issues</url>
@@ -146,6 +164,7 @@
         <commons-lang3.version>3.11</commons-lang3.version>
         <guava.version>30.0-jre</guava.version>
         <pedantic-enforcers.version>2.0.0</pedantic-enforcers.version>
+        <kotlinx-serialization-json.version>1.0.1</kotlinx-serialization-json.version>
 
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit-platform.version>1.7.0</junit-platform.version>
@@ -1344,6 +1363,7 @@
                         <configuration>
                             <compilerPlugins>
                                 <plugin>spring</plugin>
+                                <plugin>kotlinx-serialization</plugin>
                             </compilerPlugins>
                             <jvmTarget>${java.version}</jvmTarget>
                             <args>
@@ -1396,6 +1416,11 @@
                                 <artifactId>kotlin-maven-noarg</artifactId>
                                 <version>${kotlin.version}</version>
                             </dependency>
+                            <dependency>
+                                <groupId>org.jetbrains.kotlin</groupId>
+                                <artifactId>kotlin-maven-serialization</artifactId>
+                                <version>${kotlin.version}</version>
+                            </dependency>
                         </dependencies>
                     </plugin>
                 </plugins>
@@ -1431,6 +1456,14 @@
                     <groupId>org.jetbrains.kotlinx</groupId>
                     <artifactId>kotlinx-coroutines-reactor</artifactId>
                     <version>${kotlinx-coroutines.version}</version>
+                </dependency>
+
+                <!-- Kotlinx serialization library dependencies -->
+                <dependency>
+                    <groupId>org.jetbrains.kotlinx</groupId>
+                    <artifactId>kotlinx-serialization-json</artifactId>
+                    <version>${kotlinx-serialization-json.version}</version>
+                    <type>pom</type>
                 </dependency>
             </dependencies>
         </profile>
