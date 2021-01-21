@@ -3773,18 +3773,23 @@
             </modules>
         </profile>
 
+        <!-- Java tools profile-->
         <profile>
             <id>jdk9</id>
             <activation>
                 <jdk>[1,1.9)</jdk>
             </activation>
+            <properties>
+                <java-tools.version>8</java-tools.version>
+                <java-tools.path>${java.home}/../lib/tools.jar</java-tools.path>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>com.sun</groupId>
                     <artifactId>tools</artifactId>
-                    <version>1.7</version>
+                    <version>${java-tools.version}</version>
                     <scope>system</scope>
-                    <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                    <systemPath>${java-tools.path}</systemPath>
                 </dependency>
             </dependencies>
         </profile>
