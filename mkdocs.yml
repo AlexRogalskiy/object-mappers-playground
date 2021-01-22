@@ -60,6 +60,7 @@ pages:
       - Code Owners: user-guide/code_owners.md
       - Troubleshooting: user-guide/troubleshooting.md
       - Upgrade: user-guide/upgrade.md
+      - Cloning content: user-guide/how-to-move-content.md
   - Modules:
       - BeanCp Tutorial: modules/beancp/info.md
       - BeanMapper Tutorial: modules/beanmapper/info.md

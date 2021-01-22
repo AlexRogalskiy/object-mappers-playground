@@ -65,7 +65,8 @@ docs/
         faq.md # FAQ page
         getting-started.md # Getting started page
         troubleshooting.md # Troubleshooting page
-        upgrade.md # Upgrade page
+        how-to-move-content.md # Cloning project content page
+        upgrade.md # Upgrade project page
     reporting/
         info.md # Informational page
         issue_template.md # Issue template page

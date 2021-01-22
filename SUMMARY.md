@@ -38,6 +38,7 @@
     * [Code Owners](docs/user-guide/code_owners.md)
     * [Code of Conduct](docs/user-guide/code_of_conduct.md)
     * [Dependency Management](docs/user-guide/dependency.md)
+    * [Cloning content](docs/user-guide/how-to-move-content.md)
   * [links]
     * [Resources](docs/links/info.md)
 
