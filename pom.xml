@@ -1270,6 +1270,11 @@
         <!-- Spotless profile -->
         <profile>
             <id>spotless</id>
+            <properties>
+                <javafmt.version>1.8</javafmt.version>
+                <scalafmt.version>2.0.1</scalafmt.version>
+                <kotlinfmt.version>0.18</kotlinfmt.version>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1300,11 +1305,9 @@
                                     </indent>
                                 </format>
                             </formats>
-                            <!-- define a language-specific format -->
                             <java>
-                                <!-- apply a specific flavor of google-java-format -->
                                 <googleJavaFormat>
-                                    <version>1.8</version>
+                                    <version>${javafmt.version}</version>
                                     <style>AOSP</style>
                                 </googleJavaFormat>
                                 <licenseHeader>
@@ -1314,7 +1317,7 @@
                             </java>
                             <scala>
                                 <scalafmt>
-                                    <version>2.0.1</version>
+                                    <version>${scalafmt.version}</version>
                                     <file>${basedir}/checkstyle/scalafmt.conf</file>
                                 </scalafmt>
                                 <licenseHeader>
@@ -1324,7 +1327,7 @@
                             </scala>
                             <kotlin>
                                 <ktfmt>
-                                    <version>0.18</version>
+                                    <version>${kotlinfmt.version}</version>
                                     <style>DEFAULT</style>
                                 </ktfmt>
                                 <licenseHeader>
