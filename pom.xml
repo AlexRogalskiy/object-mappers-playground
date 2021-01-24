@@ -250,6 +250,7 @@
         <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
         <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
         <maven-lombok-plugin.version>1.18.16.0</maven-lombok-plugin.version>
+        <maven-dokka-plugin.version>1.4.10.2</maven-dokka-plugin.version>
         <maven-versionizer-plugin.version>1.0.6</maven-versionizer-plugin.version>
         <maven-sundr-plugin.version>0.23.1</maven-sundr-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
@@ -1145,6 +1146,22 @@
             <url>https://repo1.maven.org/maven2</url>
             <layout>default</layout>
         </pluginRepository>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+            <layout>default</layout>
+        </pluginRepository>
     </pluginRepositories>
 
     <profiles>
@@ -1335,6 +1352,45 @@
                                     <file>${basedir}/license/license-header.txt</file>
                                 </licenseHeader>
                             </kotlin>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Dokka plugin -->
+        <profile>
+            <id>dokka</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jetbrains.dokka</groupId>
+                        <artifactId>dokka-maven-plugin</artifactId>
+                        <version>${maven-dokka-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>dokka</goal>
+                                    <goal>javadoc</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <sourceLinks>
+                                <link>
+                                    <path>${project.basedir}</path>
+                                    <url>${project.url}</url>
+                                    <lineSuffix>#L</lineSuffix>
+                                </link>
+                            </sourceLinks>
+                            <dokkaPlugins>
+                                <plugin>
+                                    <groupId>org.jetbrains.dokka</groupId>
+                                    <artifactId>kotlin-as-java-plugin</artifactId>
+                                    <version>${maven-dokka-plugin.version}</version>
+                                </plugin>
+                            </dokkaPlugins>
                         </configuration>
                     </plugin>
                 </plugins>
