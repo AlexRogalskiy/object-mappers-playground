@@ -61,24 +61,24 @@
 
 ## 🎹 _Table of contents_
 
-<!-- toc -->
-- [☝ Summary](#-summary)
-- [💻 Description](#-description)
-- [🛠 How-to-compile](#-how-to-compile)
-- [🚀 How-to-run_](#-how-to-run)
-- [🤝 How-to-use](#-how-to-use)
-- [📝 Documentation](#-documentation)
-- [🤖 Version Store](#-version-store)
-- [❤ Technology stack](#-technology-stack)
-- [🌹 Authors](#-authors)
-- [💕 Contributing](#-contributing)
-- [🚨 Visitor stats](#-visitor-stats)
-- [💡 Code Analysis](#-code-analysis)
-- [🎉 Sonarcloud Results](#-sonarcloud-results)
-- [👉 Team Tools](#-team-tools)
-- [⚽ Licensing](#-licensing)
-- [🌟 Development Support](#-development-support)
-<!-- /toc -->
+<!--ts-->
+- [☝ _Summary_](#-summary)
+- [💻 _Description_](#-description)
+- [🛠 _How-to-compile_](#-how-to-compile)
+- [🚀 _How-to-run_](#-how-to-run)
+- [🤝 _How-to-use_](#-how-to-use)
+- [📝 _Documentation_](#-documentation)
+- [🤖 _Version Store_](#-version-store)
+- [❤ _Technology stack_](#-technology-stack)
+- [🌹 _Authors_](#-authors)
+- [💕 _Contributing_](#-contributing)
+- [🚨 _Visitor stats_](#-visitor-stats)
+- [💡 _Code Analysis_](#-code-analysis)
+- [🎉 _Sonarcloud Results_](#-sonarcloud-results)
+- [👉 _Team Tools_](#-team-tools)
+- [⚽ _Licensing_](#-licensing)
+- [🌟 _Development Support_](#-development-support)
+<!--te-->
 
 ## ☝ _Summary_
 
@@ -139,7 +139,8 @@ Bundle with all Object Mappers dependencies:
 
   `objectmappers-all` - Library to work with Object Mappers API.
 
-Object Mappers module dependencies:
+<details>
+<summary>Object Mappers module dependencies:</summary>
 
 * [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks) `objectmappers-benchmarks` - Library with utilities for benchmarks use cases.
 * [**ObjectMappers Bull**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-bull) `objectmappers-bull` - Library to work with Bull API.
@@ -161,6 +162,8 @@ Object Mappers module dependencies:
 * [**ObjectMappers Smooks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-smooks) `objectmappers-smook` - Library to work with Smooks API.
 * [**ObjectMappers TestFlow**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow) `objectmappers-testflow` - Library to work with TestFlow API.
 * [**ObjectMappers IntegrationTests**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it) `objectmappers-it` - Library with utilities for integration test use cases.
+
+</details>
 
 ## 📝 _Documentation_
 
@@ -294,7 +297,9 @@ LGPLv3 is additional permissions on top of GPLv3.
 
 ![image](https://user-images.githubusercontent.com/19885116/48661948-6cf97e80-ea7a-11e8-97e7-b45332a13e49.png)
 
-([License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt))
+Detailed information on license agreement can be found at: [<span style = "background:yellow;font-style:italic">
+[License](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/LICENSE.txt)
+</span>]
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fobject-mappers-playground?ref=badge_large)
 
@@ -305,3 +310,8 @@ Like _Object Mappers_ ? Consider buying me a coffee :\)
 [![Become a Patron](https://img.shields.io/badge/Become_Patron-Support_me_on_Patreon-blue.svg?style=flat-square&logo=patreon&color=e64413)](https://www.patreon.com/alexrogalskiy)
 [![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellow.svg?logo=buy%20me%20a%20coffee)](https://www.buymeacoffee.com/AlexRogalskiy)
 [![KoFi](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellow.svg?logo=ko-fi)](https://ko-fi.com/alexrogalskiy)
+
+  [repo]:       https://github.com/AlexRogalskiy/object-mappers-playground
+  [issues]:     https://github.com/AlexRogalskiy/object-mappers-playground/issues
+  [pulls]:      https://github.com/AlexRogalskiy/object-mappers-playground/pulls
+  [wiki]:       https://github.com/AlexRogalskiy/object-mappers-playground/wiki
