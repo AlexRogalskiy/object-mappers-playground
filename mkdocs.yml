@@ -8,10 +8,12 @@ repo_name: AlexRogalskiy/object-mappers-playground
 repo_url: https://gitlab.com/AlexRogalskiy/object-mappers-playground
 edit_uri: https://gitlab.com/AlexRogalskiy/object-mappers-playground/master/docs/
 
-# Copyright
-copyright: ObjectMappers - Documentation © Nullables.io
+#Copyright (shown at the footer)
+copyright: 'Copyright &copy; 2016-2020 Nullables.io'
 
 theme:
+  icon:
+    repo: fontawesome/brands/github
   name: material
   font:
     text: Roboto
@@ -36,7 +38,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: 'https://github.com/AlexRogalskiy/object-mappers-playground'
+      link: https://github.com/AlexRogalskiy/object-mappers-playground
 
 markdown_extensions:
   - markdown.extensions.admonition
@@ -44,6 +46,7 @@ markdown_extensions:
       linenums: true
       use_pygments: false
   - markdown.extensions.def_list
+  - markdown.extensions.attr_list
   - markdown.extensions.footnotes
   - markdown.extensions.meta
   - markdown.extensions.toc:
@@ -79,6 +82,7 @@ pages:
       - ReMap Tutorial: modules/remap/info.md
       - Selma Tutorial: modules/selma/info.md
       - Smooks Tutorial: modules/smooks/info.md
+  - Issues: "https://github.com/AlexRogalskiy/object-mappers-playground/issues"
   - Contributing:
       - Information: contributing/info.md
   - Reporting:
