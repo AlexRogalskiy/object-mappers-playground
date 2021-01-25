@@ -59,7 +59,35 @@
 [![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/AlexRogalskiy/object-mappers-playground)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4567/badge)](https://bestpractices.coreinfrastructure.org/projects/4567)
 
+## 🎹 _Table of contents_
+
+<!-- toc -->
+- [☝ Summary](#-summary)
+- [💻 Description](#-description)
+- [🛠 How-to-compile](#-how-to-compile)
+- [🚀 How-to-run_](#-how-to-run)
+- [🤝 How-to-use](#-how-to-use)
+- [📝 Documentation](#-documentation)
+- [🤖 Version Store](#-version-store)
+- [❤ Technology stack](#-technology-stack)
+- [🌹 Authors](#-authors)
+- [💕 Contributing](#-contributing)
+- [🚨 Visitor stats](#-visitor-stats)
+- [💡 Code Analysis](#-code-analysis)
+- [🎉 Sonarcloud Results](#-sonarcloud-results)
+- [👉 Team Tools](#-team-tools)
+- [⚽ Licensing](#-licensing)
+- [🌟 Development Support](#-development-support)
+<!-- /toc -->
+
 ## ☝ _Summary_
+
+<a href="https://www.repostatus.org/#active">
+    <img src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." />
+</a>
+<p>
+    You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
+</p>
 
 Object Mappers playground is intended to provide various mapping operations on DTO objects while converting from source to target objects.
 
@@ -192,15 +220,6 @@ mkdocs --verbose gh-deploy --force --remote-branch gh-pages
 
 [pom.xml](https://github.com/AlexRogalskiy/object-mappers-playground/blob/master/pom.xml)
 
-## 🌴 _Miscellaneous_
-
-<a href="https://www.repostatus.org/#active">
-    <img src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." />
-</a>
-<p>
-    You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
-</p>
-
 ## ❤ _Technology stack_
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
@@ -233,7 +252,7 @@ with community support please contact with us if you have some question or propo
 ![GitHub watchers](https://img.shields.io/github/watchers/AlexRogalskiy/object-mappers-playground?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/AlexRogalskiy?style=social)
 
-## 🎹 _Code Analysis_
+## 💡 _Code Analysis_
 
 [![CodeScene general](https://codescene.io/images/analyzed-by-codescene-badge.svg)](https://codescene.io/projects/11011)
 
