@@ -26,7 +26,7 @@
 
         <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
 
-        <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
+        <maven-scalafmt-plugin.version>1.0.1611705288.23d5f05</maven-scalafmt-plugin.version>
         <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>
         <maven-scalastyle-plugin.version>1.0.0</maven-scalastyle-plugin.version>
         <maven-scala-tools-plugin.version>2.15.2</maven-scala-tools-plugin.version>
