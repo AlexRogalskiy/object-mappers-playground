@@ -252,6 +252,7 @@
         <maven-lombok-plugin.version>1.18.16.0</maven-lombok-plugin.version>
         <maven-dokka-plugin.version>1.4.10.2</maven-dokka-plugin.version>
         <maven-versionizer-plugin.version>1.0.6</maven-versionizer-plugin.version>
+        <maven-heroku-plugin.version>3.0.4</maven-heroku-plugin.version>
         <maven-sundr-plugin.version>0.23.1</maven-sundr-plugin.version>
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
@@ -1455,6 +1456,35 @@
             </build>
         </profile>
 
+        <!-- Heroku plugin -->
+        <profile>
+            <id>heroku</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.heroku.sdk</groupId>
+                        <artifactId>heroku-maven-plugin</artifactId>
+                        <version>${maven-heroku-plugin.version}</version>
+                        <configuration>
+                            <configVars>
+                                <JAVA_OPTS>-Xss512k -Xmx256M -XX:+UseCompressedOops</JAVA_OPTS>
+                            </configVars>
+                            <jdkVersion>${java.version}</jdkVersion>
+                            <includeTarget>false</includeTarget>
+                            <logProgress>true</logProgress>
+                            <appName>object-mappers</appName>
+                            <processTypes>
+                                <web>
+                                    java $JAVA_OPTS -jar
+                                    ./modules/objectmappers-benchmarks/.build/bin/io.nullables.api.playground.objectmappers.benchmarks/benchmarks.jar
+                                </web>
+                            </processTypes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Kotlin profile -->
         <profile>
             <id>kotlin</id>
@@ -1463,6 +1493,7 @@
             </activation>
             <properties>
                 <arrow.version>0.11.0</arrow.version>
+                <kotlin-jackson.version>2.12.1</kotlin-jackson.version>
                 <kotlin.version>1.4.10</kotlin.version>
                 <kotlinx-coroutines.version>1.3.9</kotlinx-coroutines.version>
                 <dagger.version>2.31.2</dagger.version>
@@ -1612,6 +1643,11 @@
 
             <dependencies>
                 <dependency>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-kotlin</artifactId>
+                    <version>${kotlin-jackson.version}</version>
+                </dependency>
+                <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-maven-allopen</artifactId>
                     <version>${kotlin.version}</version>
@@ -1630,6 +1666,12 @@
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-maven-noarg</artifactId>
                     <version>${kotlin.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-test</artifactId>
+                    <version>${kotlin.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.kotlinx</groupId>
