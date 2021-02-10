@@ -43,7 +43,7 @@ parsers:
       macro: no
 
 comment:
-  layout: header, reach, diff, flags, files
+  layout: "header, reach, diff, flags, files, footer"
   behavior: default
   require_changes: false
   require_base: false
