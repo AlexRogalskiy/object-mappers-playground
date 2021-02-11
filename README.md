@@ -62,22 +62,29 @@
 ## 🎹 _Table of contents_
 
 <!--ts-->
-- [☝ _Summary_](#-summary)
-- [💻 _Description_](#-description)
-- [🛠 _How-to-compile_](#-how-to-compile)
-- [🚀 _How-to-run_](#-how-to-run)
-- [🤝 _How-to-use_](#-how-to-use)
-- [📝 _Documentation_](#-documentation)
-- [🤖 _Version Store_](#-version-store)
-- [❤ _Technology stack_](#-technology-stack)
-- [🌹 _Authors_](#-authors)
-- [💕 _Contributing_](#-contributing)
-- [🚨 _Visitor stats_](#-visitor-stats)
-- [💡 _Code Analysis_](#-code-analysis)
-- [🎉 _Sonarcloud Results_](#-sonarcloud-results)
-- [👉 _Team Tools_](#-team-tools)
-- [⚽ _Licensing_](#-licensing)
-- [🌟 _Development Support_](#-development-support)
+   * [Object-Mappers Playground](#object-mappers-playground)
+      * [<em>Table of contents</em>](#-table-of-contents)
+      * [<em>Summary</em>](#-summary)
+      * [<em>Description</em>](#-description)
+      * [<em>How-to-compile</em>](#-how-to-compile)
+         * [JDK 8](#jdk-8)
+         * [JDK 11+](#jdk-11)
+      * [<em>How-to-run</em>](#-how-to-run)
+      * [<em>How-to-use</em>](#-how-to-use)
+      * [<em>Documentation</em>](#-documentation)
+      * [<em>Version Store</em>](#-version-store)
+      * [<em>Technology stack</em>](#-technology-stack)
+      * [<em>Authors</em>](#-authors)
+      * [<em>Contributing</em>](#-contributing)
+      * [<em>Visitor stats</em>](#-visitor-stats)
+      * [<em>Code Analysis</em>](#-code-analysis)
+      * [<em>Sonarcloud Results</em>](#-sonarcloud-results)
+      * [<em>Team Tools</em>](#-team-tools)
+      * [<em>Licensing</em>](#-licensing)
+      * [<em>Development Support</em>](#-development-support)
+
+<!-- Added by: runner, at: Thu Feb 11 13:59:44 UTC 2021 -->
+
 <!--te-->
 
 ## ☝ _Summary_
