@@ -187,7 +187,11 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
 
-        <maven-plugin-os.version>1.6.2</maven-plugin-os.version>
+        <!-- maven extensions -->
+        <maven-buildtime-extension.version>3.0.3</maven-buildtime-extension.version>
+        <maven-os-extension.version>1.6.2</maven-os-extension.version>
+
+        <!-- maven plugins -->
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -444,9 +448,14 @@
 
         <extensions>
             <extension>
+                <groupId>co.leantechniques</groupId>
+                <artifactId>maven-buildtime-extension</artifactId>
+                <version>${maven-buildtime-extension.version}</version>
+            </extension>
+            <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
-                <version>${maven-plugin-os.version}</version>
+                <version>${maven-os-extension.version}</version>
             </extension>
         </extensions>
 
@@ -2393,7 +2402,7 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>${maven-release-plugin.version}</version>
                         <configuration>
-                            <tagNameFormat>v@{project.version}</tagNameFormat>
+                            <tagNameFormat>v${project.artifactId}-${project.version}</tagNameFormat>
                             <mavenExecutorId>forked-path</mavenExecutorId>
                             <useReleaseProfile>false</useReleaseProfile>
                             <releaseProfiles>release</releaseProfiles>
@@ -2583,7 +2592,10 @@
                             <embedBuildProfileDependencies>true</embedBuildProfileDependencies>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <pomElements>
-                                <properties>remove</properties>
+                                <description>keep</description>
+                                <name>keep</name>
+                                <profiles>remove</profiles>
+                                <properties>keep</properties>
                                 <parent>expand</parent>
                                 <distributionManagement>remove</distributionManagement>
                                 <dependencyManagement>resolve</dependencyManagement>
@@ -2607,13 +2619,6 @@
                                 <goals>
                                     <goal>clean</goal>
                                 </goals>
-                            </execution>
-                            <execution>
-                                <id>flatten.clean</id>
-                                <goals>
-                                    <goal>clean</goal>
-                                </goals>
-                                <phase>clean</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -3978,6 +3983,7 @@
                 <enforce.jkd8.skip>true</enforce.jkd8.skip>
                 <enforce.duplicate.skip>true</enforce.duplicate.skip>
                 <enforce.test.skip>true</enforce.test.skip>
+
                 <copy-dependencies.skip>true</copy-dependencies.skip>
                 <assembly.skip>true</assembly.skip>
                 <logback.loglevel>DEBUG</logback.loglevel>

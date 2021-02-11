@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"?>
+<rdf:RDF xml:lang="en"
+         xmlns="http://usefulinc.com/ns/doap#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:asfext="http://projects.apache.org/ns/asfext#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+  <Project rdf:about="https://github.com/AlexRogalskiy/object-mappers-playground">
+    <created>2021-02-10</created>
+    <license rdf:resource="http://usefulinc.com/doap/licenses/asl20" />
+    <name>Object-Mappers Playground</name>
+    <homepage rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground" />
+    <asfext:pmc rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground" />
+
+    <shortdesc>
+      Object Mappers playground is intended to provide various mapping operations
+      on DTO objects while converting from source to target objects.
+    </shortdesc>
+    <description>
+      Playground can be used for processing and testing mapping operations
+      in order to evaluate major available options on objects conversion.
+    </description>
+
+    <bug-database rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/issues" />
+    <wiki-page rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/wiki" />
+    <download-page rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/releases" />
+
+    <programming-language>Java</programming-language>
+    <programming-language>Kotlin</programming-language>
+    <programming-language>XML</programming-language>
+
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-bull" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanmapper" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanutils" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-datus" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-doov" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-dozer" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-jmapper" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-mapstruct" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-modelmapper" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-moo" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-nomin" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-orika" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-remap" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-selma" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-smooks" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-testflow" />
+    <category rdf:resource="https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it" />
+
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Alexander Rogalskiy</foaf:name>
+          <foaf:mbox rdf:resource="mailto:github@nullables.io"/>
+      </foaf:Person>
+    </maintainer>
+  </Project>
+</rdf:RDF>

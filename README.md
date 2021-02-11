@@ -315,3 +315,4 @@ Like _Object Mappers_ ? Consider buying me a coffee :\)
   [issues]:     https://github.com/AlexRogalskiy/object-mappers-playground/issues
   [pulls]:      https://github.com/AlexRogalskiy/object-mappers-playground/pulls
   [wiki]:       https://github.com/AlexRogalskiy/object-mappers-playground/wiki
+  [releases]:   https://github.com/AlexRogalskiy/object-mappers-playground/releases
