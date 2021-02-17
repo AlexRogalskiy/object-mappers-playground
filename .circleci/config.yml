@@ -128,13 +128,11 @@ workflows:
               only:
                 - master
     jobs:
-      - build_jdk8
       - build_jdk11
       - build_jdk13
 
   build-then-test:
     jobs:
-      - build_jdk8
       - build_jdk11
       - build_jdk13
       - test:
