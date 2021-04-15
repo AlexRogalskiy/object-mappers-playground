@@ -2519,6 +2519,7 @@
                             <skipProvidedScope>true</skipProvidedScope>
                             <skipRuntimeScope>true</skipRuntimeScope>
                             <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                            <suppressionFile>${basedir}/checkstyle/dependency-check-suppression.xml</suppressionFile>
                         </configuration>
                         <executions>
                             <execution>
