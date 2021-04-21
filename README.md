@@ -50,6 +50,7 @@
 [![Codefresh build status](https://g.codefresh.io/api/badges/pipeline/nullables.io/default%2Fobject-mappers-playground?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NWZjYjIzY2VmOTQ1OWZkNDIyNjUwYzM2.j5o9YHYaSphlW9cAhfskzeUIHK7SDwmW854ZHhO5hfg)]( https://g.codefresh.io/pipelines/edit/new/builds?id=5fcb242d1ee33f349c5bb93a&pipeline=object-mappers-playground&projects=default&projectId=5fcb23ee54e9091f042934bd)
 [![Codecov](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground/branch/master/graph/badge.svg?token=46Y1MSXCZ3)](https://codecov.io/gh/AlexRogalskiy/object-mappers-playground)
 ![CodeQL](https://github.com/AlexRogalskiy/object-mappers-playground/workflows/CodeQL/badge.svg)
+[![NetflixOSS Lifecycle](https://img.shields.io/osslifecycle/AlexRogalskiy/object-mappers-playground.svg)]()
 <!--
 [![Efficiency](https://api.gitential.com/accounts/2318/projects/4210/badges/efficiency.svg)](https://app.gitential.com/accounts/2318/projects/4210)
 [![Coding Hours](https://api.gitential.com/accounts/2318/projects/4210/badges/coding-hours.svg)](https://app.gitential.com/accounts/2318/projects/4210)
