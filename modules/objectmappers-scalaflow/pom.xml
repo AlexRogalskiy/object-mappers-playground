@@ -24,7 +24,7 @@
         <scala.binary.version>2.12</scala.binary.version>
         <parboiled-java.version>1.3.1</parboiled-java.version>
 
-        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
+        <objectmappers.version>1.0.0</objectmappers.version>
 
         <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
         <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>

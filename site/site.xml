@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ObjectMappers">
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.9</version>
+    </skin>
+
+    <custom>
+        <fluidoSkin>
+            <topBarEnabled>true</topBarEnabled>
+            <navBarStyle>navbar-inverse</navBarStyle>
+            <sideBarEnabled>false</sideBarEnabled>
+            <breadcrumbDivider>»</breadcrumbDivider>
+            <gitHub>
+                <projectId>AlexRogalskiy/object-mappers-playground</projectId>
+                <ribbonOrientation>right</ribbonOrientation>
+            </gitHub>
+        </fluidoSkin>
+    </custom>
+
+    <version position="right"/>
+    <publishDate format="dd MMM yyyy" position="right"/>
+
+    <body>
+        <breadcrumbs>
+            <item name="ObjectMappers" href="/"/>
+        </breadcrumbs>
+
+        <menu name="Overview" inherit="top">
+            <item name="Introduction" href="index.html"/>
+            <item name="License" href="https://www.gnu.org/licenses/gpl-3.0.html"/>
+        </menu>
+
+        <menu name="Additional information" inherit="top">
+            <item name="AlexRogalskiy" href="https://www.github.com/AlexRogalskiy"/>
+        </menu>
+
+        <menu ref="modules"/>
+
+        <menu ref="reports" inherit="bottom"/>
+    </body>
+</project>

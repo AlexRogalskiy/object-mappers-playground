@@ -20,7 +20,7 @@
     <properties>
         <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
 
-        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
+        <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
     <dependencies>
@@ -140,6 +140,11 @@
                                         </includes>
                                         <forkCount>0</forkCount>
                                         <useModulePath>false</useModulePath>
+                                        <systemPropertyVariables>
+                                            <project.version>${project.version}</project.version>
+                                            <os.detected.name>${os.detected.name}</os.detected.name>
+                                            <os.detected.arch>${os.detected.arch}</os.detected.arch>
+                                        </systemPropertyVariables>
                                     </configuration>
                                 </execution>
                             </executions>

@@ -21,7 +21,7 @@
         <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
         <moditect.skip>true</moditect.skip>
 
-        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
+        <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
     <profiles>

@@ -17,7 +17,7 @@ WORKDIR /test
 
 RUN git clone --depth=1 https://github.com/AlexRogalskiy/object-mappers-playground /test/clone && \
 	cd /test/clone && \
-	mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev" && \
+	mvn clean package --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev" && \
 	mv modules/objectmappers-benchmarks/.build/bin/io.nullables.api.playground.objectmappers.benchmarks/benchmarks.jar /test/ && \
 	cd /test && rm -rf /test/clone && rm -rf ~/.m2
 

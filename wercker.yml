@@ -27,4 +27,4 @@ build:
     - script:
         name: run maven with tests
         code: |
-          ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
+          ./mvnw clean test --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"

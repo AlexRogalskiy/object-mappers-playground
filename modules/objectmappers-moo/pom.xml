@@ -22,7 +22,7 @@
 
         <moo.version>2.1.0</moo.version>
 
-        <objectmappers.version>0.1.0-SNAPSHOT</objectmappers.version>
+        <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
     <dependencies>

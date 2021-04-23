@@ -52,7 +52,7 @@ jobs:
           name: Run build
           command: |
             ./mvnw install:install-file -Dfile=$JAVA_HOME/lib/tools.jar -DgroupId=com.sun -DartifactId=tools -Dversion=8 -Dpackaging=jar
-            ./mvnw clean install dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+            ./mvnw clean install dependency:resolve-plugins --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
           paths:
             - ~/.m2
@@ -81,7 +81,7 @@ jobs:
             - v1-dependencies- # fallback in case previous cache key is not found
       - run:
           name: Run build
-          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
           paths:
             - ~/.m2
@@ -110,7 +110,7 @@ jobs:
             - v1-dependencies- # fallback in case previous cache key is not found
       - run:
           name: Run build
-          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+          command: ./mvnw clean package dependency:resolve-plugins --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
       - save_cache:
           paths:
             - ~/.m2
@@ -135,7 +135,7 @@ jobs:
           command: sudo chmod +x ./mvnw
       - run:
           name: Run build
-          command: ./mvnw clean test --file pom.xml --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
+          command: ./mvnw clean test --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -P"test","test-jar","dev"
 
 workflows:
   version: 2

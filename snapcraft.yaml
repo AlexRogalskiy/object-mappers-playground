@@ -56,7 +56,7 @@ parts:
       - -DskipTests=true
       - -P test-jar, dev
     override-build: |
-      mvn clean package --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
+      mvn clean package --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P"test-jar","dev"
     build-packages:
       - openjdk-11-jdk
       - unzip

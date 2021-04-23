@@ -4,7 +4,7 @@ on: pull_request
 
 env:
   MAVEN_ARGS: >-
-    --file pom.xml --show-version --batch-mode --errors --lax-checksums
+    --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums
 
 jobs:
   build:

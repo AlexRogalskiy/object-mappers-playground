@@ -124,7 +124,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <revision>0.1.0-SNAPSHOT</revision>
+        <revision>1.0.0</revision>
 
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssX</maven.build.timestamp.format>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -256,6 +256,7 @@
         <maven-urm-plugin.version>2.0.0</maven-urm-plugin.version>
         <maven-license-plugin.version>2.0.0</maven-license-plugin.version>
         <maven-jvcn-plugin.version>0.0.1</maven-jvcn-plugin.version>
+        <maven-groovy-plugin.version>2.1.1</maven-groovy-plugin.version>
         <maven-rat-plugin.version>0.13</maven-rat-plugin.version>
         <maven-lombok-plugin.version>1.18.16.0</maven-lombok-plugin.version>
         <maven-dokka-plugin.version>1.4.10.2</maven-dokka-plugin.version>
@@ -1269,7 +1270,21 @@
                         <artifactId>maven-site-plugin</artifactId>
                         <version>${maven-site-plugin.version}</version>
                         <configuration>
+                            <siteDirectory>site</siteDirectory>
                             <skipDeploy>true</skipDeploy>
+                            <asciidoc>
+                                <attributes>
+                                    <source-highlighter>coderay</source-highlighter>
+                                    <coderay-css>style</coderay-css>
+                                    <project-name>${project.name}</project-name>
+                                    <project-group-id>${project.groupId}</project-group-id>
+                                    <project-artifact-id>${project.artifactId}</project-artifact-id>
+                                    <project-version>${project.version}</project-version>
+                                </attributes>
+                            </asciidoc>
+                            <moduleExcludes>
+                                <asciidoc>**/_*.adoc</asciidoc>
+                            </moduleExcludes>
                         </configuration>
                         <executions>
                             <execution>
@@ -1286,6 +1301,13 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctor-maven-plugin</artifactId>
+                                <version>2.1.0</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
 
                     <plugin>
@@ -1883,6 +1905,50 @@
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>groovy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>groovy-maven-plugin</artifactId>
+                        <version>${maven-groovy-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>set-platform-properties</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <source>
+                                        // Naming conventions coined by GraalVM
+                                        // https://github.com/graalvm/graalvm-ce-builds/releases/
+                                        String osName = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+                                        if (osName.startsWith('windows')) {
+                                            project.properties['os.detected.name'] = 'windows'
+                                        } else if (osName.startsWith('linux')) {
+                                            project.properties['os.detected.name'] = 'linux'
+                                        } else if (osName.startsWith('osx') || osName.startsWith('mac os x')) {
+                                            project.properties['os.detected.name'] = 'darwin'
+                                        } else {
+                                            project.properties['os.detected.name'] = osName
+                                        }
+                                        String osArch = System.getProperty('os.arch').toLowerCase(Locale.ROOT)
+                                        if (osArch == 'amd64' || osArch == 'x86_64') {
+                                            project.properties['os.detected.arch'] = 'amd64'
+                                        } else {
+                                            project.properties['os.detected.arch'] = osArch
+                                        }
+                                    </source>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -3380,6 +3446,9 @@
                                 </environmentVariables>
                                 <properties>
                                     <systemPropertyVariables>
+                                        <project.version>${project.version}</project.version>
+                                        <os.detected.name>${os.detected.name}</os.detected.name>
+                                        <os.detected.arch>${os.detected.arch}</os.detected.arch>
                                         <java.awt.headless>true</java.awt.headless>
                                         <org.slf4j.simpleLogger.showDateTime>true</org.slf4j.simpleLogger.showDateTime>
                                         <reportDirectory>

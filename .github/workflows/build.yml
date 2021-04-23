@@ -15,7 +15,7 @@ env:
   LANGUAGE: "en_US:en"
   JAVA_HOME: ${{ github.workspace }}/jdk
   MAVEN_ARGS: >-
-    --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true
+    --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true
 
 jobs:
   setup:

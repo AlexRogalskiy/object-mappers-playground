@@ -1,0 +1,99 @@
+= ObjectMappers
+
+Object Mappers playground intended to provide various mapping operations on DTO objects while converting from source to target objects.
+
+++++
+<section>
+    <h2>
+        <a name="Project_Modules"></a>Project Modules
+    </h2>
+    <a name="Project_Modules"></a>
+    <p>This project has declared the following modules:</p>
+    <table border="0" class="table table-striped">
+        <tr class="a">
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-benchmarks">objectmappers-benchmarks</a></td>
+            <td>Library with utilities for benchmarks.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-bull">objectmappers-bull</a></td>
+            <td>Library to work with Bull API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-beanmapper">objectmappers-beanmapper</a></td>
+            <td>Library to work with BeanCP API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-beancp">objectmappers-beancp</a></td>
+            <td>Library to work with BeanCP API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-beanutils">objectmappers-beanutils</a></td>
+            <td>Library to work with BeanUtils API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-commons">objectmappers-commons</a></td>
+            <td>Library with common tools and utilities.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-datus">objectmappers-datus</a></td>
+            <td>Library to work with Datus API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-doov">objectmappers-doov</a></td>
+            <td>Library to work with Doov API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-dozer">objectmappers-dozer</a></td>
+            <td>Library to work with Dozer API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-jmapper">objectmappers-jmapper</a></td>
+            <td>Library to work with JMapper API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-mapstruct">objectmappers-mapstruct</a></td>
+            <td>Library to work with MapStruct API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-modelmapper">objectmappers-modelmapper</a></td>
+            <td>Library to work with ModelMapper API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-moo">objectmappers-moo</a></td>
+            <td>Library to work with Moo API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-nomin">objectmappers-nomin</a></td>
+            <td>Library to work with Nomin API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-orika">objectmappers-orika</a></td>
+            <td>Library to work with Orika API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-remap">objectmappers-remap</a></td>
+            <td>Library to work with ReMap API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-selma">objectmappers-selma</a></td>
+            <td>Library to work with Selma API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-smooks">objectmappers-smooks</a></td>
+            <td>Library to work with Smooks API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-testflow">objectmappers-testflow</a></td>
+            <td>Library to work with TestFlow API.</td>
+        </tr>
+        <tr class="b">
+            <td><a href="/modules/objectmappers-testflow">objectmappers-it</a></td>
+            <td>Library with utilities for integration tests.</td>
+        </tr>
+    </table>
+</section>
+++++

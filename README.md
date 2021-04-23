@@ -97,7 +97,7 @@
     You can find more useful samples on [wiki](https://github.com/AlexRogalskiy/object-mappers-playground/wiki)
 </p>
 
-Object Mappers playground is intended to provide various mapping operations on DTO objects while converting from source to target objects.
+Object Mappers playground intended to provide various mapping operations on DTO objects while converting from source to target objects.
 
 ## 💻 _Description_
 
@@ -150,7 +150,7 @@ Bundle with all Object Mappers dependencies:
 <details>
 <summary>Object Mappers module dependencies:</summary>
 
-* [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks) `objectmappers-benchmarks` - Library with utilities for benchmarks use cases.
+* [**ObjectMappers Benchmarks**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks) `objectmappers-benchmarks` - Library with utilities for benchmarks.
 * [**ObjectMappers Bull**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-bull) `objectmappers-bull` - Library to work with Bull API.
 * [**ObjectMappers BeanMapper**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beanmapper) `objectmappers-beanmapper` - Library to work with BeanCP API.
 * [**ObjectMappers BeanCP**](https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp) `objectmappers-beancp` - Library to work with BeanCP API.

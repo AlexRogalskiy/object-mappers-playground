@@ -1,0 +1,39 @@
+project:
+  name: io.nullables.api.playground.objectmappers
+  description: Object Mappers Playground
+  longDescription: Object Mappers Playground
+  website: https://github.com/AlexRogalskiy/object-mappers-playground/
+  authors:
+    - Alexander Rogalskiy
+  license: GNU GPL 3.0
+  java:
+    groupId: io.nullables.api.playground.objectmappers
+    version: 8
+
+release:
+  github:
+    username: AlexRogalskiy
+    overwrite: true
+    sign: true
+
+signing:
+  active: always
+  armored: true
+
+announce:
+  twitter:
+    active: release
+  sdkman:
+    active: release
+
+distributions:
+  objectmappers:
+    type: 'single-jar'
+    brew:
+      active: release
+    scoop:
+      active: release
+    jbang:
+      active: always
+    artifacts:
+      - path: './modules/{{distributionName}}-all/.build/bin/io.nullables.playground.{{distributionName}}-all-{{projectVersion}}.jar'

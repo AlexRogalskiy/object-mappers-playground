@@ -7,7 +7,6 @@
 .allure
 .storage
 packages/
-site/
 .classpath
 .project
 .settings/

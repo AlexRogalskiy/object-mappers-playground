@@ -7,12 +7,12 @@ ObjectMappers playground dependency can be simply acquired by adding the followi
 ```markup
     <groupId>io.nullables.api.playground</groupId>
     <artifactId>objectmappers-all</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 ```
 
 ## _Gradle_
 
 ```groovy
-compile 'io.nullables.api.playground:objectmappers-all:0.1.0-SNAPSHOT'
+compile 'io.nullables.api.playground:objectmappers-all:1.0.0'
 ```
 
