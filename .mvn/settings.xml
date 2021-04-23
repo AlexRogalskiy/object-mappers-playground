@@ -10,29 +10,19 @@
 
     <profiles>
         <profile>
-            <id>standard-with-extra-repos</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>ossrh</id>
+            <properties>
+                <gpg.executable>${env.GPG_EXECUTABLE}</gpg.executable>
+                <gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>sonatype</id>
             <repositories>
                 <repository>
-                    <id>central</id>
-                    <name>Maven Central Repository</name>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>fail</checksumPolicy>
-                    </snapshots>
-                    <url>http://repo.maven.apache.org/maven2</url>
-                    <layout>default</layout>
-                </repository>
-                <repository>
-                    <id>sonatype</id>
+                    <id>sonatype-releases</id>
                     <name>Sonatype repo (releases)</name>
                     <releases>
                         <enabled>true</enabled>
@@ -63,6 +53,12 @@
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
                     <layout>default</layout>
                 </repository>
+            </repositories>
+        </profile>
+
+        <profile>
+            <id>apache</id>
+            <repositories>
                 <repository>
                     <id>apache-releases</id>
                     <name>Apache repo (releases)</name>
@@ -95,8 +91,36 @@
                     <url>https://repository.apache.org/snapshots/</url>
                     <layout>default</layout>
                 </repository>
+            </repositories>
+        </profile>
+
+        <profile>
+            <id>maven</id>
+            <repositories>
                 <repository>
-                    <id>jcenter-releases</id>
+                    <id>maven-releases</id>
+                    <name>Maven Central Repository</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </snapshots>
+                    <url>http://repo.maven.apache.org/maven2</url>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+        </profile>
+
+        <profile>
+            <id>bintray</id>
+            <repositories>
+                <repository>
+                    <id>bintray-releases</id>
                     <name>JCenter BinTray repo (releases)</name>
                     <releases>
                         <enabled>true</enabled>
@@ -112,22 +136,29 @@
                     <layout>default</layout>
                 </repository>
             </repositories>
-        </profile>
 
-        <profile>
-            <id>ossrh</id>
-            <properties>
-                <gpg.executable>${env.GPG_EXECUTABLE}</gpg.executable>
-                <gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>bintray-plugins</id>
+                    <name>JCenter BinTray repo (releases)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                    <url>https://jcenter.bintray.com</url>
+                    <layout>default</layout>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
 
         <profile>
             <id>github</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <repositories>
                 <repository>
                     <id>github</id>
@@ -137,7 +168,56 @@
                 </repository>
             </repositories>
         </profile>
+
+        <profile>
+            <id>teamcity</id>
+            <repositories>
+                <repository>
+                    <id>jetbrains-all</id>
+                    <name>JetBrains TeamCity repository</name>
+                    <releases>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                    <url>https://download.jetbrains.com/teamcity-repository</url>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>JetBrains</id>
+                    <name>JCenter BinTray repo (releases)</name>
+                    <releases>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                    <url>https://download.jetbrains.com/teamcity-repository</url>
+                    <layout>default</layout>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
     </profiles>
+
+    <activeProfiles>
+        <activeProfile>sonatype</activeProfile>
+        <activeProfile>apache</activeProfile>
+        <activeProfile>maven</activeProfile>
+        <activeProfile>bintray</activeProfile>
+        <activeProfile>github</activeProfile>
+    </activeProfiles>
 
     <servers>
         <server>
