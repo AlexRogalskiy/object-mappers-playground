@@ -146,6 +146,8 @@
         <enforce.banned.skip>false</enforce.banned.skip>
         <enforce.maven.skip>false</enforce.maven.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
+        <enforce.deps.skip>false</enforce.deps.skip>
+        <enforce.repository.skip>false</enforce.repository.skip>
         <enforce.pom-enforcers.skip>false</enforce.pom-enforcers.skip>
         <enforce.format.skip>false</enforce.format.skip>
         <enforce.jkd8.skip>false</enforce.jkd8.skip>
@@ -663,7 +665,44 @@
                                     <banLatest>true</banLatest>
                                     <banRelease>true</banRelease>
                                     <banSnapshots>true</banSnapshots>
+                                    <additionalPlugins>
+                                        <additionalPlugin>org.apache.maven.plugins:maven-javadoc-plugin
+                                        </additionalPlugin>
+                                        <additionalPlugin>org.apache.maven.plugins:maven-release-plugin
+                                        </additionalPlugin>
+                                        <additionalPlugin>org.apache.maven.plugins:maven-source-plugin
+                                        </additionalPlugin>
+                                    </additionalPlugins>
                                 </requirePluginVersions>
+                                <bannedPlugins>
+                                    <excludes>
+                                        <exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
+                                    </excludes>
+                                    <message>Please consider using the maven-invoker-plugin
+                                        (http://maven.apache.org/plugins/maven-invoker-plugin/)!
+                                    </message>
+                                </bannedPlugins>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>enforce-repository</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.repository.skip}</skip>
+                            <rules>
+                                <requireNoRepositories>
+                                    <message>Best Practice is to never define repositories in pom.xml (use a repository
+                                        manager instead)
+                                    </message>
+                                    <allowedPluginRepositories>
+                                        <repository>github</repository>
+                                        <repository>bintray</repository>
+                                        <repository>maven</repository>
+                                    </allowedPluginRepositories>
+                                </requireNoRepositories>
                             </rules>
                         </configuration>
                     </execution>
@@ -698,7 +737,7 @@
                             <goal>enforce</goal>
                         </goals>
                         <configuration>
-                            <skip>${enforce.plugin.skip}</skip>
+                            <skip>${enforce.deps.skip}</skip>
                             <rules>
                                 <requireReleaseDeps>
                                     <message>You are using snapshot dependency versions</message>
@@ -1067,6 +1106,24 @@
                 <configuration>
                     <encoding>${project.build.outputEncoding}</encoding>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-scenarios</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-scenarios</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/scenarios</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -4025,6 +4082,8 @@
                 <enforce.banned.skip>true</enforce.banned.skip>
                 <enforce.maven.skip>true</enforce.maven.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
+                <enforce.deps.skip>true</enforce.deps.skip>
+                <enforce.repository.skip>true</enforce.repository.skip>
                 <enforce.pom-enforcers.skip>true</enforce.pom-enforcers.skip>
                 <enforce.jkd8.skip>true</enforce.jkd8.skip>
                 <enforce.duplicate.skip>true</enforce.duplicate.skip>
