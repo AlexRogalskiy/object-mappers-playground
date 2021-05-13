@@ -1,10 +1,17 @@
 version: 2
 
 updates:
+  # Enable version updates for Java
   - package-ecosystem: "maven"
     directory: "/"
+    open-pull-requests-limit: 5
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "fix(deps): "
+    labels:
+      - "dependencies"
+  # Enable version updates for github actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

@@ -18,4 +18,16 @@
         <artifactId>maven-buildtime-extension</artifactId>
         <version>3.0.3</version>
     </extension>
+    <!--
+        Maven Incremental Module Builder https://github.com/khmarbaise/incremental-module-builder
+        Usage:
+        >> mvn -b incremental install
+        >> mvn -b incremental package
+        >>> mvn -b multithreaded package
+    -->
+    <extension>
+        <groupId>com.soebes.maven.extensions</groupId>
+        <artifactId>incremental-module-builder</artifactId>
+        <version>0.3.0</version>
+    </extension>
 </extensions>
