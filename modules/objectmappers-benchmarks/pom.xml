@@ -166,6 +166,9 @@
                                             <Implementation-Version>${buildNumber}</Implementation-Version>
                                         </manifestEntries>
                                     </archive>
+                                    <descriptors>
+                                        <descriptor>${project.basedir}/src/main/assembly/benchmarks.xml</descriptor>
+                                    </descriptors>
                                 </configuration>
                             </execution>
                         </executions>

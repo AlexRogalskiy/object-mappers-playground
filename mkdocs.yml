@@ -37,6 +37,12 @@ plugins:
 
 extra:
   social:
+    - type: github
+      link: https://github.com/AlexRogalskiy/object-mappers-playground
+    - type: medium
+      link: https://medium.com/object-mappers-playground
+    - type: twitter
+      link: https://twitter.com/object-mappers-playground
     - icon: fontawesome/brands/github-alt
       link: https://github.com/AlexRogalskiy/object-mappers-playground
 

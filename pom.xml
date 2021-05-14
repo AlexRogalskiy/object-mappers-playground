@@ -200,7 +200,7 @@
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
         <maven-jdepend-plugin.version>2.0</maven-jdepend-plugin.version>
-        <maven-jib-plugin.version>2.7.0</maven-jib-plugin.version>
+        <maven-jib-plugin.version>3.0.0</maven-jib-plugin.version>
         <maven-proguard-plugin.version>2.3.1</maven-proguard-plugin.version>
         <maven-spotless-plugin.version>2.7.0</maven-spotless-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
@@ -1074,6 +1074,16 @@
                     <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
                 <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <configuration>
+                            <archive>
+                                <manifestEntries>
+                                    <Multi-Release>true</Multi-Release>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>empty-javadoc-jar</id>
                         <phase>package</phase>
@@ -2790,8 +2800,11 @@
                             <findbugsXmlOutputDirectory>
                                 ${project.build.directory}/findbugs
                             </findbugsXmlOutputDirectory>
-                            <excludeBugsFile>
+                            <excludeFilterFile>
                                 ${session.executionRootDirectory}/checkstyle/findbugs-exclude.xml
+                            </excludeFilterFile>
+                            <excludeBugsFile>
+                                ${session.executionRootDirectory}/checkstyle/findbugs-exclude-bugs.xml
                             </excludeBugsFile>
                         </configuration>
                         <executions>
@@ -3429,6 +3442,7 @@
                                 <printSummary>true</printSummary>
                                 <useFile>false</useFile>
                                 <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                <rerunFailingTestsCount>5</rerunFailingTestsCount>
                                 <includes>
                                     <include/>
                                 </includes>
@@ -3446,6 +3460,7 @@
                                 </environmentVariables>
                                 <properties>
                                     <systemPropertyVariables>
+                                        <buildDirectory>${project.build.directory}</buildDirectory>
                                         <project.version>${project.version}</project.version>
                                         <os.detected.name>${os.detected.name}</os.detected.name>
                                         <os.detected.arch>${os.detected.arch}</os.detected.arch>
