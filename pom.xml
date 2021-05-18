@@ -195,6 +195,7 @@
         <maven-os-extension.version>1.6.2</maven-os-extension.version>
 
         <!-- maven plugins -->
+        <maven-clover-plugin.version>4.1.2</maven-clover-plugin.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -465,6 +466,18 @@
         </extensions>
 
         <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>${maven-clover-plugin.version}</version>
+                <configuration>
+                    <alwaysReport>true</alwaysReport>
+                    <generatePdf>true</generatePdf>
+                    <generateJson>true</generateJson>
+                    <licenseLocation>${license.location}</licenseLocation>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>com.fizzed</groupId>
                 <artifactId>fizzed-watcher-maven-plugin</artifactId>

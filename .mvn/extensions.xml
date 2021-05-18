@@ -25,9 +25,9 @@
         >> mvn -b incremental package
         >>> mvn -b multithreaded package
     -->
-    <extension>
-        <groupId>com.soebes.maven.extensions</groupId>
-        <artifactId>incremental-module-builder</artifactId>
-        <version>0.3.0</version>
-    </extension>
+    <!--    <extension>-->
+    <!--        <groupId>com.soebes.maven.extensions</groupId>-->
+    <!--        <artifactId>incremental-module-builder</artifactId>-->
+    <!--        <version>0.3.0</version>-->
+    <!--    </extension>-->
 </extensions>
