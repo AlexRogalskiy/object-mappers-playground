@@ -126,16 +126,18 @@
         <java.version>1.8</java.version>
         <revision>1.0.0</revision>
 
+        <maven.url>localhost</maven.url>
+        <maven.version>3.6.0</maven.version>
+
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssX</maven.build.timestamp.format>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
         <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.multiModuleProjectDirectory>./</maven.multiModuleProjectDirectory>
+
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.testSource>${java.version}</maven.compiler.testSource>
         <maven.compiler.testTarget>${java.version}</maven.compiler.testTarget>
-        <maven.multiModuleProjectDirectory>./</maven.multiModuleProjectDirectory>
-        <maven.url>localhost</maven.url>
-        <maven.version>3.6.0</maven.version>
 
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -474,7 +476,6 @@
                     <alwaysReport>true</alwaysReport>
                     <generatePdf>true</generatePdf>
                     <generateJson>true</generateJson>
-                    <licenseLocation>${license.location}</licenseLocation>
                 </configuration>
             </plugin>
 
@@ -1142,7 +1143,8 @@
                             <overwrite>true</overwrite>
                             <resources>
                                 <resource>
-                                    <directory>src/test/scenarios</directory>
+                                    <filtering>false</filtering>
+                                    <directory>${project.build.directory}/src/test/scenarios</directory>
                                 </resource>
                             </resources>
                         </configuration>
@@ -1453,7 +1455,7 @@
                                     <file>${basedir}/license/license-header.txt</file>
                                 </licenseHeader>
                             </java>
-                            <scala>
+                            <ca>
                                 <scalafmt>
                                     <version>${scalafmt.version}</version>
                                     <file>${basedir}/checkstyle/scalafmt.conf</file>
@@ -1462,7 +1464,7 @@
                                     <delimiter>package</delimiter>
                                     <file>${basedir}/license/license-header.txt</file>
                                 </licenseHeader>
-                            </scala>
+                            </ca>
                             <kotlin>
                                 <ktfmt>
                                     <version>${kotlinfmt.version}</version>
@@ -3038,6 +3040,8 @@
                             <configuration>
                                 <show>public</show>
                                 <nohelp>true</nohelp>
+                                <maxmemory>1024</maxmemory>
+                                <notree>true</notree>
                                 <header>${project.name}, ${project.version}</header>
                                 <footer>${project.description}, ${project.version}</footer>
                                 <encoding>${project.build.sourceEncoding}</encoding>

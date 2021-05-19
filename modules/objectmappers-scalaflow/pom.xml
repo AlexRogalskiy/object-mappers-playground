@@ -28,6 +28,7 @@
 
         <maven-scalafmt-plugin.version>1.0.3</maven-scalafmt-plugin.version>
         <maven-scala-plugin.version>4.4.0</maven-scala-plugin.version>
+        <maven-scalatest-plugin.version>2.0.2</maven-scalatest-plugin.version>
         <maven-scalastyle-plugin.version>1.0.0</maven-scalastyle-plugin.version>
         <maven-scala-tools-plugin.version>2.15.2</maven-scala-tools-plugin.version>
     </properties>
@@ -102,7 +103,7 @@
                                 <jvmArg>-Xmx1024m</jvmArg>
                             </jvmArgs>
                             <args>
-                                <!-- arg>-unchecked</arg -->
+                                <!-- <arg>-unchecked</arg> -->
                                 <arg>-deprecation</arg>
                             </args>
                         </configuration>
@@ -136,6 +137,7 @@
                 <scalatest-selenium.version>1.0.0-M2</scalatest-selenium.version>
                 <scalacheck.version>1.15.2</scalacheck.version>
             </properties>
+
             <dependencies>
                 <!-- Scala library dependencies -->
                 <dependency>
@@ -188,6 +190,7 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+
             <build>
                 <plugins>
                     <plugin>
@@ -203,15 +206,15 @@
                             <secondaryCacheDir>${java.io.tmpdir}</secondaryCacheDir>
                             <verbose>true</verbose>
                             <args>
-                                <arg>-Xmax-classfile-name</arg>
-                                <arg>100</arg>
                                 <arg>-Xlint</arg>
                                 <arg>-unchecked</arg>
                                 <arg>-deprecation</arg>
                                 <arg>-feature</arg>
+                                <arg>-language:_</arg>
+                                <arg>-target:jvm-1.${maven.compiler.target}</arg>
+                                <arg>-Xfatal-warnings</arg>
                                 <arg>-nobootcp</arg>
                                 <arg>-explaintypes</arg>
-                                <arg>-target:jvm-${scala.target.vm}</arg>
                             </args>
                             <jvmArgs>
                                 <jvmArg>-Xms1024m</jvmArg>
@@ -231,7 +234,7 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>scala-compile-first</id>
+                                <id>scala-compile</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>add-source</goal>
@@ -244,6 +247,30 @@
                                 <goals>
                                     <goal>add-source</goal>
                                     <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>doc-jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.scalatest</groupId>
+                        <artifactId>scalatest-maven-plugin</artifactId>
+                        <version>${maven-scalatest-plugin.version}</version>
+                        <configuration>
+                            <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                            <filereports>TestSuite.txt</filereports>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>test</id>
+                                <goals>
+                                    <goal>test</goal>
                                 </goals>
                             </execution>
                         </executions>

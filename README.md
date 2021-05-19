@@ -292,6 +292,8 @@ _Object Mappers_ project is using SonarCloud for code quality. Thanks to SonarQu
 
 [![alt tag](https://app.shippable.com/app/assets/images/shippable-logo.png)](https://www.shippable.com/)
 
+
+
 _Object Mappers_ project is using Shippable DevOps and CI automation tool.
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/AlexRogalskiy/object-mappers-playground)
