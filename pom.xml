@@ -198,6 +198,7 @@
 
         <!-- maven plugins -->
         <maven-clover-plugin.version>4.1.2</maven-clover-plugin.version>
+        <maven-taglist-plugin.version>2.4</maven-taglist-plugin.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -476,6 +477,25 @@
                     <alwaysReport>true</alwaysReport>
                     <generatePdf>true</generatePdf>
                     <generateJson>true</generateJson>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+                <version>${maven-taglist-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.outputEncoding}</encoding>
+                    <tags>
+                        <tag>FIXME</tag>
+                        <tag>Fixme</tag>
+                        <tag>fixme</tag>
+                        <tag>TODO</tag>
+                        <tag>todo</tag>
+                        <tag>Todo</tag>
+                        <tag>@todo</tag>
+                        <tag>@deprecated</tag>
+                    </tags>
                 </configuration>
             </plugin>
 
