@@ -197,6 +197,8 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
 
+        <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+
         <!-- maven extensions -->
         <maven-buildtime-extension.version>3.0.3</maven-buildtime-extension.version>
         <maven-os-extension.version>1.6.2</maven-os-extension.version>
@@ -241,6 +243,7 @@
         <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
         <maven-git-commit-id-plugin.version>4.0.3</maven-git-commit-id-plugin.version>
         <maven-findbugs-plugin.version>3.0.5</maven-findbugs-plugin.version>
+        <maven-spotbugs-plugin.version>4.2.3</maven-spotbugs-plugin.version>
         <maven-qulice-plugin.version>0.18.19</maven-qulice-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
@@ -2846,6 +2849,9 @@
         <!-- Code Quality check profile -->
         <profile>
             <id>code-quality-check</id>
+            <properties>
+                <spotbugs.version>${maven-spotbugs-plugin.version}</spotbugs.version>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -2883,6 +2889,31 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <version>${maven-spotbugs-plugin.version}</version>
+                        <dependencies>
+                            <!-- overwrite dependency on spotbugs if you want to specify the version of˓→spotbugs -->
+                            <dependency>
+                                <groupId>com.github.spotbugs</groupId>
+                                <artifactId>spotbugs</artifactId>
+                                <version>${spotbugs.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <effort>Max</effort>
+                            <!-- Reports all bugs (other values are medium and max) -->
+                            <threshold>Low</threshold>
+                            <!-- Produces XML report -->
+                            <xmlOutput>true</xmlOutput>
+                            <!-- Configures the directory in which the XML report is created -->
+                            <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+                            <!-- Configures the file for excluding warnings -->
+                            <excludeFilterFile>${project.basedir}/../.spotbugs/spotbugs-exclude.xml</excludeFilterFile>
+                        </configuration>
                     </plugin>
 
                     <plugin>
