@@ -152,6 +152,7 @@
         <enforce.java.skip>false</enforce.java.skip>
         <enforce.banned.skip>false</enforce.banned.skip>
         <enforce.maven.skip>false</enforce.maven.skip>
+        <enforce.snapshots.skip>false</enforce.snapshots.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
         <enforce.deps.skip>false</enforce.deps.skip>
         <enforce.repository.skip>false</enforce.repository.skip>
@@ -236,7 +237,7 @@
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
         <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
-        <maven-formatter-plugin.version>2.13.0</maven-formatter-plugin.version>
+        <maven-formatter-plugin.version>2.15.0</maven-formatter-plugin.version>
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
         <maven-fmt-plugin.version>2.10</maven-fmt-plugin.version>
         <maven-dependency-check-plugin.version>6.0.3</maven-dependency-check-plugin.version>
@@ -660,6 +661,22 @@
                                     <searchTransitive>true</searchTransitive>
                                 </bannedDependencies>
                             </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>enforce-snapshots</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.snapshots.skip}</skip>
+                            <rules>
+                                <evaluateBeanshell>
+                                    <condition>"${project.version}".endsWith("-SNAPSHOT")</condition>
+                                    <message>Only build -SNAPSHOT versions.</message>
+                                </evaluateBeanshell>
+                            </rules>
+                            <fail>true</fail>
                         </configuration>
                     </execution>
                     <execution>
@@ -2415,6 +2432,8 @@
                             </execution>
                         </executions>
                         <configuration>
+                            <logResults>true</logResults>
+                            <minSeverity>warning</minSeverity>
                             <ignoredDifferencesFile>
                                 ${session.executionRootDirectory}/checkstyle/ignored-differences.xml
                             </ignoredDifferencesFile>
@@ -2658,8 +2677,15 @@
                         <version>${maven-formatter-plugin.version}</version>
                         <configuration>
                             <basedir>modules</basedir>
+                            <lineEnding>KEEP</lineEnding>
+                            <compilerSource>${java.version}</compilerSource>
+                            <compilerCompliance>${java.version}</compilerCompliance>
+                            <compilerTargetPlatform>${java.version}</compilerTargetPlatform>
                             <configFile>${session.executionRootDirectory}/codestyle/codestyle.xml</configFile>
                             <encoding>${project.build.sourceEncoding}</encoding>
+                            <excludes>
+                                <exclude>**/objectmappers-benchmarks/**/*.java</exclude>
+                            </excludes>
                         </configuration>
                         <executions>
                             <execution>
@@ -4263,6 +4289,7 @@
                 <enforce.java.skip>true</enforce.java.skip>
                 <enforce.banned.skip>true</enforce.banned.skip>
                 <enforce.maven.skip>true</enforce.maven.skip>
+                <enforce.snapshots.skip>true</enforce.snapshots.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
                 <enforce.deps.skip>true</enforce.deps.skip>
                 <enforce.repository.skip>true</enforce.repository.skip>
