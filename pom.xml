@@ -259,6 +259,7 @@
         <maven-cobertura-plugin.version>2.7</maven-cobertura-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
         <maven-btrace-plugin.version>2.0.0</maven-btrace-plugin.version>
+        <maven-revapi-plugin.version>0.14.3</maven-revapi-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
@@ -1843,6 +1844,11 @@
                 <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-stdlib</artifactId>
+                    <version>${kotlin.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-stdlib-common</artifactId>
                     <version>${kotlin.version}</version>
                 </dependency>
                 <dependency>
@@ -3607,6 +3613,7 @@
                                     ${surefire.stackVersion}
                                     ${surefire.timezone}
                                     ${surefire.commands}
+                                    ${test.vmargs}
                                 </argLine>
                                 <environmentVariables>
                                     <testEnvironmentVariable>EnvironmentVariable</testEnvironmentVariable>
@@ -3949,6 +3956,69 @@
 
         <!-- Source profile -->
         <profile>
+            <id>revapi</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.revapi</groupId>
+                            <artifactId>revapi-maven-plugin</artifactId>
+                            <version>${maven-revapi-plugin.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>org.revapi</groupId>
+                                    <artifactId>revapi-java</artifactId>
+                                    <version>0.24.4</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.revapi</groupId>
+                        <artifactId>revapi-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- MacOsX profile -->
+        <profile>
+            <id>macosx</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <test.vmargs>-Xmx512m -XX:MaxPermSize=256m -XstartOnFirstThread</test.vmargs>
+            </properties>
+        </profile>
+
+        <!-- Non-MacOsX profile -->
+        <profile>
+            <id>non-macosx</id>
+            <activation>
+                <os>
+                    <family>!mac</family>
+                </os>
+            </activation>
+            <properties>
+                <test.vmargs>-Xmx512m -XX:MaxPermSize=256m</test.vmargs>
+            </properties>
+        </profile>
+
+        <!-- Source profile -->
+        <profile>
             <id>generate-sources</id>
             <build>
                 <pluginManagement>
@@ -4273,6 +4343,7 @@
                         <version>${maven-sonar-packaging-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
+                            <pluginDescription>For test purposes</pluginDescription>
                             <sonarLintSupported>true</sonarLintSupported>
                             <sonarQubeMinVersion>6.0</sonarQubeMinVersion>
                         </configuration>
