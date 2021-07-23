@@ -6,13 +6,13 @@
   target_site_url: "https://github.com/AlexRogalskiy/object-mappers-playground"
   trigger_condition: "ALWAYS"
   actions:
-    - action: "Execute: mvn clean install --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
+    - action: "Execute: mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
       type: "BUILD"
       working_directory: "/buddy/object-mappers-playground"
       docker_image_name: "library/maven"
       docker_image_tag: "latest"
       execute_commands:
-        - "mvn clean install --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
+        - "mvn clean install --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -P\"test-jar\",\"dev\""
       cached_dirs:
         - "/root/.m2/repository"
       volume_mappings:

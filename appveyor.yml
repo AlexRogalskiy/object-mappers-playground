@@ -80,7 +80,7 @@ before_build:
 
 build_script:
   # Build NIX Java bindings
-  - mvn clean package --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dplatform.dependency=false -P"test-jar","dev"
+  - mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dplatform.dependency=false -P"test-jar","dev"
 
 on_failure:
   # Display error log file if generated
@@ -115,4 +115,4 @@ for:
     only_commits:
       message: /trigger Nightly build/
     build_script:
-      - appveyor-retry mvn clean package --file pom.xml --no-transfer-progress --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"
+      - appveyor-retry mvn clean package --file pom.xml --show-version --batch-mode --errors --lax-checksums -DskipTests=true -Dplatform.dependency=false -P"test-jar","dev"

@@ -63,14 +63,14 @@ jobs:
           GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
         run: |
           export GPG_TTY=$(tty)
-          ./mvnw --no-transfer-progress -B --file pom.xml \
+          ./mvnw -B --file pom.xml \
           -Drepository.url=https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git \
           -Dmaven.site.skip=true -Drelease=true -Pgradle-release deploy
 
       - name: Build site
         run: |
           export GPG_TTY=$(tty)
-          ./mvnw --no-transfer-progress -B --file pom.xml \
+          ./mvnw -B --file pom.xml \
           -Drepository.url=https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git \
           site site:stage -DstagingDirectory="${{ runner.temp }}/site"
 

@@ -45,7 +45,7 @@ jobs:
           java-version: 11
 
       - name: Build
-        run: ./mvnw --no-transfer-progress -B --file pom.xml verify
+        run: ./mvnw -B --file pom.xml verify
 
   trigger:
     name: Trigger
