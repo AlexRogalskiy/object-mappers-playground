@@ -40,6 +40,10 @@ max_jobs: 1
 # scripts that are called at very beginning, before repo cloning
 init:
   - git config --global core.autocrlf input
+  - git config --global core.symlinks true
+  - git config --global help.autocorrect 1
+  - git config --global --add merge.ff false
+  - git config --global push.default current
 
 install:
   - appveyor-retry git submodule update --init --recursive
@@ -87,8 +91,8 @@ on_failure:
   - if exist *.log type *.log
 
 test_script:
-  - if %PLATFORM% == x64 mvn test verify -B -Pdev,test,test-jar
-  - if %PLATFORM% == x64 mvn clean install checkstyle:check forbiddenapis:check -B -DskipTests=true -Pdev,test-jar,forbidden-api-check,code-style-check
+  - if %PLATFORM% == x64 mvn test verify -B -P"dev","test","test-jar"
+  - if %PLATFORM% == x64 mvn clean install checkstyle:check forbiddenapis:check -B -DskipTests=true -P"dev","test-jar","forbidden-api-check","code-style-check"
 
 cache:
   - C:\bin\apache-maven-3.6.3
