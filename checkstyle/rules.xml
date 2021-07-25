@@ -141,4 +141,15 @@
             </property>
         </properties>
     </rule>
+
+    <ignoreVersions>
+        <ignoreVersion type="regex">.*(-|.)(A|a)lpha-?[\da-z]+</ignoreVersion>
+        <ignoreVersion type="regex">.*(-|.)(B|b)(ETA|eta)-?[\da-z]+</ignoreVersion>
+        <ignoreVersion type="regex">.*-b[\d.]+</ignoreVersion>
+        <ignoreVersion type="regex">.*-pr\d+</ignoreVersion>
+        <ignoreVersion type="regex">.*[-.]rc-?\d+</ignoreVersion>
+        <ignoreVersion type="regex">.*[-.]RC-?\d+</ignoreVersion>
+        <ignoreVersion type="regex">.*-M\d+</ignoreVersion>
+        <ignoreVersion type="regex">.*-milestone\d+</ignoreVersion>
+    </ignoreVersions>
 </ruleset>

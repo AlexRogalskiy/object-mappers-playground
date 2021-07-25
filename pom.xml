@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.nullables.api.playground</groupId>
@@ -206,6 +206,7 @@
 
         <!-- maven plugins -->
         <maven-clover-plugin.version>4.1.2</maven-clover-plugin.version>
+        <maven-directory-plugin.version>0.3.1</maven-directory-plugin.version>
         <maven-taglist-plugin.version>2.4</maven-taglist-plugin.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -261,6 +262,7 @@
         <maven-btrace-plugin.version>2.0.0</maven-btrace-plugin.version>
         <maven-revapi-plugin.version>0.14.3</maven-revapi-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-toolchain-plugin.version>3.0.0</maven-toolchain-plugin.version>
         <maven-coveralls-plugin.version>4.3.0</maven-coveralls-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-processor-plugin.version>4.4</maven-processor-plugin.version>
@@ -481,6 +483,24 @@
         </extensions>
 
         <plugins>
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>${maven-directory-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>highest-basedir</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>main.basedir</property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>clover-maven-plugin</artifactId>
@@ -1494,6 +1514,12 @@
                                 </format>
                             </formats>
                             <java>
+                                <eclipse>
+                                    <file>${main.basedir}/.spotless/eclipse-formatter-settings.xml</file>
+                                </eclipse>
+                                <importOrder>
+                                    <file>${main.basedir}/.spotless/intelij-idea.importorder</file>
+                                </importOrder>
                                 <googleJavaFormat>
                                     <version>${javafmt.version}</version>
                                     <style>AOSP</style>
@@ -3971,6 +3997,13 @@
                                     <version>0.24.4</version>
                                 </dependency>
                             </dependencies>
+                            <configuration>
+                                <analysisConfiguration>
+                                    <revapi.differences id="intentional-api-changes">
+                                        <ignore>true</ignore>
+                                    </revapi.differences>
+                                </analysisConfiguration>
+                            </configuration>
                             <executions>
                                 <execution>
                                     <goals>
@@ -3986,6 +4019,38 @@
                     <plugin>
                         <groupId>org.revapi</groupId>
                         <artifactId>revapi-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- MacOsX profile -->
+        <profile>
+            <id>toolchain</id>
+            <properties>
+                <toolchain.vendor>openjdk</toolchain.vendor>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-toolchains-plugin</artifactId>
+                        <version>${maven-toolchain-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>toolchain</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <toolchains>
+                                <jdk>
+                                    <version>${java.version}</version>
+                                    <vendor>${toolchain.vendor}</vendor>
+                                </jdk>
+                            </toolchains>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -4180,9 +4245,9 @@
                                                 <entry key="git.commit.user.name" value="${git.commit.user.name}"/>
                                                 <entry key="git.commit.user.email" value="${git.commit.user.email}"/>
                                                 <entry key="git.commit.message.full"
-                                                       value="${git.commit.message.full}"/>
+                                                    value="${git.commit.message.full}"/>
                                                 <entry key="git.commit.message.short"
-                                                       value="${git.commit.message.short}"/>
+                                                    value="${git.commit.message.short}"/>
                                                 <entry key="git.commit.time" value="${git.commit.time}"/>
                                             </propertyfile>
                                         </target>
