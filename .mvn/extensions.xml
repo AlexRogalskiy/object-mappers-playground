@@ -19,6 +19,13 @@
         <version>3.0.3</version>
     </extension>
     <!--
+    <extension>
+        <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
+        <artifactId>gitflow-incremental-builder</artifactId>
+        <version>3.14.3</version>
+    </extension>
+    -->
+    <!--
         Maven Incremental Module Builder https://github.com/khmarbaise/incremental-module-builder
         Usage:
         >> mvn -b incremental install

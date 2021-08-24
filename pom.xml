@@ -287,6 +287,7 @@
         <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
+        <maven-gitflow-incremental-builder-plugin.version>3.14.3</maven-gitflow-incremental-builder-plugin.version>
     </properties>
 
     <scm>
@@ -1335,6 +1336,52 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Gitflow profile -->
+        <profile>
+            <id>gitflow</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
+                        <artifactId>gitflow-incremental-builder</artifactId>
+                        <version>${maven-gitflow-incremental-builder-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <help>false</help>                                                         <!-- or -Dh=...     -->
+                            <disable>false</disable>                                                   <!-- or -Dd=...     -->
+                            <disableIfBranchMatches/>                                                      <!-- or -Ddibm=...  -->
+                            <disableIfReferenceBranchMatches/>                                             <!-- or -Ddirbm=... -->
+                            <disableBranchComparison>false</disableBranchComparison>                   <!-- or -Ddbc=...   -->
+                            <referenceBranch>refs/remotes/origin/develop</referenceBranch>             <!-- or -Drb=...    -->
+                            <fetchReferenceBranch>false</fetchReferenceBranch>                         <!-- or -Dfrb=...   -->
+                            <baseBranch>HEAD</baseBranch>                                              <!-- or -Dbb=...    -->
+                            <fetchBaseBranch>false</fetchBaseBranch>                                   <!-- or -Dfbb=...   -->
+                            <useJschAgentProxy>true</useJschAgentProxy>                                <!-- or -Dujap=...  -->
+                            <compareToMergeBase>true</compareToMergeBase>                              <!-- or -Dctmb=...  -->
+                            <uncommitted>true</uncommitted>                                            <!-- or -Duc=...    -->
+                            <untracked>true</untracked>                                                <!-- or -Dut=...    -->
+                            <skipIfPathMatches/>                                                           <!-- or -Dsipm=...  -->
+                            <excludePathsMatching/>                                                        <!-- or -Depm=...   -->
+                            <includePathsMatching/>                                                        <!-- or -Dipm=...   -->
+                            <buildAll>false</buildAll>                                                 <!-- or -Dba=...    -->
+                            <buildAllIfNoChanges>false</buildAllIfNoChanges>                           <!-- or -Dbainc=... -->
+                            <buildDownstream>always</buildDownstream>                                  <!-- or -Dbd=...    -->
+                            <buildUpstream>derived</buildUpstream>                                     <!-- or -Dbu=...    -->
+                            <buildUpstreamMode>changed</buildUpstreamMode>                             <!-- or -Dbum=...   -->
+                            <skipTestsForUpstreamModules>false</skipTestsForUpstreamModules>           <!-- or -Dstfum=... -->
+                            <argsForUpstreamModules/>                                                      <!-- or -Dafum=...  -->
+                            <forceBuildModules/>                                                           <!-- or -Dfbm=...   -->
+                            <excludeDownstreamModulesPackagedAs/>                                          <!-- or -Dedmpa=... -->
+                            <disableSelectedProjectsHandling>false</disableSelectedProjectsHandling>   <!-- or -Ddsph=...  -->
+                            <failOnMissingGitDir>true</failOnMissingGitDir>                            <!-- or -Dfomgd=... -->
+                            <failOnError>true</failOnError>                                            <!-- or -Dfoe=...   -->
+                            <logImpactedTo/>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Site profile -->
         <profile>
             <id>site</id>
