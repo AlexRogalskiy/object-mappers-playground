@@ -100,7 +100,6 @@
     </distributionManagement>
 
     <modules>
-        <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-beancp</module>
         <module>modules/objectmappers-beanmapper</module>
         <module>modules/objectmappers-beanutils</module>
@@ -119,6 +118,7 @@
         <module>modules/objectmappers-smooks</module>
         <module>modules/objectmappers-scalaflow</module>
         <module>modules/objectmappers-testflow</module>
+        <module>modules/objectmappers-all</module>
         <module>modules/objectmappers-it</module>
     </modules>
 

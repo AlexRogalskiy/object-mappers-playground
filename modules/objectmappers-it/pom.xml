@@ -23,18 +23,28 @@
         <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.nullables.api.playground</groupId>
+                <artifactId>objectmappers-all</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${objectmappers.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- ObjectMappers library dependencies -->
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-commons</artifactId>
-            <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-testflow</artifactId>
-            <version>${objectmappers.version}</version>
             <scope>compile</scope>
         </dependency>
 
