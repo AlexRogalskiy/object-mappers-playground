@@ -287,6 +287,7 @@
         <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
+        <maven-violations-plugin.version>1.48</maven-violations-plugin.version>
         <maven-gitflow-incremental-builder-plugin.version>3.14.3</maven-gitflow-incremental-builder-plugin.version>
     </properties>
 
@@ -2975,6 +2976,69 @@
                 <spotbugs.version>${maven-spotbugs-plugin.version}</spotbugs.version>
             </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>se.bjurr.violations</groupId>
+                            <artifactId>violations-maven-plugin</artifactId>
+                            <version>${maven-violations-plugin.version}</version>
+                            <configuration>
+                                <maxViolations>0</maxViolations>
+                                <detailLevel>VERBOSE</detailLevel>
+                                <minSeverity>ERROR</minSeverity>
+                                <violations>
+                                    <violation>
+                                        <parser>FINDBUGS</parser>
+                                        <reporter>Spotbugs</reporter>
+                                        <folder>${project.basedir}</folder>
+                                        <pattern>.*/spotbugsXml\.xml$</pattern>
+                                    </violation>
+                                    <violation>
+                                        <parser>PMD</parser>
+                                        <reporter>PMD</reporter>
+                                        <folder>${project.basedir}</folder>
+                                        <pattern>.*/pmd\.xml$</pattern>
+                                    </violation>
+                                    <violation>
+                                        <parser>CHECKSTYLE</parser>
+                                        <reporter>Checkstyle</reporter>
+                                        <folder>${project.basedir}</folder>
+                                        <pattern>.*/checkstyle-result\.xml$</pattern>
+                                    </violation>
+                                </violations>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>violations</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs-maven-plugin</artifactId>
+                            <version>${maven-spotbugs-plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>${maven-pmd-plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>${maven-checkstyle-plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>pl.project13.maven</groupId>
+                            <artifactId>git-commit-id-plugin</artifactId>
+                            <version>${maven-git-commit-id-plugin.version}</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
