@@ -20,7 +20,7 @@
     <properties>
         <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
 
-        <modelmapper.version>2.3.9</modelmapper.version>
+        <modelmapper.version>2.4.5</modelmapper.version>
 
         <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
