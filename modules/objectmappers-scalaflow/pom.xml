@@ -21,8 +21,9 @@
         <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
 
         <scala.version>2.13.4</scala.version>
-        <scala.binary.version>2.12</scala.binary.version>
+        <scala.binary.version>2.13</scala.binary.version>
         <parboiled-java.version>1.3.1</parboiled-java.version>
+        <scalatest.version>3.3.0-SNAP3</scalatest.version>
 
         <objectmappers.version>1.0.0</objectmappers.version>
 
@@ -378,6 +379,34 @@
             <version>${parboiled-java.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.scalactic</groupId>
+            <artifactId>scalactic_${scala.binary.version}</artifactId>
+            <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.binary.version}</artifactId>
+            <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.scalatestplus</groupId>-->
+        <!--            <artifactId>junit-4-12_2.13</artifactId>-->
+        <!--            <version>3.1.2.0</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.scalatestplus</groupId>-->
+        <!--            <artifactId>scalatestplus-mockito_2.13</artifactId>-->
+        <!--            <version>1.0.0-M2</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
         <!-- ObjectMappers test library dependencies -->
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
@@ -423,6 +452,7 @@
                         <configuration>
                             <sources>
                                 <source>src/main/scala</source>
+                                <source>${project.build.directory}/generated-sources</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -435,6 +465,7 @@
                         <configuration>
                             <sources>
                                 <source>src/test/scala</source>
+                                <source>${project.build.directory}/generated-sources</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -485,11 +516,24 @@
                     <recompileMode>incremental</recompileMode>
                     <verbose>true</verbose>
                     <args>
+                        <!--
+                           In combination with Scala 2.11, `-Xexperimental` enables SAM
+                           for Java 8 lambda support.  Make sure `kafka.scala.version`
+                           is set to `2.11`, not `2.10`.
+                        -->
+                        <arg>-Xexperimental</arg>
+                        <!-- Enable additional warnings where generated code depends on assumptions. -->
                         <arg>-unchecked</arg>
+                        <!-- Emit warning and location for usages of deprecated APIs. -->
                         <arg>-deprecation</arg>
+                        <!-- Emit warning and location for usages of features that should be imported explicitly. -->
                         <arg>-feature</arg>
                         <arg>-explaintypes</arg>
                         <arg>-target:jvm-1.8</arg>
+                        <!-- Enable recommended additional warnings. -->
+                        <arg>-Xlint</arg>
+                        <!-- Warn if an argument list is modified to match the receiver. -->
+                        <arg>-Ywarn-dead-code</arg>
                     </args>
                     <jvmArgs>
                         <jvmArg>-Xms1024m</jvmArg>
