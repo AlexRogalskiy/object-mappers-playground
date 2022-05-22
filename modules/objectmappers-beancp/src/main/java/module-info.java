@@ -18,4 +18,3 @@ open module io.nullables.api.playground.objectmappers.beancp {
     requires org.apache.commons.lang3;
     requires java.logging;
 }
-
