@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.nullables.api.playground</groupId>
         <artifactId>objectmappers-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -18,11 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
-
         <bull.version>1.7.4</bull.version>
-
-        <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
     <dependencies>
@@ -30,13 +26,13 @@
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-commons</artifactId>
-            <version>${objectmappers.version}</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-testflow</artifactId>
-            <version>${objectmappers.version}</version>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -66,7 +62,7 @@
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-commons</artifactId>
-            <version>${objectmappers.version}</version>
+            <version>${project.version}</version>
             <classifier>tests</classifier>
             <optional>true</optional>
             <type>test-jar</type>

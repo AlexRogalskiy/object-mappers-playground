@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.nullables.api.playground</groupId>
         <artifactId>objectmappers-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -16,10 +16,6 @@
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-commons</url>
     <inceptionYear>2020</inceptionYear>
-
-    <properties>
-        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
-    </properties>
 
     <build>
         <defaultGoal>clean package</defaultGoal>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.nullables.api.playground</groupId>
     <artifactId>objectmappers-parent</artifactId>
-    <version>${revision}</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>io.nullables.api.playground.objectmappers</name>
@@ -124,7 +124,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <revision>1.0.0</revision>
 
         <maven.url>localhost</maven.url>
         <maven.version>3.6.0</maven.version>
@@ -250,6 +249,7 @@
         <maven-qulice-plugin.version>0.18.19</maven-qulice-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
+        <maven-xml-plugin.version>1.0.2</maven-xml-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-pitest-plugin.version>1.5.2</maven-pitest-plugin.version>
@@ -1348,34 +1348,54 @@
                         <version>${maven-gitflow-incremental-builder-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <help>false</help>                                                         <!-- or -Dh=...     -->
-                            <disable>false</disable>                                                   <!-- or -Dd=...     -->
+                            <help>false
+                            </help>                                                         <!-- or -Dh=...     -->
+                            <disable>false
+                            </disable>                                                   <!-- or -Dd=...     -->
                             <disableIfBranchMatches/>                                                      <!-- or -Ddibm=...  -->
                             <disableIfReferenceBranchMatches/>                                             <!-- or -Ddirbm=... -->
-                            <disableBranchComparison>false</disableBranchComparison>                   <!-- or -Ddbc=...   -->
-                            <referenceBranch>refs/remotes/origin/develop</referenceBranch>             <!-- or -Drb=...    -->
-                            <fetchReferenceBranch>false</fetchReferenceBranch>                         <!-- or -Dfrb=...   -->
-                            <baseBranch>HEAD</baseBranch>                                              <!-- or -Dbb=...    -->
-                            <fetchBaseBranch>false</fetchBaseBranch>                                   <!-- or -Dfbb=...   -->
-                            <useJschAgentProxy>true</useJschAgentProxy>                                <!-- or -Dujap=...  -->
-                            <compareToMergeBase>true</compareToMergeBase>                              <!-- or -Dctmb=...  -->
-                            <uncommitted>true</uncommitted>                                            <!-- or -Duc=...    -->
-                            <untracked>true</untracked>                                                <!-- or -Dut=...    -->
+                            <disableBranchComparison>false
+                            </disableBranchComparison>                   <!-- or -Ddbc=...   -->
+                            <referenceBranch>refs/remotes/origin/develop
+                            </referenceBranch>             <!-- or -Drb=...    -->
+                            <fetchReferenceBranch>false
+                            </fetchReferenceBranch>                         <!-- or -Dfrb=...   -->
+                            <baseBranch>HEAD
+                            </baseBranch>                                              <!-- or -Dbb=...    -->
+                            <fetchBaseBranch>false
+                            </fetchBaseBranch>                                   <!-- or -Dfbb=...   -->
+                            <useJschAgentProxy>true
+                            </useJschAgentProxy>                                <!-- or -Dujap=...  -->
+                            <compareToMergeBase>true
+                            </compareToMergeBase>                              <!-- or -Dctmb=...  -->
+                            <uncommitted>true
+                            </uncommitted>                                            <!-- or -Duc=...    -->
+                            <untracked>true
+                            </untracked>                                                <!-- or -Dut=...    -->
                             <skipIfPathMatches/>                                                           <!-- or -Dsipm=...  -->
                             <excludePathsMatching/>                                                        <!-- or -Depm=...   -->
                             <includePathsMatching/>                                                        <!-- or -Dipm=...   -->
-                            <buildAll>false</buildAll>                                                 <!-- or -Dba=...    -->
-                            <buildAllIfNoChanges>false</buildAllIfNoChanges>                           <!-- or -Dbainc=... -->
-                            <buildDownstream>always</buildDownstream>                                  <!-- or -Dbd=...    -->
-                            <buildUpstream>derived</buildUpstream>                                     <!-- or -Dbu=...    -->
-                            <buildUpstreamMode>changed</buildUpstreamMode>                             <!-- or -Dbum=...   -->
-                            <skipTestsForUpstreamModules>false</skipTestsForUpstreamModules>           <!-- or -Dstfum=... -->
+                            <buildAll>false
+                            </buildAll>                                                 <!-- or -Dba=...    -->
+                            <buildAllIfNoChanges>false
+                            </buildAllIfNoChanges>                           <!-- or -Dbainc=... -->
+                            <buildDownstream>always
+                            </buildDownstream>                                  <!-- or -Dbd=...    -->
+                            <buildUpstream>derived
+                            </buildUpstream>                                     <!-- or -Dbu=...    -->
+                            <buildUpstreamMode>changed
+                            </buildUpstreamMode>                             <!-- or -Dbum=...   -->
+                            <skipTestsForUpstreamModules>false
+                            </skipTestsForUpstreamModules>           <!-- or -Dstfum=... -->
                             <argsForUpstreamModules/>                                                      <!-- or -Dafum=...  -->
                             <forceBuildModules/>                                                           <!-- or -Dfbm=...   -->
                             <excludeDownstreamModulesPackagedAs/>                                          <!-- or -Dedmpa=... -->
-                            <disableSelectedProjectsHandling>false</disableSelectedProjectsHandling>   <!-- or -Ddsph=...  -->
-                            <failOnMissingGitDir>true</failOnMissingGitDir>                            <!-- or -Dfomgd=... -->
-                            <failOnError>true</failOnError>                                            <!-- or -Dfoe=...   -->
+                            <disableSelectedProjectsHandling>false
+                            </disableSelectedProjectsHandling>   <!-- or -Ddsph=...  -->
+                            <failOnMissingGitDir>true
+                            </failOnMissingGitDir>                            <!-- or -Dfomgd=... -->
+                            <failOnError>true
+                            </failOnError>                                            <!-- or -Dfoe=...   -->
                             <logImpactedTo/>
                         </configuration>
                     </plugin>
@@ -4357,9 +4377,9 @@
                                                 <entry key="git.commit.user.name" value="${git.commit.user.name}"/>
                                                 <entry key="git.commit.user.email" value="${git.commit.user.email}"/>
                                                 <entry key="git.commit.message.full"
-                                                    value="${git.commit.message.full}"/>
+                                                       value="${git.commit.message.full}"/>
                                                 <entry key="git.commit.message.short"
-                                                    value="${git.commit.message.short}"/>
+                                                       value="${git.commit.message.short}"/>
                                                 <entry key="git.commit.time" value="${git.commit.time}"/>
                                             </propertyfile>
                                         </target>

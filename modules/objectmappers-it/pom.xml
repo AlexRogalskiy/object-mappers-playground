@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.nullables.api.playground</groupId>
         <artifactId>objectmappers-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -17,20 +17,14 @@
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it</url>
     <inceptionYear>2020</inceptionYear>
 
-    <properties>
-        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
-
-        <objectmappers.version>1.0.0</objectmappers.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-all</artifactId>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-                <version>${objectmappers.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -81,7 +75,7 @@
         <dependency>
             <groupId>io.nullables.api.playground</groupId>
             <artifactId>objectmappers-commons</artifactId>
-            <version>${objectmappers.version}</version>
+            <version>${project.version}</version>
             <classifier>tests</classifier>
             <optional>true</optional>
             <type>test-jar</type>

@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.nullables.api.playground</groupId>
         <artifactId>objectmappers-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -18,10 +18,7 @@
     <inceptionYear>2020</inceptionYear>
 
     <properties>
-        <license.licenseResolver>${project.baseUri}/../../license</license.licenseResolver>
         <moditect.skip>true</moditect.skip>
-
-        <objectmappers.version>1.0.0</objectmappers.version>
     </properties>
 
     <profiles>
@@ -31,7 +28,7 @@
                 <dependency>
                     <groupId>io.nullables.api.playground</groupId>
                     <artifactId>objectmappers-nomin</artifactId>
-                    <version>${objectmappers.version}</version>
+                    <version>${project.version}</version>
                     <scope>compile</scope>
                 </dependency>
             </dependencies>
@@ -44,103 +41,103 @@
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-commons</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-beancp</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-beanmapper</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-beanutils</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-bull</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-datus</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-doov</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-dozer</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-jmapper</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-mapstruct</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-modelmapper</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-moo</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-orika</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-selma</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-smooks</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-remap</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.nullables.api.playground</groupId>
                 <artifactId>objectmappers-testflow</artifactId>
-                <version>${objectmappers.version}</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
@@ -162,5 +159,83 @@
                 <directory>${project.basedir}/src/test/resources</directory>
             </testResource>
         </testResources>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${maven-flatten-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>xml-maven-plugin</artifactId>
+                    <version>${maven-xml-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>bom</flattenMode>
+                            <pomElements>
+                                <pluginManagement>remove</pluginManagement>
+                                <properties>remove</properties>
+                                <repositories>remove</repositories>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flatten-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <transformationSets>
+                        <transformationSet>
+                            <dir>${project.basedir}</dir>
+                            <outputDir>${project.basedir}</outputDir>
+                            <includes>.flattened-pom.xml</includes>
+                            <stylesheet>${project.basedir}/src/main/xslt/post-process-flattened-pom.xsl</stylesheet>
+                            <outputProperties>
+                                <outputProperty>
+                                    <name>indent</name>
+                                    <value>yes</value>
+                                </outputProperty>
+                            </outputProperties>
+                        </transformationSet>
+                    </transformationSets>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>post-process-flattened-pom</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>
