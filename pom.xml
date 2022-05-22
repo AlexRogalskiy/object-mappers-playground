@@ -248,7 +248,7 @@
         <maven-spotbugs-plugin.version>4.2.3</maven-spotbugs-plugin.version>
         <maven-qulice-plugin.version>0.18.19</maven-qulice-plugin.version>
         <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
-        <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
+        <maven-flatten-plugin.version>1.2.7</maven-flatten-plugin.version>
         <maven-xml-plugin.version>1.0.2</maven-xml-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
