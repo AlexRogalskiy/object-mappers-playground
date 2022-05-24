@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.it</name>
-    <description>ObjectMappers Integration Tests</description>
+    <description>ObjectMappers Playground :: Integration Tests</description>
     <artifactId>objectmappers-it</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-it</url>

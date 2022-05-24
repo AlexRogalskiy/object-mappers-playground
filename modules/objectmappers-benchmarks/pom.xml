@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.benchmarks</name>
-    <description>ObjectMappers Benchmarks Tests</description>
+    <description>ObjectMappers Playground :: Benchmarks</description>
     <artifactId>objectmappers-benchmarks</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-benchmarks</url>

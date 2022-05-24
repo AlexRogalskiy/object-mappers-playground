@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.orika</name>
-    <description>ObjectMappers Playground for Orika API</description>
+    <description>ObjectMappers Playground :: Orika API</description>
     <artifactId>objectmappers-orika</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-orika</url>

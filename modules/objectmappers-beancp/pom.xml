@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.beancp</name>
-    <description>ObjectMappers Playground for BeanCP API</description>
+    <description>ObjectMappers Playground :: BeanCP API</description>
     <artifactId>objectmappers-beancp</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-beancp</url>

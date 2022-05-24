@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.jmapper</name>
-    <description>ObjectMappers Playground for JMapper API</description>
+    <description>ObjectMappers Playground :: JMapper API</description>
     <artifactId>objectmappers-jmapper</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-jmapper</url>

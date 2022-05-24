@@ -106,6 +106,7 @@
         <module>modules/objectmappers-bull</module>
         <module>modules/objectmappers-commons</module>
         <module>modules/objectmappers-datus</module>
+        <module>modules/objectmappers-docs</module>
         <module>modules/objectmappers-doov</module>
         <module>modules/objectmappers-dozer</module>
         <module>modules/objectmappers-jmapper</module>
@@ -284,6 +285,7 @@
         <maven-duplicate-finder-plugin.version>1.0.9</maven-duplicate-finder-plugin.version>
         <maven-modernizer-plugin.version>2.1.0</maven-modernizer-plugin.version>
         <maven-qameta-allure-plugin.version>2.10.0</maven-qameta-allure-plugin.version>
+        <maven-asciidoctor-plugin.version>2.2.2</maven-asciidoctor-plugin.version>
         <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
@@ -1337,6 +1339,47 @@
     </pluginRepositories>
 
     <profiles>
+        <!-- Sonatype profile -->
+        <profile>
+            <id>sonatype-nexus-repo</id>
+            <activation>
+                <property>
+                    <name>deployTo</name>
+                    <value>sonatype</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>sonatype-nexus-staging</id>
+                    <name>Nexus Release Repository</name>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>sonatype-nexus-snapshots</id>
+                    <name>Sonatype Nexus Snapshots</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Gitflow profile -->
         <profile>
             <id>gitflow</id>
@@ -1466,7 +1509,7 @@
                             <dependency>
                                 <groupId>org.asciidoctor</groupId>
                                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                                <version>2.1.0</version>
+                                <version>${maven-asciidoctor-plugin.version}</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -1477,7 +1520,6 @@
                         <version>${maven-jxr-plugin.version}</version>
                         <configuration>
                             <linkJavadoc>true</linkJavadoc>
-                            <aggregate>true</aggregate>
                         </configuration>
                     </plugin>
 

@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.selma</name>
-    <description>ObjectMappers Playground for Selma API</description>
+    <description>ObjectMappers Playground :: Selma API</description>
     <artifactId>objectmappers-selma</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-selma</url>

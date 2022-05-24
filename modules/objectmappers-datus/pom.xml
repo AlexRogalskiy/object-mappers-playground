@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.datus</name>
-    <description>ObjectMappers Playground for Datus API</description>
+    <description>ObjectMappers Playground :: Datus API</description>
     <artifactId>objectmappers-datus</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-datus</url>

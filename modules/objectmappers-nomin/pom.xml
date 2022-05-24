@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.nomin</name>
-    <description>ObjectMappers Playground for Nomin API</description>
+    <description>ObjectMappers Playground :: Nomin API</description>
     <artifactId>objectmappers-nomin</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-nomin</url>

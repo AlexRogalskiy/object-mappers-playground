@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.doov</name>
-    <description>ObjectMappers Playground for Doov API</description>
+    <description>ObjectMappers Playground :: Doov API</description>
     <artifactId>objectmappers-doov</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-doov</url>

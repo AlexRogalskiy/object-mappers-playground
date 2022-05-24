@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.scalaflow</name>
-    <description>ObjectMappers ScalaFlow API</description>
+    <description>ObjectMappers Playground :: ScalaFlow API</description>
     <artifactId>objectmappers-scalaflow</artifactId>
     <packaging>pom</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-scalaflow</url>

@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.all</name>
-    <description>Object Mappers All Bundle</description>
+    <description>Object Mappers :: All</description>
     <artifactId>objectmappers-all</artifactId>
     <packaging>pom</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-all</url>

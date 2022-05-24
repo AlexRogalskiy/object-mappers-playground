@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.smooks</name>
-    <description>ObjectMappers Playground for Smooks API</description>
+    <description>ObjectMappers Playground :: Smooks API</description>
     <artifactId>objectmappers-smooks</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-smooks</url>

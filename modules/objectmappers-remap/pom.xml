@@ -11,7 +11,7 @@
     </parent>
 
     <name>io.nullables.api.playground.objectmappers.remap</name>
-    <description>ObjectMappers Playground for ReMap API</description>
+    <description>ObjectMappers Playground :: ReMap API</description>
     <artifactId>objectmappers-remap</artifactId>
     <packaging>jar</packaging>
     <url>https://github.com/AlexRogalskiy/object-mappers-playground/tree/master/modules/objectmappers-remap</url>
