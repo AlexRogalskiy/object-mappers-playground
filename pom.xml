@@ -137,7 +137,9 @@
         <sourceJavaDirectory>${project.build.sourceDirectory}</sourceJavaDirectory>
         <sourceJavaTestDirectory>${project.build.testSourceDirectory}</sourceJavaTestDirectory>
         <sourceKotlinDirectory>${project.basedir}/src/main/kotlin</sourceKotlinDirectory>
+        <sourceKotlinTestDirectory>${project.basedir}/src/test/kotlin</sourceKotlinTestDirectory>
         <sourceResourceDirectory>${project.basedir}/src/main/resources</sourceResourceDirectory>
+        <sourceResourceTestDirectory>${project.basedir}/src/test/resources</sourceResourceTestDirectory>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -175,7 +177,6 @@
         <guava.version>30.0-jre</guava.version>
         <pedantic-enforcers.version>2.0.0</pedantic-enforcers.version>
         <pomchecker-enforcer-rules.version>1.1.0</pomchecker-enforcer-rules.version>
-        <kotlinx-serialization-json.version>1.0.1</kotlinx-serialization-json.version>
 
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit-platform.version>1.7.0</junit-platform.version>
@@ -1797,13 +1798,17 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <arrow.version>0.11.0</arrow.version>
+                <arrow.version>1.0.1</arrow.version>
                 <kotlin-jackson.version>2.12.1</kotlin-jackson.version>
-                <kotlin.version>1.4.10</kotlin.version>
+                <kotlin.version>1.6.21</kotlin.version>
+                <kotest.version>5.3.0</kotest.version>
                 <maven-ktlint-plugin.version>1.9.0</maven-ktlint-plugin.version>
-                <kotlinx-coroutines.version>1.3.9</kotlinx-coroutines.version>
+                <kotlinx-coroutines.version>1.6.1</kotlinx-coroutines.version>
                 <dagger.version>2.31.2</dagger.version>
-                <mockito-kotlin.version>3.2.0</mockito-kotlin.version>
+                <mockito-kotlin.version>4.0.0</mockito-kotlin.version>
+                <mockk.version>1.10.0</mockk.version>
+                <kotest-extensions.version>1.2.5</kotest-extensions.version>
+                <kotlinx-serialization-json.version>1.3.3</kotlinx-serialization-json.version>
             </properties>
 
             <dependencyManagement>
@@ -1819,6 +1824,27 @@
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-bom</artifactId>
                         <version>${kotlin.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.kotest</groupId>
+                        <artifactId>kotest-bom</artifactId>
+                        <version>${kotest.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlinx</groupId>
+                        <artifactId>kotlinx-serialization-json</artifactId>
+                        <version>${kotlinx-serialization-json.version}</version>
+                        <type>pom</type>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlinx</groupId>
+                        <artifactId>kotlinx-coroutines-core</artifactId>
+                        <version>${kotlinx-coroutines.version}</version>
                         <type>pom</type>
                         <scope>import</scope>
                     </dependency>
@@ -1843,13 +1869,20 @@
                         <version>${kotlin.version}</version>
                         <configuration>
                             <compilerPlugins>
-                                <plugin>spring</plugin>
+                                <!--                                <plugin>spring</plugin>-->
+                                <!--                                <plugin>jpa</plugin>-->
                                 <plugin>kotlinx-serialization</plugin>
+                                <plugin>all-open</plugin>
                             </compilerPlugins>
                             <jvmTarget>${java.version}</jvmTarget>
                             <args>
                                 <arg>-Xjsr305=strict</arg>
                             </args>
+                            <!--                            <pluginOptions>-->
+                            <!--                                <option>all-open:annotation=javax.persistence.Entity</option>-->
+                            <!--                                <option>all-open:annotation=javax.persistence.Embeddable</option>-->
+                            <!--                                <option>all-open:annotation=javax.persistence.MappedSuperclass</option>-->
+                            <!--                            </pluginOptions>-->
                             <sourceDirs>
                                 <sourceDir>${sourceKotlinDirectory}</sourceDir>
                                 <sourceDir>${sourceJavaDirectory}</sourceDir>
@@ -1863,6 +1896,10 @@
                                     <goal>kapt</goal>
                                 </goals>
                                 <configuration>
+                                    <sourceDirs>
+                                        <sourceDir>${sourceKotlinDirectory}</sourceDir>
+                                        <sourceDir>${sourceJavaDirectory}</sourceDir>
+                                    </sourceDirs>
                                     <annotationProcessorPaths>
                                         <annotationProcessorPath>
                                             <groupId>com.google.dagger</groupId>
@@ -1888,7 +1925,6 @@
                                         <sourceDir>${sourceKotlinDirectory}</sourceDir>
                                         <sourceDir>${sourceJavaDirectory}</sourceDir>
                                         <sourceDir>${sourceResourceDirectory}</sourceDir>
-                                        <sourceDir>target/generated-sources/kapt/main</sourceDir>
                                     </sourceDirs>
                                 </configuration>
                             </execution>
@@ -1899,8 +1935,8 @@
                                 </goals>
                                 <configuration>
                                     <sourceDirs>
-                                        <sourceDir>${sourceKotlinDirectory}</sourceDir>
-                                        <sourceDir>${sourceJavaDirectory}</sourceDir>
+                                        <sourceDir>${sourceKotlinTestDirectory}</sourceDir>
+                                        <sourceDir>${sourceJavaTestDirectory}</sourceDir>
                                     </sourceDirs>
                                     <annotationProcessorPaths>
                                         <annotationProcessorPath>
@@ -1919,10 +1955,9 @@
                                 </goals>
                                 <configuration>
                                     <sourceDirs>
-                                        <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
-                                        <sourceDir>${project.basedir}/src/test/java</sourceDir>
-                                        <sourceDir>${project.basedir}/src/test/resources</sourceDir>
-                                        <sourceDir>target/generated-sources/kapt/test</sourceDir>
+                                        <sourceDir>${sourceKotlinTestDirectory}</sourceDir>
+                                        <sourceDir>${sourceJavaTestDirectory}</sourceDir>
+                                        <sourceDir>${sourceResourceTestDirectory}</sourceDir>
                                     </sourceDirs>
                                 </configuration>
                             </execution>
@@ -1964,14 +1999,14 @@
 
             <dependencies>
                 <dependency>
+                    <groupId>io.arrow-kt</groupId>
+                    <artifactId>arrow-core</artifactId>
+                    <version>${arrow.version}</version>
+                </dependency>
+                <dependency>
                     <groupId>com.fasterxml.jackson.module</groupId>
                     <artifactId>jackson-module-kotlin</artifactId>
                     <version>${kotlin-jackson.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-allopen</artifactId>
-                    <version>${kotlin.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
@@ -1985,38 +2020,22 @@
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-stdlib-common</artifactId>
+                    <artifactId>kotlin-stdlib-jdk8</artifactId>
                     <version>${kotlin.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-noarg</artifactId>
+                    <artifactId>kotlin-stdlib-common</artifactId>
                     <version>${kotlin.version}</version>
                 </dependency>
+
+                <!-- Kotlin test library dependencies -->
                 <dependency>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-test</artifactId>
                     <version>${kotlin.version}</version>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.kotlinx</groupId>
-                    <artifactId>kotlinx-coroutines-core</artifactId>
-                    <version>${kotlinx-coroutines.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.kotlinx</groupId>
-                    <artifactId>kotlinx-coroutines-reactor</artifactId>
-                    <version>${kotlinx-coroutines.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.kotlinx</groupId>
-                    <artifactId>kotlinx-serialization-json</artifactId>
-                    <version>${kotlinx-serialization-json.version}</version>
-                    <type>pom</type>
-                </dependency>
-
-                <!-- Kotlin test library dependencies -->
                 <dependency>
                     <groupId>org.mockito.kotlin</groupId>
                     <artifactId>mockito-kotlin</artifactId>
@@ -2027,6 +2046,42 @@
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-test-junit5</artifactId>
                     <version>${kotlin.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.mockk</groupId>
+                    <artifactId>mockk</artifactId>
+                    <version>${mockk.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.kotest</groupId>
+                    <artifactId>kotest-runner-junit5-jvm</artifactId>
+                    <version>${kotest.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.kotest</groupId>
+                    <artifactId>kotest-framework-datatest-jvm</artifactId>
+                    <version>${kotest.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.kotest</groupId>
+                    <artifactId>kotest-assertions-core-jvm</artifactId>
+                    <version>${kotest.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.kotest</groupId>
+                    <artifactId>kotest-property-jvm</artifactId>
+                    <version>${kotest.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.kotest.extensions</groupId>
+                    <artifactId>kotest-assertions-arrow-jvm</artifactId>
+                    <version>${kotest-extensions.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
