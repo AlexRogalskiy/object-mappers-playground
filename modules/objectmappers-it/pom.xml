@@ -92,6 +92,7 @@
                     --add-exports java.base/jdk.internal.ref=ALL-UNNAMED
                     --illegal-access=permit
                     --enable-preview
+                    -Xverify:all
                 </failsafe.commands>
 
                 <failsafe.memory>-Xmx512m</failsafe.memory>

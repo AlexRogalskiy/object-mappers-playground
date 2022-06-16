@@ -255,6 +255,7 @@
         <maven-flatten-plugin.version>1.2.5</maven-flatten-plugin.version>
         <maven-xml-plugin.version>1.0.2</maven-xml-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-native-plugin.version>0.9.11</maven-native-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-pitest-plugin.version>1.5.2</maven-pitest-plugin.version>
         <maven-pitest-junit5-plugin.version>0.12</maven-pitest-junit5-plugin.version>
@@ -1177,6 +1178,7 @@
                             <packageName>${project.groupId}</packageName>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <classpathLayoutType>custom</classpathLayoutType>
@@ -1185,6 +1187,7 @@
                         <manifestEntries>
                             <Automatic-Module-Name>${automatic-module-name}</Automatic-Module-Name>
                             <Contains-Sources>java,class</Contains-Sources>
+                            <Multi-Release>true</Multi-Release>
                             <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                             <Implementation-Title>${project.description}</Implementation-Title>
                             <Implementation-Version>${project.version}</Implementation-Version>
@@ -1415,6 +1418,13 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--batch</arg>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -2489,6 +2499,7 @@
                             <excludes>
                                 <exclude>.gitignore</exclude>
                                 <exclude>.editorconfig</exclude>
+                                <exclude>.mvn</exclude>
                                 <exclude>LICENSE</exclude>
                                 <exclude>**/*.log</exclude>
                                 <exclude>**/*.xml</exclude>
@@ -3093,7 +3104,7 @@
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <sortProperties>true</sortProperties>
                             <keepBlankLines>true</keepBlankLines>
-                            <sortDependencies>groupId,artifactId</sortDependencies>
+                            <sortDependencies>groupId,artifactId,scope</sortDependencies>
                             <sortPlugins>groupId,artifactId</sortPlugins>
                             <expandEmptyElements>false</expandEmptyElements>
                         </configuration>
@@ -3357,12 +3368,7 @@
                             <includeTestResources>false</includeTestResources>
                             <propertyExpansion>lineLength=${jacoco-rule.line.length}</propertyExpansion>
                             <sourceDirectories>
-                                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-                                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
-                            </sourceDirectories>
-                            <sourceDirectories>
-                                <directory>${sourceJavaDirectory}</directory>
-                                <directory>${sourceKotlinDirectory}</directory>
+                                <sourceDirectory>${sourceJavaDirectory}</sourceDirectory>
                             </sourceDirectories>
                             <testSourceDirectories>
                                 <directory>
@@ -3449,6 +3455,7 @@
                         <version>${maven-assembly-plugin.version}</version>
                         <inherited>true</inherited>
                         <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
                             <skipAssembly>${assembly.skip}</skipAssembly>
                             <appendAssemblyId>true</appendAssemblyId>
                             <tarLongFileMode>posix</tarLongFileMode>
@@ -3469,6 +3476,43 @@
                                 <id>single</id>
                                 <goals>
                                     <goal>single</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <attach>false</attach>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Naive profile -->
+        <profile>
+            <id>native</id>
+            <activation>
+                <property>
+                    <name>native</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${maven-native-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <!--                            <mainClass>${name-of-main-class}</mainClass>-->
+                            <imageName>native-image</imageName>
+                            <buildArgs>--no-fallback</buildArgs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-native-image</id>
+                                <goals>
+                                    <goal>build</goal>
                                 </goals>
                                 <phase>package</phase>
                             </execution>
@@ -3888,6 +3932,7 @@
                     -Duser.language=en
                     -Duser.country=GB
                     --enable-preview
+                    -Xverify:all
                 </surefire.commands>
                 <surefire.fileEncoding>
                     -Dfile.encoding=${project.build.sourceEncoding}
@@ -4703,6 +4748,10 @@
             <id>sonar</id>
             <properties>
                 <sonar.host.url>http://localhost:9000</sonar.host.url>
+                <sonar.coverage.exclusions>**/MigrationsDevConsole*.*</sonar.coverage.exclusions>
+                <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+                <sonar.organization>${project.groupId}</sonar.organization>
+                <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
             </properties>
             <build>
                 <plugins>
@@ -4725,6 +4774,15 @@
                         <configuration>
                             <detail>true</detail>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>sonar</id>
+                                <goals>
+                                    <goal>sonar</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

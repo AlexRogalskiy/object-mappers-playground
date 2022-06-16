@@ -390,8 +390,14 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>appassembler-maven-plugin</artifactId>
                 <version>${maven-appassembler-plugin.version}</version>
+                <configuration>
+                    <assembleDirectory>${project.build.directory}/assembly</assembleDirectory>
+                    <repositoryLayout>flat</repositoryLayout>
+                    <repositoryName>lib</repositoryName>
+                </configuration>
                 <executions>
                     <execution>
+                        <id>make-distribution</id>
                         <phase>package</phase>
                         <goals>
                             <goal>assemble</goal>

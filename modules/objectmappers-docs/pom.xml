@@ -19,6 +19,7 @@
 
     <properties>
         <moditect.skip>true</moditect.skip>
+        <asciidoctorj-diagram.version>2.2.3</asciidoctorj-diagram.version>
     </properties>
 
     <profiles>
@@ -71,10 +72,25 @@
                                 <objectmappers-playground-version>${project.version}</objectmappers-playground-version>
                                 <objectmappers-playground-docs-version>${project.version}
                                 </objectmappers-playground-docs-version>
+                                <icons>font</icons>
+                                <toc>left</toc>
+                                <setanchors/>
+                                <idprefix/>
+                                <idseparator/>
+                                <imagesdir>img</imagesdir>
+                                <latest_version>${project.version}</latest_version>
                                 <snippets>${snippets.location}</snippets>
+                                <source-highlighter>coderay</source-highlighter>
                                 <sources-root>${project.basedir}/src</sources-root>
                             </attributes>
                         </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctorj-diagram</artifactId>
+                                <version>${asciidoctorj-diagram.version}</version>
+                            </dependency>
+                        </dependencies>
                         <executions>
                             <execution>
                                 <id>generate-html-documentation</id>
@@ -85,6 +101,8 @@
                                 <configuration>
                                     <backend>html5</backend>
                                     <doctype>book</doctype>
+                                    <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
+                                    <sourceDocumentName>index.adoc</sourceDocumentName>
                                     <attributes>
                                         <highlightjsdir>js/highlight</highlightjsdir>
                                         <highlightjs-theme>github</highlightjs-theme>
@@ -95,6 +113,9 @@
                                         <stylesdir>css/</stylesdir>
                                         <stylesheet>spring.css</stylesheet>
                                     </attributes>
+                                    <requires>
+                                        <require>asciidoctor-diagram</require>
+                                    </requires>
                                 </configuration>
                             </execution>
                         </executions>
