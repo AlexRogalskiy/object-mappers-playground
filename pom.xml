@@ -3551,6 +3551,7 @@
                                 <charset>${project.build.outputEncoding}</charset>
                                 <windowtitle>${project.name} v${project.version} API Documentation</windowtitle>
                                 <doctitle>${project.name} v${project.version} API Documentation</doctitle>
+                                <detectOfflineLinks>false</detectOfflineLinks>
                                 <detectJavaApiLink>false</detectJavaApiLink>
                                 <additionalJOptions>
                                     <additionalJOption>-Xdoclint:all</additionalJOption>
@@ -3696,6 +3697,7 @@
                         <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
                             <source>8</source>
+                            <detectOfflineLinks>false</detectOfflineLinks>
                             <detectJavaApiLink>false</detectJavaApiLink>
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <attach>true</attach>
