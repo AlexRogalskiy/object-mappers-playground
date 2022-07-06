@@ -30,6 +30,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderEntity {
-    private CustomerEntity customer;
-    private List<ProductEntity> products;
+
+	private CustomerEntity customer;
+
+	private List<ProductEntity> products;
+
 }

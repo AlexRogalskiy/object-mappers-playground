@@ -23,8 +23,9 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.remap.ReMappe
 
 public class ReMapMapperTest extends AbstractMapperTest {
 
-    @Override
-    protected OrderMapper testedOrderMapper() {
-        return new ReMapper();
-    }
+	@Override
+	protected OrderMapper testedOrderMapper() {
+		return new ReMapper();
+	}
+
 }

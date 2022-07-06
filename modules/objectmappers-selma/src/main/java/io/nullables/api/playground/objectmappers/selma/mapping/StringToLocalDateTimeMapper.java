@@ -25,11 +25,12 @@ import java.time.LocalDateTime;
 
 public class StringToLocalDateTimeMapper {
 
-    public LocalDateTime stringToLocalDateTime(final String value) {
-        return convertToLocalDateTime(value);
-    }
+	public LocalDateTime stringToLocalDateTime(final String value) {
+		return convertToLocalDateTime(value);
+	}
 
-    public String localTimeDateToString(final LocalDateTime value) {
-        return convertToString(value);
-    }
+	public String localTimeDateToString(final LocalDateTime value) {
+		return convertToString(value);
+	}
+
 }

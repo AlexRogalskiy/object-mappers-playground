@@ -46,97 +46,79 @@ import lombok.experimental.UtilityClass;
 
 public final class DozerMapperConfiguration {
 
-    private final DozerBeanMapperBuilder mapperBuilder;
+	private final DozerBeanMapperBuilder mapperBuilder;
 
-    private DozerMapperConfiguration() {
-        this.mapperBuilder = DozerBeanMapperBuilder.create();
-    }
+	private DozerMapperConfiguration() {
+		this.mapperBuilder = DozerBeanMapperBuilder.create();
+	}
 
-    @Nonnull
-    public static DozerMapperConfiguration newBuilder() {
-        return new DozerMapperConfiguration();
-    }
+	@Nonnull
+	public static DozerMapperConfiguration newBuilder() {
+		return new DozerMapperConfiguration();
+	}
 
-    public DozerBeanMapperBuilder configureMapper(final String... mappingFileUrls) {
-        return this.mapperBuilder.withMappingFiles(mappingFileUrls);
-    }
+	public DozerBeanMapperBuilder configureMapper(final String... mappingFileUrls) {
+		return this.mapperBuilder.withMappingFiles(mappingFileUrls);
+	}
 
-    public DozerBeanMapperBuilder configureListener(final EventListener eventListener) {
-        return this.mapperBuilder.withEventListener(eventListener);
-    }
+	public DozerBeanMapperBuilder configureListener(final EventListener eventListener) {
+		return this.mapperBuilder.withEventListener(eventListener);
+	}
 
-    public DozerBeanMapperBuilder configureDeliveryMapper() {
-        return this.mapperBuilder.withEventListener(new CustomEventListener())
-            .withMappingBuilder(DozerConfiguration.ADDRESS_MAPPING)
-            .withMappingBuilder(DozerConfiguration.DELIVERY_MAPPING);
-    }
+	public DozerBeanMapperBuilder configureDeliveryMapper() {
+		return this.mapperBuilder.withEventListener(new CustomEventListener())
+				.withMappingBuilder(DozerConfiguration.ADDRESS_MAPPING)
+				.withMappingBuilder(DozerConfiguration.DELIVERY_MAPPING);
+	}
 
-    public Mapper build() {
-        return this.mapperBuilder.build();
-    }
+	public Mapper build() {
+		return this.mapperBuilder.build();
+	}
 
-    @UtilityClass
-    private static class DozerConfiguration {
-        /**
-         * Default collection of {@link TypeMappingOption}s
-         */
-        private static final TypeMappingOption[] TYPE_MAPPING_OPTIONS =
-            {TypeMappingOptions.oneWay(), TypeMappingOptions.mapNull(),
-                TypeMappingOptions.trimStrings(),
-                TypeMappingOptions.wildcardCaseInsensitive(true),
-                TypeMappingOptions.dateFormat(DATETIME_PATTERN)};
+	@UtilityClass
+	private static class DozerConfiguration {
 
-        /**
-         * Address {@link BeanMappingBuilder} configuration
-         */
-        private static final BeanMappingBuilder ADDRESS_MAPPING =
-            new BeanMappingBuilder() {
-                @Override
-                protected void configure() {
-                    this.mapping(AddressDto.class, AddressEntity.class,
-                        TYPE_MAPPING_OPTIONS)
-                        .fields(field("id").accessible(),
-                            field("id").accessible(),
-                            customConverter(StringToUuidConvertor.class))
-                        .fields("city", "city")
-                        .fields("country", "country")
-                        .fields("stateOrProvince", "stateOrProvince")
-                        .fields("postalCode", "postalCode")
-                        .fields("street", "street");
-                }
-            };
+		/**
+		 * Default collection of {@link TypeMappingOption}s
+		 */
+		private static final TypeMappingOption[] TYPE_MAPPING_OPTIONS = { TypeMappingOptions.oneWay(),
+				TypeMappingOptions.mapNull(), TypeMappingOptions.trimStrings(),
+				TypeMappingOptions.wildcardCaseInsensitive(true), TypeMappingOptions.dateFormat(DATETIME_PATTERN) };
 
-        /**
-         * Delivery {@link BeanMappingBuilder} configuration
-         */
-        private static final BeanMappingBuilder DELIVERY_MAPPING =
-            new BeanMappingBuilder() {
-                @Override
-                protected void configure() {
-                    this.mapping(DeliveryDto.class, DeliveryEntity.class,
-                        TYPE_MAPPING_OPTIONS)
-                        .fields(field("id").accessible(),
-                            field("id").accessible(),
-                            customConverter(StringToUuidConvertor.class))
-                        .fields("shippableDue", "shippableDue",
-                            customConverter(
-                                StringToLocaleDateTimeConvertor.class))
-                        .fields("codes", "codes", oneWay(),
-                            hintA(String[].class), hintB(Integer[].class),
-                            customConverter(
-                                StringToIntegerArrayConvertor.class),
-                            collectionStrategy(true,
-                                RelationshipType.NON_CUMULATIVE))
-                        .fields("type", "type")
-                        .fields("description", "description")
-                        .fields("gid", "gid")
-                        .fields("createdAt", "createdAt")
-                        .fields("updatedAt", "updatedAt")
-                        .fields("balance", "balance")
-                        .fields("discount", "discount")
-                        .fields("status", "status")
-                        .fields("addresses", "addresses");
-                }
-            };
-    }
+		/**
+		 * Address {@link BeanMappingBuilder} configuration
+		 */
+		private static final BeanMappingBuilder ADDRESS_MAPPING = new BeanMappingBuilder() {
+			@Override
+			protected void configure() {
+				this.mapping(AddressDto.class, AddressEntity.class, TYPE_MAPPING_OPTIONS)
+						.fields(field("id").accessible(), field("id").accessible(),
+								customConverter(StringToUuidConvertor.class))
+						.fields("city", "city").fields("country", "country")
+						.fields("stateOrProvince", "stateOrProvince").fields("postalCode", "postalCode")
+						.fields("street", "street");
+			}
+		};
+
+		/**
+		 * Delivery {@link BeanMappingBuilder} configuration
+		 */
+		private static final BeanMappingBuilder DELIVERY_MAPPING = new BeanMappingBuilder() {
+			@Override
+			protected void configure() {
+				this.mapping(DeliveryDto.class, DeliveryEntity.class, TYPE_MAPPING_OPTIONS)
+						.fields(field("id").accessible(), field("id").accessible(),
+								customConverter(StringToUuidConvertor.class))
+						.fields("shippableDue", "shippableDue", customConverter(StringToLocaleDateTimeConvertor.class))
+						.fields("codes", "codes", oneWay(), hintA(String[].class), hintB(Integer[].class),
+								customConverter(StringToIntegerArrayConvertor.class),
+								collectionStrategy(true, RelationshipType.NON_CUMULATIVE))
+						.fields("type", "type").fields("description", "description").fields("gid", "gid")
+						.fields("createdAt", "createdAt").fields("updatedAt", "updatedAt").fields("balance", "balance")
+						.fields("discount", "discount").fields("status", "status").fields("addresses", "addresses");
+			}
+		};
+
+	}
+
 }

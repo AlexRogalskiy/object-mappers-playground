@@ -23,8 +23,9 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.bull.BullMapp
 
 public class BullMapperTest extends AbstractMapperTest {
 
-    @Override
-    protected OrderMapper testedOrderMapper() {
-        return new BullMapper();
-    }
+	@Override
+	protected OrderMapper testedOrderMapper() {
+		return new BullMapper();
+	}
+
 }

@@ -34,4 +34,5 @@ import javax.annotation.meta.TypeQualifierDefault;
 @AutoconfigureBootstrapTest
 @TypeQualifierDefault(ElementType.TYPE)
 public @interface SimpleTest {
+
 }

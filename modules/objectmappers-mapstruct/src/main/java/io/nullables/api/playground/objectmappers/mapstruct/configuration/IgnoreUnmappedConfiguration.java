@@ -23,4 +23,5 @@ import org.mapstruct.ReportingPolicy;
 
 @MapperConfig(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface IgnoreUnmappedConfiguration {
+
 }

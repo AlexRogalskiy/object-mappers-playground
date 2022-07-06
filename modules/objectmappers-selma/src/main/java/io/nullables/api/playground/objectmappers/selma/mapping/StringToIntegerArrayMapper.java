@@ -23,11 +23,12 @@ import static io.nullables.api.playground.objectmappers.commons.utils.StringUtil
 
 public class StringToIntegerArrayMapper {
 
-    public Integer[] stringToIntegerArray(final String[] value) {
-        return convertToIntegerArray(value);
-    }
+	public Integer[] stringToIntegerArray(final String[] value) {
+		return convertToIntegerArray(value);
+	}
 
-    public String[] integerToStringArray(final Integer[] value) {
-        return convertToStringArray(value);
-    }
+	public String[] integerToStringArray(final Integer[] value) {
+		return convertToStringArray(value);
+	}
+
 }

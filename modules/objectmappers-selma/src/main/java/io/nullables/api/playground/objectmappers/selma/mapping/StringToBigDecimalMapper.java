@@ -23,11 +23,12 @@ import java.util.Optional;
 
 public class StringToBigDecimalMapper {
 
-    public BigDecimal stringToBigDecimal(final String value) {
-        return Optional.ofNullable(value).map(BigDecimal::new).orElse(null);
-    }
+	public BigDecimal stringToBigDecimal(final String value) {
+		return Optional.ofNullable(value).map(BigDecimal::new).orElse(null);
+	}
 
-    public String bigDecimalToString(final BigDecimal value) {
-        return Optional.ofNullable(value).map(BigDecimal::toString).orElse(null);
-    }
+	public String bigDecimalToString(final BigDecimal value) {
+		return Optional.ofNullable(value).map(BigDecimal::toString).orElse(null);
+	}
+
 }

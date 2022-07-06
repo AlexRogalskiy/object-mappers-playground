@@ -3,18 +3,16 @@
  * <p>
  * Copyright (c) 2020 Nullables, Inc.
  * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under the terms
+ * of the GNU General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
  * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see https\\://www.gnu.org/licenses/.
+ * You should have received a copy of the GNU General Public License along with this
+ * program. If not, see https\\://www.gnu.org/licenses/.
  */
 // package io.nullables.api.playground.objectmappers.jmapper.converter;
 //
@@ -34,17 +32,23 @@
 // private final JMapper<LocalDateTime, String> shippableDateJMapper;
 //
 // public JMapperConverter() {
-// final JMapperAPI addressJMapperApi = new JMapperAPI().add(JMapperAPI.mappedClass(AddressEntity.class));
-// this.addressJMapper = new JMapper<>(AddressEntity.class, AddressDto.class, addressJMapperApi);
+// final JMapperAPI addressJMapperApi = new
+// JMapperAPI().add(JMapperAPI.mappedClass(AddressEntity.class));
+// this.addressJMapper = new JMapper<>(AddressEntity.class, AddressDto.class,
+// addressJMapperApi);
 //
-// final JMapperAPI codeJMapperApi = new JMapperAPI().add(JMapperAPI.mappedClass(Integer[].class));
+// final JMapperAPI codeJMapperApi = new
+// JMapperAPI().add(JMapperAPI.mappedClass(Integer[].class));
 // this.codeJMapper = new JMapper<>(Integer[].class, String[].class, codeJMapperApi);
 //
-// final JMapperAPI idJMapperApi = new JMapperAPI().add(JMapperAPI.mappedClass(UUID.class));
+// final JMapperAPI idJMapperApi = new
+// JMapperAPI().add(JMapperAPI.mappedClass(UUID.class));
 // this.idJMapper = new JMapper<>(UUID.class, String.class, idJMapperApi);
 //
-// final JMapperAPI shippableDateJMapperApi = new JMapperAPI().add(JMapperAPI.mappedClass(LocalDateTime.class));
-// this.shippableDateJMapper = new JMapper<>(LocalDateTime.class, String.class, shippableDateJMapperApi);
+// final JMapperAPI shippableDateJMapperApi = new
+// JMapperAPI().add(JMapperAPI.mappedClass(LocalDateTime.class));
+// this.shippableDateJMapper = new JMapper<>(LocalDateTime.class, String.class,
+// shippableDateJMapperApi);
 // }
 //
 // public AddressEntity convertAddress(final AddressDto sourceOrder) {

@@ -30,21 +30,22 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 public class BullMapper implements OrderMapper {
 
-    private final BeanTransformer transformer;
+	private final BeanTransformer transformer;
 
-    public BullMapper() {
-        final FieldMapping<String, String>[] fieldMappings = Stream.of(
-            new FieldMapping<>("customer.name", "customerName"),
-            new FieldMapping<>("customer.billingAddress.city", "billingCity"),
-            new FieldMapping<>("customer.billingAddress.street", "billingStreetAddress"),
-            new FieldMapping<>("customer.shippingAddress.city", "shippingCity"),
-            new FieldMapping<>("customer.shippingAddress.street", "shippingStreetAddress")
-        ).<FieldMapping<String, String>>toArray(FieldMapping[]::new);
-        this.transformer = new BeanUtils().getTransformer().withFieldMapping(fieldMappings);
-    }
+	public BullMapper() {
+		final FieldMapping<String, String>[] fieldMappings = Stream
+				.of(new FieldMapping<>("customer.name", "customerName"),
+						new FieldMapping<>("customer.billingAddress.city", "billingCity"),
+						new FieldMapping<>("customer.billingAddress.street", "billingStreetAddress"),
+						new FieldMapping<>("customer.shippingAddress.city", "shippingCity"),
+						new FieldMapping<>("customer.shippingAddress.street", "shippingStreetAddress"))
+				.<FieldMapping<String, String>>toArray(FieldMapping[]::new);
+		this.transformer = new BeanUtils().getTransformer().withFieldMapping(fieldMappings);
+	}
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.transformer.transform(source, OrderDto.class);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.transformer.transform(source, OrderDto.class);
+	}
+
 }

@@ -24,38 +24,39 @@ import org.nomin.core.Nomin;
 
 public final class NominMapperBuilder {
 
-    private final NominMapper nominMapper;
+	private final NominMapper nominMapper;
 
-    private NominMapperBuilder() {
-        this.nominMapper = new Nomin().defaultIntrospector(Mapping.exploding).disableCache().enableAutomapping();
-    }
+	private NominMapperBuilder() {
+		this.nominMapper = new Nomin().defaultIntrospector(Mapping.exploding).disableCache().enableAutomapping();
+	}
 
-    public NominMapperBuilder withScripts(final String... mappingScripts) {
-        this.nominMapper.parse(mappingScripts);
-        return this;
-    }
+	public NominMapperBuilder withScripts(final String... mappingScripts) {
+		this.nominMapper.parse(mappingScripts);
+		return this;
+	}
 
-    public NominMapperBuilder withFiles(final String... files) {
-        this.nominMapper.parseFiles(files);
-        return this;
-    }
+	public NominMapperBuilder withFiles(final String... files) {
+		this.nominMapper.parseFiles(files);
+		return this;
+	}
 
-    public NominMapperBuilder withDirectory(final String directory) {
-        this.nominMapper.parseDirectory(directory);
-        return this;
-    }
+	public NominMapperBuilder withDirectory(final String directory) {
+		this.nominMapper.parseDirectory(directory);
+		return this;
+	}
 
-    @SafeVarargs
-    public final NominMapperBuilder withMappings(final Class<? extends Mapping>... mappings) {
-        this.nominMapper.parse(mappings);
-        return this;
-    }
+	@SafeVarargs
+	public final NominMapperBuilder withMappings(final Class<? extends Mapping>... mappings) {
+		this.nominMapper.parse(mappings);
+		return this;
+	}
 
-    public static NominMapperBuilder newBuilder() {
-        return new NominMapperBuilder();
-    }
+	public static NominMapperBuilder newBuilder() {
+		return new NominMapperBuilder();
+	}
 
-    public NominMapper build() {
-        return this.nominMapper;
-    }
+	public NominMapper build() {
+		return this.nominMapper;
+	}
+
 }

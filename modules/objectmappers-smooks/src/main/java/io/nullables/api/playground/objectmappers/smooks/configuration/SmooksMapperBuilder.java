@@ -26,31 +26,33 @@ import org.xml.sax.SAXException;
 
 public final class SmooksMapperBuilder {
 
-    private final Smooks mapper;
+	private final Smooks mapper;
 
-    private SmooksMapperBuilder() {
-        this.mapper = new Smooks();
-    }
+	private SmooksMapperBuilder() {
+		this.mapper = new Smooks();
+	}
 
-    public static SmooksMapperBuilder newBuilder() {
-        return new SmooksMapperBuilder();
-    }
+	public static SmooksMapperBuilder newBuilder() {
+		return new SmooksMapperBuilder();
+	}
 
-    public SmooksMapperBuilder withConfiguration(final String resource) {
-        try {
-            this.mapper.addConfigurations(resource);
-        } catch (IOException | SAXException e) {
-            throw new IllegalArgumentException(e);
-        }
-        return this;
-    }
+	public SmooksMapperBuilder withConfiguration(final String resource) {
+		try {
+			this.mapper.addConfigurations(resource);
+		}
+		catch (IOException | SAXException e) {
+			throw new IllegalArgumentException(e);
+		}
+		return this;
+	}
 
-    public SmooksMapperBuilder withVisitor(final Visitor visitor) {
-        this.mapper.addVisitor(visitor);
-        return this;
-    }
+	public SmooksMapperBuilder withVisitor(final Visitor visitor) {
+		this.mapper.addVisitor(visitor);
+		return this;
+	}
 
-    public Smooks build() {
-        return this.mapper;
-    }
+	public Smooks build() {
+		return this.mapper;
+	}
+
 }

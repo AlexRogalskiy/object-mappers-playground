@@ -7,23 +7,16 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum DeliveryDtoFieldType implements FieldId {
-    ID("id"),
-    TYPE("type"),
-    DESCRIPTION("description"),
-    GID("gid"),
-    CREATE_AT("createdAt"),
-    UPDATE_AT("updatedAt"),
-    SHIPPABLE_DUE("shippableDue"),
-    BALANCE("balance"),
-    DISCOUNT("discount"),
-    STATUS("status"),
-    ADDRESSES("addresses"),
-    CODES("codes");
 
-    private final String name;
+	ID("id"), TYPE("type"), DESCRIPTION("description"), GID("gid"), CREATE_AT("createdAt"), UPDATE_AT("updatedAt"),
+	SHIPPABLE_DUE("shippableDue"), BALANCE("balance"), DISCOUNT("discount"), STATUS("status"), ADDRESSES("addresses"),
+	CODES("codes");
 
-    @Override
-    public String code() {
-        return this.getName();
-    }
+	private final String name;
+
+	@Override
+	public String code() {
+		return this.getName();
+	}
+
 }

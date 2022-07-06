@@ -34,39 +34,43 @@ import org.mapstruct.Qualifier;
 
 public class BaseMappings {
 
-    @Named("IdTranslator")
-    public static class IdMappings {
+	@Named("IdTranslator")
+	public static class IdMappings {
 
-        @Named("IdToUuid")
-        public UUID convertIdToUuid(final String id) {
-            return convertToUuid(id);
-        }
+		@Named("IdToUuid")
+		public UUID convertIdToUuid(final String id) {
+			return convertToUuid(id);
+		}
 
-        @Named("UuidToId")
-        public String convertUuidToId(final UUID uuid) {
-            return convertToString(uuid);
-        }
-    }
+		@Named("UuidToId")
+		public String convertUuidToId(final UUID uuid) {
+			return convertToString(uuid);
+		}
 
-    @Qualifier
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Code {
-    }
+	}
 
-    @Qualifier
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Decode {
-    }
+	@Qualifier
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.SOURCE)
+	public @interface Code {
 
-    @Code
-    public Integer[] code(final String[] value) {
-        return convertToIntegerArray(value);
-    }
+	}
 
-    @Decode
-    public String[] decode(final Integer[] value) {
-        return convertToStringArray(value);
-    }
+	@Qualifier
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.SOURCE)
+	public @interface Decode {
+
+	}
+
+	@Code
+	public Integer[] code(final String[] value) {
+		return convertToIntegerArray(value);
+	}
+
+	@Decode
+	public String[] decode(final Integer[] value) {
+		return convertToStringArray(value);
+	}
+
 }

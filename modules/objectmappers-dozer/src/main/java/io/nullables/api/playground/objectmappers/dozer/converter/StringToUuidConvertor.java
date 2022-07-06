@@ -27,17 +27,18 @@ import com.github.dozermapper.core.DozerConverter;
 
 public class StringToUuidConvertor extends DozerConverter<String, UUID> {
 
-    public StringToUuidConvertor() {
-        super(String.class, UUID.class);
-    }
+	public StringToUuidConvertor() {
+		super(String.class, UUID.class);
+	}
 
-    @Override
-    public UUID convertTo(final String s, final UUID uuid) {
-        return convertToUuid(s);
-    }
+	@Override
+	public UUID convertTo(final String s, final UUID uuid) {
+		return convertToUuid(s);
+	}
 
-    @Override
-    public String convertFrom(final UUID uuid, final String s) {
-        return convertToString(uuid);
-    }
+	@Override
+	public String convertFrom(final UUID uuid, final String s) {
+		return convertToString(uuid);
+	}
+
 }

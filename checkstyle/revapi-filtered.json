@@ -1,0 +1,403 @@
+[
+    {
+        "extension": "revapi.filter",
+        "configuration": {
+            "elements": {
+                "exclude": [
+                    {
+                        "matcher": "java",
+                        "match": "@dev.morphia.annotations.internal.MorphiaInternal ^*;"
+                    },
+                    {
+                        "matcher": "java",
+                        "match": "@dev.morphia.annotations.internal.MorphiaExperimental ^*;"
+                    },
+                    {
+                        "matcher": "java",
+                        "match": "class dev.morphia.sofia.Sofia {}"
+                    },
+                    {
+                        "matcher": "java",
+                        "match": "type ^* implements com.mongodb.session.ClientSession {}"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "/.*codec.*/"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "/com.mongodb.*/"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "/org.bson.*/"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "/.*internal.*/"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "/.*experimental.*/"
+                    },
+                    {
+                        "matcher": "java-package",
+                        "match": "dev.morphia.annotations.builders"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "extension": "revapi.differences",
+        "configuration": {
+            "ignore": true,
+            "differences": [
+                {
+                    "code": "java.method.parameterTypeChanged",
+                    "package": "dev.morphia.mapping.conventions",
+                    "methodName": "apply",
+                    "justification": "implementation detail"
+                },
+                {
+                    "code": "java.method.parameterTypeChanged",
+                    "methodName": "encode",
+                    "justification": "implementation detail"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.addedToInterface",
+                    "new": "method org.bson.codecs.configuration.CodecRegistry dev.morphia.Datastore::getCodecRegistry()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.addedToInterface",
+                    "new": "method <T> com.mongodb.client.MongoCollection<T> dev.morphia.Datastore::getCollection(java.lang.Class<T>)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "package": "dev.morphia.aggregation.expressions",
+                    "methodName": "encode",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "justification": "constructors aren't API",
+                    "elementKind": "constructor"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.numberOfParametersChanged",
+                    "justification": "constructors aren't API",
+                    "elementKind": "constructor"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "justification": "constructors aren't API",
+                    "elementKind": "constructor"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.class.removed",
+                    "package": "dev.morphia",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.class.removed",
+                    "classQualifiedName": "dev.morphia.mapping.Mapper",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.class.removed",
+                    "package": "dev.morphia.query",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.class.removed",
+                    "package": "dev.morphia.mapping.conventions",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.class.removed",
+                    "package": "dev.morphia.mapping",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "package": "dev.morphia.aggregation.expressions.impls",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "classQualifiedName": "dev.morphia.mapping.Mapper",
+                    "justification": "hiding internal types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.annotation.removed",
+                    "methodName": "getLoggedQuery",
+                    "annotation": "@com.mongodb.lang.Nullable"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.addedToInterface",
+                    "classQualifiedName": "dev.morphia.query.Query",
+                    "methodName": "getLoggedQuery"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.annotation.added",
+                    "annotation": "@edu.umd.cs.findbugs.annotations.SuppressFBWarnings({\"EI_EXPOSE_REP2\"})",
+                    "justification": "spotbugs config"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method org.bson.Document dev.morphia.query.Query<T>::toDocument()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.missing.oldSuperType",
+                    "justification": "what does this even mean?",
+                    "oldArchive": "dev.morphia.morphia:morphia-core:jar:2.2.4"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeErasureChanged",
+                    "justification": "why is it suddenly caring about trans deps?!?",
+                    "oldArchive": "dev.morphia.morphia:morphia-core:jar:2.2.4"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeErasureChanged",
+                    "justification": "why is it suddenly caring about trans deps?!?",
+                    "oldArchive": "dev.morphia.morphia:morphia-core:jar:2.2.4"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.visibilityReduced",
+                    "old": "method com.mongodb.client.MongoCollection<T> dev.morphia.query.LegacyQuery<T>::getCollection()",
+                    "new": "method com.mongodb.client.MongoCollection<T> dev.morphia.query.LegacyQuery<T>::getCollection(java.lang.String)",
+                    "oldVisibility": "public",
+                    "newVisibility": "private",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "old": "method <T> dev.morphia.aggregation.experimental.Aggregation<T> dev.morphia.Datastore::aggregate(java.lang.Class<T>)",
+                    "new": "method <T> dev.morphia.aggregation.Aggregation<T> dev.morphia.Datastore::aggregate(java.lang.Class<T>)",
+                    "justification": "promotion of API out of experimental status"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "old": "method dev.morphia.aggregation.experimental.Aggregation<org.bson.Document> dev.morphia.Datastore::aggregate(java.lang.String)",
+                    "new": "method dev.morphia.aggregation.Aggregation<org.bson.Document> dev.morphia.Datastore::aggregate(java.lang.String)",
+                    "justification": "promotion of API out of experimental status"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "classQualifiedName": "dev.morphia.Datastore",
+                    "methodName": "startSession",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "classQualifiedName": "dev.morphia.Datastore",
+                    "methodName": "withTransaction",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "classQualifiedName": "dev.morphia.Datastore",
+                    "methodName": "withTransaction",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method java.util.List<dev.morphia.query.experimental.updates.UpdateOperator> dev.morphia.query.UpdateBase<T>::getUpdates()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "old": "parameter void dev.morphia.query.UpdateBase<T>::add(===dev.morphia.query.experimental.updates.UpdateOperator===)",
+                    "new": "parameter void dev.morphia.query.UpdateBase<T>::add(===dev.morphia.query.updates.UpdateOperator===)",
+                    "parameterIndex": "0",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.addedToInterface",
+                    "new": "method dev.morphia.query.Update<T> dev.morphia.query.Query<T>::update(dev.morphia.query.updates.UpdateOperator, dev.morphia.query.updates.UpdateOperator[])",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "old": "method dev.morphia.query.Update<T> dev.morphia.query.Query<T>::update(dev.morphia.query.experimental.updates.UpdateOperator, dev.morphia.query.experimental.updates.UpdateOperator[])",
+                    "new": "method com.mongodb.client.result.UpdateResult dev.morphia.query.Query<T>::update(dev.morphia.aggregation.stages.Stage[])",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeParameterChanged",
+                    "old": "parameter dev.morphia.query.Update<T> dev.morphia.query.Query<T>::update(===java.util.List<dev.morphia.query.experimental.updates.UpdateOperator>===)",
+                    "new": "parameter dev.morphia.query.Update<T> dev.morphia.query.Query<T>::update(===java.util.List<dev.morphia.query.updates.UpdateOperator>===)",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "old": "parameter dev.morphia.query.Modify<T> dev.morphia.query.Query<T>::modify(dev.morphia.query.experimental.updates.UpdateOperator, ===dev.morphia.query.experimental.updates.UpdateOperator[]===)",
+                    "new": "parameter dev.morphia.query.Modify<T> dev.morphia.query.Query<T>::modify(dev.morphia.query.updates.UpdateOperator, ===dev.morphia.query.updates.UpdateOperator[]===)",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "old": "parameter dev.morphia.UpdateOptions dev.morphia.UpdateOptions::arrayFilter(===dev.morphia.query.experimental.filters.Filter===)",
+                    "new": "parameter dev.morphia.UpdateOptions dev.morphia.UpdateOptions::arrayFilter(===dev.morphia.query.filters.Filter===)",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChanged",
+                    "old": "method dev.morphia.query.experimental.filters.Filter dev.morphia.query.FilterOperator::apply(java.lang.String, java.lang.Object)",
+                    "new": "method dev.morphia.query.filters.Filter dev.morphia.query.FilterOperator::apply(java.lang.String, java.lang.Object)",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method boolean dev.morphia.query.FindOptions::isLogQuery()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "classQualifiedName": "dev.morphia.query.Query",
+                    "methodName": "modify",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "classQualifiedName": "dev.morphia.query.Query",
+                    "methodName": "update",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.parameterTypeChanged",
+                    "classQualifiedName": "dev.morphia.query.Query",
+                    "methodName": "filter",
+                    "justification": "promotion of experimental types"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.numberOfParametersChanged",
+                    "old": "method dev.morphia.query.Update<T> dev.morphia.query.Query<T>::update(dev.morphia.query.experimental.updates.UpdateOperator, dev.morphia.query.experimental.updates.UpdateOperator[])",
+                    "new": "method com.mongodb.client.result.UpdateResult dev.morphia.query.Query<T>::update(dev.morphia.aggregation.stages.Stage[])",
+                    "justification": "revapi is confused"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method java.util.List<org.bson.Document> dev.morphia.aggregation.AggregationPipelineImpl::getStages()",
+                    "justification": "unused internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method void dev.morphia.InsertOneOptions::<init>(dev.morphia.InsertOneOptions)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method void dev.morphia.InsertManyOptions::<init>(dev.morphia.InsertManyOptions)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method void dev.morphia.DeleteOptions::<init>(dev.morphia.DeleteOptions)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method dev.morphia.mapping.Mapper dev.morphia.Datastore::getMapper()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method java.lang.String dev.morphia.Datastore::getLoggedQuery(dev.morphia.query.FindOptions)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method com.mongodb.client.MongoDatabase dev.morphia.Datastore::getDatabase()",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method com.mongodb.client.ClientSession dev.morphia.Datastore::findSession(dev.morphia.internal.SessionConfigurable<?>)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "old": "method <T> dev.morphia.query.Query<T> dev.morphia.Datastore::find(java.lang.String)",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "methodName": "getWriteConcern",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "methodName": "getReadConcern",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.removed",
+                    "methodName": "getReadPreference",
+                    "justification": "internal method"
+                },
+                {
+                    "ignore": true,
+                    "code": "java.method.returnTypeChangedCovariantly",
+                    "old": "method dev.morphia.Datastore dev.morphia.query.UpdateBase<T>::getDatastore()",
+                    "new": "method dev.morphia.DatastoreImpl dev.morphia.query.UpdateBase<T>::getDatastore()",
+                    "justification": "internal method"
+                }
+            ]
+        }
+    }
+]

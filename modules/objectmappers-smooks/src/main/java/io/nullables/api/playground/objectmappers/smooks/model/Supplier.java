@@ -28,6 +28,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Supplier {
-    private String name;
-    private String phoneNumber;
+
+	private String name;
+
+	private String phoneNumber;
+
 }

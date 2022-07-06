@@ -26,29 +26,27 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomEventListener implements EventListener {
 
-    @Override
-    public void onMappingStarted(final Event event) {
-        log.info(">>> Mapping started, event: {}", event);
-    }
+	@Override
+	public void onMappingStarted(final Event event) {
+		log.info(">>> Mapping started, event: {}", event);
+	}
 
-    @Override
-    public void onPreWritingDestinationValue(final Event event) {
-        log.info(">>> Pre-init object mapping by ID: [{}]",
-            event.getClassMap().getMapId());
-    }
+	@Override
+	public void onPreWritingDestinationValue(final Event event) {
+		log.info(">>> Pre-init object mapping by ID: [{}]", event.getClassMap().getMapId());
+	}
 
-    @Override
-    public void onPostWritingDestinationValue(final Event event) {
-        log.info(
-            ">>> Copying to target object by event: [{}], source field: " +
-                "[{}], target field: [{}], value: [{}]",
-            event.getType(), event.getFieldMap().getSrcFieldName(),
-            event.getFieldMap().getDestFieldName(),
-            event.getDestinationValue());
-    }
+	@Override
+	public void onPostWritingDestinationValue(final Event event) {
+		log.info(
+				">>> Copying to target object by event: [{}], source field: " + "[{}], target field: [{}], value: [{}]",
+				event.getType(), event.getFieldMap().getSrcFieldName(), event.getFieldMap().getDestFieldName(),
+				event.getDestinationValue());
+	}
 
-    @Override
-    public void onMappingFinished(final Event event) {
-        log.info(">>> Mapping finished, event: {}", event);
-    }
+	@Override
+	public void onMappingFinished(final Event event) {
+		log.info(">>> Mapping finished, event: {}", event);
+	}
+
 }

@@ -27,20 +27,21 @@ import com.github.dozermapper.core.DozerConverter;
 
 public class StringToIntegerArrayConvertor extends DozerConverter<String[], Integer[]> {
 
-    public StringToIntegerArrayConvertor() {
-        super(String[].class, Integer[].class);
-    }
+	public StringToIntegerArrayConvertor() {
+		super(String[].class, Integer[].class);
+	}
 
-    @Override
-    public Integer[] convertTo(final String[] strings, final Integer[] integers) {
-        if (ArrayUtils.isEmpty(strings) && this.getParameter().equals("NULL_IF_EMPTY")) {
-            return null;
-        }
-        return convertToIntegerArray(strings);
-    }
+	@Override
+	public Integer[] convertTo(final String[] strings, final Integer[] integers) {
+		if (ArrayUtils.isEmpty(strings) && this.getParameter().equals("NULL_IF_EMPTY")) {
+			return null;
+		}
+		return convertToIntegerArray(strings);
+	}
 
-    @Override
-    public String[] convertFrom(final Integer[] integers, final String[] strings) {
-        return convertToStringArray(integers);
-    }
+	@Override
+	public String[] convertFrom(final Integer[] integers, final String[] strings) {
+		return convertToStringArray(integers);
+	}
+
 }

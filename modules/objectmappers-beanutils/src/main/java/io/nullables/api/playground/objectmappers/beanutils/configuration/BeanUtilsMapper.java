@@ -35,75 +35,83 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BeanUtilsMapper<S, T> {
 
-    private final Class<T> targetClass;
-    private final List<BiConsumer<S, T>> operations;
+	private final Class<T> targetClass;
 
-    private BeanUtilsMapper(final BeanUtilsMapperBuilder<S, T> builder) {
-        this.targetClass = builder.getTargetClass();
-        this.operations = builder.getOperations();
-    }
+	private final List<BiConsumer<S, T>> operations;
 
-    public static <S, T> BeanUtilsMapperBuilder<S, T> newBuilder(final Class<T> targetClass) {
-        return new BeanUtilsMapperBuilder<>(targetClass);
-    }
+	private BeanUtilsMapper(final BeanUtilsMapperBuilder<S, T> builder) {
+		this.targetClass = builder.getTargetClass();
+		this.operations = builder.getOperations();
+	}
 
-    private static <T> T newInstance(final Class<T> clazz, final Object... args) {
-        try {
-            final Class<?>[] parameterTypes = Arrays.stream(args).map(Object::getClass).toArray(Class[]::new);
-            return clazz.getConstructor(parameterTypes).newInstance(args);
-        } catch (Throwable ex) {
-            log.error("Cannot initialize new instance from class: {} by arguments: {}", clazz, args, ex);
-            throw new IllegalArgumentException(ex);
-        }
-    }
+	public static <S, T> BeanUtilsMapperBuilder<S, T> newBuilder(final Class<T> targetClass) {
+		return new BeanUtilsMapperBuilder<>(targetClass);
+	}
 
-    public T map(final S source) {
-        final T target = newInstance(this.targetClass);
-        this.operations.forEach(op -> op.accept(source, target));
-        return target;
-    }
+	private static <T> T newInstance(final Class<T> clazz, final Object... args) {
+		try {
+			final Class<?>[] parameterTypes = Arrays.stream(args).map(Object::getClass).toArray(Class[]::new);
+			return clazz.getConstructor(parameterTypes).newInstance(args);
+		}
+		catch (Throwable ex) {
+			log.error("Cannot initialize new instance from class: {} by arguments: {}", clazz, args, ex);
+			throw new IllegalArgumentException(ex);
+		}
+	}
 
-    @Getter
-    public static class BeanUtilsMapperBuilder<S, T> {
+	public T map(final S source) {
+		final T target = newInstance(this.targetClass);
+		this.operations.forEach(op -> op.accept(source, target));
+		return target;
+	}
 
-        private final Class<T> targetClass;
-        private final BeanUtilsBean mapper;
-        private final List<BiConsumer<S, T>> operations;
+	@Getter
+	public static class BeanUtilsMapperBuilder<S, T> {
 
-        private BeanUtilsMapperBuilder(final Class<T> targetClass) {
-            this.targetClass = targetClass;
-            this.mapper = BeanUtilsBean2.getInstance();
-            this.operations = new ArrayList<>();
-        }
+		private final Class<T> targetClass;
 
-        public <V> BeanUtilsMapperBuilder<S, T> map(final String propertyName, final Function<S, V> mapper) {
-            this.operations.add((source, target) -> this.map(target, propertyName, mapper.apply(source)));
-            return this;
-        }
+		private final BeanUtilsBean mapper;
 
-        public <V> BeanUtilsMapperBuilder<S, T> map(final Supplier<V> supplier) {
-            this.operations.add((source, target) -> this.map(target, source));
-            return this;
-        }
+		private final List<BiConsumer<S, T>> operations;
 
-        public BeanUtilsMapper<S, T> build() {
-            return new BeanUtilsMapper<>(this);
-        }
+		private BeanUtilsMapperBuilder(final Class<T> targetClass) {
+			this.targetClass = targetClass;
+			this.mapper = BeanUtilsBean2.getInstance();
+			this.operations = new ArrayList<>();
+		}
 
-        private <V> void map(final T target, final String propertyName, final V value) {
-            try {
-                this.mapper.copyProperty(target, propertyName, value);
-            } catch (IllegalAccessException | InvocationTargetException ex) {
-                log.error("Error: cannot map source property: {} to target entity: {}", propertyName, target, ex);
-            }
-        }
+		public <V> BeanUtilsMapperBuilder<S, T> map(final String propertyName, final Function<S, V> mapper) {
+			this.operations.add((source, target) -> this.map(target, propertyName, mapper.apply(source)));
+			return this;
+		}
 
-        private void map(final T target, final S source) {
-            try {
-                this.mapper.copyProperties(target, source);
-            } catch (IllegalAccessException | InvocationTargetException ex) {
-                log.error("Error: cannot map source entity: {} to target entity: {}", source, target, ex);
-            }
-        }
-    }
+		public <V> BeanUtilsMapperBuilder<S, T> map(final Supplier<V> supplier) {
+			this.operations.add((source, target) -> this.map(target, source));
+			return this;
+		}
+
+		public BeanUtilsMapper<S, T> build() {
+			return new BeanUtilsMapper<>(this);
+		}
+
+		private <V> void map(final T target, final String propertyName, final V value) {
+			try {
+				this.mapper.copyProperty(target, propertyName, value);
+			}
+			catch (IllegalAccessException | InvocationTargetException ex) {
+				log.error("Error: cannot map source property: {} to target entity: {}", propertyName, target, ex);
+			}
+		}
+
+		private void map(final T target, final S source) {
+			try {
+				this.mapper.copyProperties(target, source);
+			}
+			catch (IllegalAccessException | InvocationTargetException ex) {
+				log.error("Error: cannot map source entity: {} to target entity: {}", source, target, ex);
+			}
+		}
+
+	}
+
 }

@@ -26,23 +26,24 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 public class ModelMapper implements OrderMapper {
 
-    private final org.modelmapper.ModelMapper modelMapper;
+	private final org.modelmapper.ModelMapper modelMapper;
 
-    public ModelMapper() {
-        this.modelMapper = new org.modelmapper.ModelMapper();
-        this.modelMapper.addMappings(new PropertyMap<OrderEntity, OrderDto>() {
-            @Override
-            protected void configure() {
-                this.map().setBillingStreetAddress(source.getCustomer().getBillingAddress().getStreet());
-                this.map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
-                this.map().setShippingStreetAddress(source.getCustomer().getShippingAddress().getStreet());
-                this.map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
-            }
-        });
-    }
+	public ModelMapper() {
+		this.modelMapper = new org.modelmapper.ModelMapper();
+		this.modelMapper.addMappings(new PropertyMap<OrderEntity, OrderDto>() {
+			@Override
+			protected void configure() {
+				this.map().setBillingStreetAddress(source.getCustomer().getBillingAddress().getStreet());
+				this.map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
+				this.map().setShippingStreetAddress(source.getCustomer().getShippingAddress().getStreet());
+				this.map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
+			}
+		});
+	}
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.modelMapper.map(source, OrderDto.class);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.modelMapper.map(source, OrderDto.class);
+	}
+
 }

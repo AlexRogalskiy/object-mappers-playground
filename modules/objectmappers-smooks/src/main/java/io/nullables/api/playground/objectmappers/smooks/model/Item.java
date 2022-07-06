@@ -28,7 +28,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
-    private String code;
-    private Double price;
-    private Integer quantity;
+
+	private String code;
+
+	private Double price;
+
+	private Integer quantity;
+
 }

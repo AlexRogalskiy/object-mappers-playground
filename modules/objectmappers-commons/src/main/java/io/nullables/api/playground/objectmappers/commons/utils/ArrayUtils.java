@@ -31,31 +31,31 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ArrayUtils {
 
-    public <T extends Comparable<? super T>> int compare(final T[] a, final T[] b) {
-        final int i = mismatch(a, b);
-        if (i >= 0 && i < Math.min(a.length, b.length)) {
-            return a[i].compareTo(b[i]);
-        }
-        return a.length - b.length;
-    }
+	public <T extends Comparable<? super T>> int compare(final T[] a, final T[] b) {
+		final int i = mismatch(a, b);
+		if (i >= 0 && i < Math.min(a.length, b.length)) {
+			return a[i].compareTo(b[i]);
+		}
+		return a.length - b.length;
+	}
 
-    private static <T> int mismatch(final T[] a, final T[] b) {
-        final int length = Math.min(a.length, b.length);
-        if (a == b) {
-            return -1;
-        }
-        for (int i = 0; i < length; i++) {
-            if (!Objects.equals(a[i], b[i])) {
-                return i;
-            }
-        }
+	private static <T> int mismatch(final T[] a, final T[] b) {
+		final int length = Math.min(a.length, b.length);
+		if (a == b) {
+			return -1;
+		}
+		for (int i = 0; i < length; i++) {
+			if (!Objects.equals(a[i], b[i])) {
+				return i;
+			}
+		}
 
-        return a.length != b.length ? length : -1;
-    }
+		return a.length != b.length ? length : -1;
+	}
 
-    @Nonnull
-    public static <E> List<String> transformUnique(final E[] values,
-                                                   final Function<E, String> mapper) {
-        return Stream.of(values).map(mapper).distinct().collect(Collectors.toList());
-    }
+	@Nonnull
+	public static <E> List<String> transformUnique(final E[] values, final Function<E, String> mapper) {
+		return Stream.of(values).map(mapper).distinct().collect(Collectors.toList());
+	}
+
 }

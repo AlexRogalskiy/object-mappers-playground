@@ -33,21 +33,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDto {
-    @BeanCollection(elementType = ProductDto.class, beanCollectionUsage = BeanCollectionUsage.CONSTRUCT)
-    private List<ProductDto> products;
 
-    @BeanProperty(name = "customer.name")
-    private String customerName;
+	@BeanCollection(elementType = ProductDto.class, beanCollectionUsage = BeanCollectionUsage.CONSTRUCT)
+	private List<ProductDto> products;
 
-    @BeanProperty(name = "customer.shippingAddress.street")
-    private String shippingStreetAddress;
+	@BeanProperty(name = "customer.name")
+	private String customerName;
 
-    @BeanProperty(name = "customer.shippingAddress.city")
-    private String shippingCity;
+	@BeanProperty(name = "customer.shippingAddress.street")
+	private String shippingStreetAddress;
 
-    @BeanProperty(name = "customer.billingAddress.street")
-    private String billingStreetAddress;
+	@BeanProperty(name = "customer.shippingAddress.city")
+	private String shippingCity;
 
-    @BeanProperty(name = "customer.billingAddress.city")
-    private String billingCity;
+	@BeanProperty(name = "customer.billingAddress.street")
+	private String billingStreetAddress;
+
+	@BeanProperty(name = "customer.billingAddress.city")
+	private String billingCity;
+
 }

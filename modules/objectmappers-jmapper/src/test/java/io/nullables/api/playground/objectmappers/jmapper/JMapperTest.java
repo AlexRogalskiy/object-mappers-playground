@@ -3,18 +3,16 @@
  * <p>
  * Copyright (c) 2020 Nullables, Inc.
  * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under the terms
+ * of the GNU General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
  * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see https\\://www.gnu.org/licenses/.
+ * You should have received a copy of the GNU General Public License along with this
+ * program. If not, see https\\://www.gnu.org/licenses/.
  */
 // package io.nullables.api.playground.objectmappers.jmapper;
 //
@@ -39,14 +37,16 @@
 // import java.util.stream.IntStream;
 // import java.util.stream.Stream;
 //
-// import static io.nullables.api.playground.objectmappers.testflow.utils.ModelMockTestUtils.deliveryDtoMock;
+// import static
+// io.nullables.api.playground.objectmappers.testflow.utils.ModelMockTestUtils.deliveryDtoMock;
 // import static org.assertj.core.api.Assertions.tuple;
 // import static org.junit.jupiter.api.Assertions.assertAll;
 //
 // @SimpleTest
 // class JMapperTest {
 //
-// public static final Stream<Arguments> deliveryDtoValues = IntStream.iterate(0, n -> n + 1)
+// public static final Stream<Arguments> deliveryDtoValues = IntStream.iterate(0, n -> n +
+// 1)
 // .limit(ThreadLocalRandom.current().nextInt(1, 10))
 // .mapToObj(v -> deliveryDtoMock().val())
 // .map(Arguments::of);
@@ -57,11 +57,14 @@
 // @BeforeEach
 // void before() {
 // //final JMapperConfiguration mapperConfiguration = new JMapperConfiguration();
-// //this.mapper = new JMapper<>(DeliveryEntity.class, DeliveryDto.class, mapperConfiguration.deliveryMappingApi());
+// //this.mapper = new JMapper<>(DeliveryEntity.class, DeliveryDto.class,
+// mapperConfiguration.deliveryMappingApi());
 //
-// this.addressMapper = new JMapper<>(AddressEntity.class, AddressDto.class, ChooseConfig.SOURCE,
+// this.addressMapper = new JMapper<>(AddressEntity.class, AddressDto.class,
+// ChooseConfig.SOURCE,
 // "mappings/address_mapping.xml");
-// this.deliveryMapper = new JMapper<>(DeliveryEntity.class, DeliveryDto.class, ChooseConfig.SOURCE,
+// this.deliveryMapper = new JMapper<>(DeliveryEntity.class, DeliveryDto.class,
+// ChooseConfig.SOURCE,
 // "mappings/delivery_mapping.xml");
 // }
 //
@@ -87,7 +90,8 @@
 // .containsExactlyInAnyOrder(
 // source.getAddresses()
 // .stream()
-// .map(c -> tuple(c.getId(), c.getCity(), c.getCountry(), c.getPostalCode(), c.getStateOrProvince(), c.getStreet()))
+// .map(c -> tuple(c.getId(), c.getCity(), c.getCountry(), c.getPostalCode(),
+// c.getStateOrProvince(), c.getStreet()))
 // .toArray(Tuple[]::new)
 // ),
 // () -> Assertions.assertThat(target)

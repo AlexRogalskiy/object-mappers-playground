@@ -26,17 +26,15 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 public class GeneralBeanMapper implements OrderMapper {
 
-    private final BeanMapper beanMapper;
+	private final BeanMapper beanMapper;
 
-    public GeneralBeanMapper() {
-        this.beanMapper = new BeanMapperBuilder()
-            .setApplyStrictMappingConvention(false)
-            .setUseNullValue()
-            .build();
-    }
+	public GeneralBeanMapper() {
+		this.beanMapper = new BeanMapperBuilder().setApplyStrictMappingConvention(false).setUseNullValue().build();
+	}
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.beanMapper.map(source, OrderDto.class);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.beanMapper.map(source, OrderDto.class);
+	}
+
 }

@@ -23,8 +23,9 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.beanutils.Bea
 
 public class BeanUtilsMapperTest extends AbstractMapperTest {
 
-    @Override
-    protected OrderMapper testedOrderMapper() {
-        return new BeanUtilsMapper();
-    }
+	@Override
+	protected OrderMapper testedOrderMapper() {
+		return new BeanUtilsMapper();
+	}
+
 }

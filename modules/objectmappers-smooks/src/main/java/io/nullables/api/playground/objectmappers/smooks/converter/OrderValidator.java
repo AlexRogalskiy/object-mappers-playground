@@ -30,16 +30,19 @@ import org.xml.sax.SAXException;
 
 public class OrderValidator {
 
-    public ValidationResult validate(final String path) throws IOException, SAXException {
-        final Smooks smooks = new Smooks(OrderValidator.class.getResourceAsStream("mappings/smooks-validation.xml"));
-        try {
-            final StringResult xmlResult = new StringResult();
-            final JavaResult javaResult = new JavaResult();
-            final ValidationResult validationResult = new ValidationResult();
-            smooks.filterSource(new StreamSource(OrderValidator.class.getResourceAsStream(path)), xmlResult, javaResult, validationResult);
-            return validationResult;
-        } finally {
-            smooks.close();
-        }
-    }
+	public ValidationResult validate(final String path) throws IOException, SAXException {
+		final Smooks smooks = new Smooks(OrderValidator.class.getResourceAsStream("mappings/smooks-validation.xml"));
+		try {
+			final StringResult xmlResult = new StringResult();
+			final JavaResult javaResult = new JavaResult();
+			final ValidationResult validationResult = new ValidationResult();
+			smooks.filterSource(new StreamSource(OrderValidator.class.getResourceAsStream(path)), xmlResult, javaResult,
+					validationResult);
+			return validationResult;
+		}
+		finally {
+			smooks.close();
+		}
+	}
+
 }

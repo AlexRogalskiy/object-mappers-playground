@@ -31,21 +31,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddressDtoToAddressEntityPropertyMap extends PropertyMap<AddressDto, AddressEntity> {
 
-    private final StringToUuidConverter stringToUuidConverter = new StringToUuidConverter();
+	private final StringToUuidConverter stringToUuidConverter = new StringToUuidConverter();
 
-    /**
-     * {@link AddressEntity} {@link PropertyMap} configuration
-     */
-    @Override
-    protected void configure() {
-        // mapping destination properties
-        this.map(this.source.getCity()).setCity(null);
-        this.map(this.source.getCountry()).setCountry(null);
-        this.map(this.source.getPostalCode()).setPostalCode(null);
-        this.map(this.source.getStateOrProvince()).setStateOrProvince(null);
-        this.map(this.source.getStreet()).setStreet(null);
+	/**
+	 * {@link AddressEntity} {@link PropertyMap} configuration
+	 */
+	@Override
+	protected void configure() {
+		// mapping destination properties
+		this.map(this.source.getCity()).setCity(null);
+		this.map(this.source.getCountry()).setCountry(null);
+		this.map(this.source.getPostalCode()).setPostalCode(null);
+		this.map(this.source.getStateOrProvince()).setStateOrProvince(null);
+		this.map(this.source.getStreet()).setStreet(null);
 
-        // mapping destination properties
-        this.using(this.stringToUuidConverter).map(this.source.getId()).setId(null);
-    }
+		// mapping destination properties
+		this.using(this.stringToUuidConverter).map(this.source.getId()).setId(null);
+	}
+
 }

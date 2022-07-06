@@ -25,8 +25,9 @@ import io.nullables.api.playground.objectmappers.commons.utils.StringUtils;
 
 public class StringToUuidConverter extends SimpleBeanConverter<String, UUID> {
 
-    @Override
-    public UUID doConvert(final String value) {
-        return StringUtils.convertToUuid(value);
-    }
+	@Override
+	public UUID doConvert(final String value) {
+		return StringUtils.convertToUuid(value);
+	}
+
 }

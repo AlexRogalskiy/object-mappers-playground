@@ -23,11 +23,12 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 @FunctionalInterface
 public interface OrderMapper {
-    /**
-     * Returns converted {@link OrderDto} by input {@link OrderEntity}
-     *
-     * @param source initial input {@link OrderEntity}
-     * @return converted {@link OrderDto}
-     */
-    OrderDto map(final OrderEntity source);
+
+	/**
+	 * Returns converted {@link OrderDto} by input {@link OrderEntity}
+	 * @param source initial input {@link OrderEntity}
+	 * @return converted {@link OrderDto}
+	 */
+	OrderDto map(final OrderEntity source);
+
 }

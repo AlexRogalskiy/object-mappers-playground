@@ -7,17 +7,14 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum AddressDtoFieldType implements FieldId {
-    ID("id"),
-    CITY("city"),
-    COUNTRY("country"),
-    STATE("stateOrProvince"),
-    POSTAL_CODE("postalCode"),
-    STREET("street");
 
-    private final String name;
+	ID("id"), CITY("city"), COUNTRY("country"), STATE("stateOrProvince"), POSTAL_CODE("postalCode"), STREET("street");
 
-    @Override
-    public String code() {
-        return this.getName();
-    }
+	private final String name;
+
+	@Override
+	public String code() {
+		return this.getName();
+	}
+
 }

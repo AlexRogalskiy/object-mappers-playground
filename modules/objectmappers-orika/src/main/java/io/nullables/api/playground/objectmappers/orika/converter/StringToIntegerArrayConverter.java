@@ -27,17 +27,16 @@ import ma.glasnost.orika.metadata.Type;
 
 public class StringToIntegerArrayConverter extends BidirectionalConverter<String[], Integer[]> {
 
-    @Override
-    public Integer[] convertTo(final String[] source,
-                               final Type<Integer[]> destinationType,
-                               final MappingContext mappingContext) {
-        return convertToIntegerArray(source);
-    }
+	@Override
+	public Integer[] convertTo(final String[] source, final Type<Integer[]> destinationType,
+			final MappingContext mappingContext) {
+		return convertToIntegerArray(source);
+	}
 
-    @Override
-    public String[] convertFrom(final Integer[] source,
-                                final Type<String[]> destinationType,
-                                final MappingContext mappingContext) {
-        return convertToStringArray(source);
-    }
+	@Override
+	public String[] convertFrom(final Integer[] source, final Type<String[]> destinationType,
+			final MappingContext mappingContext) {
+		return convertToStringArray(source);
+	}
+
 }

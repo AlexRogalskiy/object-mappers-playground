@@ -34,8 +34,10 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 @ArgumentsSource(VariableArgumentsProvider.class)
 @TypeQualifierDefault(ElementType.METHOD)
 public @interface VariableSource {
-    /**
-     * The name of the static variable
-     */
-    String value();
+
+	/**
+	 * The name of the static variable
+	 */
+	String value();
+
 }

@@ -29,14 +29,16 @@ import org.modelmapper.spi.MappingContext;
  * {@link String} to {@link LocalDateTime} array {@link Converter} implementation
  */
 public class StringToLocalDateTimeConverter implements Converter<String, LocalDateTime> {
-    /**
-     * Returns converted {@link LocalDateTime} from input {@link String} by {@link MappingContext}
-     *
-     * @param context - initial input {@link MappingContext} to operate by
-     * @return converted {@link LocalDateTime}
-     */
-    @Override
-    public LocalDateTime convert(final MappingContext<String, LocalDateTime> context) {
-        return convertToLocalDateTime(context.getSource());
-    }
+
+	/**
+	 * Returns converted {@link LocalDateTime} from input {@link String} by
+	 * {@link MappingContext}
+	 * @param context - initial input {@link MappingContext} to operate by
+	 * @return converted {@link LocalDateTime}
+	 */
+	@Override
+	public LocalDateTime convert(final MappingContext<String, LocalDateTime> context) {
+		return convertToLocalDateTime(context.getSource());
+	}
+
 }

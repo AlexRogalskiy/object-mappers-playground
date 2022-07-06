@@ -25,8 +25,9 @@ import io.nullables.api.playground.objectmappers.commons.utils.DateUtils;
 
 public class StringToLocalDateTimeConverter extends SimpleBeanConverter<String, LocalDateTime> {
 
-    @Override
-    public LocalDateTime doConvert(final String value) {
-        return DateUtils.convertToLocalDateTime(value);
-    }
+	@Override
+	public LocalDateTime doConvert(final String value) {
+		return DateUtils.convertToLocalDateTime(value);
+	}
+
 }

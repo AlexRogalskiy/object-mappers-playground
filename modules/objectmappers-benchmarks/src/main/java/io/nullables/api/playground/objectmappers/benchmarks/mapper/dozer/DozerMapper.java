@@ -27,16 +27,15 @@ import io.nullables.api.playground.objectmappers.dozer.configuration.DozerMapper
 
 public class DozerMapper implements OrderMapper {
 
-    private final Mapper mapper;
+	private final Mapper mapper;
 
-    public DozerMapper() {
-        this.mapper = DozerMapperConfiguration.newBuilder()
-            .configureMapper("mappings/dozer.xml")
-            .build();
-    }
+	public DozerMapper() {
+		this.mapper = DozerMapperConfiguration.newBuilder().configureMapper("mappings/dozer.xml").build();
+	}
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.mapper.map(source, OrderDto.class);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.mapper.map(source, OrderDto.class);
+	}
+
 }

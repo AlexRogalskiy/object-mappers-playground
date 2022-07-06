@@ -41,4 +41,5 @@ import org.mockito.quality.Strictness;
 @ExtendWith(MockitoExtension.class)
 @TypeQualifierDefault(ElementType.TYPE)
 public @interface SimpleMockTest {
+
 }

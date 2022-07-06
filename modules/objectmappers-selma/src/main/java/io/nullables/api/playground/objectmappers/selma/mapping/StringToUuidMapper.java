@@ -25,11 +25,12 @@ import java.util.UUID;
 
 public class StringToUuidMapper {
 
-    public UUID stringToUuid(final String value) {
-        return convertToUuid(value);
-    }
+	public UUID stringToUuid(final String value) {
+		return convertToUuid(value);
+	}
 
-    public String uuidToString(final UUID value) {
-        return convertToString(value);
-    }
+	public String uuidToString(final UUID value) {
+		return convertToString(value);
+	}
+
 }

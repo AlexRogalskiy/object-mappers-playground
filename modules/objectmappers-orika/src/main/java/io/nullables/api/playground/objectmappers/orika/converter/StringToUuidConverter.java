@@ -29,17 +29,15 @@ import ma.glasnost.orika.metadata.Type;
 
 public class StringToUuidConverter extends BidirectionalConverter<String, UUID> {
 
-    @Override
-    public UUID convertTo(final String source,
-                          final Type<UUID> destinationType,
-                          final MappingContext mappingContext) {
-        return convertToUuid(source);
-    }
+	@Override
+	public UUID convertTo(final String source, final Type<UUID> destinationType, final MappingContext mappingContext) {
+		return convertToUuid(source);
+	}
 
-    @Override
-    public String convertFrom(final UUID source,
-                              final Type<String> destinationType,
-                              final MappingContext mappingContext) {
-        return convertToString(source);
-    }
+	@Override
+	public String convertFrom(final UUID source, final Type<String> destinationType,
+			final MappingContext mappingContext) {
+		return convertToString(source);
+	}
+
 }

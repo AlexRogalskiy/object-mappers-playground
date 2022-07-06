@@ -23,8 +23,9 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.datus.DatusMa
 
 public class DatusMapperTest extends AbstractMapperTest {
 
-    @Override
-    protected OrderMapper testedOrderMapper() {
-        return new DatusMapper();
-    }
+	@Override
+	protected OrderMapper testedOrderMapper() {
+		return new DatusMapper();
+	}
+
 }

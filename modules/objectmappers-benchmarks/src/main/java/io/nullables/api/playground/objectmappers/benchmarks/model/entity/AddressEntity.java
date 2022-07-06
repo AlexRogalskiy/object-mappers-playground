@@ -28,6 +28,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressEntity {
-    private String street;
-    private String city;
+
+	private String street;
+
+	private String city;
+
 }

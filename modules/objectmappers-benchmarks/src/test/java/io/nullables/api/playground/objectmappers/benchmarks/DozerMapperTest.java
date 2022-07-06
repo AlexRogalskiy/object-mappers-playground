@@ -23,8 +23,9 @@ import io.nullables.api.playground.objectmappers.benchmarks.mapper.dozer.DozerMa
 
 public class DozerMapperTest extends AbstractMapperTest {
 
-    @Override
-    protected OrderMapper testedOrderMapper() {
-        return new DozerMapper();
-    }
+	@Override
+	protected OrderMapper testedOrderMapper() {
+		return new DozerMapper();
+	}
+
 }

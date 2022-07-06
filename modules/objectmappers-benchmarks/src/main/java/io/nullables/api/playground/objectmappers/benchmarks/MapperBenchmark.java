@@ -67,93 +67,79 @@ import lombok.extern.slf4j.Slf4j;
 @BenchmarkMode(Mode.All)
 public class MapperBenchmark {
 
-    @Param({
-        "BeanMapper",
-        "BeanUtilsMapper",
-        "Bull",
-        "Converter",
-        "Datus",
-        "Dozer",
-        "MapStruct",
-        "ModelMapper",
-        "Orika",
-        "ReMap",
-        "Selma"
-    })
-    private String type;
+	@Param({ "BeanMapper", "BeanUtilsMapper", "Bull", "Converter", "Datus", "Dozer", "MapStruct", "ModelMapper",
+			"Orika", "ReMap", "Selma" })
+	private String type;
 
-    private OrderMapper mapper;
-    private OrderEntity order;
+	private OrderMapper mapper;
 
-    public static void main(final String... args) throws Exception {
-        final Options opts = new OptionsBuilder()
-            .include(".*")
-            .warmupIterations(2)
-            .measurementIterations(2)
-            .jvmArgs("-server")
-            .forks(1)
-            .resultFormat(ResultFormatType.TEXT)
-            .build();
+	private OrderEntity order;
 
-        final Collection<RunResult> results = new Runner(opts).run();
-        for (final RunResult result : results) {
-            final Result<?> r = result.getPrimaryResult();
-            log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over " + r.getStatistics().getN() + " iterations");
-        }
-    }
+	public static void main(final String... args) throws Exception {
+		final Options opts = new OptionsBuilder().include(".*").warmupIterations(2).measurementIterations(2)
+				.jvmArgs("-server").forks(1).resultFormat(ResultFormatType.TEXT).build();
 
-    @Setup(Level.Trial)
-    public void setup() {
-        switch (this.type) {
-            case "BeanMapper":
-                this.mapper = new GeneralBeanMapper();
-                break;
-            case "BeanUtilsMapper":
-                this.mapper = new BeanUtilsMapper();
-                break;
-            case "Bull":
-                this.mapper = new BullMapper();
-                break;
-            case "Converter":
-                this.mapper = new ConverterMapper();
-                break;
-            case "Datus":
-                this.mapper = new DatusMapper();
-                break;
-            case "Dozer":
-                this.mapper = new DozerMapper();
-                break;
-//            case "JMapper":
-//                this.mapper = new JMapperMapper();
-//                break;
-            case "MapStruct":
-                this.mapper = new MapStructMapper();
-                break;
-            case "ModelMapper":
-                this.mapper = new ModelMapper();
-                break;
-            case "Orika":
-                this.mapper = new OrikaMapper();
-                break;
-            case "ReMap":
-                this.mapper = new ReMapper();
-                break;
-            case "Selma":
-                this.mapper = new SelmaMapper();
-                break;
-            default:
-                throw new IllegalStateException("Unknown type: " + this.type);
-        }
-    }
+		final Collection<RunResult> results = new Runner(opts).run();
+		for (final RunResult result : results) {
+			final Result<?> r = result.getPrimaryResult();
+			log.info("API replied benchmark score: " + r.getScore() + " " + r.getScoreUnit() + " over "
+					+ r.getStatistics().getN() + " iterations");
+		}
+	}
 
-    @Setup(Level.Iteration)
-    public void preInit() {
-        this.order = OrderFactory.buildOrder();
-    }
+	@Setup(Level.Trial)
+	public void setup() {
+		switch (this.type) {
+		case "BeanMapper":
+			this.mapper = new GeneralBeanMapper();
+			break;
+		case "BeanUtilsMapper":
+			this.mapper = new BeanUtilsMapper();
+			break;
+		case "Bull":
+			this.mapper = new BullMapper();
+			break;
+		case "Converter":
+			this.mapper = new ConverterMapper();
+			break;
+		case "Datus":
+			this.mapper = new DatusMapper();
+			break;
+		case "Dozer":
+			this.mapper = new DozerMapper();
+			break;
+		// case "JMapper":
+		// this.mapper = new JMapperMapper();
+		// break;
+		case "MapStruct":
+			this.mapper = new MapStructMapper();
+			break;
+		case "ModelMapper":
+			this.mapper = new ModelMapper();
+			break;
+		case "Orika":
+			this.mapper = new OrikaMapper();
+			break;
+		case "ReMap":
+			this.mapper = new ReMapper();
+			break;
+		case "Selma":
+			this.mapper = new SelmaMapper();
+			break;
+		default:
+			throw new IllegalStateException("Unknown type: " + this.type);
+		}
+	}
 
-    @Benchmark
-    @Group("simpleTest")
-    public OrderDto mapper() {
-        return this.mapper.map(this.order);
-    }
+	@Setup(Level.Iteration)
+	public void preInit() {
+		this.order = OrderFactory.buildOrder();
+	}
+
+	@Benchmark
+	@Group("simpleTest")
+	public OrderDto mapper() {
+		return this.mapper.map(this.order);
+	}
+
 }

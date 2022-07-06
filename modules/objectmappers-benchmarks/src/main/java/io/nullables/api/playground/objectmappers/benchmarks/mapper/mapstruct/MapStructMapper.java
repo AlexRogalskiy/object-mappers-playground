@@ -26,10 +26,11 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 public class MapStructMapper implements OrderMapper {
 
-    private final MapStructOrderMapper mapper = Mappers.getMapper(MapStructOrderMapper.class);
+	private final MapStructOrderMapper mapper = Mappers.getMapper(MapStructOrderMapper.class);
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.mapper.map(source);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.mapper.map(source);
+	}
+
 }

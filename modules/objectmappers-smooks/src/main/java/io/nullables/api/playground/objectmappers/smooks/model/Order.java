@@ -31,9 +31,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
-    private Date creationDate;
-    private Long number;
-    private Status status;
-    private Supplier supplier;
-    private List<Item> items;
+
+	private Date creationDate;
+
+	private Long number;
+
+	private Status status;
+
+	private Supplier supplier;
+
+	private List<Item> items;
+
 }

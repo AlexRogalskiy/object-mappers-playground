@@ -32,35 +32,36 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class StringUtils {
 
-    @Nonnull
-    public Integer[] convertToIntegerArray(final String... value) {
-        return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(Integer::valueOf)
-            .toArray(Integer[]::new);
-    }
+	@Nonnull
+	public Integer[] convertToIntegerArray(final String... value) {
+		return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(Integer::valueOf)
+				.toArray(Integer[]::new);
+	}
 
-    @Nonnull
-    public String[] convertToStringArray(final Integer... value) {
-        return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(String::valueOf)
-            .toArray(String[]::new);
-    }
+	@Nonnull
+	public String[] convertToStringArray(final Integer... value) {
+		return Optional.ofNullable(value).map(Arrays::stream).orElse(Stream.empty()).map(String::valueOf)
+				.toArray(String[]::new);
+	}
 
-    @Nullable
-    public UUID convertToUuid(final String value) {
-        return Optional.ofNullable(value).map(UUID::fromString).orElse(null);
-    }
+	@Nullable
+	public UUID convertToUuid(final String value) {
+		return Optional.ofNullable(value).map(UUID::fromString).orElse(null);
+	}
 
-    @Nullable
-    public String convertToString(final UUID value) {
-        return Optional.ofNullable(value).map(UUID::toString).orElse(null);
-    }
+	@Nullable
+	public String convertToString(final UUID value) {
+		return Optional.ofNullable(value).map(UUID::toString).orElse(null);
+	}
 
-    @Nullable
-    public BigDecimal convertToBigDecimal(final String value, final BigDecimal defaultValue) {
-        return Optional.ofNullable(value).map(BigDecimal::new).orElse(defaultValue);
-    }
+	@Nullable
+	public BigDecimal convertToBigDecimal(final String value, final BigDecimal defaultValue) {
+		return Optional.ofNullable(value).map(BigDecimal::new).orElse(defaultValue);
+	}
 
-    @Nullable
-    public String notEmptyOrNull(final String value) {
-        return Optional.ofNullable(value).filter(org.apache.commons.lang3.StringUtils::isNotEmpty).orElse(null);
-    }
+	@Nullable
+	public String notEmptyOrNull(final String value) {
+		return Optional.ofNullable(value).filter(org.apache.commons.lang3.StringUtils::isNotEmpty).orElse(null);
+	}
+
 }

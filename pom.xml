@@ -125,6 +125,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <encoding>UTF-8</encoding>
 
         <maven.url>localhost</maven.url>
         <maven.version>3.6.0</maven.version>
@@ -146,9 +147,9 @@
         <maven.compiler.testSource>${java.version}</maven.compiler.testSource>
         <maven.compiler.testTarget>${java.version}</maven.compiler.testTarget>
 
-        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.outputEncoding>${encoding}</project.build.outputEncoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 
         <compile-tests.skip>false</compile-tests.skip>
         <enforce.java.skip>false</enforce.java.skip>
@@ -210,6 +211,8 @@
         <maven-clover-plugin.version>4.1.2</maven-clover-plugin.version>
         <maven-exec-plugin.version>3.0.0</maven-exec-plugin.version>
         <maven-directory-plugin.version>0.3.1</maven-directory-plugin.version>
+        <maven-spring-javaformat-plugin.version>0.0.33</maven-spring-javaformat-plugin.version>
+        <maven-copy-rename-plugin.version>1.0.1</maven-copy-rename-plugin.version>
         <maven-taglist-plugin.version>2.4</maven-taglist-plugin.version>
         <maven-fizzed-plugin.version>1.0.6</maven-fizzed-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -504,6 +507,41 @@
                         <phase>initialize</phase>
                         <configuration>
                             <property>main.basedir</property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.spring.javaformat</groupId>
+                <artifactId>spring-javaformat-maven-plugin</artifactId>
+                <version>${maven-spring-javaformat-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <inherited>true</inherited>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>${maven-copy-rename-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-license-file</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceFile>${session.executionRootDirectory}/LICENSE.txt</sourceFile>
+                            <destinationFile>${project.build.outputDirectory}/META-INF/LICENSE-${project.artifactId}
+                            </destinationFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -1921,6 +1959,7 @@
                         <artifactId>kotlin-maven-plugin</artifactId>
                         <version>${kotlin.version}</version>
                         <configuration>
+                            <javaParameters>true</javaParameters>
                             <compilerPlugins>
                                 <!--                                <plugin>spring</plugin>-->
                                 <!--                                <plugin>jpa</plugin>-->
@@ -3553,6 +3592,7 @@
                                 <doctitle>${project.name} v${project.version} API Documentation</doctitle>
                                 <detectOfflineLinks>false</detectOfflineLinks>
                                 <detectJavaApiLink>false</detectJavaApiLink>
+                                <excludePackageNames>functions,example</excludePackageNames>
                                 <additionalJOptions>
                                     <additionalJOption>-Xdoclint:all</additionalJOption>
                                     <additionalJOption>-Xdoclint:-missing</additionalJOption>
@@ -3570,13 +3610,29 @@
                                     </goals>
                                     <phase>prepare-package</phase>
                                     <configuration>
+                                        <show>public</show>
+                                        <maxmemory>1024</maxmemory>
                                         <includeDependencySources>true</includeDependencySources>
                                         <dependencySourceIncludes>
                                             <dependencySourceInclude>${project.groupId}:*</dependencySourceInclude>
                                         </dependencySourceIncludes>
+                                        <detectJavaApiLink>false</detectJavaApiLink>
                                         <attach>false</attach>
                                         <quiet>true</quiet>
+                                        <notree>true</notree>
+                                        <nohelp>true</nohelp>
+                                        <links>
+                                            <link>https://docs.spring.io/spring-framework/docs/${spring-boot.version}/javadoc-api/</link>
+                                            <link>https://docs.spring.io/spring-shell/docs/current/api/</link>
+                                        </links>
                                     </configuration>
+                                </execution>
+                                <execution>
+                                    <id>aggregate</id>
+                                    <goals>
+                                        <goal>aggregate-jar</goal>
+                                    </goals>
+                                    <phase>package</phase>
                                 </execution>
                             </executions>
                         </plugin>
@@ -4349,17 +4405,39 @@
                                 </dependency>
                             </dependencies>
                             <configuration>
+                                <failBuildOnProblemsFound>true</failBuildOnProblemsFound>
+                                <analysisConfigurationFiles>
+                                    <analysisConfigurationFile>
+                                        ${session.executionRootDirectory}/checkstyle/revapi-filtered.json
+                                    </analysisConfigurationFile>
+                                </analysisConfigurationFiles>
                                 <analysisConfiguration>
                                     <revapi.differences id="intentional-api-changes">
                                         <ignore>true</ignore>
                                     </revapi.differences>
+                                    <revapi.versions>
+                                        <enabled>true</enabled>
+                                        <versionIncreaseAllows>
+                                            <major>
+                                                <severity>BREAKING</severity>
+                                            </major>
+                                            <minor>
+                                                <severity>NON_BREAKING</severity>
+                                            </minor>
+                                            <patch>
+                                                <severity>EQUIVALENT</severity>
+                                            </patch>
+                                        </versionIncreaseAllows>
+                                    </revapi.versions>
                                 </analysisConfiguration>
                             </configuration>
                             <executions>
                                 <execution>
+                                    <id>revapi</id>
                                     <goals>
                                         <goal>check</goal>
                                     </goals>
+                                    <phase>verify</phase>
                                 </execution>
                             </executions>
                         </plugin>

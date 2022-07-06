@@ -30,16 +30,17 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 import io.nullables.api.playground.objectmappers.benchmarks.model.entity.ProductEntity;
 
 @Mapper(unmappedSourcePolicy = ReportingPolicy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE,
-                injectionStrategy = InjectionStrategy.FIELD)
+		injectionStrategy = InjectionStrategy.FIELD)
 public interface MapStructOrderMapper extends OrderMapper {
 
-    @Mapping(source = "customer.name", target = "customerName")
-    @Mapping(source = "customer.billingAddress.street", target = "billingStreetAddress")
-    @Mapping(source = "customer.billingAddress.city", target = "billingCity")
-    @Mapping(source = "customer.shippingAddress.street", target = "shippingStreetAddress")
-    @Mapping(source = "customer.shippingAddress.city", target = "shippingCity", defaultExpression = "java(null)")
-    OrderDto map(final OrderEntity source);
+	@Mapping(source = "customer.name", target = "customerName")
+	@Mapping(source = "customer.billingAddress.street", target = "billingStreetAddress")
+	@Mapping(source = "customer.billingAddress.city", target = "billingCity")
+	@Mapping(source = "customer.shippingAddress.street", target = "shippingStreetAddress")
+	@Mapping(source = "customer.shippingAddress.city", target = "shippingCity", defaultExpression = "java(null)")
+	OrderDto map(final OrderEntity source);
 
-    @Mapping(source = "name", target = "name")
-    ProductDto productToProductDTO(final ProductEntity product);
+	@Mapping(source = "name", target = "name")
+	ProductDto productToProductDTO(final ProductEntity product);
+
 }

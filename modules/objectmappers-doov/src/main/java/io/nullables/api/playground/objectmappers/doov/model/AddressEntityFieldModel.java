@@ -20,48 +20,46 @@ import io.nullables.api.playground.objectmappers.commons.model.entity.AddressEnt
 
 public class AddressEntityFieldModel extends RuntimeFieldRegistry<AddressEntity> {
 
-    /**
-     * Collection of {@link RuntimeField}s
-     */
-    private static final List<RuntimeField<AddressEntity, Object>> ALL = new ArrayList<>();
+	/**
+	 * Collection of {@link RuntimeField}s
+	 */
+	private static final List<RuntimeField<AddressEntity, Object>> ALL = new ArrayList<>();
 
-    /**
-     * Collection of {@link AddressEntity} {@link RuntimeField}s
-     */
-    public static RuntimeField<AddressEntity, UUID> ID_TARGET = from(AddressEntity.class, ID)
-        .readable("address identifier")
-        .field(AddressEntity::getId, AddressEntity::setId, UUID.class)
-        .register(ALL);
-    public static RuntimeField<AddressEntity, String> CITY_TARGET = from(AddressEntity.class, CITY)
-        .readable("address city")
-        .field(AddressEntity::getCity, AddressEntity::setCity, String.class)
-        .register(ALL);
-    public static RuntimeField<AddressEntity, String> COUNTRY_TARGET = from(AddressEntity.class, COUNTRY)
-        .readable("address country")
-        .field(AddressEntity::getCountry, AddressEntity::setCountry, String.class)
-        .register(ALL);
-    public static RuntimeField<AddressEntity, String> STATE_TARGET = from(AddressEntity.class, STATE)
-        .readable("address state")
-        .field(AddressEntity::getStateOrProvince, AddressEntity::setStateOrProvince, String.class)
-        .register(ALL);
-    public static RuntimeField<AddressEntity, String> POSTAL_CODE_TARGET = from(AddressEntity.class, POSTAL_CODE)
-        .readable("address postal code")
-        .field(AddressEntity::getPostalCode, AddressEntity::setPostalCode, String.class)
-        .register(ALL);
-    public static RuntimeField<AddressEntity, String> STREET_TARGET = from(AddressEntity.class, STREET)
-        .readable("address street")
-        .field(AddressEntity::getStreet, AddressEntity::setStreet, String.class)
-        .register(ALL);
+	/**
+	 * Collection of {@link AddressEntity} {@link RuntimeField}s
+	 */
+	public static RuntimeField<AddressEntity, UUID> ID_TARGET = from(AddressEntity.class, ID)
+			.readable("address identifier").field(AddressEntity::getId, AddressEntity::setId, UUID.class).register(ALL);
 
-    /**
-     * Default private {@link AddressEntityFieldModel} constructor
-     */
-    private AddressEntityFieldModel() {
-        super(ALL);
-    }
+	public static RuntimeField<AddressEntity, String> CITY_TARGET = from(AddressEntity.class, CITY)
+			.readable("address city").field(AddressEntity::getCity, AddressEntity::setCity, String.class).register(ALL);
 
-    @Nonnull
-    public static AddressEntityFieldModel newInstance() {
-        return new AddressEntityFieldModel();
-    }
+	public static RuntimeField<AddressEntity, String> COUNTRY_TARGET = from(AddressEntity.class, COUNTRY)
+			.readable("address country").field(AddressEntity::getCountry, AddressEntity::setCountry, String.class)
+			.register(ALL);
+
+	public static RuntimeField<AddressEntity, String> STATE_TARGET = from(AddressEntity.class, STATE)
+			.readable("address state")
+			.field(AddressEntity::getStateOrProvince, AddressEntity::setStateOrProvince, String.class).register(ALL);
+
+	public static RuntimeField<AddressEntity, String> POSTAL_CODE_TARGET = from(AddressEntity.class, POSTAL_CODE)
+			.readable("address postal code")
+			.field(AddressEntity::getPostalCode, AddressEntity::setPostalCode, String.class).register(ALL);
+
+	public static RuntimeField<AddressEntity, String> STREET_TARGET = from(AddressEntity.class, STREET)
+			.readable("address street").field(AddressEntity::getStreet, AddressEntity::setStreet, String.class)
+			.register(ALL);
+
+	/**
+	 * Default private {@link AddressEntityFieldModel} constructor
+	 */
+	private AddressEntityFieldModel() {
+		super(ALL);
+	}
+
+	@Nonnull
+	public static AddressEntityFieldModel newInstance() {
+		return new AddressEntityFieldModel();
+	}
+
 }

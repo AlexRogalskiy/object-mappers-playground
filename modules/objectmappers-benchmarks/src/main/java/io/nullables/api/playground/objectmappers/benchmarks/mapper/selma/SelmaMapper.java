@@ -25,10 +25,11 @@ import io.nullables.api.playground.objectmappers.benchmarks.model.entity.OrderEn
 
 public class SelmaMapper implements OrderMapper {
 
-    private final SelmaOrderMapper mapper = Selma.builder(SelmaOrderMapper.class).build();
+	private final SelmaOrderMapper mapper = Selma.builder(SelmaOrderMapper.class).build();
 
-    @Override
-    public OrderDto map(final OrderEntity source) {
-        return this.mapper.map(source);
-    }
+	@Override
+	public OrderDto map(final OrderEntity source) {
+		return this.mapper.map(source);
+	}
+
 }

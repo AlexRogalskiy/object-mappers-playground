@@ -28,17 +28,14 @@ import ma.glasnost.orika.MappingContext;
 
 public class ShippableDateTimeCustomMapper extends CustomMapper<DeliveryDto, DeliveryEntity> {
 
-    @Override
-    public void mapAtoB(final DeliveryDto a,
-                        final DeliveryEntity b,
-                        final MappingContext context) {
-        b.setShippableDue(convertToLocalDateTime(a.getShippableDue()));
-    }
+	@Override
+	public void mapAtoB(final DeliveryDto a, final DeliveryEntity b, final MappingContext context) {
+		b.setShippableDue(convertToLocalDateTime(a.getShippableDue()));
+	}
 
-    @Override
-    public void mapBtoA(final DeliveryEntity b,
-                        final DeliveryDto a,
-                        final MappingContext context) {
-        a.setShippableDue(convertToString(b.getShippableDue()));
-    }
+	@Override
+	public void mapBtoA(final DeliveryEntity b, final DeliveryDto a, final MappingContext context) {
+		a.setShippableDue(convertToString(b.getShippableDue()));
+	}
+
 }

@@ -51,175 +51,205 @@ import net.andreinc.mockneat.abstraction.MockUnitString;
 
 @UtilityClass
 public class MockTestUtils {
-    /**
-     * Default integer mock unit instances {@link MockUnitInt}
-     */
-    public static final MockUnitInt thousandMock = ints().range(1, 999);
-    public static final MockUnitInt monthMock = ints().range(1, 12);
-    public static final MockUnitInt codeMock = ints().bound(10);
-    public static final MockUnitInt intMock = ints().bound(1000000);
-    public static final MockUnitInt byteMock = ints().bound(255);
-    public static final MockUnitInt shortMock = ints().bound(15000);
-    public static final MockUnitInt intRangeMock = ints().range(1000, 5000);
-    /**
-     * Default {@link MockUnitLong}
-     */
-    public static final MockUnitLong longMock = longs().bound(10000000);
-    public static final MockUnitLong longRangeMock = longs().range(100000, 500000);
-    /**
-     * Default {@link MockUnitDouble}
-     */
-    public static final MockUnitDouble doubleMock = doubles().bound(50000);
-    /**
-     * Default {@link MockUnitFloat}
-     */
-    public static final MockUnitFloat floatMock = floats().bound(5000);
-    /**
-     * Default {@link MockUnitLocalDate}
-     */
-    public static final MockUnitLocalDate localDateMock = localDates();
-    public static final MockUnitLocalDateTime localDateTimeMock = localDateTimes();
-    public static final MockUnitLocalDate yearLocalDateMock = localDates().thisYear();
-    public static final MockUnitLocalDate pastLocalDateMock = localDates().past(LocalDate.now().minusYears(3));
-    public static final MockUnitLocalDate futureLocalDateMock = localDates().future(LocalDate.now().plusYears(3));
-    /**
-     * Default {@link MockUnitString}
-     */
-    public static final MockUnitString alphaNumericStringMock = strings().types(ALPHA_NUMERIC);
-    public static final MockUnitString lettersStringMock = strings().types(LETTERS);
-    public static final MockUnitString numbersStringMock = strings().types(NUMBERS);
-    /**
-     * Default {@link MockUnitString}
-     */
-    public static final MockUnitString ipv4ClassACMock = MockNeat.threadLocal().ipv4s().types(CLASS_A, CLASS_C);
-    public static final MockUnitString ipv6Mock = MockNeat.threadLocal().iPv6s().mapToString();
-    public static final MockUnitString uuidMock = MockNeat.threadLocal().uuids().mapToString();
-    public static final MockUnitString countryNameMock = MockNeat.threadLocal().countries().names();
-    public static final MockUnitString cityNameMock = MockNeat.threadLocal().cities().capitals();
-    public static final MockUnitString currencyNameMock = MockNeat.threadLocal().currencies().name();
-    public static final MockUnitString creditCardNameMock = MockNeat.threadLocal().creditCards().names();
-    public static final MockUnitString emailMock = MockNeat.threadLocal().emails().mapToString();
-    public static final MockUnitString domainMock = MockNeat.threadLocal().domains().all();
-    public static final MockUnitString departmentMock = MockNeat.threadLocal().departments().mapToString();
-    public static final MockUnitString genderMock = MockNeat.threadLocal().genders().letter();
-    public static final MockUnitString firstNameMock = MockNeat.threadLocal().names().first();
-    public static final MockUnitString lastNameMock = MockNeat.threadLocal().names().last();
-    public static final MockUnitString quotationMock = MockNeat.threadLocal().naughtyStrings().quotations();
-    public static final MockUnitString dayNameMock = MockNeat.threadLocal().days().mapToString();
-    public static final MockUnitString monthNameMock = MockNeat.threadLocal().months().mapToString();
 
-    /**
-     * Returns {@link MockUnit} to produce array of {@link Float} by initial input array size and range (lower / upper
-     * bounds)
-     *
-     * @param size - initial input array size
-     * @param lowerBound - initial input lower bound
-     * @param upperBound - initial input upper bound
-     * @return {@link MockUnit} to produce array of {@link Float}
-     */
-    public static MockUnit<Float[]> generateFloats(int size, float lowerBound, float upperBound) {
-        return MockNeat.threadLocal().floats().range(lowerBound, upperBound).array(size);
-    }
+	/**
+	 * Default integer mock unit instances {@link MockUnitInt}
+	 */
+	public static final MockUnitInt thousandMock = ints().range(1, 999);
 
-    /**
-     * Returns {@link MockUnit} to produce array of {@link Double} by initial input array size and range (lower / upper
-     * bounds)
-     *
-     * @param size - initial input array size
-     * @param lowerBound - initial input lower bound
-     * @param upperBound - initial input upper bound
-     * @return {@link MockUnit} to produce array of {@link Double}
-     */
-    public static MockUnit<Double[]> generateDoubles(int size, double lowerBound, double upperBound) {
-        return MockNeat.threadLocal().doubles().range(lowerBound, upperBound).array(size);
-    }
+	public static final MockUnitInt monthMock = ints().range(1, 12);
 
-    /**
-     * Returns {@link MockUnit} to produce array of {@link Integer} by initial input array size and range (lower / upper
-     * bounds)
-     *
-     * @param size - initial input array size
-     * @param lowerBound - initial input lower value bound
-     * @param upperBound - initial input upper value bound
-     * @return {@link MockUnit} to produce array of {@link Integer}
-     */
-    public static MockUnit<Integer[]> generateInts(int size, int lowerBound, int upperBound) {
-        return MockNeat.threadLocal().ints().range(lowerBound, upperBound).array(size);
-    }
+	public static final MockUnitInt codeMock = ints().bound(10);
 
-    /**
-     * Returns {@link MockUnit} to produce array of {@link Long} by initial input array size and range (lower / upper
-     * bounds)
-     *
-     * @param size - initial input array size
-     * @param lowerBound - initial input lower value bound
-     * @param upperBound - initial input value value bound
-     * @return {@link MockUnit} to produce array of {@link Long}
-     */
-    public static MockUnit<Long[]> generateLongs(int size, long lowerBound, long upperBound) {
-        return MockNeat.threadLocal().longs().range(lowerBound, upperBound).array(size);
-    }
+	public static final MockUnitInt intMock = ints().bound(1000000);
 
-    /**
-     * Returns mock unit {@link MockUnit} to produce {@link List} of {@link Integer} by initial input list size and
-     * bound
-     *
-     * @param size - initial input {@link List} size
-     * @param bound - initial input value bound
-     * @return {@link MockUnit} to produce {@link List} of {@link Integer}
-     */
-    public static MockUnit<List<Integer>> generateInts(int size, int bound) {
-        return MockNeat.threadLocal().ints().bound(bound).list(LinkedList.class, size);
-    }
+	public static final MockUnitInt byteMock = ints().bound(255);
 
-    /**
-     * Returns {@link MockUnit} to produce list {@link List} of {@link String} by initial input list size
-     *
-     * @param size - initial input {@link List} size
-     * @return {@link MockUnit} to produce list {@link List} of {@link String}
-     */
-    public static MockUnit<List<String>> generateStrings(int size) {
-        final MockUnitInt num = MockNeat.threadLocal().probabilites(Integer.class)
-                        .add(0.3, MockNeat.threadLocal().ints().range(0, 10))
-                        .add(0.7, MockNeat.threadLocal().ints().range(10, 20)).mapToInt(Integer::intValue);
+	public static final MockUnitInt shortMock = ints().bound(15000);
 
-        return MockNeat.threadLocal().fmt("#{first} #{last} #{num}")
-                        .param("first", MockNeat.threadLocal().names().first().format(LOWER_CASE))
-                        .param("last", MockNeat.threadLocal().names().last().format(UPPER_CASE)).param("num", num)
-                        .list(size);
-    }
+	public static final MockUnitInt intRangeMock = ints().range(1000, 5000);
 
-    /**
-     * Returns {@link MockUnit} to produce {@link List} of {@link Boolean} by initial input probability and size values
-     *
-     * @param probability - initial input probability value
-     * @param size - initial input {@link List} size
-     * @return {@link MockUnit} to produce {@link List} of {@link Boolean}
-     */
-    public static MockUnit<List<Boolean>> generateBooleans(double probability, int size) {
-        return MockNeat.threadLocal().bools().probability(probability).list(size);
-    }
+	/**
+	 * Default {@link MockUnitLong}
+	 */
+	public static final MockUnitLong longMock = longs().bound(10000000);
 
-    /**
-     * Returns {@link MockUnit} to produce {@link List} of {@link String} by range (lower / upper bounds)
-     *
-     * @param lowerBound - initial input lower value bound
-     * @param upperBound - initial input value value bound
-     * @return {@link MockUnit} to produce {@link List} of {@link Boolean}
-     */
-    public static MockUnit<List<String>> generateStrings(int lowerBound, int upperBound) {
-        final MockUnitInt sizeGenerator = MockNeat.threadLocal().ints().range(lowerBound, upperBound);
-        return MockNeat.threadLocal().strings().list(ArrayList::new, sizeGenerator);
-    }
+	public static final MockUnitLong longRangeMock = longs().range(100000, 500000);
 
-    /**
-     * Returns {@link MockUnit} to produce {@link List} of {@link String} by range (lower / upper bounds)
-     *
-     * @param dateStart - initial input date start value {@link LocalDate}
-     * @param dateEnd - initial input date end value {@link LocalDate}
-     * @return {@link MockUnit} to produce {@link Date}
-     */
-    public static MockUnit<Date> generateDates(final LocalDate dateStart, final LocalDate dateEnd) {
-        return MockNeat.threadLocal().localDates().between(dateStart, dateEnd).mapToDate();
-    }
+	/**
+	 * Default {@link MockUnitDouble}
+	 */
+	public static final MockUnitDouble doubleMock = doubles().bound(50000);
+
+	/**
+	 * Default {@link MockUnitFloat}
+	 */
+	public static final MockUnitFloat floatMock = floats().bound(5000);
+
+	/**
+	 * Default {@link MockUnitLocalDate}
+	 */
+	public static final MockUnitLocalDate localDateMock = localDates();
+
+	public static final MockUnitLocalDateTime localDateTimeMock = localDateTimes();
+
+	public static final MockUnitLocalDate yearLocalDateMock = localDates().thisYear();
+
+	public static final MockUnitLocalDate pastLocalDateMock = localDates().past(LocalDate.now().minusYears(3));
+
+	public static final MockUnitLocalDate futureLocalDateMock = localDates().future(LocalDate.now().plusYears(3));
+
+	/**
+	 * Default {@link MockUnitString}
+	 */
+	public static final MockUnitString alphaNumericStringMock = strings().types(ALPHA_NUMERIC);
+
+	public static final MockUnitString lettersStringMock = strings().types(LETTERS);
+
+	public static final MockUnitString numbersStringMock = strings().types(NUMBERS);
+
+	/**
+	 * Default {@link MockUnitString}
+	 */
+	public static final MockUnitString ipv4ClassACMock = MockNeat.threadLocal().ipv4s().types(CLASS_A, CLASS_C);
+
+	public static final MockUnitString ipv6Mock = MockNeat.threadLocal().iPv6s().mapToString();
+
+	public static final MockUnitString uuidMock = MockNeat.threadLocal().uuids().mapToString();
+
+	public static final MockUnitString countryNameMock = MockNeat.threadLocal().countries().names();
+
+	public static final MockUnitString cityNameMock = MockNeat.threadLocal().cities().capitals();
+
+	public static final MockUnitString currencyNameMock = MockNeat.threadLocal().currencies().name();
+
+	public static final MockUnitString creditCardNameMock = MockNeat.threadLocal().creditCards().names();
+
+	public static final MockUnitString emailMock = MockNeat.threadLocal().emails().mapToString();
+
+	public static final MockUnitString domainMock = MockNeat.threadLocal().domains().all();
+
+	public static final MockUnitString departmentMock = MockNeat.threadLocal().departments().mapToString();
+
+	public static final MockUnitString genderMock = MockNeat.threadLocal().genders().letter();
+
+	public static final MockUnitString firstNameMock = MockNeat.threadLocal().names().first();
+
+	public static final MockUnitString lastNameMock = MockNeat.threadLocal().names().last();
+
+	public static final MockUnitString quotationMock = MockNeat.threadLocal().naughtyStrings().quotations();
+
+	public static final MockUnitString dayNameMock = MockNeat.threadLocal().days().mapToString();
+
+	public static final MockUnitString monthNameMock = MockNeat.threadLocal().months().mapToString();
+
+	/**
+	 * Returns {@link MockUnit} to produce array of {@link Float} by initial input array
+	 * size and range (lower / upper bounds)
+	 * @param size - initial input array size
+	 * @param lowerBound - initial input lower bound
+	 * @param upperBound - initial input upper bound
+	 * @return {@link MockUnit} to produce array of {@link Float}
+	 */
+	public static MockUnit<Float[]> generateFloats(int size, float lowerBound, float upperBound) {
+		return MockNeat.threadLocal().floats().range(lowerBound, upperBound).array(size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce array of {@link Double} by initial input array
+	 * size and range (lower / upper bounds)
+	 * @param size - initial input array size
+	 * @param lowerBound - initial input lower bound
+	 * @param upperBound - initial input upper bound
+	 * @return {@link MockUnit} to produce array of {@link Double}
+	 */
+	public static MockUnit<Double[]> generateDoubles(int size, double lowerBound, double upperBound) {
+		return MockNeat.threadLocal().doubles().range(lowerBound, upperBound).array(size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce array of {@link Integer} by initial input array
+	 * size and range (lower / upper bounds)
+	 * @param size - initial input array size
+	 * @param lowerBound - initial input lower value bound
+	 * @param upperBound - initial input upper value bound
+	 * @return {@link MockUnit} to produce array of {@link Integer}
+	 */
+	public static MockUnit<Integer[]> generateInts(int size, int lowerBound, int upperBound) {
+		return MockNeat.threadLocal().ints().range(lowerBound, upperBound).array(size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce array of {@link Long} by initial input array
+	 * size and range (lower / upper bounds)
+	 * @param size - initial input array size
+	 * @param lowerBound - initial input lower value bound
+	 * @param upperBound - initial input value value bound
+	 * @return {@link MockUnit} to produce array of {@link Long}
+	 */
+	public static MockUnit<Long[]> generateLongs(int size, long lowerBound, long upperBound) {
+		return MockNeat.threadLocal().longs().range(lowerBound, upperBound).array(size);
+	}
+
+	/**
+	 * Returns mock unit {@link MockUnit} to produce {@link List} of {@link Integer} by
+	 * initial input list size and bound
+	 * @param size - initial input {@link List} size
+	 * @param bound - initial input value bound
+	 * @return {@link MockUnit} to produce {@link List} of {@link Integer}
+	 */
+	public static MockUnit<List<Integer>> generateInts(int size, int bound) {
+		return MockNeat.threadLocal().ints().bound(bound).list(LinkedList.class, size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce list {@link List} of {@link String} by initial
+	 * input list size
+	 * @param size - initial input {@link List} size
+	 * @return {@link MockUnit} to produce list {@link List} of {@link String}
+	 */
+	public static MockUnit<List<String>> generateStrings(int size) {
+		final MockUnitInt num = MockNeat.threadLocal().probabilites(Integer.class)
+				.add(0.3, MockNeat.threadLocal().ints().range(0, 10))
+				.add(0.7, MockNeat.threadLocal().ints().range(10, 20)).mapToInt(Integer::intValue);
+
+		return MockNeat.threadLocal().fmt("#{first} #{last} #{num}")
+				.param("first", MockNeat.threadLocal().names().first().format(LOWER_CASE))
+				.param("last", MockNeat.threadLocal().names().last().format(UPPER_CASE)).param("num", num).list(size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce {@link List} of {@link Boolean} by initial
+	 * input probability and size values
+	 * @param probability - initial input probability value
+	 * @param size - initial input {@link List} size
+	 * @return {@link MockUnit} to produce {@link List} of {@link Boolean}
+	 */
+	public static MockUnit<List<Boolean>> generateBooleans(double probability, int size) {
+		return MockNeat.threadLocal().bools().probability(probability).list(size);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce {@link List} of {@link String} by range (lower
+	 * / upper bounds)
+	 * @param lowerBound - initial input lower value bound
+	 * @param upperBound - initial input value value bound
+	 * @return {@link MockUnit} to produce {@link List} of {@link Boolean}
+	 */
+	public static MockUnit<List<String>> generateStrings(int lowerBound, int upperBound) {
+		final MockUnitInt sizeGenerator = MockNeat.threadLocal().ints().range(lowerBound, upperBound);
+		return MockNeat.threadLocal().strings().list(ArrayList::new, sizeGenerator);
+	}
+
+	/**
+	 * Returns {@link MockUnit} to produce {@link List} of {@link String} by range (lower
+	 * / upper bounds)
+	 * @param dateStart - initial input date start value {@link LocalDate}
+	 * @param dateEnd - initial input date end value {@link LocalDate}
+	 * @return {@link MockUnit} to produce {@link Date}
+	 */
+	public static MockUnit<Date> generateDates(final LocalDate dateStart, final LocalDate dateEnd) {
+		return MockNeat.threadLocal().localDates().between(dateStart, dateEnd).mapToDate();
+	}
+
 }

@@ -54,75 +54,54 @@ import io.nullables.api.playground.objectmappers.testflow.annotation.VariableSou
 @SimpleTest
 class DoovMapperTest {
 
-    public static final Stream<Arguments> deliveryDtoValues = IntStream.iterate(0, n -> n + 1)
-        .limit(ThreadLocalRandom.current().nextInt(1, 10))
-        .mapToObj(v -> deliveryDtoMock().val())
-        .map(Arguments::of);
+	public static final Stream<Arguments> deliveryDtoValues = IntStream.iterate(0, n -> n + 1)
+			.limit(ThreadLocalRandom.current().nextInt(1, 10)).mapToObj(v -> deliveryDtoMock().val())
+			.map(Arguments::of);
 
-    private MappingRegistry mappingRegistry;
+	private MappingRegistry mappingRegistry;
 
-    @BeforeEach
-    void before() {
-        this.mappingRegistry = DoovMapperConfiguration.newBuilder()
-            .configureAddressMappings()
-            .configureDeliveryMappings()
-            .build();
-    }
+	@BeforeEach
+	void before() {
+		this.mappingRegistry = DoovMapperConfiguration.newBuilder().configureAddressMappings()
+				.configureDeliveryMappings().build();
+	}
 
-    @ParameterizedTest
-    @VariableSource("deliveryDtoValues")
-    void testCheckDeliveryDtoConversion(@Nonnull final DeliveryDto source) {
-        // when
-        final List<AddressEntity> addresses = source.getAddresses()
-            .stream()
-            .map(addressDto -> {
-                final AddressEntity addressTarget = new AddressEntity();
-                this.mappingRegistry.executeOn(
-                    new RuntimeModel<>(AddressDtoFieldModel.newInstance(), addressDto),
-                    new RuntimeModel<>(AddressEntityFieldModel.newInstance(), addressTarget)
-                );
-                return addressTarget;
-            })
-            .collect(Collectors.toList());
+	@ParameterizedTest
+	@VariableSource("deliveryDtoValues")
+	void testCheckDeliveryDtoConversion(@Nonnull final DeliveryDto source) {
+		// when
+		final List<AddressEntity> addresses = source.getAddresses().stream().map(addressDto -> {
+			final AddressEntity addressTarget = new AddressEntity();
+			this.mappingRegistry.executeOn(new RuntimeModel<>(AddressDtoFieldModel.newInstance(), addressDto),
+					new RuntimeModel<>(AddressEntityFieldModel.newInstance(), addressTarget));
+			return addressTarget;
+		}).collect(Collectors.toList());
 
-        final DeliveryEntity target = new DeliveryEntity();
-        this.mappingRegistry.executeOn(
-            new RuntimeModel<>(DeliveryDtoFieldModel.newInstance(), source),
-            new RuntimeModel<>(DeliveryEntityFieldModel.newInstance(), target)
-        );
-        target.setAddresses(addresses);
+		final DeliveryEntity target = new DeliveryEntity();
+		this.mappingRegistry.executeOn(new RuntimeModel<>(DeliveryDtoFieldModel.newInstance(), source),
+				new RuntimeModel<>(DeliveryEntityFieldModel.newInstance(), target));
+		target.setAddresses(addresses);
 
-        // then
-        assertAll(
-            "Should DeliveryDto field values match target DeliveryEntity values",
-            () -> Assertions.assertThat(target.getAddresses())
-                .isNotNull()
-                .extracting(
-                    v -> v.getId().toString(),
-                    AddressEntity::getCity,
-                    AddressEntity::getCountry,
-                    AddressEntity::getPostalCode,
-                    AddressEntity::getStateOrProvince,
-                    AddressEntity::getStreet
-                )
-                .containsExactlyInAnyOrder(
-                    source.getAddresses()
-                        .stream()
-                        .map(c -> tuple(c.getId(), c.getCity(), c.getCountry(), c.getPostalCode(), c.getStateOrProvince(), c.getStreet()))
-                        .toArray(Tuple[]::new)
-                ),
-            () -> Assertions.assertThat(target)
-                .isNotNull()
-                .<String[]>usingComparatorForFields(ArrayUtils::compare, "codes")
-                .<String>usingComparatorForFields(StringUtils::compare, "id")
-                .<String>usingComparatorForFields(StringUtils::compare, "discount")
-                .hasFieldOrPropertyWithValue("type", source.getType())
-                .hasFieldOrPropertyWithValue("description", source.getDescription())
-                .hasFieldOrPropertyWithValue("gid", source.getGid())
-                .hasFieldOrPropertyWithValue("createdAt", source.getCreatedAt())
-                .hasFieldOrPropertyWithValue("updatedAt", source.getUpdatedAt())
-                .hasFieldOrPropertyWithValue("balance", source.getBalance())
-                .hasFieldOrPropertyWithValue("status", source.getStatus())
-        );
-    }
+		// then
+		assertAll("Should DeliveryDto field values match target DeliveryEntity values", () -> Assertions
+				.assertThat(target.getAddresses()).isNotNull()
+				.extracting(v -> v.getId().toString(), AddressEntity::getCity, AddressEntity::getCountry,
+						AddressEntity::getPostalCode, AddressEntity::getStateOrProvince, AddressEntity::getStreet)
+				.containsExactlyInAnyOrder(source.getAddresses().stream()
+						.map(c -> tuple(c.getId(), c.getCity(), c.getCountry(), c.getPostalCode(),
+								c.getStateOrProvince(), c.getStreet()))
+						.toArray(Tuple[]::new)),
+				() -> Assertions.assertThat(target).isNotNull()
+						.<String[]>usingComparatorForFields(ArrayUtils::compare, "codes")
+						.<String>usingComparatorForFields(StringUtils::compare, "id")
+						.<String>usingComparatorForFields(StringUtils::compare, "discount")
+						.hasFieldOrPropertyWithValue("type", source.getType())
+						.hasFieldOrPropertyWithValue("description", source.getDescription())
+						.hasFieldOrPropertyWithValue("gid", source.getGid())
+						.hasFieldOrPropertyWithValue("createdAt", source.getCreatedAt())
+						.hasFieldOrPropertyWithValue("updatedAt", source.getUpdatedAt())
+						.hasFieldOrPropertyWithValue("balance", source.getBalance())
+						.hasFieldOrPropertyWithValue("status", source.getStatus()));
+	}
+
 }

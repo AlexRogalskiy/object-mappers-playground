@@ -28,7 +28,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerEntity {
-    private String name;
-    private AddressEntity shippingAddress;
-    private AddressEntity billingAddress;
+
+	private String name;
+
+	private AddressEntity shippingAddress;
+
+	private AddressEntity billingAddress;
+
 }
