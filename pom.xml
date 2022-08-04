@@ -296,6 +296,7 @@
         <maven-editorconfig-plugin.version>0.1.1</maven-editorconfig-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
+        <maven-scm-provider-jgit.version>1.11.2</maven-scm-provider-jgit.version>
         <maven-violations-plugin.version>1.48</maven-violations-plugin.version>
         <maven-gitflow-incremental-builder-plugin.version>3.14.3</maven-gitflow-incremental-builder-plugin.version>
     </properties>
@@ -2604,7 +2605,12 @@
                             <verbose>false</verbose>
                             <failOnNotUptodateHeader>false</failOnNotUptodateHeader>
                             <failOnMissingHeader>false</failOnMissingHeader>
-                            <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                            <sortArtifactByName>false</sortArtifactByName>
+                            <useMissingFile>false</useMissingFile>
+                            <addJavaLicenseAfterPackage>true</addJavaLicenseAfterPackage>
+                            <socketTimeout>30000</socketTimeout>
+                            <connectTimeout>30000</connectTimeout>
+                            <connectionRequestTimeout>30000</connectionRequestTimeout>
                             <excludes>
                                 <exclude>src/main/resources/META-INF/**</exclude>
                                 <exclude>src/**/resources/vendor/**/*</exclude>
@@ -2959,6 +2965,7 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>${maven-release-plugin.version}</version>
                         <configuration>
+                            <tagBase>${project.version}</tagBase>
                             <tagNameFormat>v${project.artifactId}-${project.version}</tagNameFormat>
                             <mavenExecutorId>forked-path</mavenExecutorId>
                             <useReleaseProfile>false</useReleaseProfile>
@@ -2976,6 +2983,11 @@
                                 <groupId>org.apache.maven.scm</groupId>
                                 <artifactId>maven-scm-provider-gitexe</artifactId>
                                 <version>${maven-scm-provider-gitexe.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.maven.scm</groupId>
+                                <artifactId>maven-scm-provider-jgit</artifactId>
+                                <version>${maven-scm-provider-jgit.version}</version>
                             </dependency>
                         </dependencies>
                     </plugin>

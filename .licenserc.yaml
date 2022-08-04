@@ -1,0 +1,27 @@
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: Apache Software Foundation
+
+  paths-ignore:
+    - seatunnel-dist
+    - NOTICE
+    - LICENSE
+    - DISCLAIMER
+    - mvnw.cmd
+    - .mvn
+    - .gitattributes
+    - '**/known-dependencies-*.txt'
+    - '**/*.md'
+    - '**/*.mdx'
+    - '**/*.json'
+    - '**/*.iml'
+    - '**/*.ini'
+    - '**/*.svg'
+    - '**/.gitignore'
+    - '**/LICENSE'
+    - '**/NOTICE'
+    - '**/.gitkeep'
+    - '**/com/typesafe/config/**'
+
+  comment: on-failure
