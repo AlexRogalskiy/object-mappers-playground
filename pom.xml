@@ -246,6 +246,7 @@
         <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
         <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
         <maven-formatter-plugin.version>2.15.0</maven-formatter-plugin.version>
+        <maven-googleformatter-plugin.version>1.7.5</maven-googleformatter-plugin.version>
         <maven-impsort-plugin.version>1.4.1</maven-impsort-plugin.version>
         <maven-fmt-plugin.version>2.10</maven-fmt-plugin.version>
         <maven-dependency-check-plugin.version>6.0.3</maven-dependency-check-plugin.version>
@@ -3009,6 +3010,40 @@
                                 <version>${wagon-ssh.version}</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Google format profile -->
+        <!--        mvn googleformatter:format@reformat-sources-->
+        <profile>
+            <id>google-format</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.theoryinpractise</groupId>
+                        <artifactId>googleformatter-maven-plugin</artifactId>
+                        <version>${maven-googleformatter-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>reformat-sources</id>
+                                <configuration>
+                                    <includeStale>false</includeStale>
+                                    <style>GOOGLE</style>
+                                    <formatMain>true</formatMain>
+                                    <formatTest>true</formatTest>
+                                    <filterModified>false</filterModified>
+                                    <skip>false</skip>
+                                    <fixImports>true</fixImports>
+                                    <maxLineLength>120</maxLineLength>
+                                </configuration>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                                <phase>process-sources</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
