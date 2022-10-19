@@ -157,6 +157,7 @@
         <enforce.maven.skip>false</enforce.maven.skip>
         <enforce.snapshots.skip>false</enforce.snapshots.skip>
         <enforce.plugin.skip>false</enforce.plugin.skip>
+        <enforce.property.skip>false</enforce.property.skip>
         <enforce.deps.skip>false</enforce.deps.skip>
         <enforce.repository.skip>false</enforce.repository.skip>
         <enforce.vars.skip>false</enforce.vars.skip>
@@ -838,6 +839,22 @@
                                         (http://maven.apache.org/plugins/maven-invoker-plugin/)!
                                     </message>
                                 </bannedPlugins>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>enforce-property</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${enforce.property.skip}</skip>
+                            <rules>
+                                <requireProperty>
+                                    <property>objectmappers.version</property>
+                                    <regex>.*1\.\d\.\d.*</regex>
+                                    <regexMessage>This extension is only supported in any 1.x.y ObjectMappers version.</regexMessage>
+                                </requireProperty>
                             </rules>
                         </configuration>
                     </execution>
@@ -4945,6 +4962,7 @@
                 <enforce.maven.skip>true</enforce.maven.skip>
                 <enforce.snapshots.skip>true</enforce.snapshots.skip>
                 <enforce.plugin.skip>true</enforce.plugin.skip>
+                <enforce.property.skip>true</enforce.property.skip>
                 <enforce.deps.skip>true</enforce.deps.skip>
                 <enforce.repository.skip>true</enforce.repository.skip>
                 <enforce.vars.skip>true</enforce.vars.skip>
